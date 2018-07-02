@@ -1,0 +1,16 @@
+{
+  "name": "buckswise-back-end",
+  "version": "0.0.0",
+  "description": "Description for Buckswise_Back_End",
+  "private": true,
+  "license": "UNLICENSED",
+  "cacheDirectories": [
+    "node_modules"
+  ],
+  "devDependencies": {
+    "generator-jhipster": "4.14.3"
+  },
+  "engines": {
+    "node": ">=6.9.0"
+  }
+}
