@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "homeloan",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "prncpalloan",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rentclm",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "remintrst",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rentclmgg",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180627071231",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "homededuction",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

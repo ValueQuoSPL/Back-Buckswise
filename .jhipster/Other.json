@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "handicapped",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "medicaltreat",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "selfedu",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nps",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rgess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "donation",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180627093612",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "other",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

@@ -1,0 +1,64 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "fixed",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tution",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nsc",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nss",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "post",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "reinvest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "licpremium",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "equity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "pf",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ppf",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "other",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tutionfee",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ulip",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180627102758",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "eightyc",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

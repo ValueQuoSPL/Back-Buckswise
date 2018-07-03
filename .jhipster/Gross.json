@@ -1,0 +1,64 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "bsalary",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "da",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hra",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "conveyance",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "childedu",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "medical",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "lta",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "otherallown",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "bonus",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rentincome",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "saving",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "bonds",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "conveyanceother",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180627110413",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "gross",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}
