@@ -1,7 +1,7 @@
 package com.valuequo.buckswise.web.rest;
 
 import io.github.jhipster.config.JHipsterProperties;
-import com.valuequo.buckswise.BuckswiseBackEndApp;
+import com.valuequo.buckswise.BuckswiseApp;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ProfileInfoResource
  **/
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BuckswiseBackEndApp.class)
+@SpringBootTest(classes = BuckswiseApp.class)
 public class ProfileInfoResourceIntTest {
 
     @Mock

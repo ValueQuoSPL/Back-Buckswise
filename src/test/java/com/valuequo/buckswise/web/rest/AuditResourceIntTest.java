@@ -1,6 +1,6 @@
 package com.valuequo.buckswise.web.rest;
 
-import com.valuequo.buckswise.BuckswiseBackEndApp;
+import com.valuequo.buckswise.BuckswiseApp;
 import com.valuequo.buckswise.config.audit.AuditEventConverter;
 import com.valuequo.buckswise.domain.PersistentAuditEvent;
 import com.valuequo.buckswise.repository.PersistenceAuditEventRepository;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AuditResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BuckswiseBackEndApp.class)
+@SpringBootTest(classes = BuckswiseApp.class)
 @Transactional
 public class AuditResourceIntTest {
 

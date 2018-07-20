@@ -1,6 +1,6 @@
 package com.valuequo.buckswise.security;
 
-import com.valuequo.buckswise.BuckswiseBackEndApp;
+import com.valuequo.buckswise.BuckswiseApp;
 import com.valuequo.buckswise.domain.User;
 import com.valuequo.buckswise.repository.UserRepository;
 
@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @see DomainUserDetailsService
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BuckswiseBackEndApp.class)
+@SpringBootTest(classes = BuckswiseApp.class)
 @Transactional
 public class DomainUserDetailsServiceIntTest {
 

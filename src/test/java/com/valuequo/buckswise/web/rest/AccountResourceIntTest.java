@@ -1,7 +1,7 @@
 package com.valuequo.buckswise.web.rest;
 
 import com.valuequo.buckswise.config.Constants;
-import com.valuequo.buckswise.BuckswiseBackEndApp;
+import com.valuequo.buckswise.BuckswiseApp;
 import com.valuequo.buckswise.domain.Authority;
 import com.valuequo.buckswise.domain.User;
 import com.valuequo.buckswise.repository.AuthorityRepository;
@@ -49,7 +49,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AccountResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BuckswiseBackEndApp.class)
+@SpringBootTest(classes = BuckswiseApp.class)
 public class AccountResourceIntTest {
 
     @Autowired

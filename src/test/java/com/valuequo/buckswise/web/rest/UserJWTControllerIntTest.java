@@ -1,6 +1,6 @@
 package com.valuequo.buckswise.web.rest;
 
-import com.valuequo.buckswise.BuckswiseBackEndApp;
+import com.valuequo.buckswise.BuckswiseApp;
 import com.valuequo.buckswise.domain.User;
 import com.valuequo.buckswise.repository.UserRepository;
 import com.valuequo.buckswise.security.jwt.TokenProvider;
@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.not;
  * @see UserJWTController
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BuckswiseBackEndApp.class)
+@SpringBootTest(classes = BuckswiseApp.class)
 public class UserJWTControllerIntTest {
 
     @Autowired

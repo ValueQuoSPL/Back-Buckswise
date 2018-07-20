@@ -24,18 +24,18 @@ import java.util.Collection;
 @ComponentScan
 @EnableAutoConfiguration(exclude = {MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class})
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
-public class BuckswiseBackEndApp {
+public class BuckswiseApp {
 
-    private static final Logger log = LoggerFactory.getLogger(BuckswiseBackEndApp.class);
+    private static final Logger log = LoggerFactory.getLogger(BuckswiseApp.class);
 
     private final Environment env;
 
-    public BuckswiseBackEndApp(Environment env) {
+    public BuckswiseApp(Environment env) {
         this.env = env;
     }
 
     /**
-     * Initializes Buckswise_Back_End.
+     * Initializes buckswise.
      * <p>
      * Spring profiles can be configured with a program arguments --spring.profiles.active=your-active-profile
      * <p>
@@ -61,7 +61,7 @@ public class BuckswiseBackEndApp {
      * @throws UnknownHostException if the local host name could not be resolved into an address
      */
     public static void main(String[] args) throws UnknownHostException {
-        SpringApplication app = new SpringApplication(BuckswiseBackEndApp.class);
+        SpringApplication app = new SpringApplication(BuckswiseApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         String protocol = "http";

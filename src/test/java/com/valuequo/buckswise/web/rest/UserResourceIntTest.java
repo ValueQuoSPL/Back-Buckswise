@@ -1,6 +1,6 @@
 package com.valuequo.buckswise.web.rest;
 
-import com.valuequo.buckswise.BuckswiseBackEndApp;
+import com.valuequo.buckswise.BuckswiseApp;
 import com.valuequo.buckswise.config.CacheConfiguration;
 import com.valuequo.buckswise.domain.Authority;
 import com.valuequo.buckswise.domain.User;
@@ -32,7 +32,6 @@ import javax.persistence.EntityManager;
 import java.time.Instant;
 import java.util.*;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.containsInAnyOrder;
@@ -45,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see UserResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BuckswiseBackEndApp.class)
+@SpringBootTest(classes = BuckswiseApp.class)
 public class UserResourceIntTest {
 
     private static final String DEFAULT_LOGIN = "johndoe";

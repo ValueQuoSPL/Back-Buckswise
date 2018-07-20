@@ -16,8 +16,8 @@ public final class HeaderUtil {
 
     public static HttpHeaders createAlert(String message, String param) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-buckswiseBackEndApp-alert", message);
-        headers.add("X-buckswiseBackEndApp-params", param);
+        headers.add("X-buckswiseApp-alert", message);
+        headers.add("X-buckswiseApp-params", param);
         return headers;
     }
 
@@ -36,8 +36,8 @@ public final class HeaderUtil {
     public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
         log.error("Entity processing failed, {}", defaultMessage);
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-buckswiseBackEndApp-error", defaultMessage);
-        headers.add("X-buckswiseBackEndApp-params", entityName);
+        headers.add("X-buckswiseApp-error", defaultMessage);
+        headers.add("X-buckswiseApp-params", entityName);
         return headers;
     }
 }

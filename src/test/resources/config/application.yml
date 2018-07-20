@@ -16,14 +16,14 @@
 
 spring:
     application:
-        name: Buckswise_Back_End
+        name: buckswise
     jackson:
         serialization.write_dates_as_timestamps: false
     cache:
         type: simple
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:Buckswise_Back_End;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:buckswise;DB_CLOSE_DELAY=-1
         name:
         username:
         password:
@@ -88,7 +88,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 02d5f1d2754915b07be3a0fda7b07196a1e8aff3
+                secret: 4b5ddcc963fbeb9584bdf61ee93e2f5cd2102c9f
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

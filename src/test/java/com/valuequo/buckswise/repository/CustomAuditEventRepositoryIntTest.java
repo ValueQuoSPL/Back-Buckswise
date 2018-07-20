@@ -1,6 +1,6 @@
 package com.valuequo.buckswise.repository;
 
-import com.valuequo.buckswise.BuckswiseBackEndApp;
+import com.valuequo.buckswise.BuckswiseApp;
 import com.valuequo.buckswise.config.Constants;
 import com.valuequo.buckswise.config.audit.AuditEventConverter;
 import com.valuequo.buckswise.domain.PersistentAuditEvent;
@@ -32,7 +32,7 @@ import static com.valuequo.buckswise.repository.CustomAuditEventRepository.EVENT
  * @see CustomAuditEventRepository
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BuckswiseBackEndApp.class)
+@SpringBootTest(classes = BuckswiseApp.class)
 @Transactional
 public class CustomAuditEventRepositoryIntTest {
 

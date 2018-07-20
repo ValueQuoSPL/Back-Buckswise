@@ -3,7 +3,6 @@ package com.valuequo.buckswise.web.rest;
 import com.codahale.metrics.annotation.Timed;
 
 import com.valuequo.buckswise.domain.User;
-import com.valuequo.buckswise.mail.SendGMailTLS;
 import com.valuequo.buckswise.repository.UserRepository;
 import com.valuequo.buckswise.security.SecurityUtils;
 import com.valuequo.buckswise.service.MailService;
@@ -16,7 +15,6 @@ import com.valuequo.buckswise.web.rest.vm.ManagedUserVM;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,8 +43,7 @@ public class AccountResource {
         this.userService = userService;
         this.mailService = mailService;
     }
-    @Autowired
-    private SendGMailTLS sendGMailTLS;
+
     /**
      * POST  /register : register the user.
      *
@@ -58,18 +55,14 @@ public class AccountResource {
     @PostMapping("/register")
     @Timed
     @ResponseStatus(HttpStatus.CREATED)
-    public String registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+    public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
-       
         userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
         userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
         mailService.sendActivationEmail(user);
-        
-        String otp = sendGMailTLS.gmail(managedUserVM);
-        return otp;
     }
 
     /**

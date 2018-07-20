@@ -3,12 +3,9 @@ package com.valuequo.buckswise.web.rest.vm;
 import com.valuequo.buckswise.service.dto.UserDTO;
 import javax.validation.constraints.Size;
 
-import org.springframework.stereotype.Component;
-
 /**
  * View Model extending the UserDTO, which is meant to be used in the user management UI.
  */
-@Component
 public class ManagedUserVM extends UserDTO {
 
     public static final int PASSWORD_MIN_LENGTH = 4;

@@ -1,14 +1,14 @@
 version: '2'
 services:
-    buckswise_back_end-app:
-        image: buckswise_back_end
+    buckswise-app:
+        image: buckswise
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
-            - SPRING_DATASOURCE_URL=jdbc:mysql://buckswise_back_end-mysql:3306/buckswise_back_end?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - SPRING_DATASOURCE_URL=jdbc:mysql://buckswise-mysql:3306/buckswise?useUnicode=true&characterEncoding=utf8&useSSL=false
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
         ports:
             - 8080:8080
-    buckswise_back_end-mysql:
+    buckswise-mysql:
         extends:
             file: mysql.yml
-            service: buckswise_back_end-mysql
+            service: buckswise-mysql
