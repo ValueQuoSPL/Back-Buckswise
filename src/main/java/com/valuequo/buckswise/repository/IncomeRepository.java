@@ -11,6 +11,6 @@ import com.valuequo.buckswise.domain.Income;
 @Repository
 public interface IncomeRepository extends JpaRepository<Income, Long>{
 
-	List<Income> findByUserid(Long userid);
+	List<Income> findByUserid(int userid);
 
 }

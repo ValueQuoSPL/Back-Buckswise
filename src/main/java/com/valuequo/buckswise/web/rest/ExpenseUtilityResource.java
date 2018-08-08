@@ -1,5 +1,6 @@
 package com.valuequo.buckswise.web.rest;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -8,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.valuequo.buckswise.domain.Income;
+import com.valuequo.buckswise.domain.Utility;
 import com.valuequo.buckswise.service.UtilityService;
 
 /**
@@ -34,6 +38,7 @@ public class ExpenseUtilityResource {
     
     private String eName;
     private String eValue;
+    private int userid;
     
     @PostMapping("/utility")
     public String utility(@RequestBody Map<String, Object> utility) throws JSONException {
@@ -53,20 +58,26 @@ public class ExpenseUtilityResource {
     				JSONObject jObj1 = jData.getJSONObject(i);
     				this.eName = jObj1.getString("name");
     				this.eValue = jObj1.getString("value");
+    				this.userid = jObj1.getInt("userid");
 //    				System.out.println(" output: " + this.eName);
     				
-    				utilityService.save(this.eName, this.eValue);		
+    				utilityService.save(this.eName, this.eValue, this.userid);		
     			}
     			
     		} else {
-    			
+    			JSONObject jObj = new JSONObject(utility);
     			this.eName = entry.getKey();
     			this.eValue = entry.getValue().toString();
-    			
-    			utilityService.save(this.eName, this.eValue);
+    			this.userid = jObj.getInt("userid");
+    			utilityService.save(this.eName, this.eValue, this.userid);
     		}
     	}
         return null;
+    }
+    
+    @RequestMapping("/getutility/{userid}")
+    public List<Utility> getIncome(int userid) {
+ 	   return utilityService.getDetail(userid);
     }
 
 }

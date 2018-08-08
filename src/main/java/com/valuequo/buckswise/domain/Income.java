@@ -24,7 +24,7 @@ public class Income implements Serializable{
     private Long id;
     
     @Column(name = "userid")
-    private Long userid;
+    private int userid;
     
     @Column(name = "name")
     private String name;
@@ -40,11 +40,11 @@ public class Income implements Serializable{
 		this.id = id;
 	}
 
-	public Long getUserid() {
+	public int getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Long userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
 
@@ -64,8 +64,11 @@ public class Income implements Serializable{
 		this.amount = amount;
 	}
 
+	public Income() {
+		
+	}
 	
-	public Income(String uName, String uValue) {
+	public Income(String uName, String uValue, int userid) {
 		super();
 	}
 
