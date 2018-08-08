@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.valuequo.buckswise</groupId>
-    <artifactId>buckswise-back-end</artifactId>
+    <artifactId>buckswise</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Buckswise Back End</name>
+    <name>Buckswise</name>
 
     <properties>
         <!-- Build properties -->
@@ -58,7 +58,6 @@
         <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
         <scala-maven-plugin.version>3.2.2</scala-maven-plugin.version>
         <sonar-maven-plugin.version>3.2</sonar-maven-plugin.version>
-        <swagger-codegen-maven-plugin.version>2.2.3</swagger-codegen-maven-plugin.version>
 
         <!-- Sonar properties -->
         <sonar.exclusions>src/main/webapp/content/**/*.*, src/main/webapp/i18n/*.js, target/www/**/*.*</sonar.exclusions>
@@ -317,51 +316,11 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-data</artifactId>
         </dependency>
-        <!-- Social -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-google</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-facebook</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-twitter</artifactId>
-        </dependency>
-        <!-- Cucumber -->
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-spring</artifactId>
-            <scope>test</scope>
-        </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
 
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
-        <testResources>
-            <testResource>
-                <directory>src/test/resources/</directory>
-            </testResource>
-            <testResource>
-                <directory>src/test/features</directory>
-            </testResource>
-        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -479,28 +438,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>default-test</id>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/Abstract*.java</exclude>
-                                <exclude>**/*Cucumber*.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>without-cucumber</id>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/*Cucumber*.java</include>
-                            </includes>
-                        </configuration>
-                    </execution>
-                </executions>
                 <configuration>
                     <!-- Force alphabetical order to have a reproducible build -->
                     <runOrder>alphabetical</runOrder>
@@ -548,8 +485,8 @@
                     <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
                     <diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                     <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost:3306/Buckswise_Back_End</url>
-                    <defaultSchemaName>Buckswise_Back_End</defaultSchemaName>
+                    <url>jdbc:mysql://localhost:3306/buckswise</url>
+                    <defaultSchemaName>buckswise</defaultSchemaName>
                     <username>root</username>
                     <password></password>
                     <referenceUrl>hibernate:spring:com.valuequo.buckswise.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
@@ -617,37 +554,10 @@
                 </executions>
                 -->
                 <configuration>
-                    <repository>buckswise_back_end</repository>
+                    <repository>buckswise</repository>
                     <tag>latest</tag>
                     <contextDirectory>${project.build.directory}</contextDirectory>
                 </configuration>
-            </plugin>
-            <plugin>
-                <!--
-                    Plugin that provides API-first development using swagger-codegen to
-                    generate Spring-MVC endpoint stubs at compile time from a swagger definition file
-                -->
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-codegen-maven-plugin</artifactId>
-                <version>${swagger-codegen-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/swagger/api.yml</inputSpec>
-                            <language>spring</language>
-                            <apiPackage>com.valuequo.buckswise.web.api</apiPackage>
-                            <modelPackage>com.valuequo.buckswise.web.api.model</modelPackage>
-                            <generateSupportingFiles>false</generateSupportingFiles>
-                            <configOptions>
-                                <interfaceOnly>true</interfaceOnly>
-                                <java8>true</java8>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             <!-- jhipster-needle-maven-add-plugin -->
         </plugins>

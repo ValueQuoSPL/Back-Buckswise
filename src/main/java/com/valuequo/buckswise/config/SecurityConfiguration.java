@@ -72,14 +72,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/i18n/**")
             .antMatchers("/content/**")
             .antMatchers("/swagger-ui/index.html")
+           
             .antMatchers("/test/**");
     }
+    
+    
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        	
             .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()
+            
             .authenticationEntryPoint(problemSupport)
             .accessDeniedHandler(problemSupport)
         .and()
@@ -88,11 +93,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .headers()
             .frameOptions()
             .disable()
+            
         .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
             .authorizeRequests()
+            
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/authenticate").permitAll()
@@ -105,8 +112,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/v2/api-docs/**").permitAll()
             .antMatchers("/swagger-resources/configuration/ui").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
+//            .antMatchers("/**").authenticated()
         .and()
             .apply(securityConfigurerAdapter());
+            
 
     }
 

@@ -4,7 +4,7 @@
       "packageName": "com.valuequo.buckswise"
     },
     "jhipsterVersion": "4.14.3",
-    "baseName": "Buckswise_Back_End",
+    "baseName": "buckswise",
     "packageName": "com.valuequo.buckswise",
     "packageFolder": "com/valuequo/buckswise",
     "serverPort": "8080",
@@ -19,14 +19,12 @@
     "messageBroker": false,
     "serviceDiscoveryType": false,
     "buildTool": "maven",
-    "enableSocialSignIn": true,
-    "enableSwaggerCodegen": true,
-    "jwtSecretKey": "02d5f1d2754915b07be3a0fda7b07196a1e8aff3",
+    "enableSocialSignIn": false,
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "4b5ddcc963fbeb9584bdf61ee93e2f5cd2102c9f",
     "enableTranslation": false,
     "applicationType": "monolith",
-    "testFrameworks": [
-      "cucumber"
-    ],
+    "testFrameworks": [],
     "jhiPrefix": "jhi",
     "clientPackageManager": "npm",
     "skipClient": true

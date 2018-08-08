@@ -5,6 +5,17 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180521131525_added_entity_Pay.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180606061136_added_entity_Family.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180723063515_added_entity_Stock.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180723070835_added_entity_MutualFund.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180723090508_added_entity_FutureandOption.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180727054114_added_entity_SavingScheme.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180728123533_added_entity_AtlernateInvestment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730112359_added_entity_Cash.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730113808_added_entity_Property.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180730114217_added_entity_Chit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180801093319_added_entity_FutureOption.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
