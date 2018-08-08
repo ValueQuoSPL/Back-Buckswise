@@ -1,7 +1,7 @@
 package com.valuequo.buckswise.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-
+import com.valuequo.buckswise.config.ApplicationProperties;
 import com.valuequo.buckswise.domain.User;
 import com.valuequo.buckswise.repository.UserRepository;
 import com.valuequo.buckswise.security.SecurityUtils;
@@ -15,6 +15,7 @@ import com.valuequo.buckswise.web.rest.vm.ManagedUserVM;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,8 @@ public class AccountResource {
     private final UserService userService;
 
     private final MailService mailService;
+    
+  
 
     public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
 
@@ -56,6 +59,7 @@ public class AccountResource {
     @Timed
     @ResponseStatus(HttpStatus.CREATED)
     public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+    	
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
@@ -90,7 +94,10 @@ public class AccountResource {
     @Timed
     public String isAuthenticated(HttpServletRequest request) {
         log.debug("REST request to check if the current user is authenticated");
+        
+        
         return request.getRemoteUser();
+        
     }
 
     /**
