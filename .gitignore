@@ -143,3 +143,4 @@ Desktop.ini
 .eslintcache
 package-lock.json
 package.json
+src/main/resources/config/application-dev.yml
