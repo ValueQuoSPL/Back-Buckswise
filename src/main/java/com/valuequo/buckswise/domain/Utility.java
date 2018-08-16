@@ -21,7 +21,7 @@ public class Utility {
     private Long id;
     
     @Column(name = "userid")
-    private Long userid;
+    private int userid;
     
     @Column(name = "name")
     private String name;
@@ -37,11 +37,11 @@ public class Utility {
 		this.id = id;
 	}
 
-	public Long getUserid() {
+	public int getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Long userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
 
@@ -61,10 +61,15 @@ public class Utility {
 		this.amount = amount;
 	}
 
-	public Utility(String name, String amount) {
+	public Utility() {
+		
+	}
+	
+	public Utility(String name, String amount, int userid) {
 		super();
 		this.name = name;
 		this.amount = amount;
+		this.userid = userid;
 	}
 
     

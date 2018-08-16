@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,6 +38,7 @@ public class IncomeResource {
     
     private String uName;
     private String uValue;
+    private int userid;
 
 	@PostMapping("/income")
     public String income(@RequestBody Map<String, Object> stuffs) throws JSONException {    	
@@ -57,22 +59,25 @@ public class IncomeResource {
     	    		JSONObject jObj1 = ja_data.getJSONObject(i);
     	    		this.uName = jObj1.get("name").toString();
     	    		this.uValue = jObj1.get("value").toString();
-    	    		incomeService.save(this.uName, this.uValue);
+    	    		this.userid = jObj1.getInt("userid");
+    	    		incomeService.save(this.uName, this.uValue, this.userid);
     	    		
     	    	}    			
     		}
     		else
     		{
+    			JSONObject jObj = new JSONObject(stuffs);
     			this.uName = entry.getKey();
     			this.uValue = entry.getValue().toString();
-    			incomeService.save(this.uName, this.uValue);
+    			this.userid = jObj.getInt("userid");
+    			incomeService.save(this.uName, this.uValue, this.userid);
     		}
     	}    	   	
         return null;
    }
 
-   @RequestMapping("/getincome/{userid}")
-   public List<Income> getIncome(@PathVariable Long userid) {
+   @GetMapping("/getincome/{userid}")
+   public List<Income> getIncome(@PathVariable int userid) {
 	   return incomeService.getDetail(userid);
    }
 	
