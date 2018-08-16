@@ -7,6 +7,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,9 +57,9 @@ public class InsurancepaymentResource {
         return null;
     }
     
-    @RequestMapping("/getinsurane/{userid}")
+    @GetMapping("/getinsurane/{userid}")
     @Timed
-    public List<Insurance> getinsurance(int userid){
+    public List<Insurance> getinsurance(@PathVariable int userid){
     	return insuranceService.getDetail(userid);
     }
 

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,9 +87,9 @@ public class LoananddebtResource {
         return null;
     }
 
-    @RequestMapping("/getloandebt/{userid}")
+    @GetMapping("/getloandebt/{userid}")
     @Timed
-    public List<Loananddebt> getloananddebt(int userid){
+    public List<Loananddebt> getloananddebt(@PathVariable int userid){
     	return loananddebtService.getDetail(userid);
     }
 }

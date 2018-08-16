@@ -44,8 +44,8 @@ public class Income implements Serializable{
 		return userid;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUserid(int userid2) {
+		this.userid = userid2;
 	}
 
 	public String getName() {

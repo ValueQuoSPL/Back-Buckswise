@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -75,8 +76,8 @@ public class ExpenseUtilityResource {
         return null;
     }
     
-    @RequestMapping("/getutility/{userid}")
-    public List<Utility> getIncome(int userid) {
+    @GetMapping("/getutility/{userid}")
+    public List<Utility> getIncome(@PathVariable int userid) {
  	   return utilityService.getDetail(userid);
     }
 
