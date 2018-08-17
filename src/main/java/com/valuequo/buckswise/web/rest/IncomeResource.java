@@ -59,7 +59,8 @@ public class IncomeResource {
     	    		JSONObject jObj1 = ja_data.getJSONObject(i);
     	    		this.uName = jObj1.get("name").toString();
     	    		this.uValue = jObj1.get("value").toString();
-    	    		this.userid = jObj1.getInt("userid");
+					this.userid = jObj.getInt("userid");
+					System.out.println(this.userid);
     	    		incomeService.save(this.uName, this.uValue, this.userid);
     	    		
     	    	}    			
