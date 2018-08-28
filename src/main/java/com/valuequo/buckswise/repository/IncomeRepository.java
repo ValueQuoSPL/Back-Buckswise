@@ -13,4 +13,6 @@ public interface IncomeRepository extends JpaRepository<Income, Long>{
 
 	List<Income> findByUserid(int userid);
 
+	List<Income> findByName(String name);
+
 }

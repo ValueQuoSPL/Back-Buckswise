@@ -13,6 +13,7 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,6 +81,42 @@ public class IncomeResource {
    @GetMapping("/getincome/{userid}")
    public List<Income> getIncome(@PathVariable int userid) {
 	   return incomeService.getDetail(userid);
+   }
+   
+   @PutMapping("/putincome/{userid}")
+   public String updateIncome(@PathVariable Long userid, @RequestBody Map<String, Object> stuff) throws JSONException {
+	  
+	   boolean flag = true;
+	   
+	   for(Map.Entry<String, Object> entry: stuff.entrySet()) {
+		
+		   if(flag == true) {
+			
+			   flag = false;
+			
+			JSONObject jObj = new JSONObject(stuff);   
+   	    	JSONArray jadata = jObj.getJSONArray("dynamicIncome");
+   	    	int length = jadata.length();
+   	    	System.out.println("length : " + length);
+   	    	for(int i=0; i<length; i++) {
+   	    		
+   	    		JSONObject jObj1 = jadata.getJSONObject(i);
+   	    		this.uName = jObj1.get("name").toString();
+   	    		this.uValue = jObj1.get("value").toString();
+   	    		this.userid = jObj.getInt("userid");
+   	    		incomeService.update(this.uName, this.uValue, this.userid, userid);
+   	    		
+   	    	} 
+		   }else {
+			   
+			JSONObject jObj = new JSONObject(stuff);
+   			this.uName = entry.getKey();
+   			this.uValue = entry.getValue().toString();
+   			this.userid = jObj.getInt("userid");
+   			incomeService.update(this.uName, this.uValue, this.userid, userid);
+		   }
+	   }
+	   return null;
    }
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.valuequo.buckswise.domain.Income;
 import com.valuequo.buckswise.repository.IncomeRepository;
+import com.valuequo.buckswise.service.dto.IncomeDTO;
 
 @Service
 public class IncomeService {
@@ -28,5 +29,24 @@ public class IncomeService {
 
 	public List<Income> getDetail(int userid) {
 		return incomeRepository.findByUserid(userid);
+	}
+	
+	public IncomeDTO update(String uName, String uValue, int userid, Long usersid) {
+		if(userid == usersid) {
+			System.out.println("under service update method");
+
+			IncomeDTO incomeDTO = new IncomeDTO(uName, uValue, userid);
+			incomeDTO.setName(uName);
+			incomeDTO.setValue(uValue);
+			incomeDTO.setUserid(userid);
+			
+			String name = incomeDTO.getName();	
+			List<Income> incomes = incomeRepository.findByName(name);
+			for(Income income: incomes) {
+				income.setAmount(incomeDTO.getValue());
+				incomeRepository.save(income);				
+			}
+	 }
+		return null;
 	}
 }
