@@ -16,13 +16,10 @@ public class IncomeService {
 	private IncomeRepository incomeRepository;
 
 	public Income save(String uName, String uValue, int userid) {
-		
-		System.out.println("under service " + uName);
 		Income income = new Income(uName, uValue, userid);
 		income.setName(uName);
 		income.setAmount(uValue);
 		income.setUserid(userid);
-		System.out.println("under service " + income);
 		incomeRepository.save(income);
 		return null;
 	}
@@ -33,9 +30,7 @@ public class IncomeService {
 	
 	public IncomeDTO update(String uName, String uValue, int userid, Long usersid) {
 		if(userid == usersid) {
-			System.out.println("under service update method");
-
-			IncomeDTO incomeDTO = new IncomeDTO(uName, uValue, userid);
+		IncomeDTO incomeDTO = new IncomeDTO(uName, uValue, userid);
 			incomeDTO.setName(uName);
 			incomeDTO.setValue(uValue);
 			incomeDTO.setUserid(userid);

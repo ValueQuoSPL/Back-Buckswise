@@ -16,8 +16,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -58,8 +60,14 @@ public class AccountResource {
     @PostMapping("/register")
     @Timed
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+    public String registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+    	String gRecaptchaResponse = managedUserVM.getGcaptcha();
+    	String url = "https://www.google.com/recaptcha/api/siteverify";
+    	String params = "?secret=6LdjNGoUAAAAACl7TKEPuToK9B9gCjYOzKLSwC7V&response="+gRecaptchaResponse;
     	
+    	RestTemplate restTemplate = new RestTemplate();
+    	ManagedUserVM managedUserVM1 = restTemplate.exchange(url+params, HttpMethod.POST, null, ManagedUserVM.class).getBody();
+    	if(managedUserVM1.isSuccess()) {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
@@ -67,6 +75,11 @@ public class AccountResource {
         userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
         mailService.sendActivationEmail(user);
+        return "user is created successfully";
+    	}
+    	else {
+    		return "unable to create user";
+    	}
     }
 
     /**

@@ -14,11 +14,29 @@ public class ManagedUserVM extends UserDTO {
 
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
+    private String gcaptcha;
+    private boolean success;
 
     public ManagedUserVM() {
         // Empty constructor needed for Jackson.
     }
+    
+    public String getGcaptcha() {
+		return gcaptcha;
+	}
 
+	public void setGcaptcha(String gcaptcha) {
+		this.gcaptcha = gcaptcha;
+	}
+
+	public boolean isSuccess() {
+		return success;
+	}
+
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+	
     public String getPassword() {
         return password;
     }

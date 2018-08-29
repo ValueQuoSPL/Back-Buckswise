@@ -43,7 +43,6 @@ public class IncomeResource {
 
 	@PostMapping("/income")
     public String income(@RequestBody Map<String, Object> stuffs) throws JSONException {    	
-    	
     	boolean flag = true;
     	for(Map.Entry<String, Object> entry: stuffs.entrySet()) {
     		if(flag == true)
@@ -61,8 +60,12 @@ public class IncomeResource {
     	    		this.uName = jObj1.get("name").toString();
     	    		this.uValue = jObj1.get("value").toString();
 					this.userid = jObj.getInt("userid");
-					System.out.println(this.userid);
-    	    		incomeService.save(this.uName, this.uValue, this.userid);
+					if(this.uName == "userid") {
+	    				return null;
+	    			}
+	    			else {
+	    				incomeService.save(this.uName, this.uValue, this.userid);
+	    			}
     	    		
     	    	}    			
     		}
@@ -72,7 +75,12 @@ public class IncomeResource {
     			this.uName = entry.getKey();
     			this.uValue = entry.getValue().toString();
     			this.userid = jObj.getInt("userid");
-    			incomeService.save(this.uName, this.uValue, this.userid);
+    			if(this.uName == "userid") {
+    				return null;
+    			}
+    			else {
+    				incomeService.save(this.uName, this.uValue, this.userid);
+    			}
     		}
     	}    	   	
         return null;
@@ -113,8 +121,14 @@ public class IncomeResource {
    			this.uName = entry.getKey();
    			this.uValue = entry.getValue().toString();
    			this.userid = jObj.getInt("userid");
-   			incomeService.update(this.uName, this.uValue, this.userid, userid);
-		   }
+   			if(this.uName == "userid") {
+				return null;
+			}
+			else {
+				incomeService.update(this.uName, this.uValue, this.userid, userid);
+			}
+		}
+   			
 	   }
 	   return null;
    }
