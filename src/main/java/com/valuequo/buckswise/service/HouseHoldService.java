@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.valuequo.buckswise.domain.Household;
 import com.valuequo.buckswise.repository.HouseholdRepository;
+import com.valuequo.buckswise.service.dto.HouseholdDTO;
 
 @Service
 public class HouseHoldService {
@@ -29,5 +30,25 @@ public class HouseHoldService {
 		return householdRepository.findByUserid(userid);
 	}
 
-	
+	public HouseholdDTO update(String hName, String hValue, int userid, Long userid2) {
+		if(userid == userid2) {
+			HouseholdDTO householdDTO = new HouseholdDTO(userid, hName, hValue);
+			householdDTO.setName(hName);
+			householdDTO.setValue(hValue);
+			householdDTO.setUserid(userid);
+			
+			String name = householdDTO.getName();
+			
+			List<Household> huosehold = householdRepository.findByName(name);
+			for(Household house: huosehold) {
+				house.setAmount(householdDTO.getValue());
+				householdRepository.save(house);
+			}
+		}
+		return null;
+	}
+
+	public void delete(Long id) {
+		householdRepository.delete(id);
+	}
 }

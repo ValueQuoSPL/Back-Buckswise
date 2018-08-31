@@ -13,4 +13,6 @@ public interface HouseholdRepository extends JpaRepository<Household, Long>{
 
 	List<Household> findByUserid(int userid);
 
+	List<Household> findByName(String name);
+
 }
