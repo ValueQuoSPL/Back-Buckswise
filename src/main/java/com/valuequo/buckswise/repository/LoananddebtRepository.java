@@ -13,4 +13,6 @@ public interface LoananddebtRepository extends JpaRepository<Loananddebt, Long>{
 
 	List<Loananddebt> findByUserid(int userid);
 
+	List<Loananddebt> findById(Long id);
+
 }

@@ -10,4 +10,6 @@ public interface UtilityRepository extends JpaRepository<Utility, Long>{
 
 	List<Utility> findByUserid(int userid);
 
+	List<Utility> findByName(String name);
+
 }

@@ -40,5 +40,31 @@ public class LoananddebtService {
 		return loananddebtRepository.findByUserid(userid);
 	}
 
+	public Loananddebt update(String amount, String appname, String checkType, Long id, String itype, String ldate,
+			String lenderName, String ltype, String rdate, String roi, String tenure, int userid, Long uid) {
+		if(userid == uid) {
+			List<Loananddebt> byId = loananddebtRepository.findById(id);
+			for(Loananddebt loan: byId) {
+				Long tableId = loan.getId();
+				System.out.println("tableId:"+tableId);
+				if(tableId == id) {
+					loan.setAmount(amount);
+					loan.setAppName(appname);
+					loan.setCheckType(checkType);
+					loan.setItype(ltype);
+					loan.setLdate(ldate);
+					loan.setLenderName(lenderName);
+					loan.setRoi(roi);
+					loan.setTenure(tenure);
+					loan.setUserid(userid);
+					loan.setLtype(ltype);
+					loan.setItype(itype);
+					loananddebtRepository.save(loan);
+				}
+			}
+		}
+		return null;
+	}
+
 	
 }

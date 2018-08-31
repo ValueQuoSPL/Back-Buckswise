@@ -44,4 +44,9 @@ public class IncomeService {
 	 }
 		return null;
 	}
+
+	public String deleteData(Long id) {
+		incomeRepository.delete(id);
+		return null;
+	}
 }

@@ -13,6 +13,7 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,13 +49,12 @@ public class LoananddebtResource {
 	private String rdate;
 	private String roi;
 	private String tenure;
+	private Long id;
 	private int Userid;
     
     @PostMapping("/loan-debt")
     public String loanDebt(@RequestBody Map<String, Object>[] data) throws JSONException {
-    	
-    	
-    	
+  	
     	for(Map<String, Object> entry: data) {
     		System.out.println(entry.get("amnt"));
     		this.amount = entry.get("amnt").toString();
@@ -79,7 +79,7 @@ public class LoananddebtResource {
     		this.tenure = entry.get("tenure").toString();
     		this.Userid = (int) entry.get("userid");
     		System.out.println("Userid: " + Userid);
-//    		entry.get("");
+
     		loananddebtService.save(this.Userid, this.amount, this.appname, this.checkType, this.itype, this.ldate, this.lenderName, this.ltype, this.rdate, this.roi, this.tenure);
     		
     	}
@@ -91,5 +91,30 @@ public class LoananddebtResource {
     @Timed
     public List<Loananddebt> getloananddebt(@PathVariable int userid){
     	return loananddebtService.getDetail(userid);
+    }
+    
+    @PutMapping("/putloandebt/{uid}")
+    @Timed
+    public String putloandebt(@PathVariable Long uid, @RequestBody Map<String, Object> update) throws JSONException {
+    	System.out.println("update data is" + update);
+
+    		JSONObject jObj = new JSONObject(update);
+    		this.amount = jObj.get("amnt").toString();
+    		System.out.println("updatedatais:" + this.amount);
+    		this.appname = jObj.get("applicant").toString();
+    		this.checkType = jObj.get("check").toString();
+    		this.id = jObj.getLong("id");
+    		this.itype = jObj.get("intrest_type").toString();
+    		this.ldate = jObj.get("ldate").toString();
+    		this.lenderName = jObj.get("lender").toString();
+    		this.ltype = jObj.get("loan_type").toString();
+    		this.rdate = jObj.get("rdate").toString();
+    		this.roi = jObj.get("roi").toString();
+    		this.tenure = jObj.get("tenure").toString();
+    		this.Userid = jObj.getInt("userid");
+    	
+    		loananddebtService.update(this.amount, this.appname, this.checkType, this.id, this.itype, this.ldate, this.lenderName, this.ltype, this.rdate, this.roi, this.tenure, this.Userid, uid);
+    		
+    	return null;
     }
 }

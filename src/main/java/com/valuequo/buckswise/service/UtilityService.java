@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.valuequo.buckswise.domain.Utility;
 import com.valuequo.buckswise.repository.UtilityRepository;
+import com.valuequo.buckswise.service.dto.UtilityDTO;
 
 @Service
 public class UtilityService {
@@ -27,5 +28,28 @@ public class UtilityService {
 
 	public List<Utility> getDetail(int userid) {
 		return utilityRepository.findByUserid(userid);
+	}
+
+	public UtilityDTO update(String eName, String eValue, int userid, Long uid) {
+		if(userid == uid) {
+		
+			UtilityDTO utilityDTO = new UtilityDTO(eName, eValue, userid);
+			utilityDTO.setName(eName);
+			utilityDTO.setValue(eValue);
+			utilityDTO.setUserid(userid);
+			
+			String name = utilityDTO.getName();
+			System.out.println("upadatename"+name);
+			List<Utility> utility =  utilityRepository.findByName(name);
+			for(Utility ut: utility) {
+				ut.setAmount(utilityDTO.getValue());
+				utilityRepository.save(ut);
+			}
+		}
+		return null;
+	}
+
+	public void delete(Long id) {
+		utilityRepository.delete(id);
 	}
 }

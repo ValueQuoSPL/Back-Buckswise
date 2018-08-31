@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.valuequo.buckswise.domain.Income;
@@ -48,7 +50,7 @@ public class IncomeResource {
     		if(flag == true)
     		{
     			flag = false;
-    			
+   			
     			JSONObject jObj = new JSONObject(stuffs);   
     	    	JSONArray ja_data = jObj.getJSONArray("dynamicIncome");
     	    	System.out.println("ja_data is : " + ja_data);
@@ -60,13 +62,13 @@ public class IncomeResource {
     	    		this.uName = jObj1.get("name").toString();
     	    		this.uValue = jObj1.get("value").toString();
 					this.userid = jObj.getInt("userid");
+					System.out.println(this.userid);
 					if(this.uName == "userid") {
 	    				return null;
 	    			}
 	    			else {
 	    				incomeService.save(this.uName, this.uValue, this.userid);
 	    			}
-    	    		
     	    	}    			
     		}
     		else
@@ -132,5 +134,11 @@ public class IncomeResource {
 	   }
 	   return null;
    }
+   
+   @DeleteMapping("/deleteincome/{id}")
+   public String deleteIncome(@PathVariable Long id) {
+	   return incomeService.deleteData(id);	   
+   }
+   
 	
 }
