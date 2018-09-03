@@ -17,7 +17,7 @@ public class Credit {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     
     @Column(name = "userid")
     private int userid;
@@ -33,12 +33,21 @@ public class Credit {
     
     @Column(name = "roi")
     private String roi;
+  
+    @Column(name = "creditlimit")
+    private String lt;
+    
+    @Column(name = "creditpay")
+    private String pay;
+    
+    @Column(name = "creditusage")
+    private String usage;
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -81,19 +90,49 @@ public class Credit {
 	public void setRoi(String roi) {
 		this.roi = roi;
 	}
+	
+
+	public String getLt() {
+		return lt;
+	}
+
+	public void setLt(String lt) {
+		this.lt = lt;
+	}
+
+
+	public String getPay() {
+		return pay;
+	}
+
+	public void setPay(String pay) {
+		this.pay = pay;
+	}
+
+	
+	public String getUsage() {
+		return usage;
+	}
+
+	public void setUsage(String usage) {
+		this.usage = usage;
+	}
 
 	public Credit() {
 		
 	}
-	
-	public Credit(int userid, String bank, String balance, String type, String roi) {
+
+	public Credit(int userid, String bank, String balance, String type, String roi, String lt, String pay, String usage) {
 		super();
 		this.userid = userid;
 		this.bank = bank;
 		this.balance = balance;
 		this.type = type;
 		this.roi = roi;
+		this.lt = lt;
+		this.pay = pay;
+		this.usage = usage;
+
 	}
-    
-    
+
 }
