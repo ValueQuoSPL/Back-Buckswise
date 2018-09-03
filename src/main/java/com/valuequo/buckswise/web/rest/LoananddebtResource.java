@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -115,6 +116,12 @@ public class LoananddebtResource {
     	
     		loananddebtService.update(this.amount, this.appname, this.checkType, this.id, this.itype, this.ldate, this.lenderName, this.ltype, this.rdate, this.roi, this.tenure, this.Userid, uid);
     		
+    	return null;
+    }
+    
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+    	loananddebtService.delete(id);
     	return null;
     }
 }

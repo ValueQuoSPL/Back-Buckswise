@@ -66,5 +66,9 @@ public class LoananddebtService {
 		return null;
 	}
 
+	public void delete(Long id) {
+		loananddebtRepository.delete(id);
+	}
+
 	
 }
