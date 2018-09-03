@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,5 +78,48 @@ public class ExpenseEntermntandtravelResource {
     @GetMapping("/get/{userid}")
     public List<Entermntandtravel> getEnt(@PathVariable int userid) {
     	return entermntandtravelService.getDetail(userid);
+    }
+    
+    @PutMapping("/puttravel/{userid}")
+    public String updateTravel(@PathVariable Long userid, @RequestBody Map<String, Object> updateTravel) throws JSONException {
+    	boolean flag = true;
+    	for(Map.Entry<String, Object> entry : updateTravel.entrySet()) {
+    		if( flag == true ) {
+    			flag = false;
+    			JSONObject jObj = new JSONObject(updateTravel);
+    			JSONArray jData = jObj.getJSONArray("dynamicTravel");
+    			int length = jData.length();
+    			for(int i=0; i<length; i++) {
+    				JSONObject jObj1 = jData.getJSONObject(i);
+    				this.entName = jObj1.getString("name");
+    				this.entValue = jObj1.getString("value");
+    				this.userid = jObj.getInt("userid");
+    				if(this.entName == "userid") {
+	    				return null;
+	    			}
+	    			else {
+	    				entermntandtravelService.save(this.entName, this.entValue, this.userid, userid);
+	    			}
+    			}
+    		} else {
+    			JSONObject jObj = new JSONObject(updateTravel);
+    			this.entName = entry.getKey();
+    			this.entValue = entry.getValue().toString();
+    			this.userid = jObj.getInt("userid");
+    			if(this.entName == "userid") {
+    				return null;
+    			}
+    			else {
+    				entermntandtravelService.save(this.entName, this.entValue, this.userid, userid);
+    			}
+    		}
+    	}
+    	return null;
+    }
+    
+    @DeleteMapping("/deleteEntTravel/{id}")
+    public String deleteEntTravel(@PathVariable Long id) {
+    	entermntandtravelService.delete(id);
+    	return null;
     }
 }

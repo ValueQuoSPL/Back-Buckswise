@@ -13,4 +13,6 @@ public interface Entermntandtravelrepository extends JpaRepository<Entermntandtr
 
 	List<Entermntandtravel> findByUserid(int userid);
 
+	List<Entermntandtravel> findByName(String name);
+
 }

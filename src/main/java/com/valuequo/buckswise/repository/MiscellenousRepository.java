@@ -12,4 +12,6 @@ public interface MiscellenousRepository extends JpaRepository<Miscelleonous, Lon
 
 	List<Miscelleonous> findByUserid(int userid);
 
+	List<Miscelleonous> findByName(String name);
+
 }
