@@ -36,6 +36,32 @@ public class InsuranceService {
 	public List<Insurance> getDetail(int userid) {
 		return insuranceRepository.findByUserid(userid);
 	}
-
+	public Insurance update(int userid, String name, String insuranceName, String issure, String pMode, String pName,
+			String prName, String premium, String prTerm, String sDate, String sum, String term, Long id, Long uid) {
+		if(userid == uid) {
+			List<Insurance> insurance = insuranceRepository.findById(id);
+			for(Insurance ins: insurance) {
+				Long tableId = ins.getId();
+				if(tableId == id) {
+					ins.setName(name);
+					ins.setInsuranceName(insuranceName);
+					ins.setIssuer(issure);
+					ins.setpMode(pMode);
+					ins.setpName(pName);
+					ins.setPremiumName(prName);
+					ins.setPremium(premium);
+					ins.setPterm(prTerm);
+					ins.setsDate(sDate);
+					ins.setSum(sum);
+					ins.setTerm(term);
+					insuranceRepository.save(ins);
+				} 
+			}
+		} 
+		return null;
+	}
+	public void delete(Long id) {
+		insuranceRepository.delete(id);	
+	}
 	
 }

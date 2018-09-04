@@ -12,4 +12,7 @@ public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
 
 	List<Insurance> findByUserid(int userid);
 
+	List<Insurance> findById(Long id);
+	
+
 }

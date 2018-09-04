@@ -12,4 +12,6 @@ public interface GeneralInsuraanceRepository extends JpaRepository<GeneralInsura
 
 	List<GeneralInsurance> findByUserid(int userid);
 
+	List<GeneralInsurance> findById(Long id);
+
 }

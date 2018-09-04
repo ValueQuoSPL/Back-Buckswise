@@ -36,5 +36,34 @@ public class HealthService {
 	public List<Health> getDetail(int userid) {
 		return healthRepository.findByUserid(userid);
 	}
+
+	public Health update(int userid, String insureName, String issuer, String policyMode, String policyName,
+			String policyNumber, String premiumName, String premium, String premiumTerm, String date, String sum,
+			Long id, Long uid) {
+		if(userid == uid) {
+			List<Health> health = healthRepository.findById(id);
+			for(Health hInsurence: health) {
+				Long tableId = hInsurence.getId();
+				if(tableId == id) {
+					hInsurence.setInsureName(insureName);
+					hInsurence.setIssuer(issuer);
+					hInsurence.setPolicyMode(policyMode);
+					hInsurence.setPolicyName(policyName);
+					hInsurence.setPolicyNumber(policyNumber);
+					hInsurence.setPremiumName(premiumName);
+					hInsurence.setPremium(premium);
+					hInsurence.setPremiumTerm(premiumTerm);
+					hInsurence.setDate(date);
+					hInsurence.setSum(sum);
+					healthRepository.save(hInsurence);
+				}
+			}
+		}
+		return null;
+	}
+
+	public void delete(Long id) {
+		healthRepository.delete(id);
+	}
 	
 }

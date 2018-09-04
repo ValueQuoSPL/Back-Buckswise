@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.valuequo.buckswise.domain.Credit;
 import com.valuequo.buckswise.domain.GeneralInsurance;
 import com.valuequo.buckswise.repository.GeneralInsuraanceRepository;
 
@@ -32,6 +33,31 @@ public class GeneralInsuranceService {
 	}
 	public List<GeneralInsurance> getDetail(int userid) {
 		return generalInsuraanceRepository.findByUserid(userid);
+	}
+	public GeneralInsurance update(int userid, String insureName, String policyName, String issuer, String policyDate,
+			String policyNumber, String premiumName, String premium, String premiumTerm, String sum, Long id, Long uid) {
+		if(userid == uid) {
+			List<GeneralInsurance> general = generalInsuraanceRepository.findById(id);
+			for(GeneralInsurance g: general) {
+				Long tableId = g.getId();
+				if(tableId == id) {
+					g.setInsureName(insureName);
+					g.setIssuer(issuer);
+					g.setPolicyDate(policyDate);
+					g.setPolicyName(policyName);
+					g.setPolicyNumber(policyNumber);
+					g.setPremium(premium);
+					g.setPremiumName(premiumName);
+					g.setPremiumTerm(premiumTerm);
+					g.setSum(sum);
+				   generalInsuraanceRepository.save(g);
+				}
+			}		
+		}
+		return null;
+	}
+	public void delete(Long id) {
+		generalInsuraanceRepository.delete(id);
 	}
 
 	

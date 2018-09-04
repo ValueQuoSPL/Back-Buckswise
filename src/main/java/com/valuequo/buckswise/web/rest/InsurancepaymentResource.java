@@ -7,9 +7,13 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +26,7 @@ import com.valuequo.buckswise.service.InsuranceService;
  * Insurancepayment controller
  */
 @RestController
-@RequestMapping("/api/insurancepayment")
+@RequestMapping("/api/life")
 public class InsurancepaymentResource {
 
     private final Logger log = LoggerFactory.getLogger(InsurancepaymentResource.class);
@@ -34,7 +38,7 @@ public class InsurancepaymentResource {
     @Autowired
     private InsuranceService insuranceService;
     
-    @PostMapping("/insuance-payment")
+    @PostMapping("/postlife")
     public String insuancePayment(@RequestBody Map<String, Object>[] insurance) {
     	for(Map<String, Object> entry: insurance) {
     		
@@ -57,10 +61,38 @@ public class InsurancepaymentResource {
         return null;
     }
     
-    @GetMapping("/getinsurane/{userid}")
+    @GetMapping("/getlife/{userid}")
     @Timed
     public List<Insurance> getinsurance(@PathVariable int userid){
     	return insuranceService.getDetail(userid);
     }
+    
+    @PutMapping("/putlife/{uid}")
+    public String updateLife(@PathVariable Long uid, @RequestBody Map<String, Object> update) throws JSONException {
+    	    JSONObject jObj = new JSONObject(update);
+	    		String name = jObj.get("type").toString();
+	    		String insuranceName=jObj.get("ins_name").toString();
+	    		String issure=jObj.get("issuer").toString();
+	    		String pMode=jObj.get("premium_mode").toString();
+	    		String pName=jObj.get("policy_name").toString();
+	    		String prName=jObj.get("proposer_name").toString();
+	    		String premium=jObj.get("premium").toString();
+	    		String prTerm=jObj.get("premium_term").toString();
+	    		String sDate= jObj.get("start_date").toString();
+	    		System.out.println(sDate);
+	    		String sum=jObj.get("sum").toString();
+	    		String term=jObj.get("policy_term").toString();
+	    		int userid=(int) jObj.get("userid");
+	    		Long id = jObj.getLong("id");
+    		
+    		insuranceService.update(userid, name, insuranceName, issure, pMode, pName, prName, premium, prTerm, sDate, sum, term, id, uid);
 
+    	return null;
+    }
+
+    @DeleteMapping("/deletelife/{id}")
+    public String delete(@PathVariable Long id) {
+    	insuranceService.delete(id);
+    	return null;
+    }
 }

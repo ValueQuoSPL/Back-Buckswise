@@ -10,4 +10,6 @@ public interface HealthRepository extends JpaRepository<Health, Long>{
 
 	List<Health> findByUserid(int userid);
 
+	List<Health> findById(Long id);
+
 }

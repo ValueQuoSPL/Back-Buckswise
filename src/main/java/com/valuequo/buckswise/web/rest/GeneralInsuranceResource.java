@@ -6,9 +6,13 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,8 +59,34 @@ public class GeneralInsuranceResource {
     
     @GetMapping("/get/{userid}")
     public List<GeneralInsurance> getGeneral(@PathVariable int userid){
-    	return generalInsuranceService.getDetail(userid);
+    	return generalInsuranceService.getDetail(userid);    	
+    }
+    
+    @PutMapping("/putgeneral/{uid}")
+    public String updateGeneralInsurence(@PathVariable Long uid, @RequestBody Map<String, Object> update) throws JSONException {
+    	System.out.println(update);
+    	JSONObject jObj = new JSONObject(update);
+    		String insureName = jObj.get("iName").toString();
+    		System.out.println(insureName);
+    		String policyName = jObj.get("pName").toString();
+    		String issuer = jObj.get("issuer").toString();
+    		String policyDate = jObj.get("pdate").toString();
+    		String policyNumber = jObj.get("poNo").toString();
+    		String premiumName = jObj.get("prName").toString();
+    		String premium = jObj.get("premium").toString();
+    		String premiumTerm = jObj.get("pterm").toString();
+    		String sum = jObj.get("sum").toString();
+    		int userid = (int) jObj.get("userid");
+    		System.out.println(userid);
+    		Long id = jObj.getLong("id");
+    		 generalInsuranceService.update(userid, insureName, policyName, issuer, policyDate, policyNumber, premiumName, premium, premiumTerm, sum, id, uid);
     	
+    	return null;
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+    	generalInsuranceService.delete(id);
+    	return null;
+    }
 }
