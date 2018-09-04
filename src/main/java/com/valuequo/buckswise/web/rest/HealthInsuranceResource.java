@@ -65,15 +65,15 @@ public class HealthInsuranceResource {
     @PutMapping("/puthealth/{uid}")
     public String putHealth(@PathVariable Long uid, @RequestBody Map<String, Object> update) throws JSONException {
     	JSONObject jObj = new JSONObject(update);
-    		String insureName = jObj.get("iName").toString();
+    		String insureName = jObj.get("ins_name").toString();
     		String issuer = jObj.get("issuer").toString();
-    		String policyMode = jObj.get("pMode").toString();
-    		String policyName = jObj.get("pName").toString();
-    		String policyNumber = jObj.get("poNo").toString();
-    		String premiumName = jObj.get("prName").toString();
+    		String policyMode = jObj.get("premium_mode").toString();
+    		String policyName = jObj.get("policy_name").toString();
+    		String policyNumber = jObj.get("policy_no").toString();
+    		String premiumName = jObj.get("proposer_name").toString();
     		String premium = jObj.get("premium").toString();
-    		String premiumTerm = jObj.get("pterm").toString();
-    		String date = jObj.get("sDate").toString();
+    		String premiumTerm = jObj.get("policy_term").toString();
+    		String date = jObj.get("start_date").toString();
     		String sum = jObj.get("sum").toString();
     		int userid = (int) jObj.get("userid");
     		Long id = jObj.getLong("id");

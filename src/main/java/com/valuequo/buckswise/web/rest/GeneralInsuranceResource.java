@@ -66,15 +66,15 @@ public class GeneralInsuranceResource {
     public String updateGeneralInsurence(@PathVariable Long uid, @RequestBody Map<String, Object> update) throws JSONException {
     	System.out.println(update);
     	JSONObject jObj = new JSONObject(update);
-    		String insureName = jObj.get("iName").toString();
+    		String insureName = jObj.get("ins_obj").toString();
     		System.out.println(insureName);
-    		String policyName = jObj.get("pName").toString();
+    		String policyName = jObj.get("policy_name").toString();
     		String issuer = jObj.get("issuer").toString();
-    		String policyDate = jObj.get("pdate").toString();
-    		String policyNumber = jObj.get("poNo").toString();
-    		String premiumName = jObj.get("prName").toString();
+    		String policyDate = jObj.get("start_date").toString();
+    		String policyNumber = jObj.get("policy_no").toString();
+    		String premiumName = jObj.get("proposer_name").toString();
     		String premium = jObj.get("premium").toString();
-    		String premiumTerm = jObj.get("pterm").toString();
+    		String premiumTerm = jObj.get("policy_term").toString();
     		String sum = jObj.get("sum").toString();
     		int userid = (int) jObj.get("userid");
     		System.out.println(userid);
