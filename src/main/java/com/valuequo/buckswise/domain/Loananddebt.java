@@ -54,6 +54,9 @@ public class Loananddebt {
 	@Column(name = "tenure")
 	private String tenure;
 
+	@Column(name = "outstandingprincipal")
+	private String Outstandingpricipal;
+	
 	public Long getId() {
 		return id;
 	}
@@ -150,12 +153,20 @@ public class Loananddebt {
 		this.tenure = tenure;
 	}
 
+	public String getOutstandingpricipal() {
+		return Outstandingpricipal;
+	}
+
+	public void setOutstandingpricipal(String outstandingpricipal) {
+		Outstandingpricipal = outstandingpricipal;
+	}
+
 	public Loananddebt() {
 		
 	}
 	
 	public Loananddebt(int userid, String amount, String appName, String checkType, String itype,
-			String ldate, String lenderName, String ltype, String rdate, String roi, String tenure) {
+			String ldate, String lenderName, String ltype, String rdate, String roi, String tenure, String Outstandingprincipal) {
 		super();
 		this.id = id;
 		this.userid = userid;

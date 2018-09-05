@@ -57,7 +57,5 @@ public class Saving {
 		return null;
 	}
 
-//	public SavingScheme findByUserId(String type) {
-//		return savingSchemeRepository.findByType(type);
-//	}
+
 }

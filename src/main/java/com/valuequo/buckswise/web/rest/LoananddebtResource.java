@@ -52,6 +52,7 @@ public class LoananddebtResource {
 	private String tenure;
 	private Long id;
 	private int Userid;
+	private String Outstandingpricipal;
     
     @PostMapping("/loan-debt")
     public String loanDebt(@RequestBody Map<String, Object>[] data) throws JSONException {
@@ -80,8 +81,9 @@ public class LoananddebtResource {
     		this.tenure = entry.get("tenure").toString();
     		this.Userid = (int) entry.get("userid");
     		System.out.println("Userid: " + Userid);
-
-    		loananddebtService.save(this.Userid, this.amount, this.appname, this.checkType, this.itype, this.ldate, this.lenderName, this.ltype, this.rdate, this.roi, this.tenure);
+    		this.Outstandingpricipal = entry.get("OutstandingPricipal").toString();
+    		
+    		loananddebtService.save(this.Userid, this.amount, this.appname, this.checkType, this.itype, this.ldate, this.lenderName, this.ltype, this.rdate, this.roi, this.tenure, this.Outstandingpricipal);
     		
     	}
    
