@@ -1,0 +1,44 @@
+package com.valuequo.buckswise.web.rest;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.codahale.metrics.annotation.Timed;
+import com.valuequo.buckswise.domain.GoalSet;
+import com.valuequo.buckswise.service.GoalSetService;
+import com.valuequo.buckswise.service.dto.GoalSetDTO;
+
+@RestController
+@RequestMapping("/api")
+public class GoalSetResource {
+	private final Logger log = LoggerFactory.getLogger(GoalSetResource.class);
+//	private static final String ENTITY_NAME = "GoalSet";
+	private final GoalSetService goalsetservice;
+	
+	 public GoalSetResource(GoalSetService goalsetservice) {
+	     this.goalsetservice = goalsetservice;
+	    }
+	 
+	 @PostMapping("/goalset")
+	    @Timed
+	    public GoalSet createGoal(@RequestBody GoalSetDTO goalsetDTO) {
+	        log.debug("under goal");
+	    	log.debug("REST request to save goal : {}", goalsetDTO);
+	        GoalSet goalset =  goalsetservice.save(goalsetDTO);
+			return goalset;
+	    }
+	 
+	 @GetMapping("/goalset/{uid}")
+	    @Timed
+	    public List<GoalSet> getGoalById(@PathVariable Long uid)
+	    {
+			return goalsetservice.getGoalById(uid);
+	    	
+	    }
+}
