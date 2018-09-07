@@ -16,6 +16,8 @@
     <include file="config/liquibase/changelog/20180730113808_added_entity_Property.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180730114217_added_entity_Chit.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180801093319_added_entity_FutureOption.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180906051835_added_entity_RiskLifeInsurance.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180906084425_added_entity_RiskMedicalInsurance.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

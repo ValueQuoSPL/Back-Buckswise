@@ -1,0 +1,24 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "expense_cover",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "risk_coverage",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180906051835",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "risk_life_insurance",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager"
+}
