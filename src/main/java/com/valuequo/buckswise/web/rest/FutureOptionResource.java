@@ -69,7 +69,7 @@ public class FutureOptionResource {
      * or with status 500 (Internal Server Error) if the futureOptionDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/future-options")
+    @PutMapping("/putfutureoptions")
     @Timed
     public ResponseEntity<FutureOptionDTO> updateFutureOption(@RequestBody FutureOptionDTO futureOptionDTO) throws URISyntaxException {
         log.debug("REST request to update FutureOption : {}", futureOptionDTO);
@@ -88,7 +88,7 @@ public class FutureOptionResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of futureOptions in body
      */
-    @GetMapping("/future-options")
+    @GetMapping("/getfutureoptions")
     @Timed
     public ResponseEntity<List<FutureOptionDTO>> getAllFutureOptions(Pageable pageable) {
         log.debug("REST request to get a page of FutureOptions");
@@ -103,7 +103,7 @@ public class FutureOptionResource {
      * @param id the id of the futureOptionDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the futureOptionDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/future-options/{id}")
+    @GetMapping("/futureoptionsbyid/{id}")
     @Timed
     public ResponseEntity<FutureOptionDTO> getFutureOption(@PathVariable Long id) {
         log.debug("REST request to get FutureOption : {}", id);
@@ -111,7 +111,7 @@ public class FutureOptionResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(futureOptionDTO));
     }
 
-    @GetMapping("/futureOption/{userid}")
+    @GetMapping("/futureOptionbyuid/{userid}")
     @Timed
     public List<FutureOption> getfutureoption(@PathVariable Long userid) {
     	return futureOptionService.getfutureOption(userid);
@@ -122,7 +122,7 @@ public class FutureOptionResource {
      * @param id the id of the futureOptionDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/future-options/{id}")
+    @DeleteMapping("/deletefutureoptions/{id}")
     @Timed
     public ResponseEntity<Void> deleteFutureOption(@PathVariable Long id) {
         log.debug("REST request to delete FutureOption : {}", id);

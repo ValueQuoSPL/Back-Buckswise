@@ -24,7 +24,7 @@ public class Saving {
 	public SavingScheme create(SavingDTO savingDTO) {
 		SavingScheme save = new SavingScheme();
 		save.setUid(savingDTO.getUserId());
-//		save.setUid(savingDTO.getUserId());
+		save.setId(savingDTO.getId());
     	save.setNum(savingDTO.getNum());
     	save.setOrganisation_name(savingDTO.getOrganisation_name());
     	save.setAmount_invested(savingDTO.getAmount_invested());
@@ -49,11 +49,33 @@ public class Saving {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<SavingScheme> findusers(Long UID){
-		return savingSchemeRepository.findByUid(UID);	
+	public List<SavingScheme> findusers(Long uid){
+		return savingSchemeRepository.findByUid(uid);	
 	}
 	
 	public List<SavingScheme> update(SavingDTO savingDTO) {
+		return null;
+	}
+
+	public List<SavingScheme> updateData(SavingDTO savingDTO) {
+		Long id = savingDTO.getId();
+		List<SavingScheme> update = savingSchemeRepository.findByid(id);
+		for(SavingScheme up: update) {
+			up.setNum(savingDTO.getNum());
+			up.setOrganisation_name(savingDTO.getOrganisation_name());
+			up.setAmount_invested(savingDTO.getAmount_invested());
+			up.setDividend_type(savingDTO.getDividend_type());
+			up.setInvestor_name(savingDTO.getInvestor_name());
+			up.setRate_of_interest(savingDTO.getRate_of_interest());
+			up.setTenure(savingDTO.getTenure());
+			up.setStart_date(savingDTO.getStart_date());
+			up.setEnd_date(savingDTO.getEnd_date());
+			up.setFund_value(savingDTO.getFund_value());
+			up.setAs_of_date(savingDTO.getAs_of_date());
+			up.setNotes(savingDTO.getNotes());
+			up.setType(savingDTO.getType());
+			savingSchemeRepository.save(up);
+		}
 		return null;
 	}
 

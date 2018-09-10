@@ -69,7 +69,7 @@ public class PropertyResource {
      * or with status 500 (Internal Server Error) if the propertyDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/properties")
+    @PutMapping("/putproperties")
     @Timed
     public ResponseEntity<PropertyDTO> updateProperty(@RequestBody PropertyDTO propertyDTO) throws URISyntaxException {
         log.debug("REST request to update Property : {}", propertyDTO);
@@ -108,7 +108,7 @@ public class PropertyResource {
      * @param id the id of the propertyDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the propertyDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/properties/{id}")
+    @GetMapping("/propertiesbyid/{id}")
     @Timed
     public ResponseEntity<PropertyDTO> getProperty(@PathVariable Long id) {
         log.debug("REST request to get Property : {}", id);
@@ -122,7 +122,7 @@ public class PropertyResource {
      * @param id the id of the propertyDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/properties/{id}")
+    @DeleteMapping("/deleteproperties/{id}")
     @Timed
     public ResponseEntity<Void> deleteProperty(@PathVariable Long id) {
         log.debug("REST request to delete Property : {}", id);

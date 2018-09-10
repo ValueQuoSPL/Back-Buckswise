@@ -1,40 +1,35 @@
 package com.valuequo.buckswise.service.dto;
 
 
-import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the MutualFund entity.
+ * A DTO for the Mutualfund entity.
  */
 public class MutualFundDTO implements Serializable {
 
     private Long id;
 
-    private String fund_name;
+    private int userid;
 
-    private String investor_name;
+    private String mfscheme;
 
-    private LocalDate purchase_date;
+    private String folionumber;
 
-    private String no_of_units;
+    private String holdingdays;
 
-    private String nav;
-    
-    private Long userid;
-    
-    
+    private String purchesprice;
 
-    public Long getUserid() {
-		return userid;
-	}
+    private String currentvalue;
 
-	public void setUserid(Long userid) {
-		this.userid = userid;
-	}
+    private String gainloss;
 
-	public Long getId() {
+    private String absolutereturn;
+
+    private String cagr;
+
+    public Long getId() {
         return id;
     }
 
@@ -42,44 +37,76 @@ public class MutualFundDTO implements Serializable {
         this.id = id;
     }
 
-    public String getFund_name() {
-        return fund_name;
+    public int getUserid() {
+        return userid;
     }
 
-    public void setFund_name(String fund_name) {
-        this.fund_name = fund_name;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
-    public String getInvestor_name() {
-        return investor_name;
+    public String getMfscheme() {
+        return mfscheme;
     }
 
-    public void setInvestor_name(String investor_name) {
-        this.investor_name = investor_name;
+    public void setMfscheme(String mfscheme) {
+        this.mfscheme = mfscheme;
     }
 
-    public LocalDate getPurchase_date() {
-        return purchase_date;
+    public String getFolionumber() {
+        return folionumber;
     }
 
-    public void setPurchase_date(LocalDate purchase_date) {
-        this.purchase_date = purchase_date;
+    public void setFolionumber(String folionumber) {
+        this.folionumber = folionumber;
     }
 
-    public String getNo_of_units() {
-        return no_of_units;
+    public String getHoldingdays() {
+        return holdingdays;
     }
 
-    public void setNo_of_units(String no_of_units) {
-        this.no_of_units = no_of_units;
+    public void setHoldingdays(String holdingdays) {
+        this.holdingdays = holdingdays;
     }
 
-    public String getNav() {
-        return nav;
+    public String getPurchesprice() {
+        return purchesprice;
     }
 
-    public void setNav(String nav) {
-        this.nav = nav;
+    public void setPurchesprice(String purchesprice) {
+        this.purchesprice = purchesprice;
+    }
+
+    public String getCurrentvalue() {
+        return currentvalue;
+    }
+
+    public void setCurrentvalue(String currentvalue) {
+        this.currentvalue = currentvalue;
+    }
+
+    public String getGainloss() {
+        return gainloss;
+    }
+
+    public void setGainloss(String gainloss) {
+        this.gainloss = gainloss;
+    }
+
+    public String getAbsolutereturn() {
+        return absolutereturn;
+    }
+
+    public void setAbsolutereturn(String absolutereturn) {
+        this.absolutereturn = absolutereturn;
+    }
+
+    public String getCagr() {
+        return cagr;
+    }
+
+    public void setCagr(String cagr) {
+        this.cagr = cagr;
     }
 
     @Override
@@ -91,11 +118,11 @@ public class MutualFundDTO implements Serializable {
             return false;
         }
 
-        MutualFundDTO mutualFundDTO = (MutualFundDTO) o;
-        if(mutualFundDTO.getId() == null || getId() == null) {
+        MutualFundDTO mutualfundDTO = (MutualFundDTO) o;
+        if(mutualfundDTO.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), mutualFundDTO.getId());
+        return Objects.equals(getId(), mutualfundDTO.getId());
     }
 
     @Override
@@ -105,14 +132,17 @@ public class MutualFundDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "MutualFundDTO{" +
+        return "MutualfundDTO{" +
             "id=" + getId() +
-            "id=" + getUserid() +
-            ", fund_name='" + getFund_name() + "'" +
-            ", investor_name='" + getInvestor_name() + "'" +
-            ", purchase_date='" + getPurchase_date() + "'" +
-            ", no_of_units='" + getNo_of_units() + "'" +
-            ", nav='" + getNav() + "'" +
+            ", userid=" + getUserid() +
+            ", mfscheme='" + getMfscheme() + "'" +
+            ", folionumber='" + getFolionumber() + "'" +
+            ", holdingdays='" + getHoldingdays() + "'" +
+            ", purchesprice='" + getPurchesprice() + "'" +
+            ", currentvalue='" + getCurrentvalue() + "'" +
+            ", gainloss='" + getGainloss() + "'" +
+            ", absolutereturn='" + getAbsolutereturn() + "'" +
+            ", cagr='" + getCagr() + "'" +
             "}";
     }
 }

@@ -6,6 +6,16 @@ import com.valuequo.buckswise.domain.SavingScheme;
 
 public class SavingDTO {
 	
+	private Long id;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	private Long userId;
 	
 	private String num;

@@ -6,14 +6,13 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
 /**
  * A MutualFund.
  */
 @Entity
-@Table(name = "mutual_fund")
+@Table(name = "mutualfund")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class MutualFund implements Serializable {
 
@@ -23,23 +22,32 @@ public class MutualFund implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fund_name")
-    private String fund_name;
-
-    @Column(name = "investor_name")
-    private String investor_name;
-
-    @Column(name = "purchase_date")
-    private LocalDate purchase_date;
-
-    @Column(name = "no_of_units")
-    private String no_of_units;
-
-    @Column(name = "nav")
-    private String nav;
-    
     @Column(name = "userid")
     private Long userid;
+
+    @Column(name = "mfscheme")
+    private String mfscheme;
+
+    @Column(name = "folionumber")
+    private String folionumber;
+
+    @Column(name = "holdingdays")
+    private String holdingdays;
+
+    @Column(name = "purchesprice")
+    private String purchesprice;
+
+    @Column(name = "currentvalue")
+    private String currentvalue;
+
+    @Column(name = "gainloss")
+    private String gainloss;
+
+    @Column(name = "absolutereturn")
+    private String absolutereturn;
+
+    @Column(name = "cagr")
+    private String cagr;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -49,78 +57,122 @@ public class MutualFund implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public Long getUserid() {
-		return userid;
-	}
-
-	public void setUserid(Long userid) {
-		this.userid = userid;
-	}
-
-	public String getFund_name() {
-        return fund_name;
+        return userid;
     }
 
-    public MutualFund fund_name(String fund_name) {
-        this.fund_name = fund_name;
+    public MutualFund userid(Long userid) {
+        this.userid = userid;
         return this;
     }
 
-    public void setFund_name(String fund_name) {
-        this.fund_name = fund_name;
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 
-    public String getInvestor_name() {
-        return investor_name;
+    public String getMfscheme() {
+        return mfscheme;
     }
 
-    public MutualFund investor_name(String investor_name) {
-        this.investor_name = investor_name;
+    public MutualFund mfscheme(String mfscheme) {
+        this.mfscheme = mfscheme;
         return this;
     }
 
-    public void setInvestor_name(String investor_name) {
-        this.investor_name = investor_name;
+    public void setMfscheme(String mfscheme) {
+        this.mfscheme = mfscheme;
     }
 
-    public LocalDate getPurchase_date() {
-        return purchase_date;
+    public String getFolionumber() {
+        return folionumber;
     }
 
-    public MutualFund purchase_date(LocalDate purchase_date) {
-        this.purchase_date = purchase_date;
+    public MutualFund folionumber(String folionumber) {
+        this.folionumber = folionumber;
         return this;
     }
 
-    public void setPurchase_date(LocalDate purchase_date) {
-        this.purchase_date = purchase_date;
+    public void setFolionumber(String folionumber) {
+        this.folionumber = folionumber;
     }
 
-    public String getNo_of_units() {
-        return no_of_units;
+    public String getHoldingdays() {
+        return holdingdays;
     }
 
-    public MutualFund no_of_units(String no_of_units) {
-        this.no_of_units = no_of_units;
+    public MutualFund holdingdays(String holdingdays) {
+        this.holdingdays = holdingdays;
         return this;
     }
 
-    public void setNo_of_units(String no_of_units) {
-        this.no_of_units = no_of_units;
+    public void setHoldingdays(String holdingdays) {
+        this.holdingdays = holdingdays;
     }
 
-    public String getNav() {
-        return nav;
+    public String getPurchesprice() {
+        return purchesprice;
     }
 
-    public MutualFund nav(String nav) {
-        this.nav = nav;
+    public MutualFund purchesprice(String purchesprice) {
+        this.purchesprice = purchesprice;
         return this;
     }
 
-    public void setNav(String nav) {
-        this.nav = nav;
+    public void setPurchesprice(String purchesprice) {
+        this.purchesprice = purchesprice;
+    }
+
+    public String getCurrentvalue() {
+        return currentvalue;
+    }
+
+    public MutualFund currentvalue(String currentvalue) {
+        this.currentvalue = currentvalue;
+        return this;
+    }
+
+    public void setCurrentvalue(String currentvalue) {
+        this.currentvalue = currentvalue;
+    }
+
+    public String getGainloss() {
+        return gainloss;
+    }
+
+    public MutualFund gainloss(String gainloss) {
+        this.gainloss = gainloss;
+        return this;
+    }
+
+    public void setGainloss(String gainloss) {
+        this.gainloss = gainloss;
+    }
+
+    public String getAbsolutereturn() {
+        return absolutereturn;
+    }
+
+    public MutualFund absolutereturn(String absolutereturn) {
+        this.absolutereturn = absolutereturn;
+        return this;
+    }
+
+    public void setAbsolutereturn(String absolutereturn) {
+        this.absolutereturn = absolutereturn;
+    }
+
+    public String getCagr() {
+        return cagr;
+    }
+
+    public MutualFund cagr(String cagr) {
+        this.cagr = cagr;
+        return this;
+    }
+
+    public void setCagr(String cagr) {
+        this.cagr = cagr;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -132,11 +184,11 @@ public class MutualFund implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        MutualFund mutualFund = (MutualFund) o;
-        if (mutualFund.getId() == null || getId() == null) {
+        MutualFund MutualFund = (MutualFund) o;
+        if (MutualFund.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), mutualFund.getId());
+        return Objects.equals(getId(), MutualFund.getId());
     }
 
     @Override
@@ -148,12 +200,15 @@ public class MutualFund implements Serializable {
     public String toString() {
         return "MutualFund{" +
             "id=" + getId() +
-            "userid=" + getUserid() +
-            ", fund_name='" + getFund_name() + "'" +
-            ", investor_name='" + getInvestor_name() + "'" +
-            ", purchase_date='" + getPurchase_date() + "'" +
-            ", no_of_units='" + getNo_of_units() + "'" +
-            ", nav='" + getNav() + "'" +
+            ", userid=" + getUserid() +
+            ", mfscheme='" + getMfscheme() + "'" +
+            ", folionumber='" + getFolionumber() + "'" +
+            ", holdingdays='" + getHoldingdays() + "'" +
+            ", purchesprice='" + getPurchesprice() + "'" +
+            ", currentvalue='" + getCurrentvalue() + "'" +
+            ", gainloss='" + getGainloss() + "'" +
+            ", absolutereturn='" + getAbsolutereturn() + "'" +
+            ", cagr='" + getCagr() + "'" +
             "}";
     }
 }

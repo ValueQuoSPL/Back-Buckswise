@@ -4,19 +4,17 @@ import com.valuequo.buckswise.domain.MutualFund;
 import com.valuequo.buckswise.repository.MutualFundRepository;
 import com.valuequo.buckswise.service.dto.MutualFundDTO;
 import com.valuequo.buckswise.service.mapper.MutualFundMapper;
-
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * Service Implementation for managing MutualFund.
+ * Service Implementation for managing Mutualfund.
  */
 @Service
 @Transactional
@@ -24,65 +22,64 @@ public class MutualFundService {
 
     private final Logger log = LoggerFactory.getLogger(MutualFundService.class);
 
-    private final MutualFundRepository mutualFundRepository;
+    private final MutualFundRepository mutualfundRepository;
 
-    private final MutualFundMapper mutualFundMapper;
+    private final MutualFundMapper mutualfundMapper;
 
-    public MutualFundService(MutualFundRepository mutualFundRepository, MutualFundMapper mutualFundMapper) {
-        this.mutualFundRepository = mutualFundRepository;
-        this.mutualFundMapper = mutualFundMapper;
+    public MutualFundService(MutualFundRepository mutualfundRepository, MutualFundMapper mutualfundMapper) {
+        this.mutualfundRepository = mutualfundRepository;
+        this.mutualfundMapper = mutualfundMapper;
     }
 
     /**
-     * Save a mutualFund.
+     * Save a mutualfund.
      *
-     * @param mutualFundDTO the entity to save
+     * @param mutualfundDTO the entity to save
      * @return the persisted entity
      */
-    public MutualFundDTO save(MutualFundDTO mutualFundDTO) {
-        log.debug("Request to save MutualFund : {}", mutualFundDTO);
-        MutualFund mutualFund = mutualFundMapper.toEntity(mutualFundDTO);
-        mutualFund = mutualFundRepository.save(mutualFund);
-        return mutualFundMapper.toDto(mutualFund);
+    public MutualFundDTO save(MutualFundDTO mutualfundDTO) {
+        log.debug("Request to save Mutualfund : {}", mutualfundDTO);
+        MutualFund mutualfund = mutualfundMapper.toEntity(mutualfundDTO);
+        mutualfund = mutualfundRepository.save(mutualfund);
+        return mutualfundMapper.toDto(mutualfund);
     }
 
     /**
-     * Get all the mutualFunds.
+     * Get all the mutualfunds.
      *
-     * @param pageable the pagination information
      * @return the list of entities
      */
     @Transactional(readOnly = true)
-    public Page<MutualFundDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all MutualFunds");
-        return mutualFundRepository.findAll(pageable)
-            .map(mutualFundMapper::toDto);
+    public List<MutualFundDTO> findAll() {
+        log.debug("Request to get all Mutualfunds");
+        return mutualfundRepository.findAll().stream()
+            .map(mutualfundMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
-     * Get one mutualFund by id.
+     * Get one mutualfund by id.
      *
      * @param id the id of the entity
      * @return the entity
      */
     @Transactional(readOnly = true)
-    public MutualFundDTO findOne(Long id) {
-        log.debug("Request to get MutualFund : {}", id);
-        MutualFund mutualFund = mutualFundRepository.findOne(id);
-        return mutualFundMapper.toDto(mutualFund);
+    public List<MutualFund> getUserDetail(Long uid) {
+    	return mutualfundRepository.findByUserid(uid);
+    }
+    @Transactional(readOnly = true)
+    public List<MutualFund> getUserDetailById(Long id) {
+    	return mutualfundRepository.findByid(id);
     }
 
     /**
-     * Delete the mutualFund by id.
+     * Delete the mutualfund by id.
      *
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete MutualFund : {}", id);
-        mutualFundRepository.delete(id);
+        log.debug("Request to delete Mutualfund : {}", id);
+        mutualfundRepository.delete(id);
     }
 
-	public List<MutualFund> getmutualfund(Long uid) {
-		return mutualFundRepository.findByUserid(uid);
-	}
 }

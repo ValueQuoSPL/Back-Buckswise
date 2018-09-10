@@ -47,7 +47,7 @@ public class CashResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new cashDTO, or with status 400 (Bad Request) if the cash has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/cash")
+    @PostMapping("/postcash")
     @Timed
     public ResponseEntity<CashDTO> createCash(@RequestBody CashDTO cashDTO) throws URISyntaxException {
         log.debug("REST request to save Cash : {}", cashDTO);
@@ -69,7 +69,7 @@ public class CashResource {
      * or with status 500 (Internal Server Error) if the cashDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/cash")
+    @PutMapping("/putcash")
     @Timed
     public ResponseEntity<CashDTO> updateCash(@RequestBody CashDTO cashDTO) throws URISyntaxException {
         log.debug("REST request to update Cash : {}", cashDTO);
@@ -88,7 +88,7 @@ public class CashResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of cash in body
      */
-    @GetMapping("/cash")
+    @GetMapping("/getcash")
     @Timed
     public ResponseEntity<List<CashDTO>> getAllCash(Pageable pageable) {
         log.debug("REST request to get a page of Cash");
@@ -97,7 +97,7 @@ public class CashResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    @GetMapping("/cashById/{userid}")
+    @GetMapping("/cashbyuid/{userid}")
     @Timed
     public List<Cash> getAllCash(@PathVariable Long userid){
     	return cashService.getCash(userid);
@@ -108,7 +108,7 @@ public class CashResource {
      * @param id the id of the cashDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the cashDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/cash/{id}")
+    @GetMapping("/cashbyid/{id}")
     @Timed
     public ResponseEntity<CashDTO> getCash(@PathVariable Long id) {
         log.debug("REST request to get Cash : {}", id);
@@ -122,7 +122,7 @@ public class CashResource {
      * @param id the id of the cashDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/cash/{id}")
+    @DeleteMapping("/cashdelete/{id}")
     @Timed
     public ResponseEntity<Void> deleteCash(@PathVariable Long id) {
         log.debug("REST request to delete Cash : {}", id);
