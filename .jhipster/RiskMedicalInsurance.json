@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "family_members",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hosp_type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "room_type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "userid",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180906084425",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "risk_medical_insurance",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager"
+}
