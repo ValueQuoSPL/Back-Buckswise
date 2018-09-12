@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.valuequo.buckswise.domain.SavingScheme;
 import com.valuequo.buckswise.service.Saving;
 import com.valuequo.buckswise.service.SavingSchemeService;
+import com.valuequo.buckswise.service.dto.MutualFundDTO;
 import com.valuequo.buckswise.service.dto.SavingDTO;
 import com.valuequo.buckswise.service.dto.SavingSchemeDTO;
+import com.valuequo.buckswise.web.rest.util.HeaderUtil;
 
 import afu.org.checkerframework.checker.units.qual.Time;
 
@@ -28,7 +30,7 @@ import afu.org.checkerframework.checker.units.qual.Time;
  * SavingScheme controller
  */
 @RestController
-@RequestMapping("/api/saving-scheme")
+@RequestMapping("/api")
 public class SavingSchemeResource {
 
     private final Logger log = LoggerFactory.getLogger(SavingSchemeResource.class);
@@ -54,17 +56,37 @@ public class SavingSchemeResource {
     	return saving.getAllUser();    	
     }
     
-    @GetMapping("/getsavingScheme/{uid}")
+    @GetMapping("/getsaving/{uid}")
     @Time
     public List<SavingScheme> getUsers(@PathVariable Long uid) {
     	return saving.findusers(uid);
+    }
+    @GetMapping("/getsavingSchemebyid/{id}")
+    @Time
+    public List<SavingScheme> getUsersbyid(@PathVariable Long id) {
+    	return saving.findusers(id);
     }
     
     @PutMapping("/saving")
     @Time
     public SavingScheme updateSaving(@Valid @RequestBody SavingDTO savingDTO) {
-    	System.out.println("update controller " + savingDTO);
-    	return null;
+//    	System.out.println("update controller " + savingDTO);
+//    	return null;
+    	 log.debug("REST request to update Mutualfund : {}", savingDTO.getId());
+         if (savingDTO.getId() == null) {
+              return saving.create(savingDTO);
+              
+         }
+         SavingScheme result = saving.create(savingDTO);
+         return result;
+//         return ResponseEntity.ok()
+//             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, savingDTO.getId().toString()))
+//             .body(result);
+     }
+    
+    @PutMapping("/savingUpdate")
+    public List<SavingScheme> updateSave(@RequestBody SavingDTO savingDTO) {
+    	return saving.updateData(savingDTO);
+    }
     	
     }
-}

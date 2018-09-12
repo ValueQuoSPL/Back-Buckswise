@@ -47,7 +47,7 @@ public class ChitResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new chitDTO, or with status 400 (Bad Request) if the chit has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/chits")
+    @PostMapping("/postchit")
     @Timed
     public ResponseEntity<ChitDTO> createChit(@RequestBody ChitDTO chitDTO) throws URISyntaxException {
         log.debug("REST request to save Chit : {}", chitDTO);
@@ -69,7 +69,7 @@ public class ChitResource {
      * or with status 500 (Internal Server Error) if the chitDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/chits")
+    @PutMapping("/putchit")
     @Timed
     public ResponseEntity<ChitDTO> updateChit(@RequestBody ChitDTO chitDTO) throws URISyntaxException {
         log.debug("REST request to update Chit : {}", chitDTO);
@@ -97,7 +97,7 @@ public class ChitResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    @GetMapping("/Chits/{userid}")
+    @GetMapping("/getchit/{userid}")
     @Timed
     public List<Chit> getChit1(@PathVariable Long userid){
     	return chitService.getAllChit(userid);
@@ -108,7 +108,7 @@ public class ChitResource {
      * @param id the id of the chitDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the chitDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/chits/{id}")
+    @GetMapping("/getchitbyid/{id}")
     @Timed
     public ResponseEntity<ChitDTO> getChit(@PathVariable Long id) {
         log.debug("REST request to get Chit : {}", id);
@@ -122,7 +122,7 @@ public class ChitResource {
      * @param id the id of the chitDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/chits/{id}")
+    @DeleteMapping("/deletechit/{id}")
     @Timed
     public ResponseEntity<Void> deleteChit(@PathVariable Long id) {
         log.debug("REST request to delete Chit : {}", id);

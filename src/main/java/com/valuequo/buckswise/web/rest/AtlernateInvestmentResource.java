@@ -69,7 +69,7 @@ public class AtlernateInvestmentResource {
      * or with status 500 (Internal Server Error) if the atlernateInvestmentDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/atlernate-investments")
+    @PutMapping("/atlernateInvestments")
     @Timed
     public ResponseEntity<AtlernateInvestmentDTO> updateAtlernateInvestment(@RequestBody AtlernateInvestmentDTO atlernateInvestmentDTO) throws URISyntaxException {
         log.debug("REST request to update AtlernateInvestment : {}", atlernateInvestmentDTO);
@@ -103,7 +103,7 @@ public class AtlernateInvestmentResource {
      * @param id the id of the atlernateInvestmentDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the atlernateInvestmentDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/atlernate-investments/{id}")
+    @GetMapping("/atlernateInvest/{id}")
     @Timed
     public ResponseEntity<AtlernateInvestmentDTO> getAtlernateInvestment(@PathVariable Long id) {
         log.debug("REST request to get AtlernateInvestment : {}", id);
@@ -111,7 +111,7 @@ public class AtlernateInvestmentResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(atlernateInvestmentDTO));
     }
     
-    @GetMapping("/atlernateInvestment/{userid}")
+    @GetMapping("/atlernate/{userid}")
     @Timed
     public List<AtlernateInvestment> getInvestment(@PathVariable Long userid) {
     	return atlernateInvestmentService.getAInvestment(userid);
@@ -123,7 +123,7 @@ public class AtlernateInvestmentResource {
      * @param id the id of the atlernateInvestmentDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/atlernate-investments/{id}")
+    @DeleteMapping("/atlerInvest/{id}")
     @Timed
     public ResponseEntity<Void> deleteAtlernateInvestment(@PathVariable Long id) {
         log.debug("REST request to delete AtlernateInvestment : {}", id);
