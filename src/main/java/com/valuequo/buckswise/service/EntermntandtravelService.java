@@ -30,7 +30,7 @@ public class EntermntandtravelService {
 		return entermntandtravelrepository.findByUserid(userid);
 	}
 
-	public EntandTravelDTO save(String entName, String entValue, int userid, Long userid2) {
+	public EntandTravelDTO update(String entName, String entValue, int userid, Long userid2) {
 		if(userid == userid2) {
 			EntandTravelDTO etDTO = new EntandTravelDTO(userid, entName, entValue);
 			etDTO.setName(entName);
