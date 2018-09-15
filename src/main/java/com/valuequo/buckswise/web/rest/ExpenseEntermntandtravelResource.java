@@ -48,7 +48,6 @@ public class ExpenseEntermntandtravelResource {
     	for(Map.Entry<String, Object> entry: eAndt.entrySet()) {
     		if(flag == true) {
     			flag = false;
-    			
     			JSONObject jObj = new JSONObject(eAndt);
     			JSONArray jData = jObj.getJSONArray("dynamicTravel");
     			int length = jData.length();
@@ -64,9 +63,9 @@ public class ExpenseEntermntandtravelResource {
     			
     		} else {
     			
+    			JSONObject jObj = new JSONObject(eAndt);
     			this.entName = entry.getKey();
     			this.entValue = entry.getValue().toString();
-    			JSONObject jObj = new JSONObject(eAndt);
     			this.userid = jObj.getInt("userid");
     			System.out.println("userid is in else :-" + this.userid);
     			entermntandtravelService.save(this.entName, this.entValue, this.userid);
@@ -98,7 +97,7 @@ public class ExpenseEntermntandtravelResource {
 	    				return null;
 	    			}
 	    			else {
-	    				entermntandtravelService.save(this.entName, this.entValue, this.userid, userid);
+	    				entermntandtravelService.update(this.entName, this.entValue, this.userid, userid);
 	    			}
     			}
     		} else {
@@ -110,7 +109,7 @@ public class ExpenseEntermntandtravelResource {
     				return null;
     			}
     			else {
-    				entermntandtravelService.save(this.entName, this.entValue, this.userid, userid);
+    				entermntandtravelService.update(this.entName, this.entValue, this.userid, userid);
     			}
     		}
     	}
