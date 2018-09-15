@@ -94,11 +94,11 @@ public class EightydResource {
      * @param id the id of the eightydDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the eightydDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/eightyds/{id}")
+    @GetMapping("/eightyds/{uid}")
     @Timed
-    public ResponseEntity<EightydDTO> getEightyd(@PathVariable Long id) {
-        log.debug("REST request to get Eightyd : {}", id);
-        EightydDTO eightydDTO = eightydService.findOne(id);
+    public ResponseEntity<EightydDTO> getEightyd(@PathVariable Long uid) {
+        log.debug("REST request to get Eightyd : {}", uid);
+        EightydDTO eightydDTO = eightydService.findOne(uid);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(eightydDTO));
     }
 

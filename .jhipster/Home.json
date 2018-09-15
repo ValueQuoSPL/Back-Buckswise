@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "uid",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hoamloan",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prncpalloan",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rentclm",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remintrst",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rentclmgg",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180914130113",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "home",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

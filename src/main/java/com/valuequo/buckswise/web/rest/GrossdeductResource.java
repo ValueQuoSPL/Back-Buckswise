@@ -94,7 +94,7 @@ public class GrossdeductResource {
      * @param id the id of the grossdeductDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the grossdeductDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/grossdeducts/{uid}")
+    @GetMapping("/getgrossdeducts/{uid}")
     @Timed
     public ResponseEntity<GrossdeductDTO> getGrossdeduct(@PathVariable Long uid) {
         log.debug("REST request to get Grossdeduct : {}", uid);
