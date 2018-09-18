@@ -36,11 +36,11 @@ public class CreditService {
 	}
 
 	public Credit update(int userid, String bank, String balance, String type, String roi, String lt, String pay,
-			String usage, Long uid, int id) {
+			String usage, Long uid, Long id) {
 		if(userid == uid) {
 			List<Credit> Id  = creditRepository.findById(id);
 			for(Credit credit: Id) {
-				int tableId = credit.getId();
+				Long tableId = credit.getId();
 				if(tableId == id) {
 					credit.setBalance(balance);
 					credit.setBank(bank);

@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "uid",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "medself",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "medparents",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "healthcheck",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180912062811",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "eightyd",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

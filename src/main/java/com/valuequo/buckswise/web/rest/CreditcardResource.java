@@ -6,6 +6,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,19 +59,19 @@ public class CreditcardResource {
     }
     
     @PutMapping("/putcredit/{uid}")
-    public String putCredit(@PathVariable Long uid, @RequestBody Map<String, Object>[] update) {
-    	for(Map<String, Object> entry: update) {
-    		String bank = entry.get("bank").toString();
-    		String type = entry.get("type").toString();
-    		String roi = entry.get("roi").toString();
-    		String balance = entry.get("balance").toString();
-    		String lt = entry.get("lt").toString();
-    		String pay = entry.get("pay").toString();
-    		String usage = entry.get("usage").toString();
-    		int userid = (int) entry.get("userid");
-    		int id = (int) entry.get("id");
+    public String putCredit(@PathVariable Long uid, @RequestBody Map<String, Object> update) throws JSONException {
+    	JSONObject jObj = new JSONObject(update);
+    		String bank = jObj.get("bank").toString();
+    		String type = jObj.get("type").toString();
+    		String roi = jObj.get("roi").toString();
+    		String balance = jObj.get("balance").toString();
+    		String lt = jObj.get("lt").toString();
+    		String pay = jObj.get("pay").toString();
+    		String usage = jObj.get("usage").toString();
+    		int userid = (int) jObj.get("userid");
+    		Long id = jObj.getLong("id");
     		creditService.update(userid, bank, balance, type, roi, lt, pay, usage, uid, id);
-    	}
+    	
     	return null;
     	
     }

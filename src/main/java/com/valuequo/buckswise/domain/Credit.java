@@ -17,7 +17,7 @@ public class Credit {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     
     @Column(name = "userid")
     private int userid;
@@ -43,11 +43,11 @@ public class Credit {
     @Column(name = "creditusage")
     private String usage;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

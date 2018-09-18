@@ -12,6 +12,6 @@ public interface CreditRepository extends JpaRepository<Credit, Long> {
 
 	List<Credit> findByUserid(int userid);
 
-	List<Credit> findById(int id);
+	List<Credit> findById(Long id);
 
 }
