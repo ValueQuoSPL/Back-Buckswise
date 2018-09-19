@@ -94,7 +94,7 @@ public class HomeResource {
      * @param id the id of the homeDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the homeDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/homes/{id}")
+    @GetMapping("/homeses/{uid}")
     @Timed
     public ResponseEntity<HomeDTO> getHome(@PathVariable Long uid) {
         log.debug("REST request to get Home : {}", uid);
