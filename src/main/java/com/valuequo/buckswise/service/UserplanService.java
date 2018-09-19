@@ -66,10 +66,10 @@ public class UserplanService {
      * @return the entity
      */
     @Transactional(readOnly = true)
-    public Optional<UserplanDTO> findOne(Long id) {
+    public Optional<Userplan> findOne(Long id) {
         log.debug("Request to get Userplan : {}", id);
-        return userplanRepository.findById(id)
-            .map(userplanMapper::toDto);
+        return userplanRepository.findById(id);
+            
     }
 
     /**
