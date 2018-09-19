@@ -66,9 +66,10 @@ public class PromocodeService {
      * @return the entity
      */
     @Transactional(readOnly = true)
-    public Optional<Promocode> findOne(Long id) {
+    public Optional<PromocodeDTO> findOne(Long id) {
         log.debug("Request to get Promocode : {}", id);
-        return promocodeRepository.findById(id);
+        return promocodeRepository.findById(id)
+            .map(promocodeMapper::toDto);
     }
 
     /**
