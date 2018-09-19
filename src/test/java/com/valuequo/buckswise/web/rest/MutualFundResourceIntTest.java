@@ -1,7 +1,6 @@
 package com.valuequo.buckswise.web.rest;
 
 import com.valuequo.buckswise.BuckswiseApp;
-
 import com.valuequo.buckswise.domain.MutualFund;
 import com.valuequo.buckswise.repository.MutualFundRepository;
 import com.valuequo.buckswise.service.MutualFundService;
@@ -24,8 +23,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 import static com.valuequo.buckswise.web.rest.TestUtil.createFormattingConversionService;
@@ -35,37 +32,49 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Test class for the MutualFundResource REST controller.
+ * Test class for the MutualfundResource REST controller.
  *
- * @see MutualFundResource
+ * @see MutualfundResource
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BuckswiseApp.class)
 public class MutualFundResourceIntTest {
 
-    private static final String DEFAULT_FUND_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_FUND_NAME = "BBBBBBBBBB";
+//    private static final Integer DEFAULT_USERID = 1;
+//    private static final Integer UPDATED_USERID = 2;
 
-    private static final String DEFAULT_INVESTOR_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_INVESTOR_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_MFSCHEME = "AAAAAAAAAA";
+    private static final String UPDATED_MFSCHEME = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_PURCHASE_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_PURCHASE_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final String DEFAULT_FOLIONUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_FOLIONUMBER = "BBBBBBBBBB";
 
-    private static final String DEFAULT_NO_OF_UNITS = "AAAAAAAAAA";
-    private static final String UPDATED_NO_OF_UNITS = "BBBBBBBBBB";
+    private static final String DEFAULT_HOLDINGDAYS = "AAAAAAAAAA";
+    private static final String UPDATED_HOLDINGDAYS = "BBBBBBBBBB";
 
-    private static final String DEFAULT_NAV = "AAAAAAAAAA";
-    private static final String UPDATED_NAV = "BBBBBBBBBB";
+    private static final String DEFAULT_PURCHESPRICE = "AAAAAAAAAA";
+    private static final String UPDATED_PURCHESPRICE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CURRENTVALUE = "AAAAAAAAAA";
+    private static final String UPDATED_CURRENTVALUE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_GAINLOSS = "AAAAAAAAAA";
+    private static final String UPDATED_GAINLOSS = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ABSOLUTERETURN = "AAAAAAAAAA";
+    private static final String UPDATED_ABSOLUTERETURN = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CAGR = "AAAAAAAAAA";
+    private static final String UPDATED_CAGR = "BBBBBBBBBB";
 
     @Autowired
-    private MutualFundRepository mutualFundRepository;
+    private MutualFundRepository mutualfundRepository;
 
     @Autowired
-    private MutualFundMapper mutualFundMapper;
+    private MutualFundMapper mutualfundMapper;
 
     @Autowired
-    private MutualFundService mutualFundService;
+    private MutualFundService mutualfundService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -79,15 +88,15 @@ public class MutualFundResourceIntTest {
     @Autowired
     private EntityManager em;
 
-    private MockMvc restMutualFundMockMvc;
+    private MockMvc restMutualfundMockMvc;
 
-    private MutualFund mutualFund;
+    private MutualFund mutualfund;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final MutualFundResource mutualFundResource = new MutualFundResource(mutualFundService);
-        this.restMutualFundMockMvc = MockMvcBuilders.standaloneSetup(mutualFundResource)
+        final MutualFundResource mutualfundResource = new MutualFundResource(mutualfundService);
+        this.restMutualfundMockMvc = MockMvcBuilders.standaloneSetup(mutualfundResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setConversionService(createFormattingConversionService())
@@ -101,213 +110,237 @@ public class MutualFundResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static MutualFund createEntity(EntityManager em) {
-        MutualFund mutualFund = new MutualFund()
-            .fund_name(DEFAULT_FUND_NAME)
-            .investor_name(DEFAULT_INVESTOR_NAME)
-            .purchase_date(DEFAULT_PURCHASE_DATE)
-            .no_of_units(DEFAULT_NO_OF_UNITS)
-            .nav(DEFAULT_NAV);
-        return mutualFund;
+    	MutualFund mutualfund = new MutualFund()
+//            .userid(DEFAULT_USERID)
+            .mfscheme(DEFAULT_MFSCHEME)
+            .folionumber(DEFAULT_FOLIONUMBER)
+            .holdingdays(DEFAULT_HOLDINGDAYS)
+            .purchesprice(DEFAULT_PURCHESPRICE)
+            .currentvalue(DEFAULT_CURRENTVALUE)
+            .gainloss(DEFAULT_GAINLOSS)
+            .absolutereturn(DEFAULT_ABSOLUTERETURN)
+            .cagr(DEFAULT_CAGR);
+        return mutualfund;
     }
 
     @Before
     public void initTest() {
-        mutualFund = createEntity(em);
+        mutualfund = createEntity(em);
     }
 
     @Test
     @Transactional
-    public void createMutualFund() throws Exception {
-        int databaseSizeBeforeCreate = mutualFundRepository.findAll().size();
+    public void createMutualfund() throws Exception {
+        int databaseSizeBeforeCreate = mutualfundRepository.findAll().size();
 
-        // Create the MutualFund
-        MutualFundDTO mutualFundDTO = mutualFundMapper.toDto(mutualFund);
-        restMutualFundMockMvc.perform(post("/api/mutual-funds")
+        // Create the Mutualfund
+        MutualFundDTO mutualfundDTO = mutualfundMapper.toDto(mutualfund);
+        restMutualfundMockMvc.perform(post("/api/mutualfunds")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(mutualFundDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(mutualfundDTO)))
             .andExpect(status().isCreated());
 
-        // Validate the MutualFund in the database
-        List<MutualFund> mutualFundList = mutualFundRepository.findAll();
-        assertThat(mutualFundList).hasSize(databaseSizeBeforeCreate + 1);
-        MutualFund testMutualFund = mutualFundList.get(mutualFundList.size() - 1);
-        assertThat(testMutualFund.getFund_name()).isEqualTo(DEFAULT_FUND_NAME);
-        assertThat(testMutualFund.getInvestor_name()).isEqualTo(DEFAULT_INVESTOR_NAME);
-        assertThat(testMutualFund.getPurchase_date()).isEqualTo(DEFAULT_PURCHASE_DATE);
-        assertThat(testMutualFund.getNo_of_units()).isEqualTo(DEFAULT_NO_OF_UNITS);
-        assertThat(testMutualFund.getNav()).isEqualTo(DEFAULT_NAV);
+        // Validate the Mutualfund in the database
+        List<MutualFund> mutualfundList = mutualfundRepository.findAll();
+        assertThat(mutualfundList).hasSize(databaseSizeBeforeCreate + 1);
+        MutualFund testMutualfund = mutualfundList.get(mutualfundList.size() - 1);
+//        assertThat(testMutualfund.getUserid()).isEqualTo(DEFAULT_USERID);
+        assertThat(testMutualfund.getMfscheme()).isEqualTo(DEFAULT_MFSCHEME);
+        assertThat(testMutualfund.getFolionumber()).isEqualTo(DEFAULT_FOLIONUMBER);
+        assertThat(testMutualfund.getHoldingdays()).isEqualTo(DEFAULT_HOLDINGDAYS);
+        assertThat(testMutualfund.getPurchesprice()).isEqualTo(DEFAULT_PURCHESPRICE);
+        assertThat(testMutualfund.getCurrentvalue()).isEqualTo(DEFAULT_CURRENTVALUE);
+        assertThat(testMutualfund.getGainloss()).isEqualTo(DEFAULT_GAINLOSS);
+        assertThat(testMutualfund.getAbsolutereturn()).isEqualTo(DEFAULT_ABSOLUTERETURN);
+        assertThat(testMutualfund.getCagr()).isEqualTo(DEFAULT_CAGR);
     }
 
     @Test
     @Transactional
-    public void createMutualFundWithExistingId() throws Exception {
-        int databaseSizeBeforeCreate = mutualFundRepository.findAll().size();
+    public void createMutualfundWithExistingId() throws Exception {
+        int databaseSizeBeforeCreate = mutualfundRepository.findAll().size();
 
-        // Create the MutualFund with an existing ID
-        mutualFund.setId(1L);
-        MutualFundDTO mutualFundDTO = mutualFundMapper.toDto(mutualFund);
+        // Create the Mutualfund with an existing ID
+        mutualfund.setId(1L);
+        MutualFundDTO mutualfundDTO = mutualfundMapper.toDto(mutualfund);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restMutualFundMockMvc.perform(post("/api/mutual-funds")
+        restMutualfundMockMvc.perform(post("/api/mutualfunds")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(mutualFundDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(mutualfundDTO)))
             .andExpect(status().isBadRequest());
 
-        // Validate the MutualFund in the database
-        List<MutualFund> mutualFundList = mutualFundRepository.findAll();
-        assertThat(mutualFundList).hasSize(databaseSizeBeforeCreate);
+        // Validate the Mutualfund in the database
+        List<MutualFund> mutualfundList = mutualfundRepository.findAll();
+        assertThat(mutualfundList).hasSize(databaseSizeBeforeCreate);
     }
 
     @Test
     @Transactional
-    public void getAllMutualFunds() throws Exception {
+    public void getAllMutualfunds() throws Exception {
         // Initialize the database
-        mutualFundRepository.saveAndFlush(mutualFund);
+        mutualfundRepository.saveAndFlush(mutualfund);
 
-        // Get all the mutualFundList
-        restMutualFundMockMvc.perform(get("/api/mutual-funds?sort=id,desc"))
+        // Get all the mutualfundList
+        restMutualfundMockMvc.perform(get("/api/mutualfunds?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(mutualFund.getId().intValue())))
-            .andExpect(jsonPath("$.[*].fund_name").value(hasItem(DEFAULT_FUND_NAME.toString())))
-            .andExpect(jsonPath("$.[*].investor_name").value(hasItem(DEFAULT_INVESTOR_NAME.toString())))
-            .andExpect(jsonPath("$.[*].purchase_date").value(hasItem(DEFAULT_PURCHASE_DATE.toString())))
-            .andExpect(jsonPath("$.[*].no_of_units").value(hasItem(DEFAULT_NO_OF_UNITS.toString())))
-            .andExpect(jsonPath("$.[*].nav").value(hasItem(DEFAULT_NAV.toString())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(mutualfund.getId().intValue())))
+//            .andExpect(jsonPath("$.[*].userid").value(hasItem(DEFAULT_USERID)))
+            .andExpect(jsonPath("$.[*].mfscheme").value(hasItem(DEFAULT_MFSCHEME.toString())))
+            .andExpect(jsonPath("$.[*].folionumber").value(hasItem(DEFAULT_FOLIONUMBER.toString())))
+            .andExpect(jsonPath("$.[*].holdingdays").value(hasItem(DEFAULT_HOLDINGDAYS.toString())))
+            .andExpect(jsonPath("$.[*].purchesprice").value(hasItem(DEFAULT_PURCHESPRICE.toString())))
+            .andExpect(jsonPath("$.[*].currentvalue").value(hasItem(DEFAULT_CURRENTVALUE.toString())))
+            .andExpect(jsonPath("$.[*].gainloss").value(hasItem(DEFAULT_GAINLOSS.toString())))
+            .andExpect(jsonPath("$.[*].absolutereturn").value(hasItem(DEFAULT_ABSOLUTERETURN.toString())))
+            .andExpect(jsonPath("$.[*].cagr").value(hasItem(DEFAULT_CAGR.toString())));
     }
 
     @Test
     @Transactional
-    public void getMutualFund() throws Exception {
+    public void getMutualfund() throws Exception {
         // Initialize the database
-        mutualFundRepository.saveAndFlush(mutualFund);
+        mutualfundRepository.saveAndFlush(mutualfund);
 
-        // Get the mutualFund
-        restMutualFundMockMvc.perform(get("/api/mutual-funds/{id}", mutualFund.getId()))
+        // Get the mutualfund
+        restMutualfundMockMvc.perform(get("/api/mutualfunds/{id}", mutualfund.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(mutualFund.getId().intValue()))
-            .andExpect(jsonPath("$.fund_name").value(DEFAULT_FUND_NAME.toString()))
-            .andExpect(jsonPath("$.investor_name").value(DEFAULT_INVESTOR_NAME.toString()))
-            .andExpect(jsonPath("$.purchase_date").value(DEFAULT_PURCHASE_DATE.toString()))
-            .andExpect(jsonPath("$.no_of_units").value(DEFAULT_NO_OF_UNITS.toString()))
-            .andExpect(jsonPath("$.nav").value(DEFAULT_NAV.toString()));
+            .andExpect(jsonPath("$.id").value(mutualfund.getId().intValue()))
+//            .andExpect(jsonPath("$.userid").value(DEFAULT_USERID))
+            .andExpect(jsonPath("$.mfscheme").value(DEFAULT_MFSCHEME.toString()))
+            .andExpect(jsonPath("$.folionumber").value(DEFAULT_FOLIONUMBER.toString()))
+            .andExpect(jsonPath("$.holdingdays").value(DEFAULT_HOLDINGDAYS.toString()))
+            .andExpect(jsonPath("$.purchesprice").value(DEFAULT_PURCHESPRICE.toString()))
+            .andExpect(jsonPath("$.currentvalue").value(DEFAULT_CURRENTVALUE.toString()))
+            .andExpect(jsonPath("$.gainloss").value(DEFAULT_GAINLOSS.toString()))
+            .andExpect(jsonPath("$.absolutereturn").value(DEFAULT_ABSOLUTERETURN.toString()))
+            .andExpect(jsonPath("$.cagr").value(DEFAULT_CAGR.toString()));
     }
 
     @Test
     @Transactional
-    public void getNonExistingMutualFund() throws Exception {
-        // Get the mutualFund
-        restMutualFundMockMvc.perform(get("/api/mutual-funds/{id}", Long.MAX_VALUE))
+    public void getNonExistingMutualfund() throws Exception {
+        // Get the mutualfund
+        restMutualfundMockMvc.perform(get("/api/mutualfunds/{id}", Long.MAX_VALUE))
             .andExpect(status().isNotFound());
     }
 
     @Test
     @Transactional
-    public void updateMutualFund() throws Exception {
+    public void updateMutualfund() throws Exception {
         // Initialize the database
-        mutualFundRepository.saveAndFlush(mutualFund);
-        int databaseSizeBeforeUpdate = mutualFundRepository.findAll().size();
+        mutualfundRepository.saveAndFlush(mutualfund);
+        int databaseSizeBeforeUpdate = mutualfundRepository.findAll().size();
 
-        // Update the mutualFund
-        MutualFund updatedMutualFund = mutualFundRepository.findOne(mutualFund.getId());
-        // Disconnect from session so that the updates on updatedMutualFund are not directly saved in db
-        em.detach(updatedMutualFund);
-        updatedMutualFund
-            .fund_name(UPDATED_FUND_NAME)
-            .investor_name(UPDATED_INVESTOR_NAME)
-            .purchase_date(UPDATED_PURCHASE_DATE)
-            .no_of_units(UPDATED_NO_OF_UNITS)
-            .nav(UPDATED_NAV);
-        MutualFundDTO mutualFundDTO = mutualFundMapper.toDto(updatedMutualFund);
+        // Update the mutualfund
+        MutualFund updatedMutualfund = mutualfundRepository.findOne(mutualfund.getId());
+        // Disconnect from session so that the updates on updatedMutualfund are not directly saved in db
+        em.detach(updatedMutualfund);
+        updatedMutualfund
+//            .userid(UPDATED_USERID)
+            .mfscheme(UPDATED_MFSCHEME)
+            .folionumber(UPDATED_FOLIONUMBER)
+            .holdingdays(UPDATED_HOLDINGDAYS)
+            .purchesprice(UPDATED_PURCHESPRICE)
+            .currentvalue(UPDATED_CURRENTVALUE)
+            .gainloss(UPDATED_GAINLOSS)
+            .absolutereturn(UPDATED_ABSOLUTERETURN)
+            .cagr(UPDATED_CAGR);
+        MutualFundDTO mutualfundDTO = mutualfundMapper.toDto(updatedMutualfund);
 
-        restMutualFundMockMvc.perform(put("/api/mutual-funds")
+        restMutualfundMockMvc.perform(put("/api/mutualfunds")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(mutualFundDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(mutualfundDTO)))
             .andExpect(status().isOk());
 
-        // Validate the MutualFund in the database
-        List<MutualFund> mutualFundList = mutualFundRepository.findAll();
-        assertThat(mutualFundList).hasSize(databaseSizeBeforeUpdate);
-        MutualFund testMutualFund = mutualFundList.get(mutualFundList.size() - 1);
-        assertThat(testMutualFund.getFund_name()).isEqualTo(UPDATED_FUND_NAME);
-        assertThat(testMutualFund.getInvestor_name()).isEqualTo(UPDATED_INVESTOR_NAME);
-        assertThat(testMutualFund.getPurchase_date()).isEqualTo(UPDATED_PURCHASE_DATE);
-        assertThat(testMutualFund.getNo_of_units()).isEqualTo(UPDATED_NO_OF_UNITS);
-        assertThat(testMutualFund.getNav()).isEqualTo(UPDATED_NAV);
+        // Validate the Mutualfund in the database
+        List<MutualFund> mutualfundList = mutualfundRepository.findAll();
+        assertThat(mutualfundList).hasSize(databaseSizeBeforeUpdate);
+        MutualFund testMutualfund = mutualfundList.get(mutualfundList.size() - 1);
+//        assertThat(testMutualfund.getUserid()).isEqualTo(UPDATED_USERID);
+        assertThat(testMutualfund.getMfscheme()).isEqualTo(UPDATED_MFSCHEME);
+        assertThat(testMutualfund.getFolionumber()).isEqualTo(UPDATED_FOLIONUMBER);
+        assertThat(testMutualfund.getHoldingdays()).isEqualTo(UPDATED_HOLDINGDAYS);
+        assertThat(testMutualfund.getPurchesprice()).isEqualTo(UPDATED_PURCHESPRICE);
+        assertThat(testMutualfund.getCurrentvalue()).isEqualTo(UPDATED_CURRENTVALUE);
+        assertThat(testMutualfund.getGainloss()).isEqualTo(UPDATED_GAINLOSS);
+        assertThat(testMutualfund.getAbsolutereturn()).isEqualTo(UPDATED_ABSOLUTERETURN);
+        assertThat(testMutualfund.getCagr()).isEqualTo(UPDATED_CAGR);
     }
 
     @Test
     @Transactional
-    public void updateNonExistingMutualFund() throws Exception {
-        int databaseSizeBeforeUpdate = mutualFundRepository.findAll().size();
+    public void updateNonExistingMutualfund() throws Exception {
+        int databaseSizeBeforeUpdate = mutualfundRepository.findAll().size();
 
-        // Create the MutualFund
-        MutualFundDTO mutualFundDTO = mutualFundMapper.toDto(mutualFund);
+        // Create the Mutualfund
+        MutualFundDTO mutualfundDTO = mutualfundMapper.toDto(mutualfund);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
-        restMutualFundMockMvc.perform(put("/api/mutual-funds")
+        restMutualfundMockMvc.perform(put("/api/mutualfunds")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(mutualFundDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(mutualfundDTO)))
             .andExpect(status().isCreated());
 
-        // Validate the MutualFund in the database
-        List<MutualFund> mutualFundList = mutualFundRepository.findAll();
-        assertThat(mutualFundList).hasSize(databaseSizeBeforeUpdate + 1);
+        // Validate the Mutualfund in the database
+        List<MutualFund> mutualfundList = mutualfundRepository.findAll();
+        assertThat(mutualfundList).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
     @Test
     @Transactional
-    public void deleteMutualFund() throws Exception {
+    public void deleteMutualfund() throws Exception {
         // Initialize the database
-        mutualFundRepository.saveAndFlush(mutualFund);
-        int databaseSizeBeforeDelete = mutualFundRepository.findAll().size();
+        mutualfundRepository.saveAndFlush(mutualfund);
+        int databaseSizeBeforeDelete = mutualfundRepository.findAll().size();
 
-        // Get the mutualFund
-        restMutualFundMockMvc.perform(delete("/api/mutual-funds/{id}", mutualFund.getId())
+        // Get the mutualfund
+        restMutualfundMockMvc.perform(delete("/api/mutualfunds/{id}", mutualfund.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<MutualFund> mutualFundList = mutualFundRepository.findAll();
-        assertThat(mutualFundList).hasSize(databaseSizeBeforeDelete - 1);
+        List<MutualFund> mutualfundList = mutualfundRepository.findAll();
+        assertThat(mutualfundList).hasSize(databaseSizeBeforeDelete - 1);
     }
 
     @Test
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(MutualFund.class);
-        MutualFund mutualFund1 = new MutualFund();
-        mutualFund1.setId(1L);
-        MutualFund mutualFund2 = new MutualFund();
-        mutualFund2.setId(mutualFund1.getId());
-        assertThat(mutualFund1).isEqualTo(mutualFund2);
-        mutualFund2.setId(2L);
-        assertThat(mutualFund1).isNotEqualTo(mutualFund2);
-        mutualFund1.setId(null);
-        assertThat(mutualFund1).isNotEqualTo(mutualFund2);
+        MutualFund mutualfund1 = new MutualFund();
+        mutualfund1.setId(1L);
+        MutualFund mutualfund2 = new MutualFund();
+        mutualfund2.setId(mutualfund1.getId());
+        assertThat(mutualfund1).isEqualTo(mutualfund2);
+        mutualfund2.setId(2L);
+        assertThat(mutualfund1).isNotEqualTo(mutualfund2);
+        mutualfund1.setId(null);
+        assertThat(mutualfund1).isNotEqualTo(mutualfund2);
     }
 
     @Test
     @Transactional
     public void dtoEqualsVerifier() throws Exception {
         TestUtil.equalsVerifier(MutualFundDTO.class);
-        MutualFundDTO mutualFundDTO1 = new MutualFundDTO();
-        mutualFundDTO1.setId(1L);
-        MutualFundDTO mutualFundDTO2 = new MutualFundDTO();
-        assertThat(mutualFundDTO1).isNotEqualTo(mutualFundDTO2);
-        mutualFundDTO2.setId(mutualFundDTO1.getId());
-        assertThat(mutualFundDTO1).isEqualTo(mutualFundDTO2);
-        mutualFundDTO2.setId(2L);
-        assertThat(mutualFundDTO1).isNotEqualTo(mutualFundDTO2);
-        mutualFundDTO1.setId(null);
-        assertThat(mutualFundDTO1).isNotEqualTo(mutualFundDTO2);
+        MutualFundDTO mutualfundDTO1 = new MutualFundDTO();
+        mutualfundDTO1.setId(1L);
+        MutualFundDTO mutualfundDTO2 = new MutualFundDTO();
+        assertThat(mutualfundDTO1).isNotEqualTo(mutualfundDTO2);
+        mutualfundDTO2.setId(mutualfundDTO1.getId());
+        assertThat(mutualfundDTO1).isEqualTo(mutualfundDTO2);
+        mutualfundDTO2.setId(2L);
+        assertThat(mutualfundDTO1).isNotEqualTo(mutualfundDTO2);
+        mutualfundDTO1.setId(null);
+        assertThat(mutualfundDTO1).isNotEqualTo(mutualfundDTO2);
     }
 
     @Test
     @Transactional
     public void testEntityFromId() {
-        assertThat(mutualFundMapper.fromId(42L).getId()).isEqualTo(42);
-        assertThat(mutualFundMapper.fromId(null)).isNull();
+        assertThat(mutualfundMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(mutualfundMapper.fromId(null)).isNull();
     }
 }
