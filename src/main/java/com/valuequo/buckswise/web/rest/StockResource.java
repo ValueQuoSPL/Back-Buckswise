@@ -47,7 +47,7 @@ public class StockResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new stockDTO, or with status 400 (Bad Request) if the stock has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/stocks")
+    @PostMapping("/poststocks")
     @Timed
     public ResponseEntity<StockDTO> createStock(@RequestBody StockDTO stockDTO) throws URISyntaxException {
         log.debug("REST request to save Stock : {}", stockDTO);
@@ -69,7 +69,7 @@ public class StockResource {
      * or with status 500 (Internal Server Error) if the stockDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/stocks")
+    @PutMapping("/putstocks")
     @Timed
     public ResponseEntity<StockDTO> updateStock(@RequestBody StockDTO stockDTO) throws URISyntaxException {
         log.debug("REST request to update Stock : {}", stockDTO);
@@ -88,7 +88,7 @@ public class StockResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of stocks in body
      */
-    @GetMapping("/stocks")
+    @GetMapping("/getstocks")
     @Timed
     public ResponseEntity<List<StockDTO>> getAllStocks(Pageable pageable) {
         log.debug("REST request to get a page of Stocks");
@@ -97,7 +97,7 @@ public class StockResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
-    @GetMapping("/stock/{userid}")
+    @GetMapping("/getbyuidstock/{userid}")
     @Timed
     public List<Stock> getuserId(@PathVariable Long userid) {
     	return stockService.getUser(userid);
@@ -109,7 +109,7 @@ public class StockResource {
      * @param id the id of the stockDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the stockDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/stocks/{id}")
+    @GetMapping("/getbyidstocks/{id}")
     @Timed
     public ResponseEntity<StockDTO> getStock(@PathVariable Long id) {
         log.debug("REST request to get Stock : {}", id);
@@ -123,7 +123,7 @@ public class StockResource {
      * @param id the id of the stockDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/stocks/{id}")
+    @DeleteMapping("/deletestocks/{id}")
     @Timed
     public ResponseEntity<Void> deleteStock(@PathVariable Long id) {
         log.debug("REST request to delete Stock : {}", id);

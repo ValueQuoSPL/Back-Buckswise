@@ -65,19 +65,20 @@ public class PromocodeService {
      * @param id the id of the entity
      * @return the entity
      */
-    @Transactional(readOnly = true)
-    public Optional<PromocodeDTO> findOne(Long id) {
-        log.debug("Request to get Promocode : {}", id);
-        return promocodeRepository.findById(id);
-    }
+    // @Transactional(readOnly = true)
+    // public Optional<PromocodeDTO> findOne(Long id) {
+    //     log.debug("Request to get Promocode : {}", id);
+    //     return promocodeRepository.findById(id)
+    //         .map(promocodeMapper::toDto);
+    // }
 
     /**
      * Delete the promocode by id.
      *
      * @param id the id of the entity
      */
-    public void delete(Long id) {
-        log.debug("Request to delete Promocode : {}", id);
-        promocodeRepository.deleteById(id);
-    }
+    // public void delete(Long id) {
+    //     log.debug("Request to delete Promocode : {}", id);
+    //     promocodeRepository.deleteById(id);
+    // }
 }

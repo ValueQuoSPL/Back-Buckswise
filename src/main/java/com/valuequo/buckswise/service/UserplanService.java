@@ -65,20 +65,20 @@ public class UserplanService {
      * @param id the id of the entity
      * @return the entity
      */
-    @Transactional(readOnly = true)
-    public Optional<UserplanDTO> findOne(Long id) {
-        log.debug("Request to get Userplan : {}", id);
-        return userplanRepository.findById(id);
-            
-    }
+    // @Transactional(readOnly = true)
+    // public Optional<UserplanDTO> findOne(Long id) {
+    //     log.debug("Request to get Userplan : {}", id);
+    //     return userplanRepository.findById(id)
+    //         .map(userplanMapper::toDto);
+    // }
 
     /**
      * Delete the userplan by id.
      *
      * @param id the id of the entity
      */
-    public void delete(Long id) {
-        log.debug("Request to delete Userplan : {}", id);
-        userplanRepository.deleteById(id);
-    }
+    // public void delete(Long id) {
+    //     log.debug("Request to delete Userplan : {}", id);
+    //     userplanRepository.deleteById(id);
+    // }
 }
