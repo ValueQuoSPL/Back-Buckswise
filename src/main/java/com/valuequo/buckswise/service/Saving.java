@@ -78,11 +78,6 @@ public class Saving {
 		}
 		return null;
 	}
-	public void delete(Long id) {
-//        log.debug("Request to delete Stock : {}", id);
-        savingSchemeRepository.delete(id);
-    }
-
 
 
 }

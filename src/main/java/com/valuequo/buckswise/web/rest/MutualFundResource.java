@@ -64,7 +64,7 @@ public class MutualFundResource {
      * or with status 500 (Internal Server Error) if the mutualfundDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/putmutualfund")
+    @PutMapping("/mutualfund")
     @Timed
     public ResponseEntity<MutualFundDTO> updateMutualfund(@RequestBody MutualFundDTO mutualfundDTO) throws URISyntaxException {
         log.debug("REST request to update Mutualfund : {}", mutualfundDTO);
@@ -113,7 +113,7 @@ public class MutualFundResource {
      * @param id the id of the mutualfundDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/deletemutualfund/{id}")
+    @DeleteMapping("/mutualfund/{id}")
     @Timed
     public ResponseEntity<Void> deleteMutualfund(@PathVariable Long id) {
         log.debug("REST request to delete Mutualfund : {}", id);

@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codahale.metrics.annotation.Timed;
 import com.valuequo.buckswise.domain.SavingScheme;
 import com.valuequo.buckswise.service.Saving;
 import com.valuequo.buckswise.service.SavingSchemeService;
@@ -35,9 +33,7 @@ import afu.org.checkerframework.checker.units.qual.Time;
 @RequestMapping("/api")
 public class SavingSchemeResource {
 
-    private static final String ENTITY_NAME = null;
-
-	private final Logger log = LoggerFactory.getLogger(SavingSchemeResource.class);
+    private final Logger log = LoggerFactory.getLogger(SavingSchemeResource.class);
 
     /**
     * POST savingscheme
@@ -91,13 +87,6 @@ public class SavingSchemeResource {
     @PutMapping("/savingUpdate")
     public List<SavingScheme> updateSave(@RequestBody SavingDTO savingDTO) {
     	return saving.updateData(savingDTO);
-    }
-    @DeleteMapping("/savingdelete/{id}")
-    @Timed
-    public ResponseEntity<Void> deleteSaving(@PathVariable Long id) {
-        log.debug("REST request to delete Stock : {}", id);
-        saving.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
     	
     }
