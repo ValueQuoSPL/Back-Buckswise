@@ -19,6 +19,6 @@ public interface PromocodeRepository extends JpaRepository<Promocode, Long> {
 
 	void deleteById(Long id);
 
-	Optional<Promocode> findById(Long id);
+	Optional<PromocodeDTO> findById(Long id);
 
 }

@@ -21,7 +21,7 @@ public interface UserplanRepository extends JpaRepository<Userplan, Long> {
 
 	void deleteById(Long id);
 
-	Optional<Userplan> findById(Long id);
+	Optional<UserplanDTO> findById(Long id);
 
 	// Stream<Userplan> findById(Long id);
 
