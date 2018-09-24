@@ -4,6 +4,16 @@ import java.sql.Date;
 
 public class GoalSetDTO {
 	
+	private long id;
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	private Long UID;
 
 	private String goaltype;
@@ -27,6 +37,12 @@ public class GoalSetDTO {
     private Date dateofcreation;
     
     private String linkassets;
+    
+    private String assetname;
+    
+    private String value;
+    
+    private String valuetomap;
 
 	public Long getUID() {
 		return UID;
@@ -62,6 +78,30 @@ public class GoalSetDTO {
 
 	public String getYeartogoal() {
 		return yeartogoal;
+	}
+
+	public String getAssetname() {
+		return assetname;
+	}
+
+	public void setAssetname(String assetname) {
+		this.assetname = assetname;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public String getValuetomap() {
+		return valuetomap;
+	}
+
+	public void setValuetomap(String valuetomap) {
+		this.valuetomap = valuetomap;
 	}
 
 	public void setYeartogoal(String yeartogoal) {
@@ -122,13 +162,16 @@ public class GoalSetDTO {
 	public void setLinkassets(String linkassets) {
 		this.linkassets = linkassets;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "GoalSetDTO [UID=" + UID + ", goaltype=" + goaltype + ", goalname=" + goalname + ", priority=" + priority
 				+ ", yeartogoal=" + yeartogoal + ", presentcost=" + presentcost + ", notes=" + notes + ", futurecost="
 				+ futurecost + ", requiremonthinvest=" + requiremonthinvest + ", fundshortage=" + fundshortage
-				+ ", dateofcreation=" + dateofcreation + ", linkassets=" + linkassets + "]";
+				+ ", dateofcreation=" + dateofcreation + ", linkassets=" + linkassets + ", assetname=" + assetname
+				+ ", value=" + value + ", valuetomap=" + valuetomap + "]";
 	}
+	
+	
 
 }

@@ -1,18 +1,26 @@
 package com.valuequo.buckswise.web.rest;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.valuequo.buckswise.domain.GoalSet;
+import com.valuequo.buckswise.domain.SavingScheme;
 import com.valuequo.buckswise.service.GoalSetService;
 import com.valuequo.buckswise.service.dto.GoalSetDTO;
+import com.valuequo.buckswise.service.dto.SavingDTO;
+
+import afu.org.checkerframework.checker.units.qual.Time;
 
 @RestController
 @RequestMapping("/api")
@@ -41,4 +49,19 @@ public class GoalSetResource {
 			return goalsetservice.getGoalById(uid);
 	    	
 	    }
+	 @GetMapping("/goalsetbyid/{id}")
+	    @Timed
+	    public List<GoalSet> getGoalId(@PathVariable Long id)
+	    {
+			return goalsetservice.getGoalId(id);
+	    	
+	    }
+	  @PutMapping("/putgoal")
+	    @Time
+	    public List<GoalSet> updateGoal(@Valid @RequestBody GoalSetDTO goalsetDTO) {
+	    	 log.debug("REST request to update goal: {}", goalsetDTO.getId());
+	    	 goalsetservice.updateData(goalsetDTO);
+	         return null;
+
+	     }
 }
