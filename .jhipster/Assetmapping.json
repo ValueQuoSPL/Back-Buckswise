@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "uid",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "goalid",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "assetname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "assetid",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180924123036",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "assetmapping",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}
