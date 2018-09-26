@@ -147,6 +147,11 @@ public class UserResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+    
+    @GetMapping("/user/{id}")
+    public List<User> getUsers(@PathVariable Long id) {
+    	return userService.find(id);
+    }
 
     /**
      * @return a string list of the all of the roles
