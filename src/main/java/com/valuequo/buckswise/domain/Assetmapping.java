@@ -12,7 +12,7 @@ import java.util.Objects;
  * A Assetmapping.
  */
 @Entity
-@Table(name = "assetmapping")
+@Table(name = "assetmaping")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Assetmapping implements Serializable {
 
@@ -22,7 +22,7 @@ public class Assetmapping implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "jhi_uid")
+    @Column(name = "uid")
     private Integer uid;
 
     @Column(name = "goalid")

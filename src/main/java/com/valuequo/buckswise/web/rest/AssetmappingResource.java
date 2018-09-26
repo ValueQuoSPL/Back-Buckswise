@@ -108,9 +108,10 @@ public class AssetmappingResource {
      * @param id the id of the assetmappingDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/assetmappings/{id}")
+    @DeleteMapping("/delete/{id}")
     @Timed
     public ResponseEntity<Void> deleteAssetmapping(@PathVariable Long id) {
+        System.out.println("delete asset mapping" + id);
         log.debug("REST request to delete Assetmapping : {}", id);
         assetmappingService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
