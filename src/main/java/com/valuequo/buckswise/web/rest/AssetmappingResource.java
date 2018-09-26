@@ -83,7 +83,7 @@ public class AssetmappingResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of assetmappings in body
      */
-    @GetMapping("/assetmap")
+    @GetMapping("/assetmappings")
     @Timed
     public List<AssetmappingDTO> getAllAssetmappings() {
         log.debug("REST request to get all Assetmappings");
