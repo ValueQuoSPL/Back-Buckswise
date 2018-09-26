@@ -1,0 +1,24 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "uid",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "time",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20180924130448",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "appointment",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}
