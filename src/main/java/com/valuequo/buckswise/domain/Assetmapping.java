@@ -12,7 +12,7 @@ import java.util.Objects;
  * A Assetmapping.
  */
 @Entity
-@Table(name = "assetmapping")
+@Table(name = "assetmaping")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Assetmapping implements Serializable {
 
@@ -22,7 +22,7 @@ public class Assetmapping implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "jhi_uid")
+    @Column(name = "uid")
     private Integer uid;
 
     @Column(name = "goalid")
@@ -33,8 +33,19 @@ public class Assetmapping implements Serializable {
 
     @Column(name = "assetid")
     private Integer assetid;
+    
+    @Column(name = "valuetomap")
+    private Integer valuetomap;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    public Integer getValuetomap() {
+		return valuetomap;
+	}
+
+	public void setValuetomap(Integer valuetomap) {
+		this.valuetomap = valuetomap;
+	}
+
+	// jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -118,12 +129,13 @@ public class Assetmapping implements Serializable {
 
     @Override
     public String toString() {
-        return "Assetmapping{" +
+        return "AssetmappingDomain{" +
             "id=" + getId() +
             ", uid=" + getUid() +
             ", goalid=" + getGoalid() +
             ", assetname='" + getAssetname() + "'" +
             ", assetid=" + getAssetid() +
+            ", valuetomap=" + getValuetomap() +
             "}";
     }
 }
