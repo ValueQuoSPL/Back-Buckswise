@@ -58,6 +58,7 @@ public class LoananddebtResource {
     public String loanDebt(@RequestBody Map<String, Object>[] data) throws JSONException {
   	
     	for(Map<String, Object> entry: data) {
+    		System.out.println(entry);
     		System.out.println(entry.get("amnt"));
     		this.amount = entry.get("amnt").toString();
     		System.out.println("amount is :-" + amount);
