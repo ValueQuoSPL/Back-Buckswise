@@ -36,6 +36,18 @@ public class Assetmapping implements Serializable {
     
     @Column(name = "valuetomap")
     private Integer valuetomap;
+    
+    @Column(name = "assettype")
+    private String assettype;
+    
+    public String getAssettype() {
+		return assettype;
+	}
+
+	public void setAssettype(String assettype) {
+		this.assettype = assettype;
+	}
+
 
     public Integer getValuetomap() {
 		return valuetomap;
