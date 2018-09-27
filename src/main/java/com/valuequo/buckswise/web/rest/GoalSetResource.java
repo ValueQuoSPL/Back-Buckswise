@@ -1,5 +1,6 @@
 package com.valuequo.buckswise.web.rest;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -21,6 +22,8 @@ import com.valuequo.buckswise.service.dto.GoalSetDTO;
 import com.valuequo.buckswise.service.dto.SavingDTO;
 
 import afu.org.checkerframework.checker.units.qual.Time;
+
+
 
 @RestController
 @RequestMapping("/api")
@@ -64,4 +67,19 @@ public class GoalSetResource {
 	         return null;
 
 	     }
+	  
+	  private int goalId;
+	  private String check;
+	  
+	 @PutMapping("/putCheck")
+	 public String update( @RequestBody Map<String, Object>[] stuff) {
+		 for(Map<String, Object> entry: stuff) {
+			 this.goalId = (int) entry.get("id");
+			 this.check = entry.get("check").toString();
+			 System.out.println(this.goalId);
+			 System.out.println(this.check);
+			 goalsetservice.update(this.goalId, this.check);
+		 }
+		 return null;
+	 }
 }
