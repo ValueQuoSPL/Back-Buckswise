@@ -14,8 +14,28 @@ public class AssetmappingDTO implements Serializable {
     private Integer uid;
 
     private Integer goalid;
+    
+    private Integer valuetomap;
+    
+    private String assettype;
 
-    private String assetname;
+    public String getAssettype() {
+		return assettype;
+	}
+
+	public void setAssettype(String assettype) {
+		this.assettype = assettype;
+	}
+
+	public Integer getValuetomap() {
+		return valuetomap;
+	}
+
+	public void setValuetomap(Integer valuetomap) {
+		this.valuetomap = valuetomap;
+	}
+
+	private String assetname;
 
     private Integer assetid;
 
@@ -88,6 +108,8 @@ public class AssetmappingDTO implements Serializable {
             ", goalid=" + getGoalid() +
             ", assetname='" + getAssetname() + "'" +
             ", assetid=" + getAssetid() +
+            ", valuetomap=" + getValuetomap() +
+            "assettype=" + getAssettype() +
             "}";
     }
 }

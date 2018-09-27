@@ -1,6 +1,7 @@
 package com.valuequo.buckswise.service;
 
 import com.valuequo.buckswise.domain.Assetmapping;
+import com.valuequo.buckswise.domain.Chit;
 import com.valuequo.buckswise.repository.AssetmappingRepository;
 import com.valuequo.buckswise.service.dto.AssetmappingDTO;
 import com.valuequo.buckswise.service.mapper.AssetmappingMapper;
@@ -69,6 +70,14 @@ public class AssetmappingService {
         Assetmapping assetmapping = assetmappingRepository.findOne(id);
         return assetmappingMapper.toDto(assetmapping);
     }
+    public AssetmappingDTO findOneuid(Long uid) {
+        log.debug("Request to get Assetmapping : {}", uid);
+        Assetmapping assetmapping = assetmappingRepository.findOne(uid);
+        return assetmappingMapper.toDto(assetmapping);
+    }
+    public List<Assetmapping> getAssetByUid(Long uid) {
+		return assetmappingRepository.findByUid(uid);
+	}
 
     /**
      * Delete the assetmapping by id.

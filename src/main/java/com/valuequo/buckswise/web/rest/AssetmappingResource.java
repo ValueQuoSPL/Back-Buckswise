@@ -1,6 +1,8 @@
 package com.valuequo.buckswise.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.valuequo.buckswise.domain.Assetmapping;
+import com.valuequo.buckswise.domain.Chit;
 import com.valuequo.buckswise.service.AssetmappingService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
@@ -101,6 +103,21 @@ public class AssetmappingResource {
         AssetmappingDTO assetmappingDTO = assetmappingService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(assetmappingDTO));
     }
+//    @GetMapping("/assetmappings/{uid}")
+//    @Timed
+//    public ResponseEntity<AssetmappingDTO> getAssetmappinguid(@PathVariable Long uid) {
+//        log.debug("REST request to get Assetmapping : {}", uid);
+//        AssetmappingDTO assetmappingDTO = assetmappingService.findOneuid(uid);
+//        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(assetmappingDTO));
+//    }
+//    
+
+    @GetMapping("/assetmappings/{uid}")
+    @Timed
+    public List<Assetmapping> getChit1(@PathVariable Long uid){
+    	return assetmappingService.getAssetByUid(uid);
+    } 
+
 
     /**
      * DELETE  /assetmappings/:id : delete the "id" assetmapping.
@@ -108,9 +125,10 @@ public class AssetmappingResource {
      * @param id the id of the assetmappingDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/assetmappings/{id}")
+    @DeleteMapping("/delete/{id}")
     @Timed
     public ResponseEntity<Void> deleteAssetmapping(@PathVariable Long id) {
+        System.out.println("delete asset mapping" + id);
         log.debug("REST request to delete Assetmapping : {}", id);
         assetmappingService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
