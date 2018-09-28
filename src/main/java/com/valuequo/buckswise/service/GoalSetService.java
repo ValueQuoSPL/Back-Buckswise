@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.valuequo.buckswise.domain.GoalSet;
+import com.valuequo.buckswise.domain.Income;
 import com.valuequo.buckswise.domain.SavingScheme;
 import com.valuequo.buckswise.repository.GoalSetRepository;
 import com.valuequo.buckswise.service.mapper.GoalSetMapper;
@@ -103,5 +104,12 @@ public class GoalSetService {
 	    {
 	    	return goalSetRepository.findById(id);
 	    }
+		public void update(int goalId, String check) {
+			List<GoalSet> result = goalSetRepository.findById((long) goalId);
+			for(GoalSet res: result) {
+				res.setCheck(check);
+				goalSetRepository.save(res);				
+			}
+		}
 
 }
