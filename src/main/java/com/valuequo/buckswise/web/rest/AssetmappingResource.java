@@ -112,7 +112,7 @@ public class AssetmappingResource {
 //    }
 //    
 
-    @GetMapping("/assetmappings/{uid}")
+    @GetMapping("/getbyuid/{uid}")
     @Timed
     public List<Assetmapping> getChit1(@PathVariable Long uid){
     	return assetmappingService.getAssetByUid(uid);

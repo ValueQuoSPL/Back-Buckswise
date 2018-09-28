@@ -58,8 +58,10 @@ public class GoalSetResource {
 	    }
 	  @PutMapping("/putgoal")
 	    @Time
-	    public List<GoalSet> updateGoal(@Valid @RequestBody GoalSetDTO goalsetDTO) {
-	    	 log.debug("REST request to update goal: {}", goalsetDTO.getId());
+	    public String updateGoal(@Valid @RequestBody GoalSetDTO goalsetDTO) {
+			System.out.println(goalsetDTO);
+	    	//  log.debug("REST request to update goal: {}", goalsetDTO.getId());
+	    	 log.debug("radarada");
 	    	 goalsetservice.updateData(goalsetDTO);
 	         return null;
 
