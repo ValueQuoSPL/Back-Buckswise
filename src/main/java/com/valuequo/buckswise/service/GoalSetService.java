@@ -9,9 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.valuequo.buckswise.domain.GoalSet;
+import com.valuequo.buckswise.domain.Income;
+import com.valuequo.buckswise.domain.SavingScheme;
 import com.valuequo.buckswise.repository.GoalSetRepository;
 import com.valuequo.buckswise.service.mapper.GoalSetMapper;
 import com.valuequo.buckswise.service.dto.GoalSetDTO;
+import com.valuequo.buckswise.service.dto.SavingDTO;
 
 @Service
 public class GoalSetService {
@@ -39,10 +42,53 @@ public class GoalSetService {
 		 goalset.setCrationdate(goalsetDTO.getDateofcreation());
 		 goalset.setGoalNotes(goalsetDTO.getNotes());
 		 goalset.setLinkassets(goalsetDTO.getLinkassets());
+		 goalset.setAssetname(goalsetDTO.getAssetname());
+		 goalset.setValue(goalsetDTO.getValue());
+		 goalset.setValuetomap(goalsetDTO.getValuetomap());
 		 System.out.println("the data in goalset"+goalset);
 		 goalSetRepository.save(goalset);
 		 return goalset;
 	}
+	 	public List<GoalSet> updateData(GoalSetDTO goalsetDTO) {
+			Long id = goalsetDTO.getId();
+			List<GoalSet> update = goalSetRepository.findById(id);
+			for(GoalSet goalset: update) {
+//				up.setNum(savingDTO.getNum());
+//				up.setOrganisation_name(savingDTO.getOrganisation_name());
+//				up.setAmount_invested(savingDTO.getAmount_invested());
+//				up.setDividend_type(savingDTO.getDividend_type());
+//				up.setInvestor_name(savingDTO.getInvestor_name());
+//				up.setRate_of_interest(savingDTO.getRate_of_interest());
+//				up.setTenure(savingDTO.getTenure());
+//				up.setStart_date(savingDTO.getStart_date());
+//				up.setEnd_date(savingDTO.getEnd_date());
+//				up.setFund_value(savingDTO.getFund_value());
+//				up.setAs_of_date(savingDTO.getAs_of_date());
+//				up.setNotes(savingDTO.getNotes());
+//				up.setType(savingDTO.getType());
+//				savingSchemeRepository.save(up);
+				 goalset.setUid(goalsetDTO.getUID());
+				 goalset.setGoaltype(goalsetDTO.getGoaltype());
+				 goalset.setGoalname(goalsetDTO.getGoalname());
+				 goalset.setGoalpriority(goalsetDTO.getPriority());
+				 goalset.setYeartogoal(goalsetDTO.getYeartogoal());
+				 goalset.setPresentcost(goalsetDTO.getPresentcost());
+				 goalset.setFuturecost(goalsetDTO.getFuturecost());
+				 goalset.setRequiremonthinvest(goalsetDTO.getRequiremonthinvest());
+				 goalset.setFundshortage(goalsetDTO.getFundshortage());
+				 goalset.setCrationdate(goalsetDTO.getDateofcreation());
+				 goalset.setGoalNotes(goalsetDTO.getNotes());
+				 goalset.setLinkassets(goalsetDTO.getLinkassets());
+				 goalset.setAssetname(goalsetDTO.getAssetname());
+				 goalset.setValue(goalsetDTO.getValue());
+				 goalset.setValuetomap(goalsetDTO.getValuetomap());
+				 System.out.println("the data in goalset"+goalset);
+				 goalSetRepository.save(goalset);
+			}
+			return null;
+			 
+		}
+	 
 	 @Transactional(readOnly = true)
 	    public List<GoalSetDTO> findAll() {
 	        log.debug("Request to get all goal");
@@ -54,5 +100,16 @@ public class GoalSetService {
 	    {
 	    	return goalSetRepository.findByUid(uid);
 	    }
+	    public List<GoalSet> getGoalId(Long id)
+	    {
+	    	return goalSetRepository.findById(id);
+	    }
+		public void update(int goalId, String check) {
+			List<GoalSet> result = goalSetRepository.findById((long) goalId);
+			for(GoalSet res: result) {
+				res.setCheck(check);
+				goalSetRepository.save(res);				
+			}
+		}
 
 }

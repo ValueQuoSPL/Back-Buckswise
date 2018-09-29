@@ -10,4 +10,5 @@ import com.valuequo.buckswise.domain.GoalSet;
 @Repository
 public interface GoalSetRepository extends JpaRepository<GoalSet, Long> {
 	List<GoalSet> findByUid(Long uid);
+	List<GoalSet> findById(Long id);
 }

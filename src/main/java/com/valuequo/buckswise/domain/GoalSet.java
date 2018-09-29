@@ -60,7 +60,26 @@
 	    
 	    @Column(name = "linkassets")
 	    private String linkassets;
+	    
+	    @Column(name = "assetname")
+	    private String assetname;
+	    
+	    @Column(name = "value")
+	    private String value;
+	    
+	    @Column(name = "valuetomap")
+	    private String valuetomap;
+	    
+	    @Column(name = "goalcheck")
+	    private String check;
 
+		public String getCheck() {
+			return check;
+		}
+
+		public void setCheck(String check) {
+			this.check = check;
+		}
 
 		public Long getId() {
 			return id;
@@ -68,6 +87,30 @@
 
 		public void setId(Long id) {
 			this.id = id;
+		}
+
+		public String getAssetname() {
+			return assetname;
+		}
+
+		public void setAssetname(String assetname) {
+			this.assetname = assetname;
+		}
+
+		public String getValue() {
+			return value;
+		}
+
+		public void setValue(String value) {
+			this.value = value;
+		}
+
+		public String getValuetomap() {
+			return valuetomap;
+		}
+
+		public void setValuetomap(String valuetomap) {
+			this.valuetomap = valuetomap;
 		}
 
 		public Long getUid() {
@@ -218,6 +261,6 @@
 					+ ", goalpriority=" + goalpriority + ", yeartogoal=" + yeartogoal + ", presentcost=" + presentcost
 					+ ", futurecost=" + futurecost + ", requiremonthinvest=" + requiremonthinvest + ", fundshortage="
 					+ fundshortage + ", crationdate=" + crationdate + ", goalnotes=" + goalnotes + ", linkassets="
-					+ linkassets + "]";
+					+ linkassets +" assetname=" + assetname + ", value=" + value+ ", valuetomap=" + valuetomap + "]";
 		}
 }

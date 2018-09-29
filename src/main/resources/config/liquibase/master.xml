@@ -24,7 +24,11 @@
     <include file="config/liquibase/changelog/20180914130113_added_entity_Home.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180918111739_added_entity_Userplan.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180918115301_added_entity_Promocode.xml" relativeToChangelogFile="false"/>
+<<<<<<< HEAD
     <include file="config/liquibase/changelog/20180921092401_added_entity_Otherdeduction.xml" relativeToChangelogFile="false"/>
+=======
+    <include file="config/liquibase/changelog/20180924130448_added_entity_Appointment.xml" relativeToChangelogFile="false"/>
+>>>>>>> be7e82d5b1aa0704c857bc954ce818a46a850e2c
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
