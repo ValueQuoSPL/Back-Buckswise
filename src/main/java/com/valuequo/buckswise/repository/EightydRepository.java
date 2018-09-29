@@ -3,6 +3,8 @@ package com.valuequo.buckswise.repository;
 import com.valuequo.buckswise.domain.Eightyd;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.*;
 
 
@@ -12,5 +14,7 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface EightydRepository extends JpaRepository<Eightyd, Long> {
+
+	List<Eightyd> findByUid(int uid);
 
 }

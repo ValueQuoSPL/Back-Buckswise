@@ -5,6 +5,8 @@ import com.valuequo.buckswise.service.EightycdeductService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
 import com.valuequo.buckswise.service.dto.EightycdeductDTO;
+import com.valuequo.buckswise.service.dto.GrossdeductDTO;
+
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,12 +98,14 @@ public class EightycdeductResource {
      */
     @GetMapping("/eightycdeducts/{uid}")
     @Timed
-    public ResponseEntity<EightycdeductDTO> getEightycdeduct(@PathVariable Long uid) {
+    public ResponseEntity<List<EightycdeductDTO>> getEightycdeduct(@PathVariable int uid) {
+    	System.out.println("fromEightyc" + uid);
         log.debug("REST request to get Eightycdeduct : {}", uid);
-        EightycdeductDTO eightycdeductDTO = eightycdeductService.findOne(uid);
+        List<EightycdeductDTO> eightycdeductDTO = eightycdeductService.findOne(uid);
+        System.out.println(eightycdeductDTO);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(eightycdeductDTO));
     }
-
+   
     /**
      * DELETE  /eightycdeducts/:id : delete the "id" eightycdeduct.
      *
