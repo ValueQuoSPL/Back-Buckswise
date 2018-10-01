@@ -39,6 +39,16 @@ public class AssetmappingDTO implements Serializable {
 
     private Integer assetid;
 
+    private String assetvalue;
+
+    public String getAssetValue() {
+        return assetvalue;
+    }
+
+    public void setAssetValue(String assetvalue) {
+        this.assetvalue = assetvalue;
+	}
+
     public Long getId() {
         return id;
     }

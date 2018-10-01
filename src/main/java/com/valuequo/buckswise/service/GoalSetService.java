@@ -108,7 +108,14 @@ public class GoalSetService {
 			List<GoalSet> result = goalSetRepository.findById((long) goalId);
 			for(GoalSet res: result) {
 				res.setCheck(check);
-				goalSetRepository.save(res);				
+				goalSetRepository.save(res);
+			}
+		}
+		public void updateGoalNotes(int id, String goalnote) {
+			List<GoalSet> result = goalSetRepository.findById((long) id);
+			for(GoalSet res: result) {
+				res.setGoalNotes(goalnote);
+				goalSetRepository.save(res);
 			}
 		}
 

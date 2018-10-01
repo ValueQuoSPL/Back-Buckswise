@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,14 +59,22 @@ public class GoalSetResource {
 	    {
 			return goalsetservice.getGoalId(id);
 	    	
-	    }
+		}
+
+		private int id;
+		private String goalnote;
 	  @PutMapping("/putgoal")
 	    @Time
-	    public String updateGoal(@Valid @RequestBody GoalSetDTO goalsetDTO) {
-			System.out.println(goalsetDTO);
+	    public String updateGoal(@Valid @RequestBody Map<String, Object>[] data) {
+			System.out.println("detailnote" + data);
+			for(Map<String, Object> entry: data) {
+				this.id = (int) entry.get("id");
+				this.goalnote = entry.get("notes").toString();
+				goalsetservice.updateGoalNotes(this.id, this.goalnote);
+			}
 	    	//  log.debug("REST request to update goal: {}", goalsetDTO.getId());
 	    	 log.debug("radarada");
-	    	 goalsetservice.updateData(goalsetDTO);
+	    	//  goalsetservice.updateData(goalsetDTO);
 	         return null;
 
 	     }
