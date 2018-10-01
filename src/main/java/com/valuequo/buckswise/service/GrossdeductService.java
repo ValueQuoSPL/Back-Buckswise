@@ -1,7 +1,9 @@
 package com.valuequo.buckswise.service;
 
+import com.valuequo.buckswise.domain.Eightyd;
 import com.valuequo.buckswise.domain.Grossdeduct;
 import com.valuequo.buckswise.repository.GrossdeductRepository;
+import com.valuequo.buckswise.service.dto.EightydDTO;
 import com.valuequo.buckswise.service.dto.GrossdeductDTO;
 import com.valuequo.buckswise.service.mapper.GrossdeductMapper;
 import org.slf4j.Logger;
@@ -64,9 +66,9 @@ public class GrossdeductService {
      * @return the entity
      */
     @Transactional(readOnly = true)
-    public GrossdeductDTO findOne(Long uid) {
+    public List<GrossdeductDTO> findOne(int uid) {
         log.debug("Request to get Grossdeduct : {}", uid);
-        Grossdeduct grossdeduct = grossdeductRepository.findOne(uid);
+       List<Grossdeduct> grossdeduct = grossdeductRepository.findByUid(uid);
         return grossdeductMapper.toDto(grossdeduct);
     }
 

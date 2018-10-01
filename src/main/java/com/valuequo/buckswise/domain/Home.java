@@ -22,7 +22,7 @@ public class Home implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "jhi_uid")
+    @Column(name = "uid")
     private Integer uid;
 
     @Column(name = "hoamloan")

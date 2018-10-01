@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.valuequo.buckswise.service.GrossdeductService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
+import com.valuequo.buckswise.service.dto.EightydDTO;
 import com.valuequo.buckswise.service.dto.GrossdeductDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -96,11 +97,14 @@ public class GrossdeductResource {
      */
     @GetMapping("/getgrossdeducts/{uid}")
     @Timed
-    public ResponseEntity<GrossdeductDTO> getGrossdeduct(@PathVariable Long uid) {
+    public ResponseEntity<List<GrossdeductDTO>> getGrossdeduct(@PathVariable int uid) {
+    	System.out.println("fromGross" + uid);
         log.debug("REST request to get Grossdeduct : {}", uid);
-        GrossdeductDTO grossdeductDTO = grossdeductService.findOne(uid);
+       List<GrossdeductDTO> grossdeductDTO = grossdeductService.findOne(uid);
+       System.out.println(grossdeductDTO);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(grossdeductDTO));
     }
+
 
     /**
      * DELETE  /grossdeducts/:id : delete the "id" grossdeduct.

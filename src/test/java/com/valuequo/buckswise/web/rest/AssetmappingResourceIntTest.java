@@ -97,7 +97,7 @@ public class AssetmappingResourceIntTest {
      */
     public static Assetmapping createEntity(EntityManager em) {
         Assetmapping assetmapping = new Assetmapping()
-            .uid(DEFAULT_UID)
+//            .uid(DEFAULT_UID)
             .goalid(DEFAULT_GOALID)
             .assetname(DEFAULT_ASSETNAME)
             .assetid(DEFAULT_ASSETID);
@@ -205,7 +205,7 @@ public class AssetmappingResourceIntTest {
         // Disconnect from session so that the updates on updatedAssetmapping are not directly saved in db
         em.detach(updatedAssetmapping);
         updatedAssetmapping
-            .uid(UPDATED_UID)
+//            .uid(UPDATED_UID)
             .goalid(UPDATED_GOALID)
             .assetname(UPDATED_ASSETNAME)
             .assetid(UPDATED_ASSETID);

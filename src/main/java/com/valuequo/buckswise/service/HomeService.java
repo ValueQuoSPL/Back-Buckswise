@@ -1,8 +1,10 @@
 package com.valuequo.buckswise.service;
 
 import com.valuequo.buckswise.domain.Home;
+import com.valuequo.buckswise.domain.Otherdeduction;
 import com.valuequo.buckswise.repository.HomeRepository;
 import com.valuequo.buckswise.service.dto.HomeDTO;
+import com.valuequo.buckswise.service.dto.OtherdeductionDTO;
 import com.valuequo.buckswise.service.mapper.HomeMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,12 +66,12 @@ public class HomeService {
      * @return the entity
      */
     @Transactional(readOnly = true)
-    public HomeDTO findOne(Long uid) {
+    public List<HomeDTO> findOne(int uid) {
         log.debug("Request to get Home : {}", uid);
-        Home home = homeRepository.findOne(uid);
-        return homeMapper.toDto(home);
+        List<Home> Home = homeRepository.findByUid(uid);
+        return homeMapper.toDto(Home);
     }
-
+   
     /**
      * Delete the home by id.
      *

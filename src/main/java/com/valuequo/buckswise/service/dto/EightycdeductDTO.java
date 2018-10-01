@@ -33,8 +33,6 @@ public class EightycdeductDTO implements Serializable {
 
     private String other;
 
-    private String tutionfee;
-
     private String ulip;
 
     private String post;
@@ -135,14 +133,6 @@ public class EightycdeductDTO implements Serializable {
         this.other = other;
     }
 
-    public String getTutionfee() {
-        return tutionfee;
-    }
-
-    public void setTutionfee(String tutionfee) {
-        this.tutionfee = tutionfee;
-    }
-
     public String getUlip() {
         return ulip;
     }
@@ -195,7 +185,6 @@ public class EightycdeductDTO implements Serializable {
             ", pf='" + getPf() + "'" +
             ", ppf='" + getPpf() + "'" +
             ", other='" + getOther() + "'" +
-            ", tutionfee='" + getTutionfee() + "'" +
             ", ulip='" + getUlip() + "'" +
             ", post='" + getPost() + "'" +
             "}";
