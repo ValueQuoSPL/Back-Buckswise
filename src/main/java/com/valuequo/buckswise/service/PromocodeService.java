@@ -77,8 +77,8 @@ public class PromocodeService {
      *
      * @param id the id of the entity
      */
-    // public void delete(Long id) {
-    //     log.debug("Request to delete Promocode : {}", id);
-    //     promocodeRepository.deleteById(id);
-    // }
+    public void delete(Long id) {
+        log.debug("Request to delete Promocode : {}", id);
+        promocodeRepository.delete(id);
+    }
 }
