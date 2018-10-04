@@ -1,8 +1,10 @@
 package com.valuequo.buckswise.web.rest;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,8 @@ import com.valuequo.buckswise.service.dto.GoalSetDTO;
 import com.valuequo.buckswise.service.dto.SavingDTO;
 
 import afu.org.checkerframework.checker.units.qual.Time;
+
+
 
 @RestController
 @RequestMapping("/api")
@@ -55,13 +59,38 @@ public class GoalSetResource {
 	    {
 			return goalsetservice.getGoalId(id);
 	    	
-	    }
+		}
+
+		private int id;
+		private String goalnote;
 	  @PutMapping("/putgoal")
 	    @Time
-	    public List<GoalSet> updateGoal(@Valid @RequestBody GoalSetDTO goalsetDTO) {
-	    	 log.debug("REST request to update goal: {}", goalsetDTO.getId());
-	    	 goalsetservice.updateData(goalsetDTO);
+	    public String updateGoal(@Valid @RequestBody Map<String, Object>[] data) {
+			System.out.println("detailnote" + data);
+			for(Map<String, Object> entry: data) {
+				this.id = (int) entry.get("id");
+				this.goalnote = entry.get("notes").toString();
+				goalsetservice.updateGoalNotes(this.id, this.goalnote);
+			}
+	    	//  log.debug("REST request to update goal: {}", goalsetDTO.getId());
+	    	 log.debug("radarada");
+	    	//  goalsetservice.updateData(goalsetDTO);
 	         return null;
 
 	     }
+	  
+	  private int goalId;
+	  private String check;
+	  
+	 @PutMapping("/putCheck")
+	 public String update( @RequestBody Map<String, Object>[] stuff) {
+		 for(Map<String, Object> entry: stuff) {
+			 this.goalId = (int) entry.get("id");
+			 this.check = entry.get("check").toString();
+			 System.out.println(this.goalId);
+			 System.out.println(this.check);
+			 goalsetservice.update(this.goalId, this.check);
+		 }
+		 return null;
+	 }
 }

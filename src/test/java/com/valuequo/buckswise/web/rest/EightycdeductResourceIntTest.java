@@ -138,7 +138,6 @@ public class EightycdeductResourceIntTest {
             .pf(DEFAULT_PF)
             .ppf(DEFAULT_PPF)
             .other(DEFAULT_OTHER)
-            .tutionfee(DEFAULT_TUTIONFEE)
             .ulip(DEFAULT_ULIP)
             .post(DEFAULT_POST);
         return eightycdeduct;
@@ -176,7 +175,6 @@ public class EightycdeductResourceIntTest {
         assertThat(testEightycdeduct.getPf()).isEqualTo(DEFAULT_PF);
         assertThat(testEightycdeduct.getPpf()).isEqualTo(DEFAULT_PPF);
         assertThat(testEightycdeduct.getOther()).isEqualTo(DEFAULT_OTHER);
-        assertThat(testEightycdeduct.getTutionfee()).isEqualTo(DEFAULT_TUTIONFEE);
         assertThat(testEightycdeduct.getUlip()).isEqualTo(DEFAULT_ULIP);
         assertThat(testEightycdeduct.getPost()).isEqualTo(DEFAULT_POST);
     }
@@ -286,7 +284,6 @@ public class EightycdeductResourceIntTest {
             .pf(UPDATED_PF)
             .ppf(UPDATED_PPF)
             .other(UPDATED_OTHER)
-            .tutionfee(UPDATED_TUTIONFEE)
             .ulip(UPDATED_ULIP)
             .post(UPDATED_POST);
         EightycdeductDTO eightycdeductDTO = eightycdeductMapper.toDto(updatedEightycdeduct);
@@ -311,7 +308,6 @@ public class EightycdeductResourceIntTest {
         assertThat(testEightycdeduct.getPf()).isEqualTo(UPDATED_PF);
         assertThat(testEightycdeduct.getPpf()).isEqualTo(UPDATED_PPF);
         assertThat(testEightycdeduct.getOther()).isEqualTo(UPDATED_OTHER);
-        assertThat(testEightycdeduct.getTutionfee()).isEqualTo(UPDATED_TUTIONFEE);
         assertThat(testEightycdeduct.getUlip()).isEqualTo(UPDATED_ULIP);
         assertThat(testEightycdeduct.getPost()).isEqualTo(UPDATED_POST);
     }

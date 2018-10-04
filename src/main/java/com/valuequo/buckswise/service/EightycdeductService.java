@@ -1,8 +1,10 @@
 package com.valuequo.buckswise.service;
 
 import com.valuequo.buckswise.domain.Eightycdeduct;
+import com.valuequo.buckswise.domain.Grossdeduct;
 import com.valuequo.buckswise.repository.EightycdeductRepository;
 import com.valuequo.buckswise.service.dto.EightycdeductDTO;
+import com.valuequo.buckswise.service.dto.GrossdeductDTO;
 import com.valuequo.buckswise.service.mapper.EightycdeductMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,11 +66,12 @@ public class EightycdeductService {
      * @return the entity
      */
     @Transactional(readOnly = true)
-    public EightycdeductDTO findOne(Long uid) {
+    public List<EightycdeductDTO> findOne(int uid) {
         log.debug("Request to get Eightycdeduct : {}", uid);
-        Eightycdeduct eightycdeduct = eightycdeductRepository.findOne(uid);
+        List<Eightycdeduct> eightycdeduct = eightycdeductRepository.findByUid(uid);
         return eightycdeductMapper.toDto(eightycdeduct);
     }
+   
 
     /**
      * Delete the eightycdeduct by id.

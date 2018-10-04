@@ -69,7 +69,17 @@
 	    
 	    @Column(name = "valuetomap")
 	    private String valuetomap;
+	    
+	    @Column(name = "goalcheck")
+	    private String check;
 
+		public String getCheck() {
+			return check;
+		}
+
+		public void setCheck(String check) {
+			this.check = check;
+		}
 
 		public Long getId() {
 			return id;

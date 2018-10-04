@@ -64,9 +64,9 @@ public class EightydService {
      * @return the entity
      */
     @Transactional(readOnly = true)
-    public EightydDTO findOne(Long uid) {
+    public List<EightydDTO> findOne(int uid) {
         log.debug("Request to get Eightyd : {}", uid);
-        Eightyd eightyd = eightydRepository.findOne(uid);
+        List<Eightyd> eightyd = eightydRepository.findByUid(uid);
         return eightydMapper.toDto(eightyd);
     }
 

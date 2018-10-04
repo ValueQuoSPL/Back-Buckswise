@@ -108,11 +108,11 @@ public class PromocodeResource {
      * @param id the id of the promocodeDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    // @DeleteMapping("/promocodes/{id}")
-    // @Timed
-    // public ResponseEntity<Void> deletePromocode(@PathVariable Long id) {
-    //     log.debug("REST request to delete Promocode : {}", id);
-    //     promocodeService.delete(id);
-    //     return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    // }
+    @DeleteMapping("/promocodes/{id}")
+    @Timed
+    public ResponseEntity<Void> deletePromocode(@PathVariable Long id) {
+        log.debug("REST request to delete Promocode : {}", id);
+        promocodeService.delete(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
 }

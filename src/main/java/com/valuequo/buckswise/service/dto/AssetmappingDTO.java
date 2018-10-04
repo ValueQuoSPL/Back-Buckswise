@@ -11,7 +11,7 @@ public class AssetmappingDTO implements Serializable {
 
     private Long id;
 
-    private Integer uid;
+    private Long uid;
 
     private Integer goalid;
     
@@ -39,6 +39,16 @@ public class AssetmappingDTO implements Serializable {
 
     private Integer assetid;
 
+    private String assetvalue;
+
+    public String getAssetValue() {
+        return assetvalue;
+    }
+
+    public void setAssetValue(String assetvalue) {
+        this.assetvalue = assetvalue;
+	}
+
     public Long getId() {
         return id;
     }
@@ -47,11 +57,11 @@ public class AssetmappingDTO implements Serializable {
         this.id = id;
     }
 
-    public Integer getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 

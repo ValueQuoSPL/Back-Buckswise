@@ -5,6 +5,8 @@ import com.valuequo.buckswise.service.HomeService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
 import com.valuequo.buckswise.service.dto.HomeDTO;
+import com.valuequo.buckswise.service.dto.OtherdeductionDTO;
+
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,13 +96,15 @@ public class HomeResource {
      * @param id the id of the homeDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the homeDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/homes/{id}")
+    @GetMapping("/homes/{uid}")
     @Timed
-    public ResponseEntity<HomeDTO> getHome(@PathVariable Long uid) {
+    public ResponseEntity<List<HomeDTO>> getHome(@PathVariable int uid) {
+    	System.out.println("fromHome" + uid);
         log.debug("REST request to get Home : {}", uid);
-        HomeDTO homeDTO = homeService.findOne(uid);
+        List<HomeDTO> homeDTO = homeService.findOne(uid);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(homeDTO));
     }
+    
 
     /**
      * DELETE  /homes/:id : delete the "id" home.

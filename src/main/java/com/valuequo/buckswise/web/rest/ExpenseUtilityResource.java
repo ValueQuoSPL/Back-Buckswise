@@ -53,7 +53,7 @@ public class ExpenseUtilityResource {
     		if(flag == true) {
     			
     			flag = false;
-    			
+
     			JSONObject jObj = new JSONObject(utility);
     			JSONArray jData = jObj.getJSONArray("dynamicUtility");
     			int length = jData.length();

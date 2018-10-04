@@ -166,12 +166,12 @@ public class GoalSetDTO {
 	@Override
 	public String toString() {
 		return "GoalSetDTO [UID=" + UID + ", goaltype=" + goaltype + ", goalname=" + goalname + ", priority=" + priority
-				+ ", yeartogoal=" + yeartogoal + ", presentcost=" + presentcost + ", notes=" + notes + ", futurecost="
+				+ ", yeartogoal=" + yeartogoal + ", presentcost=" + presentcost + ", goalNotes=" + notes + ", futurecost="
 				+ futurecost + ", requiremonthinvest=" + requiremonthinvest + ", fundshortage=" + fundshortage
 				+ ", dateofcreation=" + dateofcreation + ", linkassets=" + linkassets + ", assetname=" + assetname
 				+ ", value=" + value + ", valuetomap=" + valuetomap + "]";
 	}
 	
-	
+
 
 }

@@ -55,9 +55,6 @@ public class Eightycdeduct implements Serializable {
     @Column(name = "other")
     private String other;
 
-    @Column(name = "tutionfee")
-    private String tutionfee;
-
     @Column(name = "ulip")
     private String ulip;
 
@@ -216,18 +213,6 @@ public class Eightycdeduct implements Serializable {
         this.other = other;
     }
 
-    public String getTutionfee() {
-        return tutionfee;
-    }
-
-    public Eightycdeduct tutionfee(String tutionfee) {
-        this.tutionfee = tutionfee;
-        return this;
-    }
-
-    public void setTutionfee(String tutionfee) {
-        this.tutionfee = tutionfee;
-    }
 
     public String getUlip() {
         return ulip;
@@ -291,7 +276,6 @@ public class Eightycdeduct implements Serializable {
             ", pf='" + getPf() + "'" +
             ", ppf='" + getPpf() + "'" +
             ", other='" + getOther() + "'" +
-            ", tutionfee='" + getTutionfee() + "'" +
             ", ulip='" + getUlip() + "'" +
             ", post='" + getPost() + "'" +
             "}";
