@@ -34,11 +34,19 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="share_price" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="notes" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+            <column name="userid" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+           
         </createTable>
         
     </changeSet>

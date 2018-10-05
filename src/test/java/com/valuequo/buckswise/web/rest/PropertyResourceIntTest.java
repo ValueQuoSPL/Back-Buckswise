@@ -195,7 +195,7 @@ public class PropertyResourceIntTest {
         propertyRepository.saveAndFlush(property);
 
         // Get the property
-        restPropertyMockMvc.perform(get("/api/properties/{id}", property.getId()))
+        restPropertyMockMvc.perform(get("/api/propertiesbyid/{id}", property.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(property.getId().intValue()))
@@ -237,7 +237,7 @@ public class PropertyResourceIntTest {
             .userid(UPDATED_USERID);
         PropertyDTO propertyDTO = propertyMapper.toDto(updatedProperty);
 
-        restPropertyMockMvc.perform(put("/api/properties")
+        restPropertyMockMvc.perform(put("/api/putproperties")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(propertyDTO)))
             .andExpect(status().isOk());
@@ -264,7 +264,7 @@ public class PropertyResourceIntTest {
         PropertyDTO propertyDTO = propertyMapper.toDto(property);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
-        restPropertyMockMvc.perform(put("/api/properties")
+        restPropertyMockMvc.perform(put("/api/putproperties")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(propertyDTO)))
             .andExpect(status().isCreated());
@@ -282,7 +282,7 @@ public class PropertyResourceIntTest {
         int databaseSizeBeforeDelete = propertyRepository.findAll().size();
 
         // Get the property
-        restPropertyMockMvc.perform(delete("/api/properties/{id}", property.getId())
+        restPropertyMockMvc.perform(delete("/api/deleteproperties/{id}", property.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 

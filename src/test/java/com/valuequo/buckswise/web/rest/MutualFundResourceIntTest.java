@@ -135,7 +135,7 @@ public class MutualFundResourceIntTest {
 
         // Create the Mutualfund
         MutualFundDTO mutualfundDTO = mutualfundMapper.toDto(mutualfund);
-        restMutualfundMockMvc.perform(post("/api/mutualfunds")
+        restMutualfundMockMvc.perform(post("/api/mutualfund")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(mutualfundDTO)))
             .andExpect(status().isCreated());
@@ -165,7 +165,7 @@ public class MutualFundResourceIntTest {
         MutualFundDTO mutualfundDTO = mutualfundMapper.toDto(mutualfund);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restMutualfundMockMvc.perform(post("/api/mutualfunds")
+        restMutualfundMockMvc.perform(post("/api/mutualfund")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(mutualfundDTO)))
             .andExpect(status().isBadRequest());
@@ -182,7 +182,7 @@ public class MutualFundResourceIntTest {
         mutualfundRepository.saveAndFlush(mutualfund);
 
         // Get all the mutualfundList
-        restMutualfundMockMvc.perform(get("/api/mutualfunds?sort=id,desc"))
+        restMutualfundMockMvc.perform(get("/api/mutualfund?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(mutualfund.getId().intValue())))
@@ -204,11 +204,11 @@ public class MutualFundResourceIntTest {
         mutualfundRepository.saveAndFlush(mutualfund);
 
         // Get the mutualfund
-        restMutualfundMockMvc.perform(get("/api/mutualfunds/{id}", mutualfund.getId()))
+        restMutualfundMockMvc.perform(get("/api/mutualfund/{id}", mutualfund.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(mutualfund.getId().intValue()))
-//            .andExpect(jsonPath("$.userid").value(DEFAULT_USERID))
+        //    .andExpect(jsonPath("$.userid").value(DEFAULT_USERID))
             .andExpect(jsonPath("$.mfscheme").value(DEFAULT_MFSCHEME.toString()))
             .andExpect(jsonPath("$.folionumber").value(DEFAULT_FOLIONUMBER.toString()))
             .andExpect(jsonPath("$.holdingdays").value(DEFAULT_HOLDINGDAYS.toString()))
@@ -250,7 +250,7 @@ public class MutualFundResourceIntTest {
             .cagr(UPDATED_CAGR);
         MutualFundDTO mutualfundDTO = mutualfundMapper.toDto(updatedMutualfund);
 
-        restMutualfundMockMvc.perform(put("/api/mutualfunds")
+        restMutualfundMockMvc.perform(put("/api/putmutualfund")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(mutualfundDTO)))
             .andExpect(status().isOk());
@@ -279,7 +279,7 @@ public class MutualFundResourceIntTest {
         MutualFundDTO mutualfundDTO = mutualfundMapper.toDto(mutualfund);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
-        restMutualfundMockMvc.perform(put("/api/mutualfunds")
+        restMutualfundMockMvc.perform(put("/api/putmutualfund")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(mutualfundDTO)))
             .andExpect(status().isCreated());
@@ -297,7 +297,7 @@ public class MutualFundResourceIntTest {
         int databaseSizeBeforeDelete = mutualfundRepository.findAll().size();
 
         // Get the mutualfund
-        restMutualfundMockMvc.perform(delete("/api/mutualfunds/{id}", mutualfund.getId())
+        restMutualfundMockMvc.perform(delete("/api/deletemutualfund/{id}", mutualfund.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 

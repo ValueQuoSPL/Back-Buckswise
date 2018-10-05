@@ -18,27 +18,42 @@
         Added the entity MutualFund.
     -->
     <changeSet id="20180723070835-1" author="jhipster">
-        <createTable tableName="mutual_fund">
+        <createTable tableName="mutualfund">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="fund_name" type="varchar(255)">
+            <column name="userid" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="mfscheme" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="investor_name" type="varchar(255)">
+            <column name="folionumber" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="purchase_date" type="date">
+            <column name="holdingdays" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="no_of_units" type="varchar(255)">
+            <column name="purchesprice" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="nav" type="varchar(255)">
+            <column name="currentvalue" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="gainloss" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="absolutereturn" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="cagr" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 

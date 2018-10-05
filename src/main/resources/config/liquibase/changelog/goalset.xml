@@ -15,63 +15,63 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity FutureOption.
+        Added the entity Family.
     -->
-    <changeSet id="20180801093319-1" author="jhipster">
-        <createTable tableName="future_option">
+    <changeSet id="12" author="jhipster">
+        <createTable tableName="goalset">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="num" type="varchar(255)">
+            <column name="uid" type="bigint">
                 <constraints nullable="true" />
             </column>
-
-            <column name="userid" type="bigint">
+            <column name="goaltype" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="investor_name" type="varchar(255)">
+            <column name="goalname" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="investment_type" type="varchar(255)">
+            <column name="goalpriority" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="asset_type" type="varchar(255)">
+            <column name="yeartogoal" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="asset_name" type="varchar(255)">
+            <column name="presentcost" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="contract_m_value" type="varchar(255)">
+            <column name="futurecost" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="contract_p_value" type="varchar(255)">
+            <column name="requiremonthinvest" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="no_of_contracts" type="varchar(255)">
+            <column name="fundshortage" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="as_of_date" type="date">
+            <column name="creationdate" type="Date">
                 <constraints nullable="true" />
             </column>
-
-            <column name="p_date" type="date">
+            <column name="goalnotes" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="notes" type="varchar(255)">
+            <column name="linkassets" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            </createTable>
-        
+            <column name="assetname" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="value" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="valuetomap" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="goalcheck" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

@@ -116,7 +116,7 @@ public class CashResourceIntTest {
 
         // Create the Cash
         CashDTO cashDTO = cashMapper.toDto(cash);
-        restCashMockMvc.perform(post("/api/cash")
+        restCashMockMvc.perform(post("/api/postcash")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(cashDTO)))
             .andExpect(status().isCreated());
@@ -141,7 +141,7 @@ public class CashResourceIntTest {
         CashDTO cashDTO = cashMapper.toDto(cash);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restCashMockMvc.perform(post("/api/cash")
+        restCashMockMvc.perform(post("/api/postcash")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(cashDTO)))
             .andExpect(status().isBadRequest());
@@ -158,7 +158,7 @@ public class CashResourceIntTest {
         cashRepository.saveAndFlush(cash);
 
         // Get all the cashList
-        restCashMockMvc.perform(get("/api/cash?sort=id,desc"))
+        restCashMockMvc.perform(get("/api/getcash?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(cash.getId().intValue())))
@@ -175,7 +175,7 @@ public class CashResourceIntTest {
         cashRepository.saveAndFlush(cash);
 
         // Get the cash
-        restCashMockMvc.perform(get("/api/cash/{id}", cash.getId()))
+        restCashMockMvc.perform(get("/api/cashbyid/{id}", cash.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(cash.getId().intValue()))
@@ -211,7 +211,7 @@ public class CashResourceIntTest {
             .userid(UPDATED_USERID);
         CashDTO cashDTO = cashMapper.toDto(updatedCash);
 
-        restCashMockMvc.perform(put("/api/cash")
+        restCashMockMvc.perform(put("/api/putcash")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(cashDTO)))
             .andExpect(status().isOk());
@@ -235,7 +235,7 @@ public class CashResourceIntTest {
         CashDTO cashDTO = cashMapper.toDto(cash);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
-        restCashMockMvc.perform(put("/api/cash")
+        restCashMockMvc.perform(put("/api/putcash")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(cashDTO)))
             .andExpect(status().isCreated());
@@ -253,7 +253,7 @@ public class CashResourceIntTest {
         int databaseSizeBeforeDelete = cashRepository.findAll().size();
 
         // Get the cash
-        restCashMockMvc.perform(delete("/api/cash/{id}", cash.getId())
+        restCashMockMvc.perform(delete("/api/cashdelete/{id}", cash.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 

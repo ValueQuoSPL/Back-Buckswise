@@ -168,30 +168,30 @@ public class EightydResourceIntTest {
             .andExpect(jsonPath("$.[*].healthcheck").value(hasItem(DEFAULT_HEALTHCHECK.toString())));
     }
 
-    @Test
-    @Transactional
-    public void getEightyd() throws Exception {
-        // Initialize the database
-        eightydRepository.saveAndFlush(eightyd);
+    // @Test
+    // @Transactional
+    // public void getEightyd() throws Exception {
+    //     // Initialize the database
+    //     eightydRepository.saveAndFlush(eightyd);
 
-        // Get the eightyd
-        restEightydMockMvc.perform(get("/api/eightyds/{id}", eightyd.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(eightyd.getId().intValue()))
-            .andExpect(jsonPath("$.uid").value(DEFAULT_UID))
-            .andExpect(jsonPath("$.medself").value(DEFAULT_MEDSELF.toString()))
-            .andExpect(jsonPath("$.medparents").value(DEFAULT_MEDPARENTS.toString()))
-            .andExpect(jsonPath("$.healthcheck").value(DEFAULT_HEALTHCHECK.toString()));
-    }
+    //     // Get the eightyd
+    //     restEightydMockMvc.perform(get("/api/eightyds/{id}", eightyd.getId()))
+    //         .andExpect(status().isOk())
+    //         .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+    //         .andExpect(jsonPath("$.id").value(eightyd.getId().intValue()))
+    //         .andExpect(jsonPath("$.uid").value(DEFAULT_UID))
+    //         .andExpect(jsonPath("$.medself").value(DEFAULT_MEDSELF.toString()))
+    //         .andExpect(jsonPath("$.medparents").value(DEFAULT_MEDPARENTS.toString()))
+    //         .andExpect(jsonPath("$.healthcheck").value(DEFAULT_HEALTHCHECK.toString()));
+    // }
 
-    @Test
-    @Transactional
-    public void getNonExistingEightyd() throws Exception {
-        // Get the eightyd
-        restEightydMockMvc.perform(get("/api/eightyds/{id}", Long.MAX_VALUE))
-            .andExpect(status().isNotFound());
-    }
+    // @Test
+    // @Transactional
+    // public void getNonExistingEightyd() throws Exception {
+    //     // Get the eightyd
+    //     restEightydMockMvc.perform(get("/api/eightyds/{id}", Long.MAX_VALUE))
+    //         .andExpect(status().isNotFound());
+    // }
 
     @Test
     @Transactional

@@ -134,7 +134,7 @@ public class ChitResourceIntTest {
 
         // Create the Chit
         ChitDTO chitDTO = chitMapper.toDto(chit);
-        restChitMockMvc.perform(post("/api/chits")
+        restChitMockMvc.perform(post("/api/postchit")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(chitDTO)))
             .andExpect(status().isCreated());
@@ -163,7 +163,7 @@ public class ChitResourceIntTest {
         ChitDTO chitDTO = chitMapper.toDto(chit);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restChitMockMvc.perform(post("/api/chits")
+        restChitMockMvc.perform(post("/api/postchit")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(chitDTO)))
             .andExpect(status().isBadRequest());
@@ -201,7 +201,7 @@ public class ChitResourceIntTest {
         chitRepository.saveAndFlush(chit);
 
         // Get the chit
-        restChitMockMvc.perform(get("/api/chits/{id}", chit.getId()))
+        restChitMockMvc.perform(get("/api/getchitbyid/{id}", chit.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(chit.getId().intValue()))
@@ -245,7 +245,7 @@ public class ChitResourceIntTest {
             .userid(UPDATED_USERID);
         ChitDTO chitDTO = chitMapper.toDto(updatedChit);
 
-        restChitMockMvc.perform(put("/api/chits")
+        restChitMockMvc.perform(put("/api/putchit")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(chitDTO)))
             .andExpect(status().isOk());
@@ -273,7 +273,7 @@ public class ChitResourceIntTest {
         ChitDTO chitDTO = chitMapper.toDto(chit);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
-        restChitMockMvc.perform(put("/api/chits")
+        restChitMockMvc.perform(put("/api/putchit")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(chitDTO)))
             .andExpect(status().isCreated());
@@ -291,7 +291,7 @@ public class ChitResourceIntTest {
         int databaseSizeBeforeDelete = chitRepository.findAll().size();
 
         // Get the chit
-        restChitMockMvc.perform(delete("/api/chits/{id}", chit.getId())
+        restChitMockMvc.perform(delete("/api/deletechit/{id}", chit.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 

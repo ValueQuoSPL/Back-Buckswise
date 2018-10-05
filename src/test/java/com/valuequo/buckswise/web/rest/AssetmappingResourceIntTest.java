@@ -97,7 +97,7 @@ public class AssetmappingResourceIntTest {
      */
     public static Assetmapping createEntity(EntityManager em) {
         Assetmapping assetmapping = new Assetmapping()
-//            .uid(DEFAULT_UID)
+        //    .uid(DEFAULT_UID)
             .goalid(DEFAULT_GOALID)
             .assetname(DEFAULT_ASSETNAME)
             .assetid(DEFAULT_ASSETID);
@@ -253,7 +253,7 @@ public class AssetmappingResourceIntTest {
         int databaseSizeBeforeDelete = assetmappingRepository.findAll().size();
 
         // Get the assetmapping
-        restAssetmappingMockMvc.perform(delete("/api/assetmappings/{id}", assetmapping.getId())
+        restAssetmappingMockMvc.perform(delete("/api/delete/{id}", assetmapping.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 

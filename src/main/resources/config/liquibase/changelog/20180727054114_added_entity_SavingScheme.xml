@@ -18,9 +18,16 @@
         Added the entity SavingScheme.
     -->
     <changeSet id="20180727054114-1" author="jhipster">
-        <createTable tableName="saving_scheme">
+        <createTable tableName="saving">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="uid" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="num" type="varchar(255)">
+                <constraints nullable="true" />
             </column>
             <column name="organisation_name" type="varchar(255)">
                 <constraints nullable="true" />
@@ -30,7 +37,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="divident_type" type="varchar(255)">
+            <column name="dividend_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -63,6 +70,9 @@
             </column>
 
             <column name="notes" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 

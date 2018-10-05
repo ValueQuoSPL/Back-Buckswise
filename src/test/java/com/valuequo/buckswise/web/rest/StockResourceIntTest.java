@@ -116,7 +116,7 @@ public class StockResourceIntTest {
 
         // Create the Stock
         StockDTO stockDTO = stockMapper.toDto(stock);
-        restStockMockMvc.perform(post("/api/stocks")
+        restStockMockMvc.perform(post("/api/poststocks")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(stockDTO)))
             .andExpect(status().isCreated());
@@ -141,7 +141,7 @@ public class StockResourceIntTest {
         StockDTO stockDTO = stockMapper.toDto(stock);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restStockMockMvc.perform(post("/api/stocks")
+        restStockMockMvc.perform(post("/api/poststocks")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(stockDTO)))
             .andExpect(status().isBadRequest());
@@ -158,7 +158,7 @@ public class StockResourceIntTest {
         stockRepository.saveAndFlush(stock);
 
         // Get all the stockList
-        restStockMockMvc.perform(get("/api/stocks?sort=id,desc"))
+        restStockMockMvc.perform(get("/api/getstocks?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(stock.getId().intValue())))
@@ -175,7 +175,7 @@ public class StockResourceIntTest {
         stockRepository.saveAndFlush(stock);
 
         // Get the stock
-        restStockMockMvc.perform(get("/api/stocks/{id}", stock.getId()))
+        restStockMockMvc.perform(get("/api/getbyidstocks/{id}", stock.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(stock.getId().intValue()))
@@ -211,7 +211,7 @@ public class StockResourceIntTest {
             .notes(UPDATED_NOTES);
         StockDTO stockDTO = stockMapper.toDto(updatedStock);
 
-        restStockMockMvc.perform(put("/api/stocks")
+        restStockMockMvc.perform(put("/api/putstocks")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(stockDTO)))
             .andExpect(status().isOk());
@@ -235,7 +235,7 @@ public class StockResourceIntTest {
         StockDTO stockDTO = stockMapper.toDto(stock);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
-        restStockMockMvc.perform(put("/api/stocks")
+        restStockMockMvc.perform(put("/api/putstocks")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(stockDTO)))
             .andExpect(status().isCreated());
@@ -253,7 +253,7 @@ public class StockResourceIntTest {
         int databaseSizeBeforeDelete = stockRepository.findAll().size();
 
         // Get the stock
-        restStockMockMvc.perform(delete("/api/stocks/{id}", stock.getId())
+        restStockMockMvc.perform(delete("/api/deletestocks/{id}", stock.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
