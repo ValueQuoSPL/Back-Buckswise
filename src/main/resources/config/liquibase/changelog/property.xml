@@ -15,34 +15,26 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity AtlernateInvestment.
+        Added the entity Property.
     -->
-    <changeSet id="20180728123533-1" author="jhipster">
-        <createTable tableName="atlernate_investment">
+    <changeSet id="18" author="jhipster">
+        <createTable tableName="property">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="num" type="varchar(255)">
+            <column name="prop_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="fund_name" type="varchar(255)">
+            <column name="prop_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="investor_name" type="varchar(255)">
+            <column name="prop_details" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="p_date" type="date">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="amount_invested" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="market_value" type="varchar(255)">
+            <column name="current_m_value" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -54,15 +46,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="jhi_type" type="varchar(255)">
+            <column name="userid" type="bigint">
                 <constraints nullable="true" />
             </column>
 
-            <column name="user_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-           </createTable>
+            </createTable>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

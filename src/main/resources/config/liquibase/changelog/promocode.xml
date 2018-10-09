@@ -15,42 +15,30 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Otherdeduction.
+        Added the entity Promocode.
     -->
-    <changeSet id="20180921092401-1" author="jhipster">
-        <createTable tableName="otherdeduction">
+    <changeSet id="22" author="jhipster">
+        <createTable tableName="promocode">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="uid" type="integer">
+            <column name="jhi_plan" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="handicapped" type="varchar(255)">
+            <column name="promocode" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="medicaltreat" type="varchar(255)">
+            <column name="expiry_date" type="date">
                 <constraints nullable="true" />
             </column>
 
-            <column name="selfedu" type="varchar(255)">
+            <column name="discount" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="nps" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="rgess" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="donation" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            </createTable>
+          </createTable>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

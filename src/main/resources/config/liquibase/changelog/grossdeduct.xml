@@ -15,10 +15,10 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Eightycdeduct.
+        Added the entity Grossdeduct.
     -->
-    <changeSet id="20180912110321-1" author="jhipster">
-        <createTable tableName="eightycdeduct">
+    <changeSet id="25" author="jhipster">
+        <createTable tableName="grossdeduct">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -26,55 +26,55 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="fixed" type="varchar(255)">
+            <column name="bsalary" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="tution" type="varchar(255)">
+            <column name="da" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="nsc" type="varchar(255)">
+            <column name="hra" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="nss" type="varchar(255)">
+            <column name="conveyance" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="reinvest" type="varchar(255)">
+            <column name="childedu" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="licpremium" type="varchar(255)">
+            <column name="medical" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="equity" type="varchar(255)">
+            <column name="lta" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="pf" type="varchar(255)">
+            <column name="otherallown" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="ppf" type="varchar(255)">
+            <column name="bonus" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="other" type="varchar(255)">
+            <column name="rentincome" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="tutionfee" type="varchar(255)">
+            <column name="saving" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="ulip" type="varchar(255)">
+            <column name="bonds" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="post" type="varchar(255)">
+            <column name="conveyanceother" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 

@@ -1,7 +1,6 @@
 package com.valuequo.buckswise.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.valuequo.buckswise.domain.MutualFund;
-import com.valuequo.buckswise.domain.Stock;
 import com.valuequo.buckswise.service.MutualFundService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;

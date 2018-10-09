@@ -15,18 +15,18 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity FutureandOption.
+        Added the entity AtlernateInvestment.
     -->
-    <changeSet id="20180723090508-1" author="jhipster">
-        <createTable tableName="futureand_option">
+    <changeSet id="17" author="jhipster">
+        <createTable tableName="atlernate_investment">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="investment_type" type="varchar(255)">
+            <column name="num" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="asset_type" type="varchar(255)">
+            <column name="fund_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -34,23 +34,15 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="asset_name" type="varchar(255)">
+            <column name="p_date" type="date">
                 <constraints nullable="true" />
             </column>
 
-            <column name="no_of_contracts" type="integer">
+            <column name="amount_invested" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="purchase_date" type="date">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="contract_purchase_value" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="contract_market_value" type="integer">
+            <column name="market_value" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -62,8 +54,15 @@
                 <constraints nullable="true" />
             </column>
 
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
-        </createTable>
+            <column name="jhi_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+           </createTable>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
