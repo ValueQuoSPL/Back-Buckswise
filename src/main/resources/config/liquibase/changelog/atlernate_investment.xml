@@ -15,13 +15,17 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity MutualFund.
+        Added the entity AtlernateInvestment.
     -->
-    <changeSet id="20180723070835-1" author="jhipster">
-        <createTable tableName="mutual_fund">
+    <changeSet id="17" author="jhipster">
+        <createTable tableName="atlernate_investment">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="num" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="fund_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -30,20 +34,35 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="purchase_date" type="date">
+            <column name="p_date" type="date">
                 <constraints nullable="true" />
             </column>
 
-            <column name="no_of_units" type="varchar(255)">
+            <column name="amount_invested" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="nav" type="varchar(255)">
+            <column name="market_value" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
-        </createTable>
+            <column name="as_of_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="notes" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+           </createTable>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

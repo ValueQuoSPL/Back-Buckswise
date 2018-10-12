@@ -186,33 +186,33 @@ public class OtherdeductionResourceIntTest {
             .andExpect(jsonPath("$.[*].donation").value(hasItem(DEFAULT_DONATION.toString())));
     }
 
-    @Test
-    @Transactional
-    public void getOtherdeduction() throws Exception {
-        // Initialize the database
-        otherdeductionRepository.saveAndFlush(otherdeduction);
+    // @Test
+    // @Transactional
+    // public void getOtherdeduction() throws Exception {
+    //     // Initialize the database
+    //     otherdeductionRepository.saveAndFlush(otherdeduction);
 
-        // Get the otherdeduction
-        restOtherdeductionMockMvc.perform(get("/api/otherdeductions/{id}", otherdeduction.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(otherdeduction.getId().intValue()))
-            .andExpect(jsonPath("$.uid").value(DEFAULT_UID))
-            .andExpect(jsonPath("$.handicapped").value(DEFAULT_HANDICAPPED.toString()))
-            .andExpect(jsonPath("$.medicaltreat").value(DEFAULT_MEDICALTREAT.toString()))
-            .andExpect(jsonPath("$.selfedu").value(DEFAULT_SELFEDU.toString()))
-            .andExpect(jsonPath("$.nps").value(DEFAULT_NPS.toString()))
-            .andExpect(jsonPath("$.rgess").value(DEFAULT_RGESS.toString()))
-            .andExpect(jsonPath("$.donation").value(DEFAULT_DONATION.toString()));
-    }
+    //     // Get the otherdeduction
+    //     restOtherdeductionMockMvc.perform(get("/api/otherdeductions/{id}", otherdeduction.getId()))
+    //         .andExpect(status().isOk())
+    //         .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+    //         .andExpect(jsonPath("$.id").value(otherdeduction.getId().intValue()))
+    //         .andExpect(jsonPath("$.uid").value(DEFAULT_UID))
+    //         .andExpect(jsonPath("$.handicapped").value(DEFAULT_HANDICAPPED.toString()))
+    //         .andExpect(jsonPath("$.medicaltreat").value(DEFAULT_MEDICALTREAT.toString()))
+    //         .andExpect(jsonPath("$.selfedu").value(DEFAULT_SELFEDU.toString()))
+    //         .andExpect(jsonPath("$.nps").value(DEFAULT_NPS.toString()))
+    //         .andExpect(jsonPath("$.rgess").value(DEFAULT_RGESS.toString()))
+    //         .andExpect(jsonPath("$.donation").value(DEFAULT_DONATION.toString()));
+    // }
 
-    @Test
-    @Transactional
-    public void getNonExistingOtherdeduction() throws Exception {
-        // Get the otherdeduction
-        restOtherdeductionMockMvc.perform(get("/api/otherdeductions/{id}", Long.MAX_VALUE))
-            .andExpect(status().isNotFound());
-    }
+    // @Test
+    // @Transactional
+    // public void getNonExistingOtherdeduction() throws Exception {
+    //     // Get the otherdeduction
+    //     restOtherdeductionMockMvc.perform(get("/api/otherdeductions/{id}", Long.MAX_VALUE))
+    //         .andExpect(status().isNotFound());
+    // }
 
     @Test
     @Transactional

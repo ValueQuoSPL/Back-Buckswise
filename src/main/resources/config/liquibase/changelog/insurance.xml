@@ -15,63 +15,51 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity FutureOption.
+        Added the entity Assetmapping.
     -->
-    <changeSet id="20180801093319-1" author="jhipster">
-        <createTable tableName="future_option">
+    <changeSet id="07" author="jhipster">
+        <createTable tableName="insurance">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="num" type="varchar(255)">
+            <column name="userid" type="integer">
                 <constraints nullable="true" />
             </column>
-
-            <column name="userid" type="bigint">
+            <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="investor_name" type="varchar(255)">
+            
+            <column name="insurancename" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="investment_type" type="varchar(255)">
+            <column name="issuer" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="asset_type" type="varchar(255)">
+            <column name="policymmode" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="asset_name" type="varchar(255)">
+            <column name="policyname" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="contract_m_value" type="varchar(255)">
+            <column name="premiumname" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="contract_p_value" type="varchar(255)">
+            <column name="premium" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="no_of_contracts" type="varchar(255)">
+            <column name="policyterm" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="as_of_date" type="date">
+            <column name="sdate" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="p_date" type="date">
+            <column name="sum" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="notes" type="varchar(255)">
+            <column name="term" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
-        </createTable>
+      </createTable>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

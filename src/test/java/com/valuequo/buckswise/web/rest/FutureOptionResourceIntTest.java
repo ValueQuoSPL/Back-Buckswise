@@ -200,7 +200,7 @@ public class FutureOptionResourceIntTest {
         futureOptionRepository.saveAndFlush(futureOption);
 
         // Get all the futureOptionList
-        restFutureOptionMockMvc.perform(get("/api/future-options?sort=id,desc"))
+        restFutureOptionMockMvc.perform(get("/api/getfutureoptions?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(futureOption.getId().intValue())))
@@ -225,7 +225,7 @@ public class FutureOptionResourceIntTest {
         futureOptionRepository.saveAndFlush(futureOption);
 
         // Get the futureOption
-        restFutureOptionMockMvc.perform(get("/api/future-options/{id}", futureOption.getId()))
+        restFutureOptionMockMvc.perform(get("/api/futureoptionsbyid/{id}", futureOption.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(futureOption.getId().intValue()))
@@ -277,7 +277,7 @@ public class FutureOptionResourceIntTest {
             .notes(UPDATED_NOTES);
         FutureOptionDTO futureOptionDTO = futureOptionMapper.toDto(updatedFutureOption);
 
-        restFutureOptionMockMvc.perform(put("/api/future-options")
+        restFutureOptionMockMvc.perform(put("/api/putfutureoptions")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(futureOptionDTO)))
             .andExpect(status().isOk());
@@ -309,7 +309,7 @@ public class FutureOptionResourceIntTest {
         FutureOptionDTO futureOptionDTO = futureOptionMapper.toDto(futureOption);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
-        restFutureOptionMockMvc.perform(put("/api/future-options")
+        restFutureOptionMockMvc.perform(put("/api/putfutureoptions")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(futureOptionDTO)))
             .andExpect(status().isCreated());
@@ -327,7 +327,7 @@ public class FutureOptionResourceIntTest {
         int databaseSizeBeforeDelete = futureOptionRepository.findAll().size();
 
         // Get the futureOption
-        restFutureOptionMockMvc.perform(delete("/api/future-options/{id}", futureOption.getId())
+        restFutureOptionMockMvc.perform(delete("/api/deletefutureoptions/{id}", futureOption.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 

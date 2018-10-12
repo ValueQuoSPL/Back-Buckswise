@@ -5,29 +5,39 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180521131525_added_entity_Pay.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180606061136_added_entity_Family.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180723063515_added_entity_Stock.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180723070835_added_entity_MutualFund.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180723090508_added_entity_FutureandOption.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180727054114_added_entity_SavingScheme.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180728123533_added_entity_AtlernateInvestment.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180730112359_added_entity_Cash.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180730113808_added_entity_Property.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180730114217_added_entity_Chit.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180801093319_added_entity_FutureOption.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180906051835_added_entity_RiskLifeInsurance.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180906084425_added_entity_RiskMedicalInsurance.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180912062811_added_entity_Eightyd.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180912082350_added_entity_Grossdeduct.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180912110321_added_entity_Eightycdeduct.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180914130113_added_entity_Home.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180918111739_added_entity_Userplan.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180918115301_added_entity_Promocode.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180921092401_added_entity_Otherdeduction.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180924130448_added_entity_Appointment.xml" relativeToChangelogFile="false"/>
-     <include file="config/liquibase/changelog/20180924123036_added_entity_Assetmapping.xml" relativeToChangelogFile="false"/>
- 
+    <include file="config/liquibase/changelog/stock.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/mutualfund.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/saving.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/atlernate_investment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/cash.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/property.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/chit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/future_option.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/risk_life_insurance.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/risk_medical_insurance.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/eightyd.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/grossdeduct.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/eightycdeduct.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/home.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/userplan.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/promocode.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/otherdeduction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/assetmapping.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/appointment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/credit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/Entermntandtravel.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/income.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/insurance.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/utility.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/loananddebt.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/generalinsurance.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/familyprofile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/goalset.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/health.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/miscelleonous.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/payment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/household.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/myprofilee.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

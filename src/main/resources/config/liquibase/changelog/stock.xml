@@ -15,14 +15,14 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity SavingScheme.
+        Added the entity Stock.
     -->
-    <changeSet id="20180727054114-1" author="jhipster">
-        <createTable tableName="saving_scheme">
+    <changeSet id="14" author="jhipster">
+        <createTable tableName="stock">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="organisation_name" type="varchar(255)">
+            <column name="company_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -30,35 +30,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="divident_type" type="varchar(255)">
+            <column name="no_of_shares" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="amount_invested" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="rate_of_interest" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="tenure" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="start_date" type="date">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="end_date" type="date">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="fund_value" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="as_of_date" type="date">
+            <column name="share_price" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -66,7 +42,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+            <column name="userid" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+           
         </createTable>
         
     </changeSet>

@@ -228,40 +228,40 @@ public class GrossdeductResourceIntTest {
             .andExpect(jsonPath("$.[*].conveyanceother").value(hasItem(DEFAULT_CONVEYANCEOTHER.toString())));
     }
 
-    @Test
-    @Transactional
-    public void getGrossdeduct() throws Exception {
-        // Initialize the database
-        grossdeductRepository.saveAndFlush(grossdeduct);
+    // @Test
+    // @Transactional
+    // public void getGrossdeduct() throws Exception {
+    //     // Initialize the database
+    //     grossdeductRepository.saveAndFlush(grossdeduct);
 
-        // Get the grossdeduct
-        restGrossdeductMockMvc.perform(get("/api/grossdeducts/{id}", grossdeduct.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(grossdeduct.getId().intValue()))
-            .andExpect(jsonPath("$.uid").value(DEFAULT_UID))
-            .andExpect(jsonPath("$.bsalary").value(DEFAULT_BSALARY.toString()))
-            .andExpect(jsonPath("$.da").value(DEFAULT_DA.toString()))
-            .andExpect(jsonPath("$.hra").value(DEFAULT_HRA.toString()))
-            .andExpect(jsonPath("$.conveyance").value(DEFAULT_CONVEYANCE.toString()))
-            .andExpect(jsonPath("$.childedu").value(DEFAULT_CHILDEDU.toString()))
-            .andExpect(jsonPath("$.medical").value(DEFAULT_MEDICAL.toString()))
-            .andExpect(jsonPath("$.lta").value(DEFAULT_LTA.toString()))
-            .andExpect(jsonPath("$.otherallown").value(DEFAULT_OTHERALLOWN.toString()))
-            .andExpect(jsonPath("$.bonus").value(DEFAULT_BONUS.toString()))
-            .andExpect(jsonPath("$.rentincome").value(DEFAULT_RENTINCOME.toString()))
-            .andExpect(jsonPath("$.saving").value(DEFAULT_SAVING.toString()))
-            .andExpect(jsonPath("$.bonds").value(DEFAULT_BONDS.toString()))
-            .andExpect(jsonPath("$.conveyanceother").value(DEFAULT_CONVEYANCEOTHER.toString()));
-    }
+    //     // Get the grossdeduct
+    //     restGrossdeductMockMvc.perform(get("/api/grossdeducts/{id}", grossdeduct.getId()))
+    //         .andExpect(status().isOk())
+    //         .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+    //         .andExpect(jsonPath("$.id").value(grossdeduct.getId().intValue()))
+    //         .andExpect(jsonPath("$.uid").value(DEFAULT_UID))
+    //         .andExpect(jsonPath("$.bsalary").value(DEFAULT_BSALARY.toString()))
+    //         .andExpect(jsonPath("$.da").value(DEFAULT_DA.toString()))
+    //         .andExpect(jsonPath("$.hra").value(DEFAULT_HRA.toString()))
+    //         .andExpect(jsonPath("$.conveyance").value(DEFAULT_CONVEYANCE.toString()))
+    //         .andExpect(jsonPath("$.childedu").value(DEFAULT_CHILDEDU.toString()))
+    //         .andExpect(jsonPath("$.medical").value(DEFAULT_MEDICAL.toString()))
+    //         .andExpect(jsonPath("$.lta").value(DEFAULT_LTA.toString()))
+    //         .andExpect(jsonPath("$.otherallown").value(DEFAULT_OTHERALLOWN.toString()))
+    //         .andExpect(jsonPath("$.bonus").value(DEFAULT_BONUS.toString()))
+    //         .andExpect(jsonPath("$.rentincome").value(DEFAULT_RENTINCOME.toString()))
+    //         .andExpect(jsonPath("$.saving").value(DEFAULT_SAVING.toString()))
+    //         .andExpect(jsonPath("$.bonds").value(DEFAULT_BONDS.toString()))
+    //         .andExpect(jsonPath("$.conveyanceother").value(DEFAULT_CONVEYANCEOTHER.toString()));
+    // }
 
-    @Test
-    @Transactional
-    public void getNonExistingGrossdeduct() throws Exception {
-        // Get the grossdeduct
-        restGrossdeductMockMvc.perform(get("/api/grossdeducts/{id}", Long.MAX_VALUE))
-            .andExpect(status().isNotFound());
-    }
+    // @Test
+    // @Transactional
+    // public void getNonExistingGrossdeduct() throws Exception {
+    //     // Get the grossdeduct
+    //     restGrossdeductMockMvc.perform(get("/api/grossdeducts/{id}", Long.MAX_VALUE))
+    //         .andExpect(status().isNotFound());
+    // }
 
     @Test
     @Transactional

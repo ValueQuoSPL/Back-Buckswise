@@ -213,7 +213,7 @@ public class AtlernateInvestmentResourceIntTest {
         atlernateInvestmentRepository.saveAndFlush(atlernateInvestment);
 
         // Get the atlernateInvestment
-        restAtlernateInvestmentMockMvc.perform(get("/api/atlernate-investments/{id}", atlernateInvestment.getId()))
+        restAtlernateInvestmentMockMvc.perform(get("/api/atlernateInvest/{id}", atlernateInvestment.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(atlernateInvestment.getId().intValue()))
@@ -261,7 +261,7 @@ public class AtlernateInvestmentResourceIntTest {
             .userId(UPDATED_USER_ID);
         AtlernateInvestmentDTO atlernateInvestmentDTO = atlernateInvestmentMapper.toDto(updatedAtlernateInvestment);
 
-        restAtlernateInvestmentMockMvc.perform(put("/api/atlernate-investments")
+        restAtlernateInvestmentMockMvc.perform(put("/api/atlernateInvestments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(atlernateInvestmentDTO)))
             .andExpect(status().isOk());
@@ -291,7 +291,7 @@ public class AtlernateInvestmentResourceIntTest {
         AtlernateInvestmentDTO atlernateInvestmentDTO = atlernateInvestmentMapper.toDto(atlernateInvestment);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
-        restAtlernateInvestmentMockMvc.perform(put("/api/atlernate-investments")
+        restAtlernateInvestmentMockMvc.perform(put("/api/atlernateInvestments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(atlernateInvestmentDTO)))
             .andExpect(status().isCreated());
@@ -309,7 +309,7 @@ public class AtlernateInvestmentResourceIntTest {
         int databaseSizeBeforeDelete = atlernateInvestmentRepository.findAll().size();
 
         // Get the atlernateInvestment
-        restAtlernateInvestmentMockMvc.perform(delete("/api/atlernate-investments/{id}", atlernateInvestment.getId())
+        restAtlernateInvestmentMockMvc.perform(delete("/api/atlerInvest/{id}", atlernateInvestment.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 

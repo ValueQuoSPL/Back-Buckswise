@@ -14,29 +14,41 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
-    <!--
-        Added the entity RiskLifeInsurance.
-    -->
-    <changeSet id="20180906051835-1" author="jhipster">
-        <createTable tableName="risk_life_insurance">
+    <changeSet id="13" author="jhipster">
+        <createTable tableName="payment">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="expense_cover" type="varchar(255)">
+            <column name="amount" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="risk_coverage" type="varchar(255)">
+            <column name="first_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="total" type="varchar(255)">
+            <column name="e_mail" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+            <column name="phone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="product_info" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="s_url" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="f_url" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+
         </createTable>
         
     </changeSet>
-    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
-</databaseChangeLog>
+   </databaseChangeLog>
