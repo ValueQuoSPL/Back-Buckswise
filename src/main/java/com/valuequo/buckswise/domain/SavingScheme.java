@@ -97,9 +97,7 @@ public class SavingScheme implements Serializable {
     public void setNum(String num) {
     	this.num = num;
     }
-    
-    
-
+   
     public String getOrganisation_name() {
         return organisation_name;
     }

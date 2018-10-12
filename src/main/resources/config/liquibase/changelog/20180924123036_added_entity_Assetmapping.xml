@@ -37,6 +37,10 @@
             <column name="assetid" type="integer">
                 <constraints nullable="true" />
             </column>
+            
+             <column name="assettype" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>

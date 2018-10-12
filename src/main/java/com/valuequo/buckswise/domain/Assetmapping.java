@@ -12,7 +12,7 @@ import java.util.Objects;
  * A Assetmapping.
  */
 @Entity
-@Table(name = "assetmaping")
+@Table(name = "assetmapping")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Assetmapping implements Serializable {
 

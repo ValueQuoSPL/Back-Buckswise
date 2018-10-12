@@ -40,7 +40,7 @@ public class Familyprofile implements Serializable {
     private String lastname;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name = "is_earning")
     private String earncheck;
@@ -121,16 +121,16 @@ public class Familyprofile implements Serializable {
         this.lastname = lastname;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public Familyprofile dateOfBirth(Date dateOfBirth) {
+    public Familyprofile dateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 //
