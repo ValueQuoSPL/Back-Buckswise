@@ -15,30 +15,38 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Cash.
+        Added the entity Assetmapping.
     -->
-    <changeSet id="30" author="jhipster">
-        <createTable tableName="cash">
+    <changeSet id="32" author="jhipster">
+        <createTable tableName="transactiondata">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="userid" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="mihpayid" type="varchar(255)">
+                <constraints nullable="true" />
             </column>
             <column name="amount" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="cash_source" type="varchar(255)">
+            <column name="status" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="notes" type="varchar(255)">
+            <column name="txnid" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="userid" type="bigint">
+            <column name="productinfo" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-         </createTable>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="addedon" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+      </createTable>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
