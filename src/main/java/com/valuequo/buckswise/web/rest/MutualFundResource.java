@@ -44,7 +44,7 @@ public class MutualFundResource {
     @PostMapping("/mutualfund")
     @Timed
     public ResponseEntity<MutualFundDTO> createMutualfund(@RequestBody MutualFundDTO mutualfundDTO) throws URISyntaxException {
-        log.debug("REST request to save Mutualfund : {}", mutualfundDTO);
+        log.debug("REST request to save Mutualfund : {}", mutualfundDTO.getUserid());
         if (mutualfundDTO.getId() != null) {
             throw new BadRequestAlertException("A new mutualfund cannot already have an ID", ENTITY_NAME, "idexists");
         }
