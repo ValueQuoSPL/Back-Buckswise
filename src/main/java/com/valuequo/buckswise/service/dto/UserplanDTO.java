@@ -11,7 +11,7 @@ public class UserplanDTO implements Serializable {
 
     private Long id;
 
-    private Integer uid;
+    private Long uid;
 
     private String promocode;
 
@@ -33,11 +33,11 @@ public class UserplanDTO implements Serializable {
         this.id = id;
     }
 
-    public Integer getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 

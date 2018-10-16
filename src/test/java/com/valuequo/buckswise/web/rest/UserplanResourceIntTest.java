@@ -44,8 +44,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = BuckswiseApp.class)
 public class UserplanResourceIntTest {
 
-    private static final Integer DEFAULT_UID = 1;
-    private static final Integer UPDATED_UID = 2;
+    private static final Long DEFAULT_UID = (long) 1;
+    private static final Long UPDATED_UID = (long) 2;
 
     private static final String DEFAULT_PROMOCODE = "AAAAAAAAAA";
     private static final String UPDATED_PROMOCODE = "BBBBBBBBBB";
