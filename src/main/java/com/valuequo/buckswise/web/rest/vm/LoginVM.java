@@ -3,9 +3,12 @@ package com.valuequo.buckswise.web.rest.vm;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.stereotype.Component;
+
 /**
  * View Model object for storing a user's credentials.
  */
+@Component
 public class LoginVM {
 
     @NotNull

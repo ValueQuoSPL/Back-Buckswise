@@ -46,10 +46,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="assettype" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
             <column name="assetvalue" type="varchar(255)">
                 <constraints nullable="true" />
             </column>

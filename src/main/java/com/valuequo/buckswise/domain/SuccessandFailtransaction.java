@@ -24,7 +24,7 @@ public class SuccessandFailtransaction implements Serializable{
     private Long id;
 	
 	@Column(name = "mihpayid")
-	private String mihpayid;
+	private Long mihpayid;
 	
 	@Column(name = "status")
 	private String status;
@@ -55,11 +55,11 @@ public class SuccessandFailtransaction implements Serializable{
 		this.id = id;
 	}
 
-	public String getMihpayid() {
+	public Long getMihpayid() {
 		return mihpayid;
 	}
 
-	public void setMihpayid(String mihpayid) {
+	public void setMihpayid(Long mihpayid) {
 		this.mihpayid = mihpayid;
 	}
 
@@ -119,8 +119,8 @@ public class SuccessandFailtransaction implements Serializable{
 		this.userid = userid;
 	}
 
-	public SuccessandFailtransaction(String mihpayid, String status, String txnid, String productinfo,
-			String email, String amount, String addedon) {
+	public SuccessandFailtransaction(Long mihpayid, String status, String txnid, String productinfo,
+			String email, String amount, String addedon, Long userid) {
 		super();
 		this.id = id;
 		this.mihpayid = mihpayid;

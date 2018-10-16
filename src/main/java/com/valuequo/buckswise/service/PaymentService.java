@@ -11,6 +11,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -27,8 +28,11 @@ import org.springframework.util.SystemPropertyUtils;
 
 
 import com.valuequo.buckswise.domain.Payment;
+import com.valuequo.buckswise.domain.User;
 import com.valuequo.buckswise.model.PaymentVM;
 import com.valuequo.buckswise.repository.PaymentRepository;
+import com.valuequo.buckswise.repository.UserRepository;
+import com.valuequo.buckswise.security.SecurityUtils;
 import com.valuequo.buckswise.service.mapper.PaymentMapper;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
@@ -43,6 +47,20 @@ public class PaymentService {
 	private PaymentVM payment;
 	private PaymentRepository paymentRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
+	private Long userid;
+
+	public Long getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Long userid) {
+		this.userid = userid;
+	}
+	
+
 	private Integer error;
 	
 	public PaymentService(PaymentRepository paymentRepository) {
@@ -97,6 +115,9 @@ public class PaymentService {
 
     
     public Map<String, String> hashCalMethod(PaymentVM payment) {
+    	Optional<String>  userid = SecurityUtils.getCurrentUserLogin();
+    	User user = userRepository.findOneByLogin(userid);
+    	setUserid(user.getId());
 		String key = "LgZK3a8o";
         String salt = "5QYRVXtSfe";
         String action1 = "";
