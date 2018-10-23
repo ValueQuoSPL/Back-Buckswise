@@ -23,8 +23,8 @@ public class Userplan implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "jhi_uid")
-    private Integer uid;
+    @Column(name = "uid")
+    private Long uid;
 
     @Column(name = "promocode")
     private String promocode;
@@ -53,16 +53,16 @@ public class Userplan implements Serializable {
         this.id = id;
     }
 
-    public Integer getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public Userplan uid(Integer uid) {
+    public Userplan uid(Long uid) {
         this.uid = uid;
         return this;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 

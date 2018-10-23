@@ -16,6 +16,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import com.valuequo.buckswise.domain.Userplan;
 
 /**
  * REST controller for managing Userplan.
@@ -86,6 +87,20 @@ public class UserplanResource {
     public List<UserplanDTO> getAllUserplans() {
         log.debug("REST request to get all Userplans");
         return userplanService.findAll();
+    }
+
+    // @GetMapping("/get/{uid}")
+    // @Timed
+    // public ResponseEntity<Userplan> getUserplan(@PathVariable Long uid) {
+    //     log.debug("REST request to get Userplan : {}", uid);
+    //     List<Userplan> userplan = userplanService.getByUser(uid);
+    //     return ResponseUtil.wrapOrNotFound(userplan);
+    // }
+
+    @GetMapping("/getuser/{uid}")
+    @Timed
+    public List<Userplan> getuserId(@PathVariable Long uid) {
+    	return userplanService.getUser(uid);
     }
 
     /**

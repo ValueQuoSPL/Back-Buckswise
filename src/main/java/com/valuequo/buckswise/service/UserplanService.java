@@ -58,7 +58,10 @@ public class UserplanService {
             .collect(Collectors.toCollection(LinkedList::new));
     }
 
-
+	    public List<Userplan> getUser(Long uid)
+	    {
+	    	return userplanRepository.findByUid(uid);
+	    }
     /**
      * Get one userplan by id.
      *

@@ -17,40 +17,36 @@
     <!--
         Added the entity Assetmapping.
     -->
-    <changeSet id="24" author="jhipster">
-        <createTable tableName="assetmapping">
+    <changeSet id="32" author="jhipster">
+        <createTable tableName="transactiondata">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="uid" type="bigint">
+            <column name="userid" type="bigint">
                 <constraints nullable="true" />
             </column>
-
-            <column name="goalid" type="integer">
+            <column name="mihpayid" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="assetname" type="varchar(255)">
+            <column name="amount" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="assetid" type="integer">
+            <column name="status" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-             <column name="assettype" type="varchar(255)">
+            <column name="txnid" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="valuetomap" type="integer">
+            <column name="productinfo" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="assetvalue" type="varchar(255)">
+            <column name="email" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-        </createTable>
+            <column name="addedon" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+      </createTable>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

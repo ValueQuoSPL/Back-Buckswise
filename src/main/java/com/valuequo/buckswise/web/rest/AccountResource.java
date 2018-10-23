@@ -63,7 +63,7 @@ public class AccountResource {
     public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
     	String gRecaptchaResponse = managedUserVM.getGcaptcha();
     	String url = "https://www.google.com/recaptcha/api/siteverify";
-    	String params = "?secret=6LdjNGoUAAAAACl7TKEPuToK9B9gCjYOzKLSwC7V&response="+gRecaptchaResponse;
+    	String params = "?secret=6Lf9UHQUAAAAAEDNIfnPgecfXQ9iZI06UPSkTm2n&response="+gRecaptchaResponse;
     	
     	RestTemplate restTemplate = new RestTemplate();
     	ManagedUserVM managedUserVM1 = restTemplate.exchange(url+params, HttpMethod.POST, null, ManagedUserVM.class).getBody();
