@@ -60,7 +60,7 @@ public class AccountResource {
     @PostMapping("/register")
     @Timed
     @ResponseStatus(HttpStatus.CREATED)
-    public String registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+    public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
     	String gRecaptchaResponse = managedUserVM.getGcaptcha();
     	String url = "https://www.google.com/recaptcha/api/siteverify";
     	String params = "?secret=6LdjNGoUAAAAACl7TKEPuToK9B9gCjYOzKLSwC7V&response="+gRecaptchaResponse;
@@ -72,13 +72,12 @@ public class AccountResource {
             throw new InvalidPasswordException();
         }
         userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
-        userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
+       userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
-        mailService.sendActivationEmail(user);
-        return "user is created successfully";
+       mailService.sendActivationEmail(user);
     	}
     	else {
-    		return "unable to create user";
+            log.registerAccount.Error("The RegisterUser function failed");
     	}
     }
 
