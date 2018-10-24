@@ -5,15 +5,10 @@ import com.valuequo.buckswise.domain.Cash;
 import com.valuequo.buckswise.service.CashService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
-import com.valuequo.buckswise.web.rest.util.PaginationUtil;
 import com.valuequo.buckswise.service.dto.CashDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -85,19 +80,15 @@ public class CashResource {
     /**
      * GET  /cash : get all the cash.
      *
-     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of cash in body
      */
-    @GetMapping("/getcash")
-    @Timed
-    public ResponseEntity<List<CashDTO>> getAllCash(Pageable pageable) {
-        log.debug("REST request to get a page of Cash");
-        Page<CashDTO> page = cashService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/cash");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
-    @GetMapping("/cashbyuid/{userid}")
+//    @GetMapping("/cash")
+//    @Timed
+//    public List<CashDTO> getAllCash() {
+//        log.debug("REST request to get all Cash");
+//        return cashService.findAll();
+//        }
+    @GetMapping("/cashuid/{userid}")
     @Timed
     public List<Cash> getAllCash(@PathVariable Long userid){
     	return cashService.getCash(userid);
@@ -108,7 +99,13 @@ public class CashResource {
      * @param id the id of the cashDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the cashDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/cashbyid/{id}")
+    /**
+     * GET  /cash/:id : get the "id" cash.
+     *
+     * @param id the id of the cashDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the cashDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/cash/{id}")
     @Timed
     public ResponseEntity<CashDTO> getCash(@PathVariable Long id) {
         log.debug("REST request to get Cash : {}", id);
@@ -122,7 +119,7 @@ public class CashResource {
      * @param id the id of the cashDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/cashdelete/{id}")
+    @DeleteMapping("/deletecash/{id}")
     @Timed
     public ResponseEntity<Void> deleteCash(@PathVariable Long id) {
         log.debug("REST request to delete Cash : {}", id);

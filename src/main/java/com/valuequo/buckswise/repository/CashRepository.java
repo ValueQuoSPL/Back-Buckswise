@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface CashRepository extends JpaRepository<Cash, Long> {
-
+	
 	List<Cash> findByUserid(Long userid);
 
 }

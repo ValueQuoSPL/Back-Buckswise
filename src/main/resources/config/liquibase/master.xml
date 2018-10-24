@@ -9,7 +9,6 @@
     <include file="config/liquibase/changelog/mutualfund.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/saving.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/atlernate_investment.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/cash.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/property.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/chit.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/future_option.xml" relativeToChangelogFile="false"/>
@@ -38,6 +37,7 @@
     <include file="config/liquibase/changelog/payment.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/household.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/myprofilee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181016054219_added_entity_Cash.xml" relativeToChangelogFile="false"/>
         <include file="config/liquibase/changelog/transactiondata.xml" relativeToChangelogFile="false"/>
     
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
