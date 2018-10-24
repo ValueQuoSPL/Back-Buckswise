@@ -68,15 +68,15 @@ public class AccountResource {
     	RestTemplate restTemplate = new RestTemplate();
     	ManagedUserVM managedUserVM1 = restTemplate.exchange(url+params, HttpMethod.POST, null, ManagedUserVM.class).getBody();
     	if(managedUserVM1.isSuccess()) {
-            if (!checkPasswordLength(managedUserVM.getPassword())) {
-                throw new InvalidPasswordException();
-            }
-            userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
-            userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
-            User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
-            // mailService.sendActivationEmail(user);
+        if (!checkPasswordLength(managedUserVM.getPassword())) {
+            throw new InvalidPasswordException();
+        }
+        userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
+       userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
+        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
     	}
     	else {
+            // log.registerAccount.Error("The RegisterUser function failed");
     	}
     }
 
