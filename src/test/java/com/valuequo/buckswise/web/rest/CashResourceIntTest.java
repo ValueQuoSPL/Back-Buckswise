@@ -41,17 +41,35 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = BuckswiseApp.class)
 public class CashResourceIntTest {
 
+    private static final String DEFAULT_BANKNAME = "AAAAAAAAAA";
+    private static final String UPDATED_BANKNAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_INTRESTRATE = "AAAAAAAAAA";
+    private static final String UPDATED_INTRESTRATE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ACCOOUNTTYPE = "AAAAAAAAAA";
+    private static final String UPDATED_ACCOOUNTTYPE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ACCOUNTNAME = "AAAAAAAAAA";
+    private static final String UPDATED_ACCOUNTNAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_HANDLOANNAME = "AAAAAAAAAA";
+    private static final String UPDATED_HANDLOANNAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CASHSOURCE = "AAAAAAAAAA";
+    private static final String UPDATED_CASHSOURCE = "BBBBBBBBBB";
+
     private static final String DEFAULT_AMOUNT = "AAAAAAAAAA";
     private static final String UPDATED_AMOUNT = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CASH_SOURCE = "AAAAAAAAAA";
-    private static final String UPDATED_CASH_SOURCE = "BBBBBBBBBB";
+    private static final Long DEFAULT_USERID = 1L;
+    private static final Long UPDATED_USERID = 2L;
 
     private static final String DEFAULT_NOTES = "AAAAAAAAAA";
     private static final String UPDATED_NOTES = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_USERID = 1L;
-    private static final Long UPDATED_USERID = 2L;
+    private static final String DEFAULT_EXTRAFIELD = "AAAAAAAAAA";
+    private static final String UPDATED_EXTRAFIELD = "BBBBBBBBBB";
 
     @Autowired
     private CashRepository cashRepository;
@@ -97,10 +115,16 @@ public class CashResourceIntTest {
      */
     public static Cash createEntity(EntityManager em) {
         Cash cash = new Cash()
+            .bankname(DEFAULT_BANKNAME)
+            .intrestrate(DEFAULT_INTRESTRATE)
+            .accoounttype(DEFAULT_ACCOOUNTTYPE)
+            .accountname(DEFAULT_ACCOUNTNAME)
+            .handloanname(DEFAULT_HANDLOANNAME)
+            .cashsource(DEFAULT_CASHSOURCE)
             .amount(DEFAULT_AMOUNT)
-            .cash_source(DEFAULT_CASH_SOURCE)
+            .userid(DEFAULT_USERID)
             .notes(DEFAULT_NOTES)
-            .userid(DEFAULT_USERID);
+            .extrafield(DEFAULT_EXTRAFIELD);
         return cash;
     }
 
@@ -116,7 +140,7 @@ public class CashResourceIntTest {
 
         // Create the Cash
         CashDTO cashDTO = cashMapper.toDto(cash);
-        restCashMockMvc.perform(post("/api/postcash")
+        restCashMockMvc.perform(post("/api/cash")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(cashDTO)))
             .andExpect(status().isCreated());
@@ -125,10 +149,16 @@ public class CashResourceIntTest {
         List<Cash> cashList = cashRepository.findAll();
         assertThat(cashList).hasSize(databaseSizeBeforeCreate + 1);
         Cash testCash = cashList.get(cashList.size() - 1);
+        assertThat(testCash.getBankname()).isEqualTo(DEFAULT_BANKNAME);
+        assertThat(testCash.getIntrestrate()).isEqualTo(DEFAULT_INTRESTRATE);
+        assertThat(testCash.getAccoounttype()).isEqualTo(DEFAULT_ACCOOUNTTYPE);
+        assertThat(testCash.getAccountname()).isEqualTo(DEFAULT_ACCOUNTNAME);
+        assertThat(testCash.getHandloanname()).isEqualTo(DEFAULT_HANDLOANNAME);
+        assertThat(testCash.getCashsource()).isEqualTo(DEFAULT_CASHSOURCE);
         assertThat(testCash.getAmount()).isEqualTo(DEFAULT_AMOUNT);
-        assertThat(testCash.getCash_source()).isEqualTo(DEFAULT_CASH_SOURCE);
-        assertThat(testCash.getNotes()).isEqualTo(DEFAULT_NOTES);
         assertThat(testCash.getUserid()).isEqualTo(DEFAULT_USERID);
+        assertThat(testCash.getNotes()).isEqualTo(DEFAULT_NOTES);
+        assertThat(testCash.getExtrafield()).isEqualTo(DEFAULT_EXTRAFIELD);
     }
 
     @Test
@@ -141,7 +171,7 @@ public class CashResourceIntTest {
         CashDTO cashDTO = cashMapper.toDto(cash);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restCashMockMvc.perform(post("/api/postcash")
+        restCashMockMvc.perform(post("/api/cash")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(cashDTO)))
             .andExpect(status().isBadRequest());
@@ -158,14 +188,20 @@ public class CashResourceIntTest {
         cashRepository.saveAndFlush(cash);
 
         // Get all the cashList
-        restCashMockMvc.perform(get("/api/getcash?sort=id,desc"))
+        restCashMockMvc.perform(get("/api/cash?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(cash.getId().intValue())))
+            .andExpect(jsonPath("$.[*].bankname").value(hasItem(DEFAULT_BANKNAME.toString())))
+            .andExpect(jsonPath("$.[*].intrestrate").value(hasItem(DEFAULT_INTRESTRATE.toString())))
+            .andExpect(jsonPath("$.[*].accoounttype").value(hasItem(DEFAULT_ACCOOUNTTYPE.toString())))
+            .andExpect(jsonPath("$.[*].accountname").value(hasItem(DEFAULT_ACCOUNTNAME.toString())))
+            .andExpect(jsonPath("$.[*].handloanname").value(hasItem(DEFAULT_HANDLOANNAME.toString())))
+            .andExpect(jsonPath("$.[*].cashsource").value(hasItem(DEFAULT_CASHSOURCE.toString())))
             .andExpect(jsonPath("$.[*].amount").value(hasItem(DEFAULT_AMOUNT.toString())))
-            .andExpect(jsonPath("$.[*].cash_source").value(hasItem(DEFAULT_CASH_SOURCE.toString())))
+            .andExpect(jsonPath("$.[*].userid").value(hasItem(DEFAULT_USERID.intValue())))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())))
-            .andExpect(jsonPath("$.[*].userid").value(hasItem(DEFAULT_USERID.intValue())));
+            .andExpect(jsonPath("$.[*].extrafield").value(hasItem(DEFAULT_EXTRAFIELD.toString())));
     }
 
     @Test
@@ -175,14 +211,20 @@ public class CashResourceIntTest {
         cashRepository.saveAndFlush(cash);
 
         // Get the cash
-        restCashMockMvc.perform(get("/api/cashbyid/{id}", cash.getId()))
+        restCashMockMvc.perform(get("/api/cash/{id}", cash.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(cash.getId().intValue()))
+            .andExpect(jsonPath("$.bankname").value(DEFAULT_BANKNAME.toString()))
+            .andExpect(jsonPath("$.intrestrate").value(DEFAULT_INTRESTRATE.toString()))
+            .andExpect(jsonPath("$.accoounttype").value(DEFAULT_ACCOOUNTTYPE.toString()))
+            .andExpect(jsonPath("$.accountname").value(DEFAULT_ACCOUNTNAME.toString()))
+            .andExpect(jsonPath("$.handloanname").value(DEFAULT_HANDLOANNAME.toString()))
+            .andExpect(jsonPath("$.cashsource").value(DEFAULT_CASHSOURCE.toString()))
             .andExpect(jsonPath("$.amount").value(DEFAULT_AMOUNT.toString()))
-            .andExpect(jsonPath("$.cash_source").value(DEFAULT_CASH_SOURCE.toString()))
+            .andExpect(jsonPath("$.userid").value(DEFAULT_USERID.intValue()))
             .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()))
-            .andExpect(jsonPath("$.userid").value(DEFAULT_USERID.intValue()));
+            .andExpect(jsonPath("$.extrafield").value(DEFAULT_EXTRAFIELD.toString()));
     }
 
     @Test
@@ -205,13 +247,19 @@ public class CashResourceIntTest {
         // Disconnect from session so that the updates on updatedCash are not directly saved in db
         em.detach(updatedCash);
         updatedCash
+            .bankname(UPDATED_BANKNAME)
+            .intrestrate(UPDATED_INTRESTRATE)
+            .accoounttype(UPDATED_ACCOOUNTTYPE)
+            .accountname(UPDATED_ACCOUNTNAME)
+            .handloanname(UPDATED_HANDLOANNAME)
+            .cashsource(UPDATED_CASHSOURCE)
             .amount(UPDATED_AMOUNT)
-            .cash_source(UPDATED_CASH_SOURCE)
+            .userid(UPDATED_USERID)
             .notes(UPDATED_NOTES)
-            .userid(UPDATED_USERID);
+            .extrafield(UPDATED_EXTRAFIELD);
         CashDTO cashDTO = cashMapper.toDto(updatedCash);
 
-        restCashMockMvc.perform(put("/api/putcash")
+        restCashMockMvc.perform(put("/api/cash")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(cashDTO)))
             .andExpect(status().isOk());
@@ -220,10 +268,16 @@ public class CashResourceIntTest {
         List<Cash> cashList = cashRepository.findAll();
         assertThat(cashList).hasSize(databaseSizeBeforeUpdate);
         Cash testCash = cashList.get(cashList.size() - 1);
+        assertThat(testCash.getBankname()).isEqualTo(UPDATED_BANKNAME);
+        assertThat(testCash.getIntrestrate()).isEqualTo(UPDATED_INTRESTRATE);
+        assertThat(testCash.getAccoounttype()).isEqualTo(UPDATED_ACCOOUNTTYPE);
+        assertThat(testCash.getAccountname()).isEqualTo(UPDATED_ACCOUNTNAME);
+        assertThat(testCash.getHandloanname()).isEqualTo(UPDATED_HANDLOANNAME);
+        assertThat(testCash.getCashsource()).isEqualTo(UPDATED_CASHSOURCE);
         assertThat(testCash.getAmount()).isEqualTo(UPDATED_AMOUNT);
-        assertThat(testCash.getCash_source()).isEqualTo(UPDATED_CASH_SOURCE);
-        assertThat(testCash.getNotes()).isEqualTo(UPDATED_NOTES);
         assertThat(testCash.getUserid()).isEqualTo(UPDATED_USERID);
+        assertThat(testCash.getNotes()).isEqualTo(UPDATED_NOTES);
+        assertThat(testCash.getExtrafield()).isEqualTo(UPDATED_EXTRAFIELD);
     }
 
     @Test
@@ -235,7 +289,7 @@ public class CashResourceIntTest {
         CashDTO cashDTO = cashMapper.toDto(cash);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
-        restCashMockMvc.perform(put("/api/putcash")
+        restCashMockMvc.perform(put("/api/cash")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(cashDTO)))
             .andExpect(status().isCreated());
@@ -253,7 +307,7 @@ public class CashResourceIntTest {
         int databaseSizeBeforeDelete = cashRepository.findAll().size();
 
         // Get the cash
-        restCashMockMvc.perform(delete("/api/cashdelete/{id}", cash.getId())
+        restCashMockMvc.perform(delete("/api/cash/{id}", cash.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 

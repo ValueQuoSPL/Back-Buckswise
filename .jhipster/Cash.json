@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "bankname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "intrestrate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "accoounttype",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "accountname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "handloanname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cashsource",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "userid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "notes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extrafield",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20181016054219",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "cash",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

@@ -11,13 +11,25 @@ public class CashDTO implements Serializable {
 
     private Long id;
 
+    private String bankname;
+
+    private String intrestrate;
+
+    private String accoounttype;
+
+    private String accountname;
+
+    private String handloanname;
+
+    private String cashsource;
+
     private String amount;
 
-    private String cash_source;
+    private Long userid;
 
     private String notes;
 
-    private Long userid;
+    private String extrafield;
 
     public Long getId() {
         return id;
@@ -25,6 +37,54 @@ public class CashDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getBankname() {
+        return bankname;
+    }
+
+    public void setBankname(String bankname) {
+        this.bankname = bankname;
+    }
+
+    public String getIntrestrate() {
+        return intrestrate;
+    }
+
+    public void setIntrestrate(String intrestrate) {
+        this.intrestrate = intrestrate;
+    }
+
+    public String getAccoounttype() {
+        return accoounttype;
+    }
+
+    public void setAccoounttype(String accoounttype) {
+        this.accoounttype = accoounttype;
+    }
+
+    public String getAccountname() {
+        return accountname;
+    }
+
+    public void setAccountname(String accountname) {
+        this.accountname = accountname;
+    }
+
+    public String getHandloanname() {
+        return handloanname;
+    }
+
+    public void setHandloanname(String handloanname) {
+        this.handloanname = handloanname;
+    }
+
+    public String getCashsource() {
+        return cashsource;
+    }
+
+    public void setCashsource(String cashsource) {
+        this.cashsource = cashsource;
     }
 
     public String getAmount() {
@@ -35,12 +95,12 @@ public class CashDTO implements Serializable {
         this.amount = amount;
     }
 
-    public String getCash_source() {
-        return cash_source;
+    public Long getUserid() {
+        return userid;
     }
 
-    public void setCash_source(String cash_source) {
-        this.cash_source = cash_source;
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 
     public String getNotes() {
@@ -51,12 +111,12 @@ public class CashDTO implements Serializable {
         this.notes = notes;
     }
 
-    public Long getUserid() {
-        return userid;
+    public String getExtrafield() {
+        return extrafield;
     }
 
-    public void setUserid(Long userid) {
-        this.userid = userid;
+    public void setExtrafield(String extrafield) {
+        this.extrafield = extrafield;
     }
 
     @Override
@@ -84,10 +144,16 @@ public class CashDTO implements Serializable {
     public String toString() {
         return "CashDTO{" +
             "id=" + getId() +
+            ", bankname='" + getBankname() + "'" +
+            ", intrestrate='" + getIntrestrate() + "'" +
+            ", accoounttype='" + getAccoounttype() + "'" +
+            ", accountname='" + getAccountname() + "'" +
+            ", handloanname='" + getHandloanname() + "'" +
+            ", cashsource='" + getCashsource() + "'" +
             ", amount='" + getAmount() + "'" +
-            ", cash_source='" + getCash_source() + "'" +
+            ", userid='" + getUserid() + "'" +
             ", notes='" + getNotes() + "'" +
-            ", userid=" + getUserid() +
+            ", extrafield='" + getExtrafield() + "'" +
             "}";
     }
 }
