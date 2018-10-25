@@ -14,9 +14,12 @@ import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.EventReminder;
 import com.valuequo.buckswise.domain.Appointment;
+import com.valuequo.buckswise.domain.User;
+import com.valuequo.buckswise.repository.UserRepository;
 import com.valuequo.buckswise.service.AppointmentService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
+import com.valuequo.buckswise.web.rest.vm.ManagedUserVM;
 import com.valuequo.buckswise.service.dto.AppointmentDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -52,7 +55,9 @@ public class AppointmentResource {
 
     private final AppointmentService appointmentService;
 
-	private static AppointmentDTO appointmentDTO;
+    @Autowired
+	private UserRepository userRepository;
+    private ManagedUserVM managedUserVM;
     
     private static final String APPLICATION_NAME = "buckswise";
 	private static com.google.api.services.calendar.Calendar service;
@@ -75,12 +80,17 @@ public class AppointmentResource {
      */
     
     private static String dateTime;
+    private static String userEmail;
     
     @PostMapping("/appointments")
     @Timed
     public ResponseEntity<AppointmentDTO> createAppointment(@RequestBody AppointmentDTO appointmentDTO) throws URISyntaxException, GeneralSecurityException, IOException {
         log.debug("REST request to save Appointment : {}", appointmentDTO);
         dateTime = appointmentDTO.getDate();
+        List<User> userDetails = userRepository.findById(appointmentDTO.getUid());
+        for(User email: userDetails) {
+        	userEmail = email.getEmail();
+        }
         if (appointmentDTO.getId() != null) {
             throw new BadRequestAlertException("A new appointment cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -192,8 +202,7 @@ public class AppointmentResource {
 	            .setTimeZone("Asia/Calcutta");
 	        event.setEnd(end);
 	        EventAttendee[] eventAttendee = new EventAttendee[] {
-	        		new EventAttendee().setEmail("sandeep.pote@valuequo.com"),
-	        		new EventAttendee().setEmail("contact@valuequo.com")
+	        		new EventAttendee().setEmail(userEmail)
 	        };
 	        event.setAttendees(Arrays.asList(eventAttendee));
 	        EventReminder[] reminderOverrides = new EventReminder[] {
