@@ -63,7 +63,7 @@ public class AccountResource {
     public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
     	String gRecaptchaResponse = managedUserVM.getGcaptcha();
     	String url = "https://www.google.com/recaptcha/api/siteverify";
-    	String params = "?secret=6Lf9UHQUAAAAAEDNIfnPgecfXQ9iZI06UPSkTm2n&response="+gRecaptchaResponse;
+    	String params = "?secret=6Lca-nUUAAAAANDHay7bUjbTO2ok8uWNFcm65k_i&response="+gRecaptchaResponse;
     	
     	RestTemplate restTemplate = new RestTemplate();
     	ManagedUserVM managedUserVM1 = restTemplate.exchange(url+params, HttpMethod.POST, null, ManagedUserVM.class).getBody();
@@ -74,7 +74,6 @@ public class AccountResource {
         userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
        userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
-       mailService.sendActivationEmail(user);
     	}
     	else {
 //            log.registerAccount.Error("The RegisterUser function failed");

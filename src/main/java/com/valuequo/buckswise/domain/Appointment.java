@@ -30,7 +30,7 @@ public class Appointment implements Serializable {
     private String time;
 
     @Column(name = "date")
-    private LocalDate date;
+    private String date;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -67,16 +67,16 @@ public class Appointment implements Serializable {
         this.time = time;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public Appointment date(LocalDate date) {
+    public Appointment date(String date) {
         this.date = date;
         return this;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove

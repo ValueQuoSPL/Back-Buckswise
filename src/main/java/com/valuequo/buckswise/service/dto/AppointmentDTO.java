@@ -16,7 +16,7 @@ public class AppointmentDTO implements Serializable {
 
     private String time;
 
-    private LocalDate date;
+    private String date;
 
     public Long getId() {
         return id;
@@ -42,11 +42,11 @@ public class AppointmentDTO implements Serializable {
         this.time = time;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
