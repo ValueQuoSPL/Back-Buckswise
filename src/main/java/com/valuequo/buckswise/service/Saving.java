@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.valuequo.buckswise.domain.MutualFund;
 import com.valuequo.buckswise.domain.SavingScheme;
 import com.valuequo.buckswise.repository.SavingSchemeRepository;
 import com.valuequo.buckswise.service.dto.SavingDTO;
@@ -52,6 +53,11 @@ public class Saving {
 	public List<SavingScheme> findusers(Long uid){
 		return savingSchemeRepository.findByUid(uid);	
 	}
+	
+	 @Transactional(readOnly = true)
+	    public List<SavingScheme> getUserDetailById(Long id) {
+	    	return savingSchemeRepository.findByid(id);
+	    }
 	
 	public List<SavingScheme> update(SavingDTO savingDTO) {
 		return null;

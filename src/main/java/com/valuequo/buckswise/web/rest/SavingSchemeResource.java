@@ -68,7 +68,7 @@ public class SavingSchemeResource {
     @GetMapping("/getsavingSchemebyid/{id}")
     @Time
     public List<SavingScheme> getUsersbyid(@PathVariable Long id) {
-    	return saving.findusers(id);
+    	return saving.getUserDetailById(id);
     }
     
     @PutMapping("/saving")

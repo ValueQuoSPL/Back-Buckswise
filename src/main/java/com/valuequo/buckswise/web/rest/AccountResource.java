@@ -77,7 +77,7 @@ public class AccountResource {
        mailService.sendActivationEmail(user);
     	}
     	else {
-            log.registerAccount.Error("The RegisterUser function failed");
+//            log.registerAccount.Error("The RegisterUser function failed");
     	}
     }
 
