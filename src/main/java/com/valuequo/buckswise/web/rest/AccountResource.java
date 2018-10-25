@@ -76,7 +76,7 @@ public class AccountResource {
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
     	}
     	else {
-            log.registerAccount.Error("The RegisterUser function failed");
+            // log.registerAccount.Error("The RegisterUser function failed");
     	}
     }
 

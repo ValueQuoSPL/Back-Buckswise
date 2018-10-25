@@ -14,9 +14,9 @@ public class InsuranceService {
 	@Autowired
 	private InsuranceRepository insuranceRepository;
 	public Insurance save(int userid, String name, String insuranceName, String issure, String pMode, String pName, String prName,
-			String premium, String prTerm, String sDate, String sum, String term) {
+			String premium, String prTerm, String sDate, String sum, String term, String policyNumber) {
 		
-		Insurance insurance = new Insurance(userid, name, insuranceName, issure, pMode, pName, prName, premium, prTerm, sDate, sum, term);
+		Insurance insurance = new Insurance(userid, name, insuranceName, issure, pMode, pName, prName, premium, prTerm, sDate, sum, term, policyNumber);
 		insurance.setName(name);
 		insurance.setInsuranceName(insuranceName);
 		insurance.setIssuer(issure);
@@ -29,6 +29,7 @@ public class InsuranceService {
 		insurance.setSum(sum);
 		insurance.setTerm(term);
 		insurance.setUserid(userid);
+		insurance.setPolicynumber(policyNumber);
 		insuranceRepository.save(insurance);
 		
 		return null;
@@ -37,7 +38,7 @@ public class InsuranceService {
 		return insuranceRepository.findByUserid(userid);
 	}
 	public Insurance update(int userid, String name, String insuranceName, String issure, String pMode, String pName,
-			String prName, String premium, String prTerm, String sDate, String sum, String term, Long id, Long uid) {
+			String prName, String premium, String prTerm, String sDate, String sum, String term, String policynumber, Long id, Long uid) {
 		if(userid == uid) {
 			List<Insurance> insurance = insuranceRepository.findById(id);
 			for(Insurance ins: insurance) {
@@ -54,6 +55,7 @@ public class InsuranceService {
 					ins.setsDate(sDate);
 					ins.setSum(sum);
 					ins.setTerm(term);
+					ins.setPolicynumber(policynumber);
 					insuranceRepository.save(ins);
 				} 
 			}

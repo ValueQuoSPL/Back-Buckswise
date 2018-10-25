@@ -51,12 +51,12 @@ public class InsurancepaymentResource {
     		String premium=entry.get("premium").toString();
     		String prTerm=entry.get("pterm").toString();
     		String sDate= entry.get("sDate").toString();
-    		System.out.println(sDate);
     		String sum=entry.get("sum").toString();
     		String term=entry.get("term").toString();
+    		String policyNumber=entry.get("policynumber").toString();
     		int userid=(int) entry.get("userid");
-    		
-    		insuranceService.save(userid, name, insuranceName, issure, pMode, pName, prName, premium, prTerm, sDate, sum, term);
+
+    		insuranceService.save(userid, name, insuranceName, issure, pMode, pName, prName, premium, prTerm, sDate, sum, term, policyNumber);
     	}
         return null;
     }
@@ -82,10 +82,11 @@ public class InsurancepaymentResource {
 	    		System.out.println(sDate);
 	    		String sum=jObj.get("sum").toString();
 	    		String term=jObj.get("policy_term").toString();
+	    		String policynumber=jObj.get("policynumber").toString();
 	    		int userid=(int) jObj.get("userid");
 	    		Long id = jObj.getLong("id");
-    		
-    		insuranceService.update(userid, name, insuranceName, issure, pMode, pName, prName, premium, prTerm, sDate, sum, term, id, uid);
+
+    		insuranceService.update(userid, name, insuranceName, issure, pMode, pName, prName, premium, prTerm, sDate, sum, term, policynumber, id, uid);
 
     	return null;
     }
