@@ -31,6 +31,9 @@ public class Appointment implements Serializable {
 
     @Column(name = "date")
     private String date;
+    
+    @Column(name = "status")
+    private String status;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -81,6 +84,14 @@ public class Appointment implements Serializable {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
+    public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -96,7 +107,7 @@ public class Appointment implements Serializable {
         return Objects.equals(getId(), appointment.getId());
     }
 
-    @Override
+	@Override
     public int hashCode() {
         return Objects.hashCode(getId());
     }

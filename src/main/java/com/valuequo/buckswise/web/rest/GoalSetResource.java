@@ -63,7 +63,7 @@ public class GoalSetResource {
 
 		private int id;
 		private String goalnote;
-	  @PutMapping("/putgoal")
+	    @PutMapping("/putgoal")
 	    @Time
 	    public String updateGoal(@Valid @RequestBody Map<String, Object>[] data) {
 			System.out.println("detailnote" + data);

@@ -39,12 +39,8 @@ public class PaymentResource {
     */
     @PostMapping("/payment")
 	public Map<String, String> payment(@Valid @RequestBody PaymentVM payment, Model model) {
-		
 		paymentService.createUser(payment);
-		System.out.println("after Payment"+payment);
 		Map<String, String> result = paymentService.hashCalMethod(payment);
-		System.out.println(result.get("hash"));
-		System.out.println(result);
 		return result;
 
 	}
