@@ -17,6 +17,8 @@ public class AppointmentDTO implements Serializable {
     private String time;
 
     private String date;
+    
+    private String status;
 
     public Long getId() {
         return id;
@@ -50,7 +52,15 @@ public class AppointmentDTO implements Serializable {
         this.date = date;
     }
 
-    @Override
+    public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

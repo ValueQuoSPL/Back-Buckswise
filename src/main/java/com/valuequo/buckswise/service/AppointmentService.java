@@ -84,4 +84,10 @@ public class AppointmentService {
 		return appointmentRepository.findByUid(uid);
 	}
 
+	public void updateBookAppoint(String status, Long id) {
+		List<Appointment> result = appointmentRepository.findById(id);
+		for(Appointment res: result) {
+			res.setStatus(status);
+		}
+	}
 }

@@ -15,6 +15,7 @@ import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.EventReminder;
 import com.valuequo.buckswise.domain.Appointment;
 import com.valuequo.buckswise.domain.User;
+import com.valuequo.buckswise.repository.AppointmentRepository;
 import com.valuequo.buckswise.repository.UserRepository;
 import com.valuequo.buckswise.service.AppointmentService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
@@ -25,6 +26,8 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +42,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.TimeZone;
+import java.util.function.Consumer;
 
 /**
  * REST controller for managing Appointment.
@@ -58,6 +63,9 @@ public class AppointmentResource {
     @Autowired
 	private UserRepository userRepository;
     private ManagedUserVM managedUserVM;
+    
+    @Autowired
+    private AppointmentRepository appointmentRepository;
     
     private static final String APPLICATION_NAME = "buckswise";
 	private static com.google.api.services.calendar.Calendar service;
@@ -86,6 +94,7 @@ public class AppointmentResource {
     @Timed
     public ResponseEntity<AppointmentDTO> createAppointment(@RequestBody AppointmentDTO appointmentDTO) throws URISyntaxException, GeneralSecurityException, IOException {
         log.debug("REST request to save Appointment : {}", appointmentDTO);
+        AppointmentDTO result = appointmentService.save(appointmentDTO);
         dateTime = appointmentDTO.getDate();
         List<User> userDetails = userRepository.findById(appointmentDTO.getUid());
         for(User email: userDetails) {
@@ -107,12 +116,11 @@ public class AppointmentResource {
 			service = new com.google.api.services.calendar.Calendar.Builder(httpTransport, jsonFactory, gCred)
 					.setApplicationName(APPLICATION_NAME).build();
 			Events events = service.events();
-			Calendar calendar = addCalendar();
-			addEvent(calendar);
+			addEvent();
 		} catch (Exception e) {
 			
 		}
-        AppointmentDTO result = appointmentService.save(appointmentDTO);
+       
         return ResponseEntity.created(new URI("/api/appointments/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -140,6 +148,24 @@ public class AppointmentResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, appointmentDTO.getId().toString()))
             .body(result);
+    }
+    
+    // updating the status of appointment //
+    
+    private String status;
+    private Long id;
+    
+    @PutMapping("/updateAppointment")
+    @Timed
+    public String updateAppointment(@RequestBody Map<String, Object> data) throws JSONException {
+    	System.out.println("updateAppointment" + data);
+    	for (Map.Entry<String, Object> entry : data.entrySet()) {
+    		JSONObject jObj = new JSONObject(data);
+    		this.status = jObj.get("status").toString();
+    		this.id = jObj.getLong("id");
+    	}
+    	appointmentService.updateBookAppoint(this.status, this.id);
+    	return null;
     }
 
     /**
@@ -189,7 +215,7 @@ public class AppointmentResource {
 
 	private static Event newEvent() {
 		 Event event = new Event();
-	        event.setSummary("Discussion on Plan");
+	        event.setSummary("Meeting With ValueQuo Financial Advisor");
 	        DateTime startDateTime = new DateTime(dateTime);
 	        EventDateTime start = new EventDateTime()
 	            .setDateTime(startDateTime)
@@ -216,16 +242,10 @@ public class AppointmentResource {
 	        return event;
 	}
 
-	private static void addEvent(Calendar calendar) throws IOException {
+	private static void addEvent() throws IOException {
 		Event event = newEvent();
-		Event result = service.events().insert(calendar.getId(), event).setSendNotifications(true).execute();
-	}
-
-	private static Calendar addCalendar() throws IOException {
-		Calendar entry = new Calendar();
-		entry.setSummary("today meeting 22-10");
-		return service.calendars().insert(entry).execute();
-
+		String calendarId = "primary";
+		Event result = service.events().insert(calendarId, event).setSendNotifications(true).execute();
 	}
     
 }
