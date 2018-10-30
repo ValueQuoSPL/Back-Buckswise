@@ -52,7 +52,9 @@
             <column name="sum" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+             <column name="proposer" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
       </createTable>
         
     </changeSet>

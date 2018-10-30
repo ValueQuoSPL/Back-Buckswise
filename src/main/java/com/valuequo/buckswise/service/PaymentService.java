@@ -121,7 +121,7 @@ public class PaymentService {
 		String key = "LgZK3a8o";
         String salt = "5QYRVXtSfe";
         String action1 = "";
-        String base_url = "https://sandboxsecure.payu.in";
+        String base_url = "https://secure.payu.in";
         error = 0;
         String hashString = "";
         String Amount= payment.getAmount();

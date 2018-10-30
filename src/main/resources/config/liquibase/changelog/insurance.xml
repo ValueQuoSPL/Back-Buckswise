@@ -59,6 +59,9 @@
             <column name="term" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="policynumber" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
       </createTable>
         
     </changeSet>

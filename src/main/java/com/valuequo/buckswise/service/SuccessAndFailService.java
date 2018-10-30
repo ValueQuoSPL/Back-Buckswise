@@ -41,4 +41,9 @@ public class SuccessAndFailService {
 		return successandFailRepository.findByUserid(userid);
 	}
 
+
+	public List<SuccessandFailtransaction> getAllDetail() {
+		return successandFailRepository.findAll();
+	}
+
 }

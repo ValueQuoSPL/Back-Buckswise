@@ -50,8 +50,9 @@ public class GeneralInsuranceResource {
     		String premium = entry.get("premium").toString();
     		String premiumTerm = entry.get("pterm").toString();
     		String sum = entry.get("sum").toString();
+    		String proposer = entry.get("proposer").toString();
     		int userid = (int) entry.get("userid");
-    		generalInsuranceService.save(userid, insureName, policyName, issuer, policyDate, policyNumber, premiumName, premium, premiumTerm,sum);
+    		generalInsuranceService.save(userid, insureName, policyName, issuer, policyDate, policyNumber, premiumName, premium, premiumTerm,sum, proposer);
     		}
     	
         return null;
@@ -76,10 +77,11 @@ public class GeneralInsuranceResource {
     		String premium = jObj.get("premium").toString();
     		String premiumTerm = jObj.get("policy_term").toString();
     		String sum = jObj.get("sum").toString();
+    		String proposer = jObj.get("proposer").toString();
     		int userid = (int) jObj.get("userid");
     		System.out.println(userid);
     		Long id = jObj.getLong("id");
-    		 generalInsuranceService.update(userid, insureName, policyName, issuer, policyDate, policyNumber, premiumName, premium, premiumTerm, sum, id, uid);
+    		 generalInsuranceService.update(userid, insureName, policyName, issuer, policyDate, policyNumber, premiumName, premium, premiumTerm, sum, proposer, id, uid);
     	
     	return null;
     }
