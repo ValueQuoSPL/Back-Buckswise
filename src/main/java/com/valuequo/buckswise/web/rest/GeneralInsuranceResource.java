@@ -57,7 +57,7 @@ public class GeneralInsuranceResource {
     	
         return null;
     }
-    
+
     @GetMapping("/get/{userid}")
     public List<GeneralInsurance> getGeneral(@PathVariable int userid){
     	return generalInsuranceService.getDetail(userid);    	
@@ -73,7 +73,7 @@ public class GeneralInsuranceResource {
     		String issuer = jObj.get("issuer").toString();
     		String policyDate = jObj.get("start_date").toString();
     		String policyNumber = jObj.get("policy_no").toString();
-    		String premiumName = jObj.get("proposer_name").toString();
+    		String premiumName = jObj.get("premium_mode").toString();
     		String premium = jObj.get("premium").toString();
     		String premiumTerm = jObj.get("policy_term").toString();
     		String sum = jObj.get("sum").toString();
