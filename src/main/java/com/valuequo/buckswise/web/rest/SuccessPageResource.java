@@ -52,7 +52,7 @@ public class SuccessPageResource {
 			@RequestParam String txnid, @RequestParam String productinfo, @RequestParam String email,
 			@RequestParam String amount, @RequestParam String addedon) {
 		successAndFailService.saveTransaction(mihpayid, status, txnid, productinfo, email, amount, addedon);
-		return new RedirectView("http://localhost:9000/#/success");
+		return new RedirectView("https://wwww.buckswise.com/#/success");
 	}
 	
 }
