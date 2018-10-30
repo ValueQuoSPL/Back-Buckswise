@@ -41,6 +41,11 @@ public class SuccessPageResource {
 	public List<SuccessandFailtransaction> getSuccess(@PathVariable Long userid) {
 		return successAndFailService.getDetail(userid);
 	}
+	
+	@GetMapping("/getAllSuccess")
+	public List<SuccessandFailtransaction> getAllSuccess() {
+		return successAndFailService.getAllDetail();
+	}
 
 	@PostMapping("/success")
 	public RedirectView  defaultAction(@RequestParam Long mihpayid, @RequestParam String status,
@@ -49,4 +54,5 @@ public class SuccessPageResource {
 		successAndFailService.saveTransaction(mihpayid, status, txnid, productinfo, email, amount, addedon);
 		return new RedirectView("http://localhost:9000/#/success");
 	}
+	
 }

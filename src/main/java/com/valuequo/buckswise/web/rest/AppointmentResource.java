@@ -35,17 +35,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.TimeZone;
-import java.util.function.Consumer;
 
 /**
  * REST controller for managing Appointment.
@@ -66,12 +59,7 @@ public class AppointmentResource {
     
     @Autowired
     private AppointmentRepository appointmentRepository;
-    
-    private static final String APPLICATION_NAME = "buckswise";
-	private static com.google.api.services.calendar.Calendar service;
-	private static final String SERVICE_ACCOUNT_EMAIL = "admin-606@buckswise-219810.iam.gserviceaccount.com";
-	private static final String SERVICE_ACCOUNT_PKCS12_FILE = "src/main/resources/buckswise-219810-0fd66feedbb7.p12";
-	private static final String userEmailId = "admin@valuequo.com";
+	
 
     public AppointmentResource(AppointmentService appointmentService) {
         this.appointmentService = appointmentService;
@@ -100,27 +88,11 @@ public class AppointmentResource {
         for(User email: userDetails) {
         	userEmail = email.getEmail();
         }
+        appointmentService.createCalendar(dateTime, userEmail);        
         if (appointmentDTO.getId() != null) {
             throw new BadRequestAlertException("A new appointment cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        try {
-			HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-			JsonFactory jsonFactory = new JacksonFactory();
-			GoogleCredential gCred = new GoogleCredential.Builder().setTransport(httpTransport)
-					.setJsonFactory(jsonFactory)
-					.setServiceAccountId(SERVICE_ACCOUNT_EMAIL)
-					.setServiceAccountScopes(Collections.singleton("https://www.googleapis.com/auth/calendar"))
-					.setServiceAccountUser(userEmailId)
-					.setServiceAccountPrivateKeyFromP12File(new java.io.File(SERVICE_ACCOUNT_PKCS12_FILE))
-					.build();
-			service = new com.google.api.services.calendar.Calendar.Builder(httpTransport, jsonFactory, gCred)
-					.setApplicationName(APPLICATION_NAME).build();
-			Events events = service.events();
-			addEvent();
-		} catch (Exception e) {
-			
-		}
-       
+
         return ResponseEntity.created(new URI("/api/appointments/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -213,39 +185,39 @@ public class AppointmentResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-	private static Event newEvent() {
-		 Event event = new Event();
-	        event.setSummary("Meeting With ValueQuo Financial Advisor");
-	        DateTime startDateTime = new DateTime(dateTime);
-	        EventDateTime start = new EventDateTime()
-	            .setDateTime(startDateTime)
-	            .setTimeZone("Asia/Calcutta");
-	        event.setStart(start);
-
-	        DateTime endDateTime = new DateTime(dateTime);
-	        EventDateTime end = new EventDateTime()
-	            .setDateTime(endDateTime)
-	            .setTimeZone("Asia/Calcutta");
-	        event.setEnd(end);
-	        EventAttendee[] eventAttendee = new EventAttendee[] {
-	        		new EventAttendee().setEmail(userEmail)
-	        };
-	        event.setAttendees(Arrays.asList(eventAttendee));
-	        EventReminder[] reminderOverrides = new EventReminder[] {
-	        	    new EventReminder().setMethod("email").setMinutes(01),
-	        	    new EventReminder().setMethod("popup").setMinutes(10),
-	        };
-	        Event.Reminders reminders = new Event.Reminders()
-	        	    .setUseDefault(false)
-	        	    .setOverrides(Arrays.asList(reminderOverrides));
-	        event.setReminders(reminders);
-	        return event;
-	}
-
-	private static void addEvent() throws IOException {
-		Event event = newEvent();
-		String calendarId = "primary";
-		Event result = service.events().insert(calendarId, event).setSendNotifications(true).execute();
-	}
+//	private static Event newEvent() {
+//		 Event event = new Event();
+//	        event.setSummary("Meeting With ValueQuo Financial Advisor");
+//	        DateTime startDateTime = new DateTime(dateTime);
+//	        EventDateTime start = new EventDateTime()
+//	            .setDateTime(startDateTime)
+//	            .setTimeZone("Asia/Calcutta");
+//	        event.setStart(start);
+//
+//	        DateTime endDateTime = new DateTime(dateTime);
+//	        EventDateTime end = new EventDateTime()
+//	            .setDateTime(endDateTime)
+//	            .setTimeZone("Asia/Calcutta");
+//	        event.setEnd(end);
+//	        EventAttendee[] eventAttendee = new EventAttendee[] {
+//	        		new EventAttendee().setEmail(userEmail)
+//	        };
+//	        event.setAttendees(Arrays.asList(eventAttendee));
+//	        EventReminder[] reminderOverrides = new EventReminder[] {
+//	        	    new EventReminder().setMethod("email").setMinutes(01),
+//	        	    new EventReminder().setMethod("popup").setMinutes(10),
+//	        };
+//	        Event.Reminders reminders = new Event.Reminders()
+//	        	    .setUseDefault(false)
+//	        	    .setOverrides(Arrays.asList(reminderOverrides));
+//	        event.setReminders(reminders);
+//	        return event;
+//	}
+//
+//	private static void addEvent() throws IOException {
+//		Event event = newEvent();
+//		String calendarId = "primary";
+////		Event result = service.events().insert(calendarId, event).setSendNotifications(true).execute();
+//	}
     
 }

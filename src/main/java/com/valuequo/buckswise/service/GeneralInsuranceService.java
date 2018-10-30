@@ -15,9 +15,9 @@ public class GeneralInsuranceService {
 	@Autowired
 	private GeneralInsuraanceRepository generalInsuraanceRepository;
 	public GeneralInsurance save(int userid, String insureName, String policyName, String issuer, String policyDate,
-			String policyNumber, String premiumName, String premium, String premiumTerm, String sum) {
+			String policyNumber, String premiumName, String premium, String premiumTerm, String sum, String proposer) {
 		
-		GeneralInsurance gi = new GeneralInsurance(userid, insureName, policyName, issuer, policyDate, policyNumber, premiumName, premium, premiumTerm, sum);
+		GeneralInsurance gi = new GeneralInsurance(userid, insureName, policyName, issuer, policyDate, policyNumber, premiumName, premium, premiumTerm, sum, proposer);
 		gi.setUserid(userid);
 		gi.setInsureName(insureName);
 		gi.setPolicyName(policyName);
@@ -28,6 +28,7 @@ public class GeneralInsuranceService {
 		gi.setPremium(premium);
 		gi.setPremiumTerm(premiumTerm);
 		gi.setSum(sum);
+		gi.setProposer(proposer);
 		generalInsuraanceRepository.save(gi);
 		return null;
 	}
@@ -35,7 +36,7 @@ public class GeneralInsuranceService {
 		return generalInsuraanceRepository.findByUserid(userid);
 	}
 	public GeneralInsurance update(int userid, String insureName, String policyName, String issuer, String policyDate,
-			String policyNumber, String premiumName, String premium, String premiumTerm, String sum, Long id, Long uid) {
+			String policyNumber, String premiumName, String premium, String premiumTerm, String sum, String proposer, Long id, Long uid) {
 		if(userid == uid) {
 			List<GeneralInsurance> general = generalInsuraanceRepository.findById(id);
 			for(GeneralInsurance g: general) {
@@ -50,6 +51,7 @@ public class GeneralInsuranceService {
 					g.setPremiumName(premiumName);
 					g.setPremiumTerm(premiumTerm);
 					g.setSum(sum);
+					g.setProposer(proposer);
 				   generalInsuraanceRepository.save(g);
 				}
 			}		

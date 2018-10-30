@@ -50,7 +50,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="userid" type="varchar(255)">
+            <column name="userid" type="bigint">
                 <constraints nullable="true" />
             </column>
 

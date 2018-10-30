@@ -48,6 +48,9 @@ public class GeneralInsurance {
     
     @Column(name = "sum")
     private String sum;
+    
+    @Column(name = "proposer")
+    private String proposer;
 
     public GeneralInsurance() {
     	
@@ -141,8 +144,17 @@ public class GeneralInsurance {
 		this.sum = sum;
 	}
 
+	
+	public String getProposer() {
+		return proposer;
+	}
+
+	public void setProposer(String proposer) {
+		this.proposer = proposer;
+	}
+
 	public GeneralInsurance(int userid, String insureName, String policyName, String issuer, String policyDate,
-			String policyNumber, String premiumName, String premium, String premiumTerm, String sum) {
+			String policyNumber, String premiumName, String premium, String premiumTerm, String sum, String proposer) {
 		super();
 		this.userid = userid;
 		this.insureName = insureName;
@@ -154,6 +166,7 @@ public class GeneralInsurance {
 		this.premium = premium;
 		this.premiumTerm = premiumTerm;
 		this.sum = sum;
+		this.proposer = proposer;
 	}
     
 
