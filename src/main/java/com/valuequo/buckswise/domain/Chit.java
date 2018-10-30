@@ -47,6 +47,9 @@ public class Chit implements Serializable {
     @Column(name = "userid")
     private Long userid;
 
+    @Column(name = "monthly_investment")
+    private String monthly_investment;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -56,7 +59,15 @@ public class Chit implements Serializable {
         this.id = id;
     }
 
-    public String getChit_holder_name() {
+    public String getMonthly_investment() {
+		return monthly_investment;
+	}
+
+	public void setMonthly_investment(String monthly_investment) {
+		this.monthly_investment = monthly_investment;
+	}
+
+	public String getChit_holder_name() {
         return chit_holder_name;
     }
 

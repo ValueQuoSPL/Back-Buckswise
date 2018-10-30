@@ -53,6 +53,10 @@
             <column name="userid" type="bigint">
                 <constraints nullable="true" />
             </column>
+            
+              <column name="monthly_investment" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
 
             </createTable>
         

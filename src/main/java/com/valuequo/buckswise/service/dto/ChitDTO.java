@@ -25,8 +25,18 @@ public class ChitDTO implements Serializable {
     private String notes;
 
     private String tenure;
+    
+    private String monthly_investment;
 
-    private Long userid;
+    public String getMonthly_investment() {
+		return monthly_investment;
+	}
+
+	public void setMonthly_investment(String monthly_investment) {
+		this.monthly_investment = monthly_investment;
+	}
+
+	private Long userid;
 
     public Long getId() {
         return id;
