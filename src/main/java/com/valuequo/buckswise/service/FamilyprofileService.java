@@ -56,9 +56,9 @@ public class FamilyprofileService {
     		familyprofile.setMiddlename(familyprofileDTO.getMiddlename());
     		familyprofile.setLastname(familyprofileDTO.getLastname());
     		familyprofile.setDateOfBirth(familyprofileDTO.getDateOfBirth());
-    		familyprofile.setEarncheck(familyprofile.getEarncheck());
+    		familyprofile.setEarncheck(familyprofileDTO.getEarncheck());
     		familyprofile.setEmail(familyprofileDTO.getEmail());
-    		familyprofile.setPhonenumber(familyprofile.getPhonenumber());
+    		familyprofile.setPhonenumber(familyprofileDTO.getPhonenumber());
     		familyprofileRepository.save(familyprofile);
     	}
     	
