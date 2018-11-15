@@ -38,7 +38,7 @@ public class MiscellaneousResource {
     
     private String mName;
     private String mValue;
-    private int userid;
+    private Long userid;
     
     @PostMapping("/miscellenous")
     public String miscellenous(@RequestBody Map<String, Object> mllnous) throws JSONException {
@@ -56,7 +56,7 @@ public class MiscellaneousResource {
     				JSONObject jObj1 = jData.getJSONObject(i);
     				this.mName = jObj1.getString("name");
     				this.mValue = jObj1.getString("value");
-    				this.userid = jObj.getInt("userid");
+    				this.userid = jObj.getLong("userid");
         			System.out.println("userid is :-" + this.userid);
         			if(this.mName == "userid") {
         				return null;
@@ -72,7 +72,7 @@ public class MiscellaneousResource {
     			this.mName = entry.getKey();
     			this.mValue = entry.getValue().toString();
     			JSONObject jObj = new JSONObject(mllnous);
-    			this.userid = jObj.getInt("userid");
+    			this.userid = jObj.getLong("userid");
     			System.out.println("userid is in else :-" + this.userid);
     			if(this.mName == "userid") {
     				return null;
@@ -88,7 +88,7 @@ public class MiscellaneousResource {
     }
 
     @GetMapping("/get/{userid}")
-    public List<Miscelleonous> getMiscellenous(@PathVariable int userid) {
+    public List<Miscelleonous> getMiscellenous(@PathVariable Long userid) {
     	return miscellenousService.getDetail(userid);
     }
     
@@ -107,13 +107,13 @@ public class MiscellaneousResource {
     				JSONObject jObj1 = jData.getJSONObject(i);
     				this.mName = jObj1.getString("name");
     				this.mValue = jObj1.getString("value");
-    				this.userid = jObj.getInt("userid");
+    				this.userid = jObj.getLong("userid");
         			System.out.println("userid is :-" + this.userid);
         			if(this.mName == "userid") {
         				return null;
         			}
         			else {
-        				miscellenousService.update(this.mName, this.mValue, this.userid, userid);
+        				miscellenousService.update(this.mName, this.mValue, this.userid);
         			}
    			}
     			
@@ -122,13 +122,13 @@ public class MiscellaneousResource {
     			this.mName = entry.getKey();
     			this.mValue = entry.getValue().toString();
     			JSONObject jObj = new JSONObject(updateMisc);
-    			this.userid = jObj.getInt("userid");
+    			this.userid = jObj.getLong("userid");
     			System.out.println("userid is in else :-" + this.userid);
     			if(this.mName == "userid") {
     				return null;
     			}
     			else {
-    				miscellenousService.update(this.mName, this.mValue, this.userid, userid);
+    				miscellenousService.update(this.mName, this.mValue, this.userid);
     			}
     			
     		}

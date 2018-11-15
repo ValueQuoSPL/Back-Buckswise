@@ -38,7 +38,7 @@ public class ExpenseEntermntandtravelResource {
     
     private String entName;
     private String entValue;
-    private int userid;
+    private Long userid;
     
     @PostMapping("/entermentandtravel")
     public String entermentandtravel(@RequestBody Map<String, Object> eAndt) throws JSONException {
@@ -55,7 +55,7 @@ public class ExpenseEntermntandtravelResource {
     				JSONObject jObj1 = jData.getJSONObject(i);
     				this.entName = jObj1.getString("name");
     				this.entValue = jObj1.getString("value");
-    				this.userid = jObj.getInt("userid");
+    				this.userid = jObj.getLong("userid");
         			System.out.println("userid is :-" + this.userid);
     				
         			entermntandtravelService.save(this.entName, this.entValue, this.userid);	
@@ -66,7 +66,7 @@ public class ExpenseEntermntandtravelResource {
     			JSONObject jObj = new JSONObject(eAndt);
     			this.entName = entry.getKey();
     			this.entValue = entry.getValue().toString();
-    			this.userid = jObj.getInt("userid");
+    			this.userid = jObj.getLong("userid");
     			System.out.println("userid is in else :-" + this.userid);
     			entermntandtravelService.save(this.entName, this.entValue, this.userid);
     		}
@@ -75,7 +75,7 @@ public class ExpenseEntermntandtravelResource {
     }
 
     @GetMapping("/get/{userid}")
-    public List<Entermntandtravel> getEnt(@PathVariable int userid) {
+    public List<Entermntandtravel> getEnt(@PathVariable Long userid) {
     	return entermntandtravelService.getDetail(userid);
     }
     
@@ -92,24 +92,24 @@ public class ExpenseEntermntandtravelResource {
     				JSONObject jObj1 = jData.getJSONObject(i);
     				this.entName = jObj1.getString("name");
     				this.entValue = jObj1.getString("value");
-    				this.userid = jObj.getInt("userid");
+    				this.userid = jObj.getLong("userid");
     				if(this.entName == "userid") {
 	    				return null;
 	    			}
 	    			else {
-	    				entermntandtravelService.update(this.entName, this.entValue, this.userid, userid);
+	    				entermntandtravelService.update(this.entName, this.entValue, this.userid);
 	    			}
     			}
     		} else {
     			JSONObject jObj = new JSONObject(updateTravel);
     			this.entName = entry.getKey();
     			this.entValue = entry.getValue().toString();
-    			this.userid = jObj.getInt("userid");
+    			this.userid = jObj.getLong("userid");
     			if(this.entName == "userid") {
     				return null;
     			}
     			else {
-    				entermntandtravelService.update(this.entName, this.entValue, this.userid, userid);
+    				entermntandtravelService.update(this.entName, this.entValue, this.userid);
     			}
     		}
     	}

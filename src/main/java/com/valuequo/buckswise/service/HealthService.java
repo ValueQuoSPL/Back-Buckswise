@@ -40,7 +40,6 @@ public class HealthService {
 	public Health update(int userid, String insureName, String issuer, String policyMode, String policyName,
 			String policyNumber, String premiumName, String premium, String premiumTerm, String date, String sum,
 			Long id, Long uid) {
-		if(userid == uid) {
 			List<Health> health = healthRepository.findById(id);
 			for(Health hInsurence: health) {
 				Long tableId = hInsurence.getId();
@@ -58,7 +57,6 @@ public class HealthService {
 					healthRepository.save(hInsurence);
 				}
 			}
-		}
 		return null;
 	}
 

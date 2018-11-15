@@ -20,7 +20,7 @@ public class Entermntandtravel {
     private Long id;
     
     @Column(name = "userid")
-    private int userid;
+    private Long userid;
     
     @Column(name = "name")
     private String name;
@@ -40,11 +40,11 @@ public class Entermntandtravel {
 		this.id = id;
 	}
 
-	public int getUserid() {
+	public Long getUserid() {
 		return userid;
 	}
 
-	public void setUserid(int userid) {
+	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
 
@@ -64,7 +64,7 @@ public class Entermntandtravel {
 		this.amount = amount;
 	}
 
-	public Entermntandtravel(String name, String amount, int userid) {
+	public Entermntandtravel(String name, String amount, Long userid) {
 		super();
 		this.userid = userid;
 		this.name = name;

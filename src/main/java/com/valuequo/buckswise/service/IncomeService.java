@@ -15,7 +15,7 @@ public class IncomeService {
 	@Autowired
 	private IncomeRepository incomeRepository;
 
-	public Income save(String uName, String uValue, int userid) {
+	public Income save(String uName, String uValue, Long userid) {
 		Income income = new Income(uName, uValue, userid);
 		income.setName(uName);
 		income.setAmount(uValue);
@@ -25,24 +25,24 @@ public class IncomeService {
 		return null;
 	}
 
-	public List<Income> getDetail(int userid) {
+	public List<Income> getDetail(Long userid) {
 		return incomeRepository.findByUserid(userid);
 	}
 	
-	public IncomeDTO update(String uName, String uValue, int userid, Long usersid) {
-		if(userid == usersid) {
+	public IncomeDTO update(String uName, String uValue, Long userid) {
 		IncomeDTO incomeDTO = new IncomeDTO(uName, uValue, userid);
 			incomeDTO.setName(uName);
 			incomeDTO.setValue(uValue);
 			incomeDTO.setUserid(userid);
 			
 			String name = incomeDTO.getName();	
-			List<Income> incomes = incomeRepository.findByName(name);
+			List<Income> incomes = incomeRepository.findByName(name, userid);
 			for(Income income: incomes) {
+				income.setName(incomeDTO.getName());
 				income.setAmount(incomeDTO.getValue());
 				incomeRepository.save(income);				
 			}
-	 }
+	 
 		return null;
 	}
 

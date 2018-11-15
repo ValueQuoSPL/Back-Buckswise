@@ -38,7 +38,7 @@ public class ExpensehouseholdResource {
     private HouseHoldService houseHoldService;
     private String hName;
     private String hValue;
-    private int userid;
+    private Long userid;
     
     @PostMapping("/household")
     public String household(@RequestBody Map<String, Object> household) throws JSONException {
@@ -57,7 +57,7 @@ public class ExpensehouseholdResource {
     				JSONObject jObj1 = jData.getJSONObject(i);
     				this.hName = jObj1.getString("name");
     				this.hValue = jObj1.getString("value");
-    				this.userid = jObj.getInt("userid");
+    				this.userid = jObj.getLong("userid");
         			System.out.println("userid is :-" + this.userid);
         			if(this.hName == "userid") {
         				return null;
@@ -72,7 +72,7 @@ public class ExpensehouseholdResource {
     			this.hName = entry.getKey();
     			this.hValue = entry.getValue().toString();
     			JSONObject jObj = new JSONObject(household);
-    			this.userid = jObj.getInt("userid");
+    			this.userid = jObj.getLong("userid");
     			System.out.println("userid is in else :-" + this.userid);
     			if(this.hName == "userid") {
     				return null;
@@ -87,7 +87,7 @@ public class ExpensehouseholdResource {
     
     @GetMapping("/get/{userid}")
     @Timed
-    public List<Household> getHousehold(@PathVariable int userid){
+    public List<Household> getHousehold(@PathVariable Long userid){
     	return houseHoldService.getDetail(userid);
     }
     
@@ -106,9 +106,9 @@ public class ExpensehouseholdResource {
     				JSONObject jObj1 = jData.getJSONObject(i);
     				this.hName = jObj1.getString("name");
     				this.hValue = jObj1.getString("value");
-    				this.userid = jObj.getInt("userid");
+    				this.userid = jObj.getLong("userid");
         			System.out.println("userid is :-" + this.userid);
-        			houseHoldService.update(this.hName, this.hValue, this.userid, userid);
+        			houseHoldService.update(this.hName, this.hValue, this.userid);
     			}
     			
     		} else {
@@ -116,13 +116,13 @@ public class ExpensehouseholdResource {
     			this.hName = entry.getKey();
     			this.hValue = entry.getValue().toString();
     			JSONObject jObj = new JSONObject(update);
-    			this.userid = jObj.getInt("userid");
+    			this.userid = jObj.getLong("userid");
     			System.out.println("userid is in else :-" + this.userid);
     			if(this.hName == "userid") {
     				return null;
     			}
     			else {
-    			houseHoldService.update(this.hName, this.hValue, this.userid, userid);
+    			houseHoldService.update(this.hName, this.hValue, this.userid);
     			}
     		}
     	}

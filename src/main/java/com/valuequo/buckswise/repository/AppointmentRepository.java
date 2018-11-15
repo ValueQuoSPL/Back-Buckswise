@@ -1,7 +1,6 @@
 package com.valuequo.buckswise.repository;
 
 import com.valuequo.buckswise.domain.Appointment;
-import com.valuequo.buckswise.domain.Chit;
 import com.valuequo.buckswise.service.dto.AppointmentDTO;
 
 import org.springframework.stereotype.Repository;
@@ -26,4 +25,3 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 	
 	List<Appointment> findById(Long id);
 }
-

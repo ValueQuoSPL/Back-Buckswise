@@ -15,7 +15,7 @@ public class EntermntandtravelService {
 	@Autowired
 	private Entermntandtravelrepository entermntandtravelrepository;
 	
-	public void save(String entName, String entValue, int userid) {
+	public void save(String entName, String entValue, Long userid) {
 		
 		Entermntandtravel ent = new Entermntandtravel(entName, entValue, userid);
 		ent.setUserid(userid);
@@ -26,12 +26,11 @@ public class EntermntandtravelService {
 		
 	}
 
-	public List<Entermntandtravel> getDetail(int userid) {
+	public List<Entermntandtravel> getDetail(Long userid) {
 		return entermntandtravelrepository.findByUserid(userid);
 	}
 
-	public EntandTravelDTO update(String entName, String entValue, int userid, Long userid2) {
-		if(userid == userid2) {
+	public EntandTravelDTO update(String entName, String entValue, Long userid) {
 			EntandTravelDTO etDTO = new EntandTravelDTO(userid, entName, entValue);
 			etDTO.setName(entName);
 			etDTO.setUserid(userid);
@@ -39,12 +38,11 @@ public class EntermntandtravelService {
 			
 			String name = etDTO.getName();
 			
-			List<Entermntandtravel> entTravel = entermntandtravelrepository.findByName(name);
+			List<Entermntandtravel> entTravel = entermntandtravelrepository.findByName(name, userid);
 			for(Entermntandtravel et: entTravel) {
 				et.setAmount(etDTO.getValue());
 				entermntandtravelrepository.save(et);
 			}
-		}
 		return null;
 	}
 

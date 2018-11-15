@@ -33,6 +33,9 @@ public class RiskLifeInsurance implements Serializable {
 
     @Column(name = "total")
     private String total;
+    
+    @Column(name = "name")
+    private String name;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -91,6 +94,15 @@ public class RiskLifeInsurance implements Serializable {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -106,7 +118,8 @@ public class RiskLifeInsurance implements Serializable {
         return Objects.equals(getId(), riskLifeInsurance.getId());
     }
 
-    @Override
+    
+	@Override
     public int hashCode() {
         return Objects.hashCode(getId());
     }
