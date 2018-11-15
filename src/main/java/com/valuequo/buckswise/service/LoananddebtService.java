@@ -43,7 +43,6 @@ public class LoananddebtService {
 
 	public Loananddebt update(String amount, String appname, String checkType, Long id, String itype, String ldate,
 			String lenderName, String ltype, String rdate, String roi, String tenure, int userid, Long uid) {
-		if(userid == uid) {
 			List<Loananddebt> byId = loananddebtRepository.findById(id);
 			for(Loananddebt loan: byId) {
 				Long tableId = loan.getId();
@@ -63,12 +62,15 @@ public class LoananddebtService {
 					loananddebtRepository.save(loan);
 				}
 			}
-		}
 		return null;
 	}
 
 	public void delete(Long id) {
 		loananddebtRepository.delete(id);
+	}
+
+	public List<Loananddebt> getDetailById(Long id) {
+		return loananddebtRepository.findById(id);
 	}
 
 	

@@ -22,7 +22,7 @@ public class Household {
     private Long id;
     
     @Column(name = "userid")
-    private int userid;
+    private Long userid;
     
     @Column(name = "name")
     private String name;
@@ -38,11 +38,11 @@ public class Household {
 		this.id = id;
 	}
 
-	public int getUserid() {
+	public Long getUserid() {
 		return userid;
 	}
 
-	public void setUserid(int userid) {
+	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
 
@@ -62,7 +62,7 @@ public class Household {
 		this.amount = amount;
 	}
 
-	public Household(String name, String amount,int userid) {
+	public Household(String name, String amount,Long userid) {
 		super();
 		this.userid = userid;
 		this.name = name;

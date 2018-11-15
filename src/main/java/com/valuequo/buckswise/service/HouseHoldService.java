@@ -15,7 +15,7 @@ public class HouseHoldService {
 	@Autowired
 	private HouseholdRepository householdRepository;
 	
-	public Household save(String hName, String hValue, int userid) {
+	public Household save(String hName, String hValue, Long userid) {
 		Household house = new Household(hName, hValue, userid);
 		house.setName(hName);
 		house.setAmount(hValue);
@@ -26,12 +26,11 @@ public class HouseHoldService {
 		
 	}
 
-	public List<Household> getDetail(int userid) {
+	public List<Household> getDetail(Long userid) {
 		return householdRepository.findByUserid(userid);
 	}
 
-	public HouseholdDTO update(String hName, String hValue, int userid, Long userid2) {
-		if(userid == userid2) {
+	public HouseholdDTO update(String hName, String hValue, Long userid) {
 			HouseholdDTO householdDTO = new HouseholdDTO(userid, hName, hValue);
 			householdDTO.setName(hName);
 			householdDTO.setValue(hValue);
@@ -39,12 +38,11 @@ public class HouseHoldService {
 			
 			String name = householdDTO.getName();
 			
-			List<Household> huosehold = householdRepository.findByName(name);
+			List<Household> huosehold = householdRepository.findByName(name, userid);
 			for(Household house: huosehold) {
 				house.setAmount(householdDTO.getValue());
 				householdRepository.save(house);
 			}
-		}
 		return null;
 	}
 

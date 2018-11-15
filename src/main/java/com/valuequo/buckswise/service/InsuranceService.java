@@ -39,7 +39,6 @@ public class InsuranceService {
 	}
 	public Insurance update(int userid, String name, String insuranceName, String issure, String pMode, String pName,
 			String prName, String premium, String prTerm, String sDate, String sum, String term, String policynumber, Long id, Long uid) {
-		if(userid == uid) {
 			List<Insurance> insurance = insuranceRepository.findById(id);
 			for(Insurance ins: insurance) {
 				Long tableId = ins.getId();
@@ -59,7 +58,6 @@ public class InsuranceService {
 					insuranceRepository.save(ins);
 				} 
 			}
-		} 
 		return null;
 	}
 	public void delete(Long id) {

@@ -2,13 +2,13 @@ package com.valuequo.buckswise.service.dto;
 
 public class HouseholdDTO {
 	
-	private int userid;
+	private Long userid;
 	private String name;
 	private String value;
-	public int getUserid() {
+	public Long getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
 	public String getName() {
@@ -23,7 +23,7 @@ public class HouseholdDTO {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	public HouseholdDTO(int userid, String name, String value) {
+	public HouseholdDTO(Long userid, String name, String value) {
 		super();
 		this.userid = userid;
 		this.name = name;

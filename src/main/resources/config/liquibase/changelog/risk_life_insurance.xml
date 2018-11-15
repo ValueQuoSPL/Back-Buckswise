@@ -36,6 +36,10 @@
             <column name="total" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
 
             </createTable>
         

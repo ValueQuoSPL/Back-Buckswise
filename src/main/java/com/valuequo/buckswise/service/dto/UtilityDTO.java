@@ -4,7 +4,7 @@ public class UtilityDTO {
 	
 	private String name;
 	private String value;
-	private int userid;
+	private Long userid;
 	public String getName() {
 		return name;
 	}
@@ -17,13 +17,13 @@ public class UtilityDTO {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	public int getUserid() {
+	public Long getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
-	public UtilityDTO(String name, String value, int userid) {
+	public UtilityDTO(String name, String value, Long userid) {
 		super();
 		this.name = name;
 		this.value = value;

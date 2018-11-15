@@ -41,7 +41,7 @@ public class ExpenseUtilityResource {
     
     private String eName;
     private String eValue;
-    private int userid;
+    private Long userid;
     
     @PostMapping("/utility")
     public String utility(@RequestBody Map<String, Object> utility) throws JSONException {
@@ -61,7 +61,7 @@ public class ExpenseUtilityResource {
     				JSONObject jObj1 = jData.getJSONObject(i);
     				this.eName = jObj1.getString("name");
     				this.eValue = jObj1.getString("value");
-    				this.userid = jObj.getInt("userid");
+    				this.userid = jObj.getLong("userid");
     				if(this.eName == "userid") {
         				return null;
         			}
@@ -74,7 +74,7 @@ public class ExpenseUtilityResource {
     			JSONObject jObj = new JSONObject(utility);
     			this.eName = entry.getKey();
     			this.eValue = entry.getValue().toString();
-    			this.userid = jObj.getInt("userid");
+    			this.userid = jObj.getLong("userid");
     			if(this.eName == "userid") {
     				return null;
     			}
@@ -87,7 +87,7 @@ public class ExpenseUtilityResource {
     }
     
     @GetMapping("/getutility/{userid}")
-    public List<Utility> getIncome(@PathVariable int userid) {
+    public List<Utility> getIncome(@PathVariable Long userid) {
  	   return utilityService.getDetail(userid);
     }
 
@@ -107,20 +107,20 @@ public class ExpenseUtilityResource {
     				JSONObject jObj1 = jData.getJSONObject(i);
     				this.eName = jObj1.getString("name");
     				this.eValue = jObj1.getString("value");
-    				this.userid = jObj.getInt("userid");
-	    			utilityService.update(this.eName, this.eValue, this.userid, userid);		
+    				this.userid = jObj.getLong("userid");
+	    			utilityService.update(this.eName, this.eValue, this.userid);		
 	    		}
     			
     		}else {
     			JSONObject jObj = new JSONObject(update);
     			this.eName = entry.getKey();
     			this.eValue = entry.getValue().toString();
-    			this.userid = jObj.getInt("userid");
+    			this.userid = jObj.getLong("userid");
     			if(this.eName == "userid") {
     				return null;
     			}
     			else {
-    				utilityService.update(this.eName, this.eValue, this.userid, userid);
+    				utilityService.update(this.eName, this.eValue, this.userid);
     			}
     			
     		}

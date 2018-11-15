@@ -37,7 +37,6 @@ public class GeneralInsuranceService {
 	}
 	public GeneralInsurance update(int userid, String insureName, String policyName, String issuer, String policyDate,
 			String policyNumber, String premiumName, String premium, String premiumTerm, String sum, String proposer, Long id, Long uid) {
-		if(userid == uid) {
 			List<GeneralInsurance> general = generalInsuraanceRepository.findById(id);
 			for(GeneralInsurance g: general) {
 				Long tableId = g.getId();
@@ -55,7 +54,6 @@ public class GeneralInsuranceService {
 				   generalInsuraanceRepository.save(g);
 				}
 			}		
-		}
 		return null;
 	}
 	public void delete(Long id) {

@@ -2,17 +2,17 @@ package com.valuequo.buckswise.service.dto;
 
 public class IncomeDTO {
 		
-		private int userid;  
+		private Long userid;  
 		private String name;
 		private String value;
 		
 		
-		public int getUserid() {
+		public Long getUserid() {
 			return userid;
 		}
 
 
-		public void setUserid(int userid) {
+		public void setUserid(Long userid) {
 			this.userid = userid;
 		}
 
@@ -32,7 +32,7 @@ public class IncomeDTO {
 			this.value = value;
 		}
 
-		public IncomeDTO(String Name, String Value, int userid) {
+		public IncomeDTO(String Name, String Value, Long userid) {
 			super();
 			this.userid = userid;
 			this.name = name;

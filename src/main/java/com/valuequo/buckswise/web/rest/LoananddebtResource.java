@@ -97,6 +97,13 @@ public class LoananddebtResource {
     	return loananddebtService.getDetail(userid);
     }
     
+    @GetMapping("/getlaondebtId/{id}")
+    @Timed
+    public List<Loananddebt> getloadebt(@PathVariable Long id){
+    	return loananddebtService.getDetailById(id);
+    }
+    
+    
     @PutMapping("/putloandebt/{uid}")
     @Timed
     public String putloandebt(@PathVariable Long uid, @RequestBody Map<String, Object> update) throws JSONException {

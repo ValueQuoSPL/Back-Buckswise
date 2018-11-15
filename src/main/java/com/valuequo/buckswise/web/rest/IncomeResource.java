@@ -41,7 +41,7 @@ public class IncomeResource {
     
     private String uName;
     private String uValue;
-    private int userid;
+    private Long userid;
 
 	@PostMapping("/income")
     public String income(@RequestBody Map<String, Object> stuffs) throws JSONException {    	
@@ -61,7 +61,7 @@ public class IncomeResource {
     	    		JSONObject jObj1 = ja_data.getJSONObject(i);
     	    		this.uName = jObj1.get("name").toString();
     	    		this.uValue = jObj1.get("value").toString();
-					this.userid = jObj.getInt("userid");
+					this.userid = jObj.getLong("userid");
 					System.out.println(this.userid);
 					if(this.uName == "userid") {
 	    				return null;
@@ -76,7 +76,7 @@ public class IncomeResource {
     			JSONObject jObj = new JSONObject(stuffs);
     			this.uName = entry.getKey();
     			this.uValue = entry.getValue().toString();
-    			this.userid = jObj.getInt("userid");
+    			this.userid = jObj.getLong("userid");
     			if(this.uName == "userid") {
     				return null;
     			}
@@ -89,7 +89,7 @@ public class IncomeResource {
    }
 
    @GetMapping("/getincome/{userid}")
-   public List<Income> getIncome(@PathVariable int userid) {
+   public List<Income> getIncome(@PathVariable Long userid) {
 	   return incomeService.getDetail(userid);
    }
    
@@ -113,8 +113,8 @@ public class IncomeResource {
    	    		JSONObject jObj1 = jadata.getJSONObject(i);
    	    		this.uName = jObj1.get("name").toString();
    	    		this.uValue = jObj1.get("value").toString();
-   	    		this.userid = jObj.getInt("userid");
-   	    		incomeService.update(this.uName, this.uValue, this.userid, userid);
+   	    		this.userid = jObj.getLong("userid");
+   	    		incomeService.update(this.uName, this.uValue, this.userid);
    	    		
    	    	} 
 		   }else {
@@ -122,12 +122,12 @@ public class IncomeResource {
 			JSONObject jObj = new JSONObject(stuff);
    			this.uName = entry.getKey();
    			this.uValue = entry.getValue().toString();
-   			this.userid = jObj.getInt("userid");
+   			this.userid = jObj.getLong("userid");
    			if(this.uName == "userid") {
 				return null;
 			}
 			else {
-				incomeService.update(this.uName, this.uValue, this.userid, userid);
+				incomeService.update(this.uName, this.uValue, this.userid);
 			}
 		}
    			

@@ -18,6 +18,8 @@ public class RiskLifeInsuranceDTO implements Serializable {
     private String risk_coverage;
 
     private String total;
+    
+    private String name;
 
     public Long getId() {
         return id;
@@ -58,8 +60,16 @@ public class RiskLifeInsuranceDTO implements Serializable {
     public void setTotal(String total) {
         this.total = total;
     }
+    
+    public String getName() {
+		return name;
+	}
 
-    @Override
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
