@@ -7,6 +7,8 @@ import com.valuequo.buckswise.service.FamilyprofileService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
 import com.valuequo.buckswise.service.dto.FamilyprofileDTO;
+import com.valuequo.buckswise.service.dto.StockDTO;
+
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,6 +111,13 @@ public class FamilyprofileResource {
 		return familyprofileService.getFamilyProfileById(uid);
     	
     }
+    @GetMapping("/familypro/{id}")
+    @Timed
+  public ResponseEntity<FamilyprofileDTO> getFamilyprofile(@PathVariable Long id) {
+      log.debug("REST request to get Familyprofile : {}", id);
+      FamilyprofileDTO familyprofileDTO = familyprofileService.findOne(id);
+      return ResponseUtil.wrapOrNotFound(Optional.ofNullable(familyprofileDTO));
+  }
 //    @GetMapping("/myprofile/{uid}")
 //    @Timed
 //    public List<MyProfile> getMyProfileById(@PathVariable int uid)

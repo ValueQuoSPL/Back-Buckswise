@@ -18,4 +18,5 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface FamilyprofileRepository extends JpaRepository<Familyprofile, Long> {
 List<Familyprofile> findByUid(Long uid);
+List<Familyprofile> findById(Long id);
 }

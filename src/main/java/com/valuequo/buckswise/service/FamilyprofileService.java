@@ -47,9 +47,9 @@ public class FamilyprofileService {
     	
     }
     public FamilyprofileDTO update(FamilyprofileDTO familyprofileDTO) {
-    	Long uid = familyprofileDTO.getUid();
-    	System.out.println("value: " + uid);
-    	List<Familyprofile> pf = familyprofileRepository.findByUid(uid);
+    	Long id = familyprofileDTO.getId();
+    	System.out.println("value: " + id);
+    	List<Familyprofile> pf = familyprofileRepository.findById(id);
     	for(Familyprofile familyprofile: pf) {
     		familyprofile.setRelationship(familyprofileDTO.getRelationship());
     		familyprofile.setFirstname(familyprofileDTO.getFirstname());
@@ -90,7 +90,12 @@ public class FamilyprofileService {
         Familyprofile familyprofile = familyprofileRepository.findOne(uid);
         return familyprofileMapper.toDto(familyprofile);
     }
-
+    @Transactional(readOnly = true)
+    public FamilyprofileDTO findOneById(Long id) {
+        log.debug("Request to get Familyprofile : {}", id);
+        Familyprofile familyprofile = familyprofileRepository.findOne(id);
+        return familyprofileMapper.toDto(familyprofile);
+    }
     /**
      * Delete the familyprofile by id.
      *
