@@ -184,40 +184,5 @@ public class AppointmentResource {
         appointmentService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-//	private static Event newEvent() {
-//		 Event event = new Event();
-//	        event.setSummary("Meeting With ValueQuo Financial Advisor");
-//	        DateTime startDateTime = new DateTime(dateTime);
-//	        EventDateTime start = new EventDateTime()
-//	            .setDateTime(startDateTime)
-//	            .setTimeZone("Asia/Calcutta");
-//	        event.setStart(start);
-//
-//	        DateTime endDateTime = new DateTime(dateTime);
-//	        EventDateTime end = new EventDateTime()
-//	            .setDateTime(endDateTime)
-//	            .setTimeZone("Asia/Calcutta");
-//	        event.setEnd(end);
-//	        EventAttendee[] eventAttendee = new EventAttendee[] {
-//	        		new EventAttendee().setEmail(userEmail)
-//	        };
-//	        event.setAttendees(Arrays.asList(eventAttendee));
-//	        EventReminder[] reminderOverrides = new EventReminder[] {
-//	        	    new EventReminder().setMethod("email").setMinutes(01),
-//	        	    new EventReminder().setMethod("popup").setMinutes(10),
-//	        };
-//	        Event.Reminders reminders = new Event.Reminders()
-//	        	    .setUseDefault(false)
-//	        	    .setOverrides(Arrays.asList(reminderOverrides));
-//	        event.setReminders(reminders);
-//	        return event;
-//	}
-//
-//	private static void addEvent() throws IOException {
-//		Event event = newEvent();
-//		String calendarId = "primary";
-////		Event result = service.events().insert(calendarId, event).setSendNotifications(true).execute();
-//	}
     
 }

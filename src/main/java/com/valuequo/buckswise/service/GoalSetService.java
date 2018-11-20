@@ -13,6 +13,9 @@ import com.valuequo.buckswise.domain.Income;
 import com.valuequo.buckswise.domain.SavingScheme;
 import com.valuequo.buckswise.repository.GoalSetRepository;
 import com.valuequo.buckswise.service.mapper.GoalSetMapper;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 import com.valuequo.buckswise.service.dto.GoalSetDTO;
 import com.valuequo.buckswise.service.dto.SavingDTO;
 
@@ -98,7 +101,16 @@ public class GoalSetService {
 	    }
 	    public List<GoalSet> getGoalById(Long uid)
 	    {
-	    	return goalSetRepository.findByUid(uid);
+	    	String presentCost;
+	    	String yearGoal;
+	    	
+	    	List<GoalSet> result = goalSetRepository.findByUid(uid);
+	    	for(GoalSet res: result) {
+	    		presentCost = res.getPresentcost();
+	    		yearGoal = res.getYeartogoal();
+	    		res.setFuturecost(calculateFutureCost(presentCost, yearGoal));
+	    	}
+	    	 return result;
 	    }
 	    public List<GoalSet> getGoalId(Long id)
 	    {
@@ -117,6 +129,16 @@ public class GoalSetService {
 				res.setGoalNotes(goalnote);
 				goalSetRepository.save(res);
 			}
+		}
+		
+		// calculate the future cost
+		public String calculateFutureCost(String presentCost, String yearGoal) {
+			double inflation = 0.07;
+			double yearToGoal = Double.parseDouble(yearGoal);
+			double presentToCost = Double.parseDouble(presentCost);
+			double futureCost =  Math.round(presentToCost * Math.pow(1 + inflation, yearToGoal));
+			String futureCt = Double.toString(futureCost);
+			return futureCt;
 		}
 
 }
