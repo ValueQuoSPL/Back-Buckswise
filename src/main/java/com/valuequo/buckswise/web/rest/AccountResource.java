@@ -7,6 +7,7 @@ import com.valuequo.buckswise.repository.UserRepository;
 import com.valuequo.buckswise.security.SecurityUtils;
 import com.valuequo.buckswise.service.MailService;
 import com.valuequo.buckswise.service.UserService;
+import com.valuequo.buckswise.service.dto.PasswordChangeDTO;
 import com.valuequo.buckswise.service.dto.UserDTO;
 import com.valuequo.buckswise.web.rest.errors.*;
 import com.valuequo.buckswise.web.rest.vm.KeyAndPasswordVM;
@@ -157,11 +158,12 @@ public class AccountResource {
      */
     @PostMapping(path = "/account/change-password")
     @Timed
-    public void changePassword(@RequestBody String password) {
-        if (!checkPasswordLength(password)) {
+    public void changePassword(@RequestBody PasswordChangeDTO password) {
+    	System.out.println(password);
+    	if (!checkPasswordLength(password.getNewPassword())) {
             throw new InvalidPasswordException();
         }
-        userService.changePassword(password);
+        userService.changePassword(password.getCurrentPassword(), password.getNewPassword());
    }
 
     /**

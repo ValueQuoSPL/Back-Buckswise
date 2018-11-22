@@ -9,6 +9,7 @@ import com.valuequo.buckswise.repository.UserRepository;
 import com.valuequo.buckswise.security.AuthoritiesConstants;
 import com.valuequo.buckswise.security.SecurityUtils;
 import com.valuequo.buckswise.service.util.RandomUtil;
+import com.valuequo.buckswise.web.rest.errors.InvalidPasswordException;
 import com.valuequo.buckswise.service.dto.UserDTO;
 
 import org.slf4j.Logger;
@@ -216,11 +217,15 @@ public class UserService {
         });
     }
 
-    public void changePassword(String password) {
+    public void changePassword(String currentClearTextPassword, String newPassword) {
         SecurityUtils.getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
             .ifPresent(user -> {
-                String encryptedPassword = passwordEncoder.encode(password);
+            	String currentEncryptedPassword = user.getPassword();
+            	if (!passwordEncoder.matches(currentClearTextPassword, currentEncryptedPassword)) {
+                    throw new InvalidPasswordException();
+                }
+            	String encryptedPassword = passwordEncoder.encode(newPassword);
                 user.setPassword(encryptedPassword);
                 cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE).evict(user.getLogin());
                 cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE).evict(user.getEmail());
