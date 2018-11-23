@@ -8,6 +8,7 @@ import com.valuequo.buckswise.repository.AuthorityRepository;
 import com.valuequo.buckswise.repository.UserRepository;
 import com.valuequo.buckswise.security.AuthoritiesConstants;
 import com.valuequo.buckswise.service.MailService;
+import com.valuequo.buckswise.service.dto.PasswordChangeDTO;
 import com.valuequo.buckswise.service.dto.UserDTO;
 import com.valuequo.buckswise.web.rest.errors.ExceptionTranslator;
 import com.valuequo.buckswise.web.rest.vm.KeyAndPasswordVM;
@@ -599,30 +600,34 @@ public class AccountResourceIntTest {
     @WithMockUser("change-password")
     public void testChangePassword() throws Exception {
         User user = new User();
-        user.setPassword(RandomStringUtils.random(60));
+        String currentPassword = RandomStringUtils.random(60);
+        user.setPassword(passwordEncoder.encode(currentPassword));
         user.setLogin("change-password");
         user.setEmail("change-password@example.com");
         userRepository.saveAndFlush(user);
 
-        restMvc.perform(post("/api/account/change-password").content("new password"))
-            .andExpect(status().isOk());
+        restMvc.perform(post("/api/account/change-password").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(new PasswordChangeDTO(currentPassword, "new password"))))
+                .andExpect(status().isOk());
 
         User updatedUser = userRepository.findOneByLogin("change-password").orElse(null);
         assertThat(passwordEncoder.matches("new password", updatedUser.getPassword())).isTrue();
     }
-
+    
     @Test
     @Transactional
     @WithMockUser("change-password-too-small")
     public void testChangePasswordTooSmall() throws Exception {
         User user = new User();
-        user.setPassword(RandomStringUtils.random(60));
+        String currentPassword = RandomStringUtils.random(60);
+        user.setPassword(passwordEncoder.encode(currentPassword));
         user.setLogin("change-password-too-small");
         user.setEmail("change-password-too-small@example.com");
         userRepository.saveAndFlush(user);
 
-        restMvc.perform(post("/api/account/change-password").content("new"))
-            .andExpect(status().isBadRequest());
+        restMvc.perform(post("/api/account/change-password").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(new PasswordChangeDTO(currentPassword, "new"))))
+                .andExpect(status().isBadRequest());
 
         User updatedUser = userRepository.findOneByLogin("change-password-too-small").orElse(null);
         assertThat(updatedUser.getPassword()).isEqualTo(user.getPassword());
@@ -633,17 +638,20 @@ public class AccountResourceIntTest {
     @WithMockUser("change-password-too-long")
     public void testChangePasswordTooLong() throws Exception {
         User user = new User();
-        user.setPassword(RandomStringUtils.random(60));
+        String currentPassword = RandomStringUtils.random(60);
+        user.setPassword(passwordEncoder.encode(currentPassword));
         user.setLogin("change-password-too-long");
         user.setEmail("change-password-too-long@example.com");
         userRepository.saveAndFlush(user);
 
-        restMvc.perform(post("/api/account/change-password").content(RandomStringUtils.random(101)))
-            .andExpect(status().isBadRequest());
+        restMvc.perform(post("/api/account/change-password").contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(new PasswordChangeDTO(currentPassword, RandomStringUtils.random(101)))))
+                .andExpect(status().isBadRequest());
 
         User updatedUser = userRepository.findOneByLogin("change-password-too-long").orElse(null);
         assertThat(updatedUser.getPassword()).isEqualTo(user.getPassword());
     }
+    
 
     @Test
     @Transactional
