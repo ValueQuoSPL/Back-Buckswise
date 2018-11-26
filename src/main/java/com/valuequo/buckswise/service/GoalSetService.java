@@ -1,5 +1,7 @@
 package com.valuequo.buckswise.service;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -134,11 +136,12 @@ public class GoalSetService {
 		// calculate the future cost
 		public String calculateFutureCost(String presentCost, String yearGoal) {
 			double inflation = 0.07;
-			double yearToGoal = Double.parseDouble(yearGoal);
-			double presentToCost = Double.parseDouble(presentCost);
-			double futureCost =  Math.round(presentToCost * Math.pow(1 + inflation, yearToGoal));
+			int yearToGoal = (int)Double.parseDouble(yearGoal);
+			int presentToCost = (int)Double.parseDouble(presentCost);
+			int futureCost = (int) Math.round(presentToCost * Math.pow((1 + inflation), yearToGoal));
 			String futureCt = Double.toString(futureCost);
-			return futureCt;
+			BigDecimal d = new BigDecimal(futureCt);
+			String finalFutureCost = d.toPlainString();
+			return finalFutureCost;
 		}
-
 }
