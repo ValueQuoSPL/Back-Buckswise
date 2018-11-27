@@ -1,6 +1,5 @@
 package com.valuequo.buckswise.service;
 
-import com.valuequo.buckswise.domain.Contactus;
 import com.valuequo.buckswise.domain.User;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -30,8 +29,6 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
-    
-    private static final String CONTACT = "contact";
 
     private static final String BASE_URL = "baseUrl";
 
@@ -88,18 +85,6 @@ public class MailService {
         sendEmail(user.getEmail(), subject, content, "",false, true);
 
     }
-    @Async
-    public void sendEmailContactus(Contactus contactus, String templateName, String titleKey) {
-//        Locale locale = Locale.forLanguageTag(user.getLangKey());
-    	Context context = new Context();
-        context.setVariable(CONTACT, contactus);
-        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
-        String content = templateEngine.process(templateName, context);
-        String subject = messageSource.getMessage(titleKey, null,null);
-        sendEmail(contactus.getEmail(), subject, content, "",false, true);
-        
-
-    }
 
     @Async
     public void sendActivationEmail(User user) {
@@ -117,10 +102,5 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "passwordResetEmail", "email.reset.title");
-    }
-    @Async
-    public void sendEmailContact(Contactus contactus) {
-        log.debug("Sending activation email to '{}'", contactus.getEmail());
-        sendEmailContactus(contactus, "contactusEmail", "email.activation.title");
     }
 }
