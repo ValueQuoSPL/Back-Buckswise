@@ -50,7 +50,7 @@ public class MailService {
     }
 
     @Async
-    public void sendEmail(String to, String subject, String content, String cc,boolean isMultipart, boolean isHtml) {
+    public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
             isMultipart, isHtml, to, subject, content);
 
@@ -59,7 +59,6 @@ public class MailService {
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
             message.setTo(to);
-            message.setCc(cc);
             message.setFrom(jHipsterProperties.getMail().getFrom());
             message.setSubject(subject);
             message.setText(content, isHtml);
@@ -82,7 +81,7 @@ public class MailService {
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
-        sendEmail(user.getEmail(), subject, content, "",false, true);
+        sendEmail(user.getEmail(), subject, content, false, true);
 
     }
 

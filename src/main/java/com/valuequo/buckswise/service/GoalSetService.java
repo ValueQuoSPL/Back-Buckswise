@@ -140,9 +140,5 @@ public class GoalSetService {
 			String futureCt = Double.toString(futureCost);
 			return futureCt;
 		}
-		public void delete(Long id) {
-//	        log.debug("Request to delete Stock : {}", id);
-			goalSetRepository.delete(id);
-	    }
 
 }
