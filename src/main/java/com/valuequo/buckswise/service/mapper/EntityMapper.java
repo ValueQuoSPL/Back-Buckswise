@@ -2,6 +2,8 @@ package com.valuequo.buckswise.service.mapper;
 
 import java.util.List;
 
+import com.valuequo.buckswise.domain.Contactus;
+
 /**
  * Contract for a generic dto to entity mapper.
  *
@@ -13,7 +15,7 @@ public interface EntityMapper <D, E> {
 
     E toEntity(D dto);
 
-    D toDto(E entity);
+    Contactus toDto(E entity);
 
     List <E> toEntity(List<D> dtoList);
 
