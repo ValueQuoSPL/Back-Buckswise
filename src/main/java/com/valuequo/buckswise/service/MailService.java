@@ -1,8 +1,5 @@
 package com.valuequo.buckswise.service;
 
-import com.valuequo.buckswise.config.ApplicationProperties;
-import com.valuequo.buckswise.config.ApplicationProperties.Cc;
-import com.valuequo.buckswise.domain.Contactus;
 import com.valuequo.buckswise.domain.User;
 import com.valuequo.buckswise.service.dto.ContactusDTO;
 
@@ -35,8 +32,6 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
-    
-    private static final String CONTACT = "contact";
 
     private static final String BASE_URL = "baseUrl";
 
@@ -59,7 +54,7 @@ public class MailService {
     }
 
     @Async
-    public void sendEmail(String to, String subject, String content, String cc,boolean isMultipart, boolean isHtml) {
+    public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
             isMultipart, isHtml, to, subject, content);
         // Prepare message using a Spring helper

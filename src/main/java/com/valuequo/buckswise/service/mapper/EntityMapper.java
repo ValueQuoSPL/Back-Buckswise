@@ -2,10 +2,6 @@ package com.valuequo.buckswise.service.mapper;
 
 import java.util.List;
 
-import com.valuequo.buckswise.domain.Contactus;
-import com.valuequo.buckswise.service.dto.AppointmentDTO;
-import com.valuequo.buckswise.service.dto.AssetmappingDTO;
-
 /**
  * Contract for a generic dto to entity mapper.
  *
