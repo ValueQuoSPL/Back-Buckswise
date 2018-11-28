@@ -15,34 +15,23 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity RiskMedicalInsurance.
+        Added the entity Assetmapping.
     -->
-    <changeSet id="20" author="jhipster">
-        <createTable tableName="risk_medical_insurance">
+    <changeSet id="33" author="jhipster">
+        <createTable tableName="medinsratecard">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="family_members" type="varchar(255)">
+            <column name="hospitaltype" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="hosp_type" type="varchar(255)">
+            <column name="roomtype" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="room_type" type="varchar(255)">
+            <column name="price" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="userid" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="price" type="bigint(225)">
-                <constraints nullable="true" />
-            </column>
-
-            </createTable>
+      </createTable>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

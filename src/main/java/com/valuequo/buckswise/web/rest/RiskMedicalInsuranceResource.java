@@ -116,6 +116,8 @@ public class RiskMedicalInsuranceResource {
     public List<RiskMedicalInsurance> getData(@PathVariable Long userid) {
     	return riskMedicalInsuranceService.getdata(userid);
     }
+    
+    
     /**
      * DELETE  /risk-medical-insurances/:id : delete the "id" riskMedicalInsurance.
      *

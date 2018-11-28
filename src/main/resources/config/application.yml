@@ -103,4 +103,6 @@ jhipster:
 # ===================================================================
 
 application:   
+     cc:
+        mail: contact@valuequo.com     
 

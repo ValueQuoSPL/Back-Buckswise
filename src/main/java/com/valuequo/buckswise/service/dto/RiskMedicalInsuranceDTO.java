@@ -18,6 +18,8 @@ public class RiskMedicalInsuranceDTO implements Serializable {
     private String room_type;
 
     private Long userid;
+    
+    private Long price;
 
     public Long getId() {
         return id;
@@ -59,7 +61,15 @@ public class RiskMedicalInsuranceDTO implements Serializable {
         this.userid = userid;
     }
 
-    @Override
+    public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
