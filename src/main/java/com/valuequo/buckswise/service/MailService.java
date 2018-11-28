@@ -1,17 +1,22 @@
 package com.valuequo.buckswise.service;
 
+import com.valuequo.buckswise.config.ApplicationProperties;
+import com.valuequo.buckswise.config.ApplicationProperties.Cc;
 import com.valuequo.buckswise.domain.Contactus;
 import com.valuequo.buckswise.domain.User;
+import com.valuequo.buckswise.service.dto.ContactusDTO;
 
 import io.github.jhipster.config.JHipsterProperties;
 
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -42,7 +47,7 @@ public class MailService {
     private final MessageSource messageSource;
 
     private final SpringTemplateEngine templateEngine;
-
+    
     public MailService(JHipsterProperties jHipsterProperties, JavaMailSender javaMailSender,
             MessageSource messageSource, SpringTemplateEngine templateEngine) {
 
@@ -50,19 +55,19 @@ public class MailService {
         this.javaMailSender = javaMailSender;
         this.messageSource = messageSource;
         this.templateEngine = templateEngine;
+       
     }
 
     @Async
     public void sendEmail(String to, String subject, String content, String cc,boolean isMultipart, boolean isHtml) {
         log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
             isMultipart, isHtml, to, subject, content);
-
         // Prepare message using a Spring helper
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
             message.setTo(to);
-            message.setCc(cc);
+           message.setCc(cc);
             message.setFrom(jHipsterProperties.getMail().getFrom());
             message.setSubject(subject);
             message.setText(content, isHtml);
@@ -89,16 +94,22 @@ public class MailService {
 
     }
     @Async
-    public void sendEmailContactus(Contactus contactus, String templateName, String titleKey) {
-//        Locale locale = Locale.forLanguageTag(user.getLangKey());
-    	Context context = new Context();
-        context.setVariable(CONTACT, contactus);
-        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
-        String content = templateEngine.process(templateName, context);
-        String subject = messageSource.getMessage(titleKey, null,null);
-        sendEmail(contactus.getEmail(), subject, content, "",false, true);
-        
-
+    public void sendEmailContactus(ContactusDTO contact, String templateName, String titleKey) {
+//    	String eMailCc = this.cc.getMail();
+    	try {
+            Locale locale = Locale.forLanguageTag("English");
+        	Context context = new Context(locale);
+            context.setVariable(CONTACT, contact);
+            context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+            String content = templateEngine.process(templateName, context);
+            String subject = messageSource.getMessage(titleKey, null,locale);
+            String email = contact.getEmail();
+            sendEmail(email, subject, content, "admin@valuequo.com",false, true);
+    		
+    	}
+    	catch(Exception e) {
+    		log.debug(e.getMessage());
+    	}
     }
 
     @Async
@@ -119,8 +130,8 @@ public class MailService {
         sendEmailFromTemplate(user, "passwordResetEmail", "email.reset.title");
     }
     @Async
-    public void sendEmailContact(Contactus contactus) {
-        log.debug("Sending activation email to '{}'", contactus.getEmail());
-        sendEmailContactus(contactus, "contactusEmail", "email.activation.title");
+    public void sendEmailContact(ContactusDTO contact) {
+        log.debug("Sending contact email to '{}'", contact.getEmail());
+        sendEmailContactus(contact, "contactusEmail", "email.contact.title1");
     }
 }

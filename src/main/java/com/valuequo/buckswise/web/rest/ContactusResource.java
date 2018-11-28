@@ -46,19 +46,19 @@ public class ContactusResource {
      */
     @PostMapping("/contactuses")
     @Timed
-    public ResponseEntity<ContactusDTO> createContactus(@RequestBody ContactusDTO contactusDTO) throws URISyntaxException {
+    public void createContactus(@RequestBody ContactusDTO contactusDTO) throws URISyntaxException {
         log.debug("REST request to save Contactus : {}", contactusDTO);
         if (contactusDTO.getId() != null) {
             throw new BadRequestAlertException("A new contactus cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ContactusDTO result = contactusService.save(contactusDTO);
-       String to = result.getEmail();       
-       mailService.sendEmail(to, "admin@localhost", "Thank you for your Intrest we will shortly contact you", "admin@valuequo.com",false, false);
-       
+//       String to = result.getEmail();       
+//       mailService.sendEmail(to, "admin@localhost", "Thank you for your Intrest we will shortly contact you", "admin@valuequo.com",false, false);
+       mailService.sendEmailContact(result);
         log.debug("REST request to save Contactus : {}", result);
-        return ResponseEntity.created(new URI("/api/contactuses/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+//        return ResponseEntity.created(new URI("/api/contactuses/" + result.getId()))
+//            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+//            .body(result);
     }
 
     /**
@@ -75,7 +75,7 @@ public class ContactusResource {
     public ResponseEntity<ContactusDTO> updateContactus(@RequestBody ContactusDTO contactusDTO) throws URISyntaxException {
         log.debug("REST request to update Contactus : {}", contactusDTO);
         if (contactusDTO.getId() == null) {
-            return createContactus(contactusDTO);
+//            return createContactus(contactusDTO);
         }
         ContactusDTO result = contactusService.save(contactusDTO);
         

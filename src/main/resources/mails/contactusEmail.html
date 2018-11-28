@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title th:text="#{email.activation.title}"></title>
+        <title th:text="#{email.contact.title1}"></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
     </head>
     <body>
-        <p th:text="#{email.activation.greeting(${user.login})}">
-            Dear
+        <p th:text="#{email.contact.title(${contact.name})}">
         </p>
-        <p th:text="#{email.activation.greeting(${user.login})}">
-            Thanks for your message query
-        </p>
-        <p th:text="#{email.activation.text1}">
-           We will revert to you at an earliest possible.
+        <p th:text="#{email.contact.text1}">
         </p>
         <p>
-            <a th:href="@{|${baseUrl}/#/activate?key=${user.activationKey}|}"
-               th:text="@{|${baseUrl}/#/activate?key=${user.activationKey}|}">Activation Link</a>
+         <em th:text="${contact.msg}"></em>
         </p>
+        <p th:text="#{email.contact.text3}">
+        </p>
+
         <p>
-            <span th:text="#{email.activation.text2}">Regards, </span>
+            <span th:text="#{email.contact.text2}"></span>
             <br/>
-            <em th:text="#{email.signature}">JHipster.</em>
+            <em th:text="#{email.signature1}"></em><br/>
+            <em th:text="#{email.signature2}"></em><br/>
+            <em th:text="#{email.signature3}"></em><br/>
+            <em th:text="#{email.signature4}"></em><br/>
+            <em th:text="#{email.signature5}"></em><br/>
+            <em th:text="#{email.signature6}"></em><br/>
+            <em th:text="#{email.signature7}"></em>
         </p>
     </body>
 </html>
