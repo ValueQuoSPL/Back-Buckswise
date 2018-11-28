@@ -31,9 +31,12 @@ public class RiskMedicalInsurance implements Serializable {
     @Column(name = "room_type")
     private String room_type;
 
+    @Column(name = "price")
+    private Long price;
+    
     @Column(name = "userid")
     private Long userid;
-
+    
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -94,9 +97,19 @@ public class RiskMedicalInsurance implements Serializable {
     public void setUserid(Long userid) {
         this.userid = userid;
     }
+    
+    
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
-    @Override
+    public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

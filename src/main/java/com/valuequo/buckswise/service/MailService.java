@@ -82,7 +82,7 @@ public class MailService {
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
-        sendEmail(user.getEmail(), subject, content, "",false, true);
+        sendEmail(user.getEmail(), subject, content, "sandeep.pote@example.com",false, true);
 
     }
 

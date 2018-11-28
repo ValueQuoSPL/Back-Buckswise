@@ -1,6 +1,9 @@
 package com.valuequo.buckswise.service;
 
+import com.valuequo.buckswise.config.ApplicationProperties;
+import com.valuequo.buckswise.domain.MedInsRateCard;
 import com.valuequo.buckswise.domain.RiskMedicalInsurance;
+import com.valuequo.buckswise.repository.MedInsRateCardRepository;
 import com.valuequo.buckswise.repository.RiskMedicalInsuranceRepository;
 import com.valuequo.buckswise.service.dto.RiskMedicalInsuranceDTO;
 import com.valuequo.buckswise.service.mapper.RiskMedicalInsuranceMapper;
@@ -27,10 +30,13 @@ public class RiskMedicalInsuranceService {
     private final RiskMedicalInsuranceRepository riskMedicalInsuranceRepository;
 
     private final RiskMedicalInsuranceMapper riskMedicalInsuranceMapper;
+    
+    private final MedInsRateCardRepository medInsRateCardRepository;
 
-    public RiskMedicalInsuranceService(RiskMedicalInsuranceRepository riskMedicalInsuranceRepository, RiskMedicalInsuranceMapper riskMedicalInsuranceMapper) {
+    public RiskMedicalInsuranceService(RiskMedicalInsuranceRepository riskMedicalInsuranceRepository, RiskMedicalInsuranceMapper riskMedicalInsuranceMapper, MedInsRateCardRepository medInsRateCardRepository) {
         this.riskMedicalInsuranceRepository = riskMedicalInsuranceRepository;
         this.riskMedicalInsuranceMapper = riskMedicalInsuranceMapper;
+        this.medInsRateCardRepository = medInsRateCardRepository;
     }
 
     /**
@@ -43,6 +49,9 @@ public class RiskMedicalInsuranceService {
         log.debug("Request to save RiskMedicalInsurance : {}", riskMedicalInsuranceDTO);
         RiskMedicalInsurance riskMedicalInsurance = riskMedicalInsuranceMapper.toEntity(riskMedicalInsuranceDTO);
         riskMedicalInsurance = riskMedicalInsuranceRepository.save(riskMedicalInsurance);
+        String hospitalType = riskMedicalInsurance.getHosp_type();
+        String roomType = riskMedicalInsurance.getRoom_type();
+        riskMedicalInsurance.setPrice(getRateCardData(roomType, hospitalType));
         return riskMedicalInsuranceMapper.toDto(riskMedicalInsurance);
     }
 
@@ -68,7 +77,7 @@ public class RiskMedicalInsuranceService {
     @Transactional(readOnly = true)
     public RiskMedicalInsuranceDTO findOne(Long id) {
         log.debug("Request to get RiskMedicalInsurance : {}", id);
-        RiskMedicalInsurance riskMedicalInsurance = riskMedicalInsuranceRepository.findOne(id);
+        RiskMedicalInsurance riskMedicalInsurance = riskMedicalInsuranceRepository.findOne(id);       
         return riskMedicalInsuranceMapper.toDto(riskMedicalInsurance);
     }
 
@@ -84,5 +93,14 @@ public class RiskMedicalInsuranceService {
 
 	public List<RiskMedicalInsurance> getdata(Long userid) {
 		return riskMedicalInsuranceRepository.findByUserid(userid);
+	}
+	
+	public Long getRateCardData(String roomType ,String hostpitalType) {
+		Long price = (long) 0;
+		List<MedInsRateCard> rate = medInsRateCardRepository.findOne(roomType, hostpitalType);
+		for(MedInsRateCard ra: rate) {
+		 price = Long.parseLong(ra.getPrice());
+		}
+		return price;
 	}
 }
