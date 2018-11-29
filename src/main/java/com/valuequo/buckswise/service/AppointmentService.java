@@ -42,7 +42,7 @@ public class AppointmentService {
     
     private static com.google.api.services.calendar.Calendar service;
 	private static final String SERVICE_ACCOUNT_EMAIL = "admin-606@buckswise-219810.iam.gserviceaccount.com";
-	private static final String SERVICE_ACCOUNT_PKCS12_FILE = "src/main/resources/buckswise-219810-0fd66feedbb7.p12";
+	private static final String SERVICE_ACCOUNT_PKCS12_FILE = "buckswise-219810-0fd66feedbb7.p12";
 	private static final String userEmailId = "admin@valuequo.com";
 	private static final String APPLICATION_NAME = "buckswise";
 	private static String dateandTime;
