@@ -82,13 +82,13 @@ public class AppointmentResource {
     @Timed
     public ResponseEntity<AppointmentDTO> createAppointment(@RequestBody AppointmentDTO appointmentDTO) throws URISyntaxException, GeneralSecurityException, IOException {
         log.debug("REST request to save Appointment : {}", appointmentDTO);
-        AppointmentDTO result = appointmentService.save(appointmentDTO);
         dateTime = appointmentDTO.getDate();
         List<User> userDetails = userRepository.findById(appointmentDTO.getUid());
         for(User email: userDetails) {
         	userEmail = email.getEmail();
         }
-        appointmentService.createCalendar(dateTime, userEmail);        
+        appointmentService.createCalendar(dateTime, userEmail);  
+        AppointmentDTO result = appointmentService.save(appointmentDTO);
         if (appointmentDTO.getId() != null) {
             throw new BadRequestAlertException("A new appointment cannot already have an ID", ENTITY_NAME, "idexists");
         }

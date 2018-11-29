@@ -47,6 +47,7 @@ public class AppointmentService {
 	private static final String APPLICATION_NAME = "buckswise";
 	private static String dateandTime;
     private static String userMail;
+    private static String hangout;
 
     public AppointmentService(AppointmentRepository appointmentRepository, AppointmentMapper appointmentMapper) {
         this.appointmentRepository = appointmentRepository;
@@ -63,6 +64,7 @@ public class AppointmentService {
         log.debug("Request to save Appointment : {}", appointmentDTO);
         Appointment appointment = appointmentMapper.toEntity(appointmentDTO);
         appointment = appointmentRepository.save(appointment);
+        appointment.setHangoutlink(hangout);
         return appointmentMapper.toDto(appointment);
     }
 
@@ -131,7 +133,7 @@ public class AppointmentService {
 					.setApplicationName(APPLICATION_NAME).build();
 			addEvent();
 		} catch (Exception e) {
-			
+			log.debug(e.getMessage());
 		}
 		
 	}
@@ -168,5 +170,6 @@ public class AppointmentService {
 		Event event = newEvent();
 		String calendarId = "primary";
 		Event result = service.events().insert(calendarId, event).setSendNotifications(true).execute();
+		hangout = result.getHangoutLink();
 	}
 }
