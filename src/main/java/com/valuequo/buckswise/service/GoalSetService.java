@@ -145,8 +145,8 @@ public class GoalSetService {
 			return finalFutureCost;
 		}
 		public void delete(Long id) {
-//	        log.debug("Request to delete Stock : {}", id);
-			goalSetRepository.delete(id);
-	    }
+			//	        log.debug("Request to delete Stock : {}", id);
+						goalSetRepository.delete(id);
+					}
 
 }

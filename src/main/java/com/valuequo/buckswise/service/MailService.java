@@ -1,16 +1,20 @@
 package com.valuequo.buckswise.service;
 
+import com.valuequo.buckswise.config.ApplicationProperties;
 import com.valuequo.buckswise.domain.User;
+import com.valuequo.buckswise.service.dto.ContactusDTO;
 
 import io.github.jhipster.config.JHipsterProperties;
 
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -29,6 +33,8 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
+    
+    private static final String CONTACT = "contact";
 
     private static final String BASE_URL = "baseUrl";
 
@@ -39,21 +45,23 @@ public class MailService {
     private final MessageSource messageSource;
 
     private final SpringTemplateEngine templateEngine;
-
+    
+    private final ApplicationProperties.Cc cc;
+    
     public MailService(JHipsterProperties jHipsterProperties, JavaMailSender javaMailSender,
-            MessageSource messageSource, SpringTemplateEngine templateEngine) {
+            MessageSource messageSource, SpringTemplateEngine templateEngine, ApplicationProperties applicationProperties) {
 
         this.jHipsterProperties = jHipsterProperties;
         this.javaMailSender = javaMailSender;
         this.messageSource = messageSource;
         this.templateEngine = templateEngine;
+        cc = applicationProperties.getCc();
     }
 
     @Async
-    public void sendEmail(String to, String subject, String content, String cc,boolean isMultipart, boolean isHtml) {
+    public void sendEmail(String to, String subject,String cc,String content, boolean isMultipart, boolean isHtml) {
         log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
             isMultipart, isHtml, to, subject, content);
-
         // Prepare message using a Spring helper
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
@@ -85,6 +93,24 @@ public class MailService {
         sendEmail(user.getEmail(), subject, content, "sandeep.pote@example.com",false, true);
 
     }
+    @Async
+    public void sendEmailContactus(ContactusDTO contact, String templateName, String titleKey) {
+//    	String eMailCc = this.cc.getMail();
+    	try {
+            Locale locale = Locale.forLanguageTag("English");
+        	Context context = new Context(locale);
+            context.setVariable(CONTACT, contact);
+            context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+            String content = templateEngine.process(templateName, context);
+            String subject = messageSource.getMessage(titleKey, null,locale);
+            String email = contact.getEmail();
+            sendEmail(email, subject, this.cc.getMail(), content,false, true);
+    		
+    	}
+    	catch(Exception e) {
+    		log.debug(e.getMessage());
+    	}
+    }
 
     @Async
     public void sendActivationEmail(User user) {
@@ -102,5 +128,10 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "passwordResetEmail", "email.reset.title");
+    }
+    @Async
+    public void sendEmailContact(ContactusDTO contact) {
+        log.debug("Sending contact email to '{}'", contact.getEmail());
+        sendEmailContactus(contact, "contactusEmail", "email.contact.title1");
     }
 }
