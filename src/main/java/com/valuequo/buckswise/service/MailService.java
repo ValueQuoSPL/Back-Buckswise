@@ -1,5 +1,6 @@
 package com.valuequo.buckswise.service;
 
+import com.valuequo.buckswise.config.ApplicationProperties;
 import com.valuequo.buckswise.domain.User;
 import com.valuequo.buckswise.service.dto.ContactusDTO;
 
@@ -45,14 +46,16 @@ public class MailService {
 
     private final SpringTemplateEngine templateEngine;
     
+    private final ApplicationProperties.Cc cc;
+    
     public MailService(JHipsterProperties jHipsterProperties, JavaMailSender javaMailSender,
-            MessageSource messageSource, SpringTemplateEngine templateEngine) {
+            MessageSource messageSource, SpringTemplateEngine templateEngine, ApplicationProperties applicationProperties) {
 
         this.jHipsterProperties = jHipsterProperties;
         this.javaMailSender = javaMailSender;
         this.messageSource = messageSource;
         this.templateEngine = templateEngine;
-       
+        cc = applicationProperties.getCc();
     }
 
     @Async
@@ -101,7 +104,7 @@ public class MailService {
             String content = templateEngine.process(templateName, context);
             String subject = messageSource.getMessage(titleKey, null,locale);
             String email = contact.getEmail();
-            sendEmail(email, subject, "admin@valuequo.com", content,false, true);
+            sendEmail(email, subject, this.cc.getMail(), content,false, true);
     		
     	}
     	catch(Exception e) {
