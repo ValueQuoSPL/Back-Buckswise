@@ -38,6 +38,9 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="hangoutlink" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
         </createTable>
         
     </changeSet>

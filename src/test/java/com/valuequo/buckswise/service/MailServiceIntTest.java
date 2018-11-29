@@ -1,4 +1,5 @@
 package com.valuequo.buckswise.service;
+import com.valuequo.buckswise.config.ApplicationProperties;
 import com.valuequo.buckswise.config.Constants;
 
 import com.valuequo.buckswise.BuckswiseApp;
@@ -50,16 +51,19 @@ public class MailServiceIntTest {
 
     private MailService mailService;
 
+    @Autowired
+    private ApplicationProperties applicationProperties;
+    
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
         doNothing().when(javaMailSender).send(any(MimeMessage.class));
-        mailService = new MailService(jHipsterProperties, javaMailSender, messageSource, templateEngine);
+        mailService = new MailService(jHipsterProperties, javaMailSender, messageSource, templateEngine, applicationProperties);
     }
 
     @Test
     public void testSendEmail() throws Exception {
-        mailService.sendEmail("john.doe@example.com", "testSubject", "testContent", "sandeep.pote@example.com", false, false);
+        mailService.sendEmail("john.doe@example.com", "testSubject", "sandeep.pote@example.com", "testContent", false, false);
         verify(javaMailSender).send((MimeMessage) messageCaptor.capture());
         MimeMessage message = (MimeMessage) messageCaptor.getValue();
         assertThat(message.getSubject()).isEqualTo("testSubject");
@@ -72,7 +76,7 @@ public class MailServiceIntTest {
 
     @Test
     public void testSendHtmlEmail() throws Exception {
-        mailService.sendEmail("john.doe@example.com", "testSubject", "testContent", "sandeep.pote@example.com",false, true);
+        mailService.sendEmail("john.doe@example.com", "testSubject", "sandeep.pote@example.com", "testContent",false, true);
         verify(javaMailSender).send((MimeMessage) messageCaptor.capture());
         MimeMessage message = (MimeMessage) messageCaptor.getValue();
         assertThat(message.getSubject()).isEqualTo("testSubject");
@@ -85,7 +89,7 @@ public class MailServiceIntTest {
 
     @Test
     public void testSendMultipartEmail() throws Exception {
-        mailService.sendEmail("john.doe@example.com", "testSubject", "testContent", "sandeep.pote@example.com",true, false);
+        mailService.sendEmail("john.doe@example.com", "testSubject", "sandeep.pote@example.com", "testContent",true, false);
         verify(javaMailSender).send((MimeMessage) messageCaptor.capture());
         MimeMessage message = (MimeMessage) messageCaptor.getValue();
         MimeMultipart mp = (MimeMultipart) message.getContent();
@@ -102,7 +106,7 @@ public class MailServiceIntTest {
 
     @Test
     public void testSendMultipartHtmlEmail() throws Exception {
-        mailService.sendEmail("john.doe@example.com", "testSubject", "testContent", "sandeep.pote@example.com",true, true);
+        mailService.sendEmail("john.doe@example.com", "testSubject", "sandeep.pote@example.com", "testContent",true, true);
         verify(javaMailSender).send((MimeMessage) messageCaptor.capture());
         MimeMessage message = (MimeMessage) messageCaptor.getValue();
         MimeMultipart mp = (MimeMultipart) message.getContent();
@@ -181,7 +185,7 @@ public class MailServiceIntTest {
     @Test
     public void testSendEmailWithException() throws Exception {
         doThrow(MailSendException.class).when(javaMailSender).send(any(MimeMessage.class));
-        mailService.sendEmail("john.doe@example.com", "testSubject", "","testContent", false, false);
+        mailService.sendEmail("john.doe@example.com", "testSubject", "sandeep.pote@example.com","testContent", false, false);
     }
 
 }
