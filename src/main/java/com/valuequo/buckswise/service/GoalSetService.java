@@ -144,9 +144,5 @@ public class GoalSetService {
 			String finalFutureCost = d.toPlainString();
 			return finalFutureCost;
 		}
-		public void delete(Long id) {
-//	        log.debug("Request to delete Stock : {}", id);
-			goalSetRepository.delete(id);
-	    }
 
 }

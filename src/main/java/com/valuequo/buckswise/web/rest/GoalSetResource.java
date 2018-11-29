@@ -7,8 +7,6 @@ import javax.validation.Valid;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +21,6 @@ import com.valuequo.buckswise.domain.SavingScheme;
 import com.valuequo.buckswise.service.GoalSetService;
 import com.valuequo.buckswise.service.dto.GoalSetDTO;
 import com.valuequo.buckswise.service.dto.SavingDTO;
-import com.valuequo.buckswise.web.rest.util.HeaderUtil;
 
 import afu.org.checkerframework.checker.units.qual.Time;
 
@@ -35,8 +32,6 @@ public class GoalSetResource {
 	private final Logger log = LoggerFactory.getLogger(GoalSetResource.class);
 //	private static final String ENTITY_NAME = "GoalSet";
 	private final GoalSetService goalsetservice;
-	
-	private static final String ENTITY_NAME = "goalset";
 	
 	 public GoalSetResource(GoalSetService goalsetservice) {
 	     this.goalsetservice = goalsetservice;
@@ -98,11 +93,4 @@ public class GoalSetResource {
 		 }
 		 return null;
 	 }
-	 @DeleteMapping("/goaldelete/{id}")
-	    @Timed
-	    public ResponseEntity<Void> deleteGoal(@PathVariable Long id) {
-	        log.debug("REST request to delete goal : {}", id);
-	        goalsetservice.delete(id);
-	        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-	    }
 }
