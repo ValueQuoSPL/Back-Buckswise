@@ -32,6 +32,8 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
+    
+    private static final String CONTACT = "contact";
 
     private static final String BASE_URL = "baseUrl";
 
@@ -54,7 +56,7 @@ public class MailService {
     }
 
     @Async
-    public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
+    public void sendEmail(String to, String subject,String cc,String content, boolean isMultipart, boolean isHtml) {
         log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
             isMultipart, isHtml, to, subject, content);
         // Prepare message using a Spring helper
@@ -62,7 +64,7 @@ public class MailService {
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
             message.setTo(to);
-           message.setCc(cc);
+            message.setCc(cc);
             message.setFrom(jHipsterProperties.getMail().getFrom());
             message.setSubject(subject);
             message.setText(content, isHtml);
@@ -99,7 +101,7 @@ public class MailService {
             String content = templateEngine.process(templateName, context);
             String subject = messageSource.getMessage(titleKey, null,locale);
             String email = contact.getEmail();
-            sendEmail(email, subject, content, "admin@valuequo.com",false, true);
+            sendEmail(email, subject, "admin@valuequo.com", content,false, true);
     		
     	}
     	catch(Exception e) {
