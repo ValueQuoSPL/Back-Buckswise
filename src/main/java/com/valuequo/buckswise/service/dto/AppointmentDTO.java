@@ -19,6 +19,8 @@ public class AppointmentDTO implements Serializable {
     private String date;
     
     private String status;
+    
+    private String hangoutlink;
 
     public Long getId() {
         return id;
@@ -58,6 +60,14 @@ public class AppointmentDTO implements Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getHangoutlink() {
+		return hangoutlink;
+	}
+
+	public void setHangoutlink(String hangoutlink) {
+		this.hangoutlink = hangoutlink;
 	}
 
 	@Override
