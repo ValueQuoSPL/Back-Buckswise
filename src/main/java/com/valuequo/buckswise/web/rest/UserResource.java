@@ -17,6 +17,8 @@ import io.github.jhipster.web.util.ResponseUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -191,5 +193,13 @@ public class UserResource {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "A user is deleted with identifier " + login, login)).build();
+    }
+    
+    // sending mail to user from admin
+    @PostMapping("/sendmail") 
+    @Timed
+    public String sendMail(@RequestBody UserDTO userDTO) {
+    	 mailService.sendMailByAdmin(userDTO);
+    	 return null;
     }
 }
