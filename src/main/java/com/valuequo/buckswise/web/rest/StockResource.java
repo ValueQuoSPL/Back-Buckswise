@@ -21,6 +21,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -80,6 +81,13 @@ public class StockResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, stockDTO.getId().toString()))
             .body(result);
+    }
+
+    @PutMapping("/available")
+    public String updateAvailable(@RequestBody Map<String, Object> available)
+    {
+        System.out.println("available" + available);
+        return null;
     }
 
     /**
