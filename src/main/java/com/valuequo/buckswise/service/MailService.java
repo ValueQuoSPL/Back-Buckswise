@@ -3,6 +3,7 @@ package com.valuequo.buckswise.service;
 import com.valuequo.buckswise.config.ApplicationProperties;
 import com.valuequo.buckswise.domain.User;
 import com.valuequo.buckswise.service.dto.ContactusDTO;
+import com.valuequo.buckswise.service.dto.UserDTO;
 
 import io.github.jhipster.config.JHipsterProperties;
 
@@ -35,6 +36,8 @@ public class MailService {
     private static final String USER = "user";
     
     private static final String CONTACT = "contact";
+    
+    private static final String USERDTO = "userDTO";
 
     private static final String BASE_URL = "baseUrl";
 
@@ -90,7 +93,7 @@ public class MailService {
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
-        sendEmail(user.getEmail(), subject, "sandeep.pote@example.com", content,false, true);
+        sendEmail(user.getEmail(), subject, "sandeep.pote@example.com",  content,false, true);
 
     }
     @Async
@@ -104,6 +107,24 @@ public class MailService {
             String content = templateEngine.process(templateName, context);
             String subject = messageSource.getMessage(titleKey, null,locale);
             String email = contact.getEmail();
+            sendEmail(email, subject, this.cc.getMail(), content,false, true);
+    		
+    	}
+    	catch(Exception e) {
+    		log.debug(e.getMessage());
+    	}
+    }
+    
+    @Async
+    public void sendEmailByAdmin(UserDTO userDTO, String templateName, String titleKey) {
+    	try {
+            Locale locale = Locale.forLanguageTag("English");
+        	Context context = new Context(locale);
+            context.setVariable(USERDTO, userDTO);
+            context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+            String content = templateEngine.process(templateName, context);
+            String subject = messageSource.getMessage(titleKey, null,locale);
+            String email = userDTO.getEmail();
             sendEmail(email, subject, this.cc.getMail(), content,false, true);
     		
     	}
@@ -133,5 +154,13 @@ public class MailService {
     public void sendEmailContact(ContactusDTO contact) {
         log.debug("Sending contact email to '{}'", contact.getEmail());
         sendEmailContactus(contact, "contactusEmail", "email.contact.title1");
+    }
+    @Async
+    public void sendMailByAdmin(UserDTO userDTO) {
+    	if(userDTO.getMailDetail() == "registrationSupport") {
+    		sendEmailByAdmin(userDTO, userDTO.getMailDetail(), "email.registration.title1");    		
+    	} else {
+    		sendEmailByAdmin(userDTO, userDTO.getMailDetail(), "email.welcome.title1");
+    	}
     }
 }

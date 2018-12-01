@@ -48,6 +48,8 @@ public class UserDTO {
     private Instant createdDate;
 
     private String lastModifiedBy;
+    
+    private String mailDetail;
 
     private Instant lastModifiedDate;
 
@@ -190,7 +192,15 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
-    @Override
+	public String getMailDetail() {
+		return mailDetail;
+	}
+
+	public void setMailDetail(String mailDetail) {
+		this.mailDetail = mailDetail;
+	}
+
+	@Override
     public String toString() {
         return "UserDTO{" +
             "login='" + login + '\'' +
@@ -206,6 +216,7 @@ public class UserDTO {
             ", lastModifiedBy='" + lastModifiedBy + '\'' +
             ", lastModifiedDate=" + lastModifiedDate +
             ", authorities=" + authorities +
+            ", mailDetail=" + mailDetail +
             "}";
     }
 }
