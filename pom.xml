@@ -501,10 +501,10 @@
                     <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
                     <diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                     <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://192.168.0.107:3306/buckswise</url>
+                    <url>jdbc:mysql://localhost:3306/buckswise</url>
                     <defaultSchemaName>buckswise</defaultSchemaName>
                     <username>root</username>
-                    <password>root</password>
+                    <password>ValueQuo#123</password>
                     <referenceUrl>hibernate:spring:com.valuequo.buckswise.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                     <verbose>true</verbose>
                     <logging>debug</logging>
