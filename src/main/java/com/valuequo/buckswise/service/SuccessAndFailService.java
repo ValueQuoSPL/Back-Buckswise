@@ -20,10 +20,12 @@ public class SuccessAndFailService {
 	@Autowired
 	private PaymentService paymentService;
 
+	@Autowired
+	private MailService mailService;
+	
 	public SuccessandFailtransaction saveTransaction(Long mihpayid, String status, String txnid, String productinfo, String email,
-			String amount, String addedon) {
+			String amount, String addedon, String firstName) {
 		Long uid = paymentService.getUserid();
-		System.out.println(uid);
 		SuccessandFailtransaction successfail = new SuccessandFailtransaction(mihpayid, status, txnid, productinfo, email, amount, addedon, uid);
 		successfail.setMihpayid(mihpayid);
 		successfail.setStatus(status);
@@ -33,6 +35,9 @@ public class SuccessAndFailService {
 		successfail.setAmount(amount);
 		successfail.setAddedon(addedon);
 		successfail.setUserid(uid);
+		if(status == "success") {			
+			mailService.sendMailForWelcome(firstName, email);
+		}
 		return successandFailRepository.save(successfail);
 	}
 

@@ -38,7 +38,9 @@ public class MailService {
     private static final String CONTACT = "contact";
     
     private static final String USERDTO = "userDTO";
-
+    
+    private static final String FIRSTNAME = "firstName";
+    
     private static final String BASE_URL = "baseUrl";
 
     private final JHipsterProperties jHipsterProperties;
@@ -50,6 +52,8 @@ public class MailService {
     private final SpringTemplateEngine templateEngine;
     
     private final ApplicationProperties.Cc cc;
+    
+    private String email;
     
     public MailService(JHipsterProperties jHipsterProperties, JavaMailSender javaMailSender,
             MessageSource messageSource, SpringTemplateEngine templateEngine, ApplicationProperties applicationProperties) {
@@ -158,7 +162,7 @@ public class MailService {
     @Async
     public void sendMailByAdmin(UserDTO userDTO) {
     	if(userDTO.getMailDetail() == "registrationSupport") {
-    		sendEmailByAdmin(userDTO, userDTO.getMailDetail(), "email.registration.title1");    		
+    		sendEmailByAdmin(userDTO, userDTO.getMailDetail(), "email.register.title1");    		
     	} else {
     		sendEmailByAdmin(userDTO, userDTO.getMailDetail(), "email.welcome.title1");
     	}
@@ -166,5 +170,29 @@ public class MailService {
     @Async
     public void sendReferEmail(ContactusDTO contact) {
     	sendEmailContactus(contact, "contactusEmail", "email.contact.title1");
+    
+    @Async
+    public void sendEmailWelcome(String firstName, String templateName, String titleKey) {
+    	try {
+            Locale locale = Locale.forLanguageTag("English");
+        	Context context = new Context(locale);
+            context.setVariable(FIRSTNAME, firstName);
+            context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+            String content = templateEngine.process(templateName, context);
+            String subject = messageSource.getMessage(titleKey, null,locale);
+            String email = this.email;
+            sendEmail(email, subject, this.cc.getMail(), content,false, true);
+    		
+    	}
+    	catch(Exception e) {
+    		log.debug(e.getMessage());
+    	}
+    }
+    
+    
+    @Async
+    public void sendMailForWelcome(String firstName, String email) {
+    	this.email = email;
+    	sendEmailWelcome(firstName, "welcomeMail", "email.welcome.title1");
     }
 }
