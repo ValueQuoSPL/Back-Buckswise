@@ -163,4 +163,8 @@ public class MailService {
     		sendEmailByAdmin(userDTO, userDTO.getMailDetail(), "email.welcome.title1");
     	}
     }
+    @Async
+    public void sendReferEmail(ContactusDTO contact) {
+    	sendEmailContactus(contact, "contactusEmail", "email.contact.title1");
+    }
 }
