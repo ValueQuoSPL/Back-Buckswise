@@ -49,6 +49,9 @@
 			<column name="mobile" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+			<column name="useraggree" type="varchar(45)">
+                <constraints nullable="true" />
+            </column>
         </createTable>
         <createIndex indexName="idx_user_login"
             tableName="jhi_user"
