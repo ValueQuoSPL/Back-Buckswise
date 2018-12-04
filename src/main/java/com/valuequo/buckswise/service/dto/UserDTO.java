@@ -35,7 +35,10 @@ public class UserDTO {
     @Size(min = 5, max = 100)
     private String email;
 
-    @Size(max = 256)
+    @Size(max = 50)
+    private String useraggree;
+
+	@Size(max = 256)
     private String imageUrl;
 
     private boolean activated = false;
@@ -67,6 +70,7 @@ public class UserDTO {
         this.login = user.getLogin();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
+        this.useraggree = user.getUseraggree();
         this.email = user.getEmail();
         this.activated = user.getActivated();
         this.imageUrl = user.getImageUrl();
@@ -104,6 +108,13 @@ public class UserDTO {
         this.firstName = firstName;
     }
 
+    public String getUseraggree() {
+  		return useraggree;
+  	}
+
+  	public void setUseraggree(String useraggree) {
+  		this.useraggree = useraggree;
+  	}
     public String getLastName() {
         return lastName;
     }
@@ -205,6 +216,7 @@ public class UserDTO {
         return "UserDTO{" +
             "login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
+             ", Useraggree='" + useraggree + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
             ", mobile='" + mobile + '\'' +
