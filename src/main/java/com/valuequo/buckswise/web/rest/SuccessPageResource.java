@@ -50,8 +50,8 @@ public class SuccessPageResource {
 	@PostMapping("/success")
 	public RedirectView  defaultAction(@RequestParam Long mihpayid, @RequestParam String status,
 			@RequestParam String txnid, @RequestParam String productinfo, @RequestParam String email,
-			@RequestParam String amount, @RequestParam String addedon) {
-		successAndFailService.saveTransaction(mihpayid, status, txnid, productinfo, email, amount, addedon);
+			@RequestParam String amount, @RequestParam String addedon, @RequestParam String firstname) {
+		successAndFailService.saveTransaction(mihpayid, status, txnid, productinfo, email, amount, addedon, firstname);
 		return new RedirectView("https://www.buckswise.com/#/success");
 	}
 	

@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title th:text="#{email.registration.title1}"></title>
+        <title th:text="#{email.register.title1}"></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
     </head>
     <body>
         <p th:text="#{email.registration.title(${userDTO.firstName})}">
+        </p>
+        <span>
+        <em th:text="#{email.registration.text1}"></em><br/>
+        <em th:text="#{email.registration.text2}"></em>
+        </span>
+         <p th:text="#{email.registration.text3}">
+        </p>
+         <p th:text="#{email.registration.text4}">
+        </p>
+        <p>
+        <span th:text="#{email.registration.text5}"></span>
+            <br/>
+            <em th:text="#{email.signature1}"></em><br/>
+            <em th:text="#{email.signature2}"></em><br/>
+            <em th:text="#{email.signature3}"></em><br/>
+            <em th:text="#{email.signature4}"></em><br/>
+            <em th:text="#{email.signature5}"></em><br/>
+            <em th:text="#{email.signature6}"></em><br/>
+            <em th:text="#{email.signature7}"></em>
         </p>
     </body>
 </html>

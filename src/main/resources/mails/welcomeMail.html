@@ -6,7 +6,28 @@
         <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
     </head>
     <body>
-        <p th:text="#{email.welcome.title(${userDTO.firstName})}">
+        <p th:text="#{email.welcome.title(${firstName})}">
+        </p>
+        
+        <span>
+        	<p th:text="#{email.welcome.text1}"></p>
+        	<p th:text="#{email.welcome.text2}"></p>
+        </span>
+        
+        <p th:text="#{email.welcome.text3}"></p>
+        
+        <p th:text="#{email.welcome.text4}"></p>
+        
+        <p>
+        <span th:text="#{email.welcome.text5}"></span>
+            <br/>
+            <em th:text="#{email.signature1}"></em><br/>
+            <em th:text="#{email.signature2}"></em><br/>
+            <em th:text="#{email.signature3}"></em><br/>
+            <em th:text="#{email.signature4}"></em><br/>
+            <em th:text="#{email.signature5}"></em><br/>
+            <em th:text="#{email.signature6}"></em><br/>
+            <em th:text="#{email.signature7}"></em>
         </p>
     </body>
 </html>
