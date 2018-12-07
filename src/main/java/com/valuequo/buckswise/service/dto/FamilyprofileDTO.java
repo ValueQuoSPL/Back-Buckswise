@@ -23,7 +23,7 @@ public class FamilyprofileDTO implements Serializable {
 
     private String lastname;
 
-    private LocalDate dateOfBirth;
+    private Date dateOfBirth;
 
     private String earncheck;
 
@@ -79,11 +79,11 @@ public class FamilyprofileDTO implements Serializable {
         this.lastname = lastname;
     }
 
-    public LocalDate getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
     public String getEarncheck() {

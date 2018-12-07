@@ -2,6 +2,7 @@ package com.valuequo.buckswise.service.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class MyProfileDTO implements Serializable {
@@ -21,7 +22,7 @@ public class MyProfileDTO implements Serializable {
 
     private String lastName;
 
-    private LocalDate dob;
+    private Date dob;
 
     private String gender;
 
@@ -93,11 +94,11 @@ public class MyProfileDTO implements Serializable {
         this.lastName = lastName;
     }
 
-    public LocalDate getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

@@ -8,7 +8,8 @@
 
 	import java.io.Serializable;
 	import java.time.LocalDate;
-	import java.util.Objects;
+import java.util.Date;
+import java.util.Objects;
 
 	@Entity
 	@Table(name = "myprofilee")
@@ -34,7 +35,7 @@
 	    private String lastName;
 
 	    @Column(name = "date_of_birth")
-	    private LocalDate dob;
+	    private Date dob;
 
 	    @Column(name = "gender")
 	    private String gender;
@@ -135,16 +136,16 @@
 	        this.lastName = lastName;
 	    }
 
-	    public LocalDate getDob() {
+	    public Date getDob() {
 	        return dob;
 	    }
 
-	    public MyProfile dob(LocalDate dob) {
+	    public MyProfile dob(Date dob) {
 	        this.dob = dob;
 	        return this;
 	    }
 
-	    public void setDob(LocalDate dob) {
+	    public void setDob(Date dob) {
 	        this.dob = dob;
 	    }
 
