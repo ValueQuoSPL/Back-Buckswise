@@ -21,7 +21,7 @@ public class StockDTO implements Serializable {
 
     private String share_price;
 
-    private String availble;
+    private String available;
 
     private String notes;
 
@@ -32,15 +32,15 @@ public class StockDTO implements Serializable {
     /**
      * @return the availble
      */
-    public String getAvailble() {
-        return availble;
+    public String getAvailable() {
+        return available;
     }
 
     /**
      * @param availble the availble to set
      */
-    public void setAvailble(String availble) {
-        this.availble = availble;
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public void setId(Long id) {
