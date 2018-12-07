@@ -42,6 +42,7 @@ public class ChitService {
     public ChitDTO save(ChitDTO chitDTO) {
         log.debug("Request to save Chit : {}", chitDTO);
         Chit chit = chitMapper.toEntity(chitDTO);
+        chit.setAvailable(chit.getCurrent_value());
         chit = chitRepository.save(chit);
         return chitMapper.toDto(chit);
     }
@@ -84,5 +85,17 @@ public class ChitService {
 
 	public List<Chit> getAllChit(Long userid) {
 		return chitRepository.findByUserid(userid);
+    }
+
+    /**
+     * Author - Pratik
+     * @param id
+     * @param avail
+     */
+    public void updateAvailable(Long id, String avail) {
+        Chit chit = chitRepository.findById(id);
+        chit.setAvailable(avail);
+        chitRepository.save(chit);
 	}
+
 }

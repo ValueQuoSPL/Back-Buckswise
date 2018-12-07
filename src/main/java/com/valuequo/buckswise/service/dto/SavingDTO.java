@@ -40,7 +40,9 @@ public class SavingDTO {
 
     private LocalDate as_of_date;
 
-    private String notes;
+	private String notes;
+
+    private String available;
     
     private String type;
     
@@ -60,6 +62,14 @@ public class SavingDTO {
 
 	public void setNum(String num) {
 		this.num = num;
+	}
+
+	public String getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(String available) {
+		this.available = available;
 	}
 
 	public String getOrganisation_name() {

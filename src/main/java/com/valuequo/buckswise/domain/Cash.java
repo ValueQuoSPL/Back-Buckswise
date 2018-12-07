@@ -52,6 +52,9 @@ public class Cash implements Serializable {
     @Column(name = "extrafield")
     private String extrafield;
 
+    @Column(name = "available")
+    private String available;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -59,6 +62,14 @@ public class Cash implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
+    }
+
+    public String getAvailable() {
+        return available;
     }
 
     public String getBankname() {

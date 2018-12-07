@@ -44,6 +44,7 @@ public class AtlernateInvestmentService {
     public AtlernateInvestmentDTO save(AtlernateInvestmentDTO atlernateInvestmentDTO) {
         log.debug("Request to save AtlernateInvestment : {}", atlernateInvestmentDTO);
         AtlernateInvestment atlernateInvestment = atlernateInvestmentMapper.toEntity(atlernateInvestmentDTO);
+        atlernateInvestment.setAvailable(atlernateInvestment.getMarket_value());
         atlernateInvestment = atlernateInvestmentRepository.save(atlernateInvestment);
         return atlernateInvestmentMapper.toDto(atlernateInvestment);
     }
@@ -87,5 +88,16 @@ public class AtlernateInvestmentService {
 	public List<AtlernateInvestment> getAInvestment(Long userid) {
 		// TODO Auto-generated method stub
 		return atlernateInvestmentRepository.findByUserId(userid);
+	}
+
+    /**
+     * Author - Pratik
+     * @param id
+     * @param avail
+     */
+	public void updateAvailable(Long id, String avail) {
+        AtlernateInvestment alt = atlernateInvestmentRepository.findById(id);
+        alt.setAvailable(avail);
+        atlernateInvestmentRepository.save(alt);
 	}
 }

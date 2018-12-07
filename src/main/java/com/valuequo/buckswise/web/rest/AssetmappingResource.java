@@ -111,10 +111,10 @@ public class AssetmappingResource {
 //        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(assetmappingDTO));
 //    }
 //    
-    @GetMapping("/getbyuid/{uid}")
+    @GetMapping("/getbyuid/{uid}/{goalid}")
     @Timed
-    public List<Assetmapping> getChit1(@PathVariable Long uid){
-    	return assetmappingService.getAssetByUid(uid);
+    public List<Assetmapping> getChit1(@PathVariable Long uid, @PathVariable int goalid){
+    	return assetmappingService.getAssetByUid(uid, goalid);
     } 
 
 

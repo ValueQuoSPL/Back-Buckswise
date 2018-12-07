@@ -20,17 +20,33 @@ public class StockDTO implements Serializable {
     private String no_of_shares;
 
     private String share_price;
-    
+
+    private String availble;
+
     private String notes;
 
     public Long getId() {
         return id;
     }
 
+    /**
+     * @return the availble
+     */
+    public String getAvailble() {
+        return availble;
+    }
+
+    /**
+     * @param availble the availble to set
+     */
+    public void setAvailble(String availble) {
+        this.availble = availble;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public Long getUserid() {
 		return userid;
 	}

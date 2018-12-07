@@ -6,6 +6,9 @@ import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
 import com.valuequo.buckswise.service.dto.MutualFundDTO;
 import io.github.jhipster.web.util.ResponseUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -118,5 +122,21 @@ public class MutualFundResource {
         log.debug("REST request to delete Mutualfund : {}", id);
         mutualfundService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * author Pratik
+     * @param available
+     * @return
+     * @throws JSONException
+     */
+    @PutMapping("/availableMF")
+    public String updateAvailable(@RequestBody Map<String, Object> availables) throws JSONException
+    {
+        JSONObject jObj = new JSONObject(availables);
+        Long id = jObj.getLong("assetid");
+        String avail = jObj.getString("available");
+        mutualfundService.updateAvailable(id, avail);
+        return null;
     }
 }

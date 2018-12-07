@@ -8,6 +8,9 @@ import com.valuequo.buckswise.web.rest.util.HeaderUtil;
 import com.valuequo.buckswise.web.rest.util.PaginationUtil;
 import com.valuequo.buckswise.service.dto.ChitDTO;
 import io.github.jhipster.web.util.ResponseUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,6 +24,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -128,5 +132,21 @@ public class ChitResource {
         log.debug("REST request to delete Chit : {}", id);
         chitService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * Author - Pratik
+     * @param availables
+     * @return
+     * @throws JSONException
+     */
+    @PutMapping("/availableChit")
+    public String updateAvailable(@RequestBody Map<String, Object> availables) throws JSONException
+    {
+        JSONObject jObj = new JSONObject(availables);
+        Long id = jObj.getLong("assetid");
+        String avail = jObj.getString("available");
+        chitService.updateAvailable(id, avail);
+        return null;
     }
 }

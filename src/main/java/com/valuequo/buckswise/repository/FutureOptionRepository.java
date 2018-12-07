@@ -17,4 +17,6 @@ public interface FutureOptionRepository extends JpaRepository<FutureOption, Long
 
 	List<FutureOption> findByUserid(Long userid);
 
+	FutureOption findById(Long id);
+
 }

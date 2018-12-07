@@ -42,6 +42,7 @@ public class FutureOptionService {
     public FutureOptionDTO save(FutureOptionDTO futureOptionDTO) {
         log.debug("Request to save FutureOption : {}", futureOptionDTO);
         FutureOption futureOption = futureOptionMapper.toEntity(futureOptionDTO);
+        futureOption.setAvailable(futureOption.getContract_m_value());
         futureOption = futureOptionRepository.save(futureOption);
         return futureOptionMapper.toDto(futureOption);
     }
@@ -84,5 +85,16 @@ public class FutureOptionService {
 
 	public List<FutureOption> getfutureOption(Long userid) {
 		return futureOptionRepository.findByUserid(userid);
+    }
+
+    /**
+     * Author - Pratik
+     * @param id
+     * @param avail
+     */
+    public void updateAvailable(Long id, String avail) {
+        FutureOption chit = futureOptionRepository.findById(id);
+        chit.setAvailable(avail);
+        futureOptionRepository.save(chit);
 	}
 }

@@ -50,6 +50,9 @@ public class AtlernateInvestment implements Serializable {
     @Column(name = "jhi_type")
     private String type;
 
+    @Column(name = "available")
+    private String available;
+
     @Column(name = "user_id")
     private Long userId;
 
@@ -60,6 +63,14 @@ public class AtlernateInvestment implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public String getNum() {

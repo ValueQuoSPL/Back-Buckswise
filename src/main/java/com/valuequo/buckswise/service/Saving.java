@@ -39,6 +39,7 @@ public class Saving {
     	save.setAs_of_date(savingDTO.getAs_of_date());
     	save.setNotes(savingDTO.getNotes());
     	save.setType(savingDTO.getType());
+    	save.setAvailable(savingDTO.getAmount_invested());
     	System.out.println( "under service" + save);
         savingSchemeRepository.save(save);
 		return save;	
@@ -80,6 +81,7 @@ public class Saving {
 			up.setAs_of_date(savingDTO.getAs_of_date());
 			up.setNotes(savingDTO.getNotes());
 			up.setType(savingDTO.getType());
+			up.setAvailable(savingDTO.getAvailable());
 			savingSchemeRepository.save(up);
 		}
 		return null;
@@ -89,6 +91,15 @@ public class Saving {
         savingSchemeRepository.delete(id);
     }
 
-
+    /**
+     * author - Pratik
+     * @param id
+     * @param available
+     */
+    public void updateAvailable(Long id, String available) {
+		SavingScheme savingScheme = savingSchemeRepository.findById(id);
+		savingScheme.setAvailable(available);
+		savingSchemeRepository.save(savingScheme);
+    }
 
 }

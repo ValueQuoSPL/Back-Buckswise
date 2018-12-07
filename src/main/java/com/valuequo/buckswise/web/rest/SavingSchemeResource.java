@@ -1,9 +1,12 @@
 package com.valuequo.buckswise.web.rest;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,5 +102,15 @@ public class SavingSchemeResource {
         saving.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-    	
+
+    @PutMapping("/availableSaving")
+    public String updateAvailable(@RequestBody Map<String, Object> data) throws JSONException
+    {
+        JSONObject jObj = new JSONObject(data);
+        Long id = jObj.getLong("assetid");
+        String available = jObj.getString("available");
+        saving.updateAvailable(id, available);
+        return null;
     }
+    	
+}

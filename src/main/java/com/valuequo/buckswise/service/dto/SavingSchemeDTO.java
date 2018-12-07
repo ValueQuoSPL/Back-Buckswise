@@ -37,18 +37,20 @@ public class SavingSchemeDTO implements Serializable {
     private LocalDate as_of_date;
 
     private String notes;
-    
+
     private String type;
-    
+
+    private String available;
+
     
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
+   public String getAvailable() {
+       return available;
+   }
+
+   public void setAvailable(String available) {
+       this.available = available;
+   }
 
     public String getNum() {
 		return num;
