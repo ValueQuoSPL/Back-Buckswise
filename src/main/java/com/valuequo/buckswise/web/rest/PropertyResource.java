@@ -8,6 +8,9 @@ import com.valuequo.buckswise.web.rest.util.HeaderUtil;
 import com.valuequo.buckswise.web.rest.util.PaginationUtil;
 import com.valuequo.buckswise.service.dto.PropertyDTO;
 import io.github.jhipster.web.util.ResponseUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,6 +24,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -128,5 +132,15 @@ public class PropertyResource {
         log.debug("REST request to delete Property : {}", id);
         propertyService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @PutMapping("/availableProperty")
+    public String updateAvailable(@RequestBody Map<String, Object> available) throws JSONException{
+        JSONObject jObj =  new JSONObject(available);
+        System.out.println(available);
+        Long id = jObj.getLong("assetid");
+        String avail = jObj.getString("available");
+        propertyService.updateAvailable(id, avail);
+        return null;
     }
 }

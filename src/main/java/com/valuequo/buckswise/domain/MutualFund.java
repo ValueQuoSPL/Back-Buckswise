@@ -49,6 +49,9 @@ public class MutualFund implements Serializable {
     @Column(name = "cagr")
     private String cagr;
 
+    @Column(name = "available")
+    private String available;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -173,6 +176,14 @@ public class MutualFund implements Serializable {
 
     public void setCagr(String cagr) {
         this.cagr = cagr;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

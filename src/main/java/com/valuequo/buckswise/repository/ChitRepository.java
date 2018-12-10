@@ -17,4 +17,6 @@ public interface ChitRepository extends JpaRepository<Chit, Long> {
 
 	List<Chit> findByUserid(Long userid);
 
+	Chit findById(Long id);
+
 }

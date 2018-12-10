@@ -31,12 +31,22 @@ public class CashDTO implements Serializable {
 
     private String extrafield;
 
+    private String available;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
+    }
+
+    public String getAvailable() {
+        return available;
     }
 
     public String getBankname() {

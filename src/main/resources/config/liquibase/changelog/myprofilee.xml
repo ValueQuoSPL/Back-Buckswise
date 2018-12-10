@@ -39,7 +39,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="date_of_birth" type="date">
+            <column name="date_of_birth" type="timestamp">
                 <constraints nullable="true" />
             </column>
 

@@ -44,6 +44,9 @@ public class Property implements Serializable {
     @Column(name = "userid")
     private Long userid;
 
+    @Column(name = "available")
+    private String available;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -51,6 +54,14 @@ public class Property implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public String getProp_name() {

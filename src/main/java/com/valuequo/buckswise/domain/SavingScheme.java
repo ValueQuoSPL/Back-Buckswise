@@ -61,11 +61,22 @@ public class SavingScheme implements Serializable {
 
     @Column(name = "notes")
     private String notes;
-    
+
     @Column(name = "type")
     private String type;
 
+    @Column(name = "available")
+    private String available;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    public void setAvailable(String available) {
+        this.available = available;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
     public Long getId() {
         return id;
     }

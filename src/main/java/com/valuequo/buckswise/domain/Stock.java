@@ -37,6 +37,9 @@ public class Stock implements Serializable {
     @Column(name = "notes")
     private String notes;
 
+    @Column(name = "available")
+    private String available;
+
     @Column(name = "userid")
     private Long userid;
     
@@ -47,6 +50,14 @@ public class Stock implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public String getCompany_name() {

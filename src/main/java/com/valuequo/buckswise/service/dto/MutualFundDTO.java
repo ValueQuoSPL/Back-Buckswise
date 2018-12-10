@@ -29,12 +29,22 @@ public class MutualFundDTO implements Serializable {
 
     private String cagr;
 
+    private String available;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public int getUserid() {

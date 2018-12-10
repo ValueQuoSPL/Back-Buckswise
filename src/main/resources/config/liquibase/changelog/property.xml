@@ -50,6 +50,10 @@
                 <constraints nullable="true" />
             </column>
 
+             <column name="available" type="varchar(225)">
+                <constraints nullable="true" />
+            </column>
+
             </createTable>
         
     </changeSet>

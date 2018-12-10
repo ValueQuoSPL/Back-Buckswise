@@ -35,7 +35,9 @@ public class SuccessAndFailService {
 		successfail.setAmount(amount);
 		successfail.setAddedon(addedon);
 		successfail.setUserid(uid);
+
 		mailService.sendMailForWelcome(firstName, email);
+
 		return successandFailRepository.save(successfail);
 	}
 

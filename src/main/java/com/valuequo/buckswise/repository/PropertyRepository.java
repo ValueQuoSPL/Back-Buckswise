@@ -17,4 +17,6 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 
 	List<Property> findByUserid(Long userid);
 
+	Property findById(Long id);
+
 }

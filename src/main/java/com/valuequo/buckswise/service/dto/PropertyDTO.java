@@ -26,8 +26,24 @@ public class PropertyDTO implements Serializable {
 
     private Long userid;
 
+    private String available;
+
     public Long getId() {
         return id;
+    }
+
+    /**
+     * @return the available
+     */
+    public String getAvailable() {
+        return available;
+    }
+
+    /**
+     * @param available the available to set
+     */
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public void setId(Long id) {

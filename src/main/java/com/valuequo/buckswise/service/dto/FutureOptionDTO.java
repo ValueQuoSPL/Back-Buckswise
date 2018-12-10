@@ -36,6 +36,8 @@ public class FutureOptionDTO implements Serializable {
 
     private String notes;
 
+    private String available;
+
     public Long getId() {
         return id;
     }
@@ -50,6 +52,14 @@ public class FutureOptionDTO implements Serializable {
 
     public void setNum(String num) {
         this.num = num;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public Long getUserid() {

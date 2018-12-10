@@ -23,4 +23,5 @@ public interface SavingSchemeRepository extends JpaRepository<SavingScheme, Long
 	List<SavingScheme> findByUid(Long uid);
 //	List<SavingScheme> findByUid(Long uid);
 	List<SavingScheme> findByid(Long id);
+	SavingScheme findById(Long id);
 }

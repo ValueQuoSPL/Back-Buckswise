@@ -25,8 +25,10 @@ public class ChitDTO implements Serializable {
     private String notes;
 
     private String tenure;
-    
+
     private String monthly_investment;
+
+    private String available;
 
     public String getMonthly_investment() {
 		return monthly_investment;
@@ -52,6 +54,14 @@ public class ChitDTO implements Serializable {
 
     public void setChit_holder_name(String chit_holder_name) {
         this.chit_holder_name = chit_holder_name;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public String getChit_name() {

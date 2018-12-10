@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.*;
 
 
@@ -17,7 +18,9 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface AssetmappingRepository extends JpaRepository<Assetmapping, Long> {
-	List<Assetmapping> findByUid(Long uid);
+
+	@Query("select a from Assetmapping a where a.uid = :uid AND a.goalid = :id")
+	List<Assetmapping> findByUid(@Param("uid") Long uid, @Param("id") int goalid);
 //	List<Chit> findByUserid(Long userid);
 
 }

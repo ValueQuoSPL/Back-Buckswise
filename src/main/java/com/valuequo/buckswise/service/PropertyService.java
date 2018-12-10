@@ -42,6 +42,7 @@ public class PropertyService {
     public PropertyDTO save(PropertyDTO propertyDTO) {
         log.debug("Request to save Property : {}", propertyDTO);
         Property property = propertyMapper.toEntity(propertyDTO);
+        property.setAvailable(property.getCurrent_m_value());
         property = propertyRepository.save(property);
         return propertyMapper.toDto(property);
     }
@@ -84,5 +85,11 @@ public class PropertyService {
 
 	public List<Property> getPropertie(Long userid) {
 		return propertyRepository.findByUserid(userid);
+	}
+
+	public void updateAvailable(Long id, String avail) {
+        Property property = propertyRepository.findById(id);
+        property.setAvailable(avail);
+        propertyRepository.save(property);
 	}
 }

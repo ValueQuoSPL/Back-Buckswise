@@ -21,6 +21,8 @@ public interface AtlernateInvestmentRepository extends JpaRepository<AtlernateIn
 
 	List<AtlernateInvestment> findByUserId(Long user_id);
 
+	AtlernateInvestment findById(Long id);
+
 //	ResponseEntity<AtlernateInvestmentDTO> findByUserId(Long user_id);
 
 //	Optional<AtlernateInvestment> findOnebyUserId(Long user_id);
