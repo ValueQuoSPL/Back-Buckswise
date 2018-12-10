@@ -184,5 +184,4 @@ public class AppointmentResource {
         appointmentService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-    
 }

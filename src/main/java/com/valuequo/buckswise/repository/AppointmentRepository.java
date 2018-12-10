@@ -1,15 +1,13 @@
 package com.valuequo.buckswise.repository;
 
 import com.valuequo.buckswise.domain.Appointment;
-import com.valuequo.buckswise.service.dto.AppointmentDTO;
 
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
-
 
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
 
@@ -24,4 +22,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 	List<Appointment> findByUid(@Param("uid") Long uid);
 	
 	List<Appointment> findById(Long id);
+	
 }
