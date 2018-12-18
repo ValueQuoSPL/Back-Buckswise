@@ -4,9 +4,12 @@ package com.valuequo.buckswise.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.stereotype.Component;
+
 /**
  * A DTO for the Assetmapping entity.
  */
+@Component
 public class AssetmappingDTO implements Serializable {
 
     private Long id;

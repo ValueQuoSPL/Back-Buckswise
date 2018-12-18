@@ -54,5 +54,9 @@ public class SuccessPageResource {
 		successAndFailService.saveTransaction(mihpayid, status, txnid, productinfo, email, amount, addedon, firstname);
 		return new RedirectView("https://www.buckswise.com/#/success");
 	}
-	
+
+	@PostMapping("/fail")
+	public RedirectView fail() {
+		return new RedirectView("https://www.buckswise.com/#/fail");
+	}
 }

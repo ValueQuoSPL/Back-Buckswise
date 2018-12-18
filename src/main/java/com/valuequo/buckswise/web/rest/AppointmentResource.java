@@ -41,6 +41,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
+ * Author: Sandeep Pote
  * REST controller for managing Appointment.
  */
 @RestController
