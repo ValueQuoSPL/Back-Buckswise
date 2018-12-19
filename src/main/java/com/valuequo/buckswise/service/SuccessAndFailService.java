@@ -35,9 +35,9 @@ public class SuccessAndFailService {
 		successfail.setAmount(amount);
 		successfail.setAddedon(addedon);
 		successfail.setUserid(uid);
-		if(status == "success") {			
-			mailService.sendMailForWelcome(firstName, email);
-		}
+
+		mailService.sendMailForWelcome(firstName, email);
+
 		return successandFailRepository.save(successfail);
 	}
 
@@ -45,7 +45,6 @@ public class SuccessAndFailService {
 	public List<SuccessandFailtransaction> getDetail(Long userid) {
 		return successandFailRepository.findByUserid(userid);
 	}
-
 
 	public List<SuccessandFailtransaction> getAllDetail() {
 		return successandFailRepository.findAll();

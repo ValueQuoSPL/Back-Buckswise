@@ -21,16 +21,16 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class CashService {
-	
-
+public class CashService
+{
     private final Logger log = LoggerFactory.getLogger(CashService.class);
 
     private final CashRepository cashRepository;
 
     private final CashMapper cashMapper;
 
-    public CashService(CashRepository cashRepository, CashMapper cashMapper) {
+    public CashService(CashRepository cashRepository, CashMapper cashMapper)
+    {
         this.cashRepository = cashRepository;
         this.cashMapper = cashMapper;
     }
@@ -41,11 +41,11 @@ public class CashService {
      * @param cashDTO the entity to save
      * @return the persisted entity
      */
-    public CashDTO save(CashDTO cashDTO) {
-    	
+    public CashDTO save(CashDTO cashDTO)
+    {
         log.debug("Request to save Cash : {}", cashDTO);
         Cash cash = cashMapper.toEntity(cashDTO);
-        System.out.println(cash);
+        cash.setAvailable(cash.getAmount());
         cash = cashRepository.save(cash);
         return cashMapper.toDto(cash);
     }
@@ -57,7 +57,8 @@ public class CashService {
      * @return the list of entities
      */
     @Transactional(readOnly = true)
-    public Page<CashDTO> findAll(Pageable pageable) {
+    public Page<CashDTO> findAll(Pageable pageable)
+    {
         log.debug("Request to get all Cash");
         return cashRepository.findAll(pageable)
             .map(cashMapper::toDto);
@@ -88,5 +89,11 @@ public class CashService {
 
 	public List<Cash> getCash(Long userid) {
 		return cashRepository.findByUserid(userid);
+	}
+
+	public void updateAvailable(Long id, String avail) {
+        Cash cash = cashRepository.findById(id);
+        cash.setAvailable(avail);
+        cashRepository.save(cash);
 	}
 }

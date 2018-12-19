@@ -17,6 +17,7 @@ import com.valuequo.buckswise.service.dto.AppointmentDTO;
 import com.valuequo.buckswise.service.mapper.AppointmentMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 /**
  * Service Implementation for managing Appointment.

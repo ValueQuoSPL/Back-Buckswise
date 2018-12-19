@@ -8,6 +8,9 @@ import com.valuequo.buckswise.web.rest.util.HeaderUtil;
 import com.valuequo.buckswise.web.rest.util.PaginationUtil;
 import com.valuequo.buckswise.service.dto.StockDTO;
 import io.github.jhipster.web.util.ResponseUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -83,10 +86,13 @@ public class StockResource {
             .body(result);
     }
 
-    @PutMapping("/available")
-    public String updateAvailable(@RequestBody Map<String, Object> available)
+    @PutMapping("/availableStock")
+    public String updateAvailable(@RequestBody Map<String, Object> available) throws JSONException
     {
-        System.out.println("available" + available);
+        JSONObject jObj = new JSONObject(available);
+        Long id = jObj.getLong("assetid");
+        String avail = jObj.getString("available");
+        stockService.updateAvailable(id, avail);
         return null;
     }
 
@@ -104,7 +110,7 @@ public class StockResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/stocks");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-    
+
     @GetMapping("/getbyuidstock/{userid}")
     @Timed
     public List<Stock> getuserId(@PathVariable Long userid) {

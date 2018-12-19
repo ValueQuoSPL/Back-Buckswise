@@ -41,6 +41,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
+ * Author: Sandeep Pote
  * REST controller for managing Appointment.
  */
 @RestController
@@ -184,5 +185,4 @@ public class AppointmentResource {
         appointmentService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-    
 }

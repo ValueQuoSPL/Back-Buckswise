@@ -17,4 +17,6 @@ public interface CashRepository extends JpaRepository<Cash, Long> {
 	
 	List<Cash> findByUserid(Long userid);
 
+	Cash findById(Long id);
+
 }

@@ -59,6 +59,9 @@ public class FutureOption implements Serializable {
     @Column(name = "notes")
     private String notes;
 
+    @Column(name = "available")
+    private String available;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -213,6 +216,14 @@ public class FutureOption implements Serializable {
 
     public String getNotes() {
         return notes;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
+    }
+
+    public String getAvailable() {
+        return available;
     }
 
     public FutureOption notes(String notes) {

@@ -30,6 +30,8 @@ public class AtlernateInvestmentDTO implements Serializable {
 
     private String type;
 
+    private String available;
+
     private Long userId;
 
     public Long getId() {
@@ -46,6 +48,14 @@ public class AtlernateInvestmentDTO implements Serializable {
 
     public void setNum(String num) {
         this.num = num;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public String getFund_name() {

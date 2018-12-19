@@ -62,6 +62,7 @@ public class SavingSchemeService {
     public SavingSchemeDTO save(SavingSchemeDTO savingSchemeDTO) {
         log.debug("Request to save Mutualfund : {}", savingSchemeDTO);
         SavingScheme savingScheme = savingMapper.toEntity(savingSchemeDTO);
+        savingScheme.setAvailable( savingScheme.getAmount_invested() );
         savingScheme = savingSchemeRepository.save(savingScheme);
         return savingMapper.toDto(savingScheme);
     }
@@ -114,4 +115,15 @@ public class SavingSchemeService {
         log.debug("Request to delete Mutualfund : {}", id);
         savingSchemeRepository.delete(id);
     }
+        /**
+     * author - Pratik
+     * @param id
+     * @param available
+     */
+    public void updateAvailable(Long id, String available) {
+		SavingScheme savingScheme = savingSchemeRepository.findById(id);
+		savingScheme.setAvailable(available);
+		savingSchemeRepository.save(savingScheme);
+    }
+
 }

@@ -40,6 +40,7 @@ public class MutualFundService {
     public MutualFundDTO save(MutualFundDTO mutualfundDTO) {
         log.debug("Request to save Mutualfund : {}", mutualfundDTO);
         MutualFund mutualfund = mutualfundMapper.toEntity(mutualfundDTO);
+        mutualfund.setAvailable(mutualfund.getCurrentvalue());
         mutualfund = mutualfundRepository.save(mutualfund);
         return mutualfundMapper.toDto(mutualfund);
     }
@@ -81,5 +82,16 @@ public class MutualFundService {
         log.debug("Request to delete Mutualfund : {}", id);
         mutualfundRepository.delete(id);
     }
+
+    /**
+     * author - Pratik
+     * @param id
+     * @param avail
+     */
+	public void updateAvailable(Long id, String avail) {
+        MutualFund mf = mutualfundRepository.findById(id);
+        mf.setAvailable(avail);
+        mutualfundRepository.save(mf);
+	}
 
 }

@@ -75,8 +75,8 @@ public class AssetmappingService {
         Assetmapping assetmapping = assetmappingRepository.findOne(uid);
         return assetmappingMapper.toDto(assetmapping);
     }
-    public List<Assetmapping> getAssetByUid(Long uid) {
-		return assetmappingRepository.findByUid(uid);
+    public List<Assetmapping> getAssetByUid(Long uid, int id) {
+		return assetmappingRepository.findByUid(uid, id);
 	}
 
     /**

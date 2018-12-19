@@ -42,6 +42,11 @@ public class StockService {
     public StockDTO save(StockDTO stockDTO) {
         log.debug("Request to save Stock : {}", stockDTO);
         Stock stock = stockMapper.toEntity(stockDTO);
+        double sharePrice = Double.parseDouble(stock.getShare_price());
+        double shareVolume = Double.parseDouble(stock.getNo_of_shares());
+        double available = (sharePrice * shareVolume);
+        String avail = Double.toString(available);
+        stock.setAvailable(avail);
         stock = stockRepository.save(stock);
         return stockMapper.toDto(stock);
     }
@@ -84,5 +89,11 @@ public class StockService {
 
 	public List<Stock> getUser(Long userid) {
 		return stockRepository.findByUserid(userid);
+	}
+
+	public void updateAvailable(Long id, String avail) {
+        Stock stock = stockRepository.findById(id);
+        stock.setAvailable(avail);
+        stockRepository.save(stock);
 	}
 }
