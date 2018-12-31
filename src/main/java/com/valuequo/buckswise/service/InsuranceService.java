@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.api.services.drive.Drive.Files.Delete;
+import com.google.api.services.drive.model.File;
 import com.valuequo.buckswise.domain.Insurance;
 import com.valuequo.buckswise.repository.InsuranceRepository;
 
@@ -63,5 +65,4 @@ public class InsuranceService {
 	public void delete(Long id) {
 		insuranceRepository.delete(id);	
 	}
-	
 }
