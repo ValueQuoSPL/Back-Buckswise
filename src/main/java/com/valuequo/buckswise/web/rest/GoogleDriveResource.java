@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.codahale.metrics.annotation.Timed;
 import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.TokenResponse;
@@ -30,6 +31,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -123,7 +125,7 @@ public class GoogleDriveResource {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return "Your document uploaded successfully";
+        return "<div style='color:#f1592a; text-align: center; position: absolute; top:20%; left:0; bottom: 0; right: 0;'><h4>Your document uploaded successfully.</h4></div>";
     }
 
     private String authorize() throws Exception {
@@ -144,5 +146,11 @@ public class GoogleDriveResource {
     @GetMapping("/drive/{uid}")
     public List<Googledrive> getFiles(@PathVariable("uid") Long uid) {
         return googledrive.getFile(uid);
+    }
+
+    @DeleteMapping("/drive/{id}")
+    @Timed
+    public void delete(@PathVariable("id") Long id) {
+        googledrive.deleteFile(id);
     }
 }

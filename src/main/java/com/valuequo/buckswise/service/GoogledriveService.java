@@ -55,4 +55,8 @@ public class GoogledriveService {
 	public List<Googledrive> getFile(Long uid) {
 		return googledriveRepository.findByUid(uid);
 	}
+
+	public void deleteFile(Long id) {
+        googledriveRepository.delete(id);
+	}
 }
