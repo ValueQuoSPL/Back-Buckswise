@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import io.undertow.server.handlers.form.FormData;
 
 import com.codahale.metrics.annotation.Timed;
 import com.valuequo.buckswise.domain.Insurance;
@@ -34,14 +37,14 @@ public class InsurancepaymentResource {
     /**
     * POST insuancePayment
     */
-    
+
     @Autowired
     private InsuranceService insuranceService;
-    
+
     @PostMapping("/postlife")
     public String insuancePayment(@RequestBody Map<String, Object>[] insurance) {
     	for(Map<String, Object> entry: insurance) {
-    		
+
     		String name = entry.get("iName").toString();
     		String insuranceName=entry.get("ins_name").toString();
     		String issure=entry.get("issuer").toString();
@@ -60,13 +63,13 @@ public class InsurancepaymentResource {
     	}
         return null;
     }
-    
+
     @GetMapping("/getlife/{userid}")
     @Timed
     public List<Insurance> getinsurance(@PathVariable int userid){
     	return insuranceService.getDetail(userid);
     }
-    
+
     @PutMapping("/putlife/{uid}")
     public String updateLife(@PathVariable Long uid, @RequestBody Map<String, Object> update) throws JSONException {
     	    JSONObject jObj = new JSONObject(update);
@@ -95,5 +98,11 @@ public class InsurancepaymentResource {
     public String delete(@PathVariable Long id) {
     	insuranceService.delete(id);
     	return null;
-    }
+	}
+
+	@PostMapping("/uploadFile")
+    public String fileUpload(@RequestBody MultipartFile file) {
+		System.out.println("radarada" + file);
+		return null;
+	}
 }
