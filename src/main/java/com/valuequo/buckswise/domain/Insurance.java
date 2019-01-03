@@ -58,7 +58,6 @@ public class Insurance {
 		@Column(name = "policynumber")
 		private String policynumber;
 
-
 	    public Insurance() {
 	    	
 	    }
@@ -176,7 +175,6 @@ public class Insurance {
 		}
 
 
-
 		public Insurance(int userid, String name, String insuranceName, String issuer, String pMode,
 				String pName, String premiumName, String premium, String pterm, String sDate, String sum, String term, String policynumber) {
 			super();
@@ -193,7 +191,5 @@ public class Insurance {
 			this.sum = sum;
 			this.term = term;
 			this.policynumber = policynumber;
-		}
-	   
-	    
+		}   
 }

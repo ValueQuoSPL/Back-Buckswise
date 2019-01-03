@@ -44,7 +44,7 @@ public class IncomeResource {
     private Long userid;
 
 	@PostMapping("/income")
-    public String income(@RequestBody Map<String, Object> stuffs) throws JSONException {    	
+    public String income(@RequestBody Map<String, Object> stuffs) throws JSONException {
     	boolean flag = true;
     	for(Map.Entry<String, Object> entry: stuffs.entrySet()) {
     		if(flag == true)
@@ -53,9 +53,7 @@ public class IncomeResource {
    			
     			JSONObject jObj = new JSONObject(stuffs);   
     	    	JSONArray ja_data = jObj.getJSONArray("dynamicIncome");
-    	    	System.out.println("ja_data is : " + ja_data);
     	    	int length = ja_data.length();
-    	    	System.out.println("length : " + length);
     	    	for(int i=0; i<length; i++) {
     	    		
     	    		JSONObject jObj1 = ja_data.getJSONObject(i);

@@ -20,7 +20,6 @@ public class IncomeService {
 		income.setName(uName);
 		income.setAmount(uValue);
 		income.setUserid(userid);
-		System.out.println(income);
 		incomeRepository.save(income);
 		return null;
 	}
