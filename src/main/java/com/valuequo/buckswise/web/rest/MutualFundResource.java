@@ -101,14 +101,14 @@ public class MutualFundResource {
     @GetMapping("/mlfnd/{uid}")
     @Timed
     public List<MutualFund> getMutualfund(@PathVariable Long uid) {
-    	return mutualfundService.getUserDetail(uid); 
+    	return mutualfundService.getUserDetail(uid);
     }
     @GetMapping("/mutualfund/{id}")
     @Timed
     public List<MutualFund> getMutualfundById(@PathVariable Long id) {
-    	return mutualfundService.getUserDetailById(id); 
+    	return mutualfundService.getUserDetailById(id);
     }
-    
+
 
     /**
      * DELETE  /mutualfunds/:id : delete the "id" mutualfund.
@@ -139,4 +139,11 @@ public class MutualFundResource {
         mutualfundService.updateAvailable(id, avail);
         return null;
     }
+
+    @GetMapping("/getnav")
+    @Timed
+    public List getNAV() {
+    	return mutualfundService.getNAVdata();
+    }
+
 }

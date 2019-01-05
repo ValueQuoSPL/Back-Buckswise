@@ -60,10 +60,7 @@ public class NotificationService {
     public String getProfileData(Long uid) {
 
         List<Familyprofile> familyProfileData = familyProfile.findByUid(uid);
-        System.out.println("sarah" + familyProfileData);
-
         List<MyProfile> myProfileData = myProfile.findByUid(uid);
-        System.out.println("sarah" + myProfileData);
 
         if (familyProfileData != null || myProfileData != null) {
             profileMessage = "Kindly complete your profile";
