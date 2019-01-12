@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -93,5 +94,13 @@ public class MutualFundService {
         mf.setAvailable(avail);
         mutualfundRepository.save(mf);
 	}
+
+	public List getNAVdata() {
+        List obj = new ArrayList();
+        String text = "nav data is working";
+        obj.add(text);
+		return obj;
+	}
+
 
 }
