@@ -21,6 +21,8 @@ public class SuccessAndFailService {
 	private PaymentService paymentService;
 
 	@Autowired
+	private SuccessandFailtransaction successandFailtransaction;
+	@Autowired
 	private MailService mailService;
 	
 	public SuccessandFailtransaction saveTransaction(Long mihpayid, String status, String txnid, String productinfo, String email,
@@ -48,6 +50,14 @@ public class SuccessAndFailService {
 
 	public List<SuccessandFailtransaction> getAllDetail() {
 		return successandFailRepository.findAll();
+	}
+
+
+	public void saveTrail(Long uid, String status, String productinfo) {
+		successandFailtransaction.setUserid(uid);
+		successandFailtransaction.setStatus(status);
+		successandFailtransaction.setProductinfo(productinfo);
+		successandFailRepository.save(successandFailtransaction);
 	}
 
 }

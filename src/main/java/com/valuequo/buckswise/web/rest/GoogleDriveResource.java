@@ -29,7 +29,6 @@ import com.google.api.services.drive.model.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,7 +61,7 @@ public class GoogleDriveResource {
 
     HttpTransport httpTransport = new NetHttpTransport();
 
-    private String redirectURI = "http://localhost:8080/api/google-drive/drive";
+    private String redirectURI = "https://www.buckswise.com:8443/api/google-drive/drive";
 
     static List<String> SCOPES = Arrays.asList("https://www.googleapis.com/auth/drive");
 
@@ -85,7 +84,7 @@ public class GoogleDriveResource {
     private String fileName;
 
     @PostMapping("/call/{tid}/{uid}/{type}/{fileName}")
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin(origins = "https://www.buckswise.com")
     public UrlDTO googleConnectionStatus(@RequestParam("file") MultipartFile file, @PathVariable("tid") Long tid, @PathVariable("uid") Long uid, @PathVariable("type") String type, @PathVariable("fileName") String fileName) throws Exception {
         googledriveDTO.setTid(tid);
         googledriveDTO.setUid(uid);
@@ -112,7 +111,8 @@ public class GoogleDriveResource {
             fileMetadata.setName(this.fileName);
             FileContent mediaContent = new FileContent(this.mediatype, this.files);
             File file = client.files().create(fileMetadata, mediaContent).setFields("id").execute();
-
+            // delete Temp file
+            this.files.delete();
             // view the uploaded documents
             File filesView = client.files().get(file.getId()).setFields("webViewLink").execute();
             String fileView = filesView.getWebViewLink();

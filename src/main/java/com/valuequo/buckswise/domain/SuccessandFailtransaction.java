@@ -11,10 +11,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "transactiondata")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Component
 public class SuccessandFailtransaction implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

@@ -11,13 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.valuequo.buckswise.domain.SuccessandFailtransaction;
-import com.valuequo.buckswise.service.PaymentService;
 import com.valuequo.buckswise.service.SuccessAndFailService;
-import com.valuequo.buckswise.web.rest.vm.LoginVM;
 
 /**
  * SuccessPage controller
@@ -34,8 +31,6 @@ public class SuccessPageResource {
 	
 	@Autowired
 	private SuccessAndFailService successAndFailService;
-	
-	private RestTemplate restTemplate = new RestTemplate();
 
 	@GetMapping("/getsuccess/{userid}")
 	public List<SuccessandFailtransaction> getSuccess(@PathVariable Long userid) {
@@ -53,6 +48,12 @@ public class SuccessPageResource {
 			@RequestParam String amount, @RequestParam String addedon, @RequestParam String firstname) {
 		successAndFailService.saveTransaction(mihpayid, status, txnid, productinfo, email, amount, addedon, firstname);
 		return new RedirectView("https://www.buckswise.com/#/success");
+	}
+
+	// storing trail transaction data
+	@PostMapping("/trail/{uid}/{status}/{productinfo}")
+	public void trail(@PathVariable("uid") Long uid, @PathVariable("status") String status, @PathVariable("productinfo") String productinfo) {
+		successAndFailService.saveTrail(uid, status, productinfo);
 	}
 
 	@PostMapping("/fail")
