@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -49,10 +50,54 @@ public class MutualFund implements Serializable {
     @Column(name = "cagr")
     private String cagr;
 
+    @Column(name = "purches_date")
+    private Date p_date;
+    
+    @Column(name = "type")
+    private String type;
+    
+    @Column(name = "frequency")
+    private String frequency;
+    
+    @Column(name = "unitbalance")
+    private String unitbalance;
+    
     @Column(name = "available")
     private String available;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    public Date getP_date() {
+		return p_date;
+	}
+
+	public void setP_date(Date p_date) {
+		this.p_date = p_date;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getFrequency() {
+		return frequency;
+	}
+
+	public void setFrequency(String frequency) {
+		this.frequency = frequency;
+	}
+
+	public String getUnitbalance() {
+		return unitbalance;
+	}
+
+	public void setUnitbalance(String unitbalance) {
+		this.unitbalance = unitbalance;
+	}
+
+	// jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -207,19 +252,14 @@ public class MutualFund implements Serializable {
         return Objects.hashCode(getId());
     }
 
-    @Override
-    public String toString() {
-        return "MutualFund{" +
-            "id=" + getId() +
-            ", userid=" + getUserid() +
-            ", mfscheme='" + getMfscheme() + "'" +
-            ", folionumber='" + getFolionumber() + "'" +
-            ", holdingdays='" + getHoldingdays() + "'" +
-            ", purchesprice='" + getPurchesprice() + "'" +
-            ", currentvalue='" + getCurrentvalue() + "'" +
-            ", gainloss='" + getGainloss() + "'" +
-            ", absolutereturn='" + getAbsolutereturn() + "'" +
-            ", cagr='" + getCagr() + "'" +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "MutualFundDomain [id=" + id + ", userid=" + userid + ", mfscheme=" + mfscheme + ", folionumber=" + folionumber
+				+ ", holdingdays=" + holdingdays + ", purchesprice=" + purchesprice + ", currentvalue=" + currentvalue
+				+ ", gainloss=" + gainloss + ", absolutereturn=" + absolutereturn + ", cagr=" + cagr + ", p_date="
+				+ p_date + ", type=" + type + ", frequency=" + frequency + ", unitbalance=" + unitbalance
+				+ ", available=" + available + "]";
+	}
+
+   
 }
