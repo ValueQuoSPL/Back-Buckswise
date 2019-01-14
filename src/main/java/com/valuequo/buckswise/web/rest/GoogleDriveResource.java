@@ -29,7 +29,6 @@ import com.google.api.services.drive.model.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -112,7 +111,8 @@ public class GoogleDriveResource {
             fileMetadata.setName(this.fileName);
             FileContent mediaContent = new FileContent(this.mediatype, this.files);
             File file = client.files().create(fileMetadata, mediaContent).setFields("id").execute();
-
+            // delete Temp file
+            this.files.delete();
             // view the uploaded documents
             File filesView = client.files().get(file.getId()).setFields("webViewLink").execute();
             String fileView = filesView.getWebViewLink();
