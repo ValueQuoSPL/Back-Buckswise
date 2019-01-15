@@ -354,12 +354,6 @@
 		    <artifactId>java-jwt</artifactId>
 		    <version>3.4.0</version>
 		</dependency>
-		
-		<dependency>
-		    <groupId>com.github.wnameless</groupId>
-		    <artifactId>json-flattener</artifactId>
-		    <version>0.2.2</version>
-		</dependency>
 
        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
@@ -373,13 +367,6 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>4.0.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
-        <dependency>
-            <groupId>org.apache.xmlbeans</groupId>
-            <artifactId>xmlbeans</artifactId>
-            <version>3.0.2</version>
         </dependency>
 
 		<dependency>

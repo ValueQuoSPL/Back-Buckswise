@@ -13,4 +13,6 @@ public interface SuccessandFailRepository extends JpaRepository<SuccessandFailtr
 
 	List<SuccessandFailtransaction> findByUserid(Long userid);
 
+	SuccessandFailtransaction findById(Long id);
+
 }

@@ -1,13 +1,17 @@
 package com.valuequo.buckswise.web.rest;
 
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,6 +58,17 @@ public class SuccessPageResource {
 	@PostMapping("/trail/{uid}/{status}/{productinfo}")
 	public void trail(@PathVariable("uid") Long uid, @PathVariable("status") String status, @PathVariable("productinfo") String productinfo) {
 		successAndFailService.saveTrail(uid, status, productinfo);
+	}
+
+	// update expire plan 
+	@PostMapping("/saveupdate")
+	public void update(@RequestBody Map<String, Object> stuff) throws JSONException {
+
+		JSONObject jobj = new JSONObject(stuff);
+		Long id = jobj.getLong("id");
+		Long uid = jobj.getLong("uid");
+		String status = jobj.get("status").toString();
+		successAndFailService.update(id, uid, status);
 	}
 
 	@PostMapping("/fail")
