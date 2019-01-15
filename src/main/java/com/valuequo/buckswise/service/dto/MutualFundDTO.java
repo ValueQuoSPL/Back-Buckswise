@@ -2,6 +2,7 @@ package com.valuequo.buckswise.service.dto;
 
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -30,8 +31,48 @@ public class MutualFundDTO implements Serializable {
     private String cagr;
 
     private String available;
+    
+    private Date p_date;
+    
+    private String frequency;
+    
+    private String type;
+    
+    private String unitbalance;
 
-    public Long getId() {
+    public Date getP_date() {
+		return p_date;
+	}
+
+	public void setP_date(Date p_date) {
+		this.p_date = p_date;
+	}
+
+	public String getFrequency() {
+		return frequency;
+	}
+
+	public void setFrequency(String frequency) {
+		this.frequency = frequency;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getUnitbalance() {
+		return unitbalance;
+	}
+
+	public void setUnitbalance(String unitbalance) {
+		this.unitbalance = unitbalance;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -140,19 +181,14 @@ public class MutualFundDTO implements Serializable {
         return Objects.hashCode(getId());
     }
 
-    @Override
-    public String toString() {
-        return "MutualfundDTO{" +
-            "id=" + getId() +
-            ", userid=" + getUserid() +
-            ", mfscheme='" + getMfscheme() + "'" +
-            ", folionumber='" + getFolionumber() + "'" +
-            ", holdingdays='" + getHoldingdays() + "'" +
-            ", purchesprice='" + getPurchesprice() + "'" +
-            ", currentvalue='" + getCurrentvalue() + "'" +
-            ", gainloss='" + getGainloss() + "'" +
-            ", absolutereturn='" + getAbsolutereturn() + "'" +
-            ", cagr='" + getCagr() + "'" +
-            "}";
-    }
-}
+	@Override
+	public String toString() {
+		return "MutualFundDTO [id=" + id + ", userid=" + userid + ", mfscheme=" + mfscheme + ", folionumber="
+				+ folionumber + ", holdingdays=" + holdingdays + ", purchesprice=" + purchesprice + ", currentvalue="
+				+ currentvalue + ", gainloss=" + gainloss + ", absolutereturn=" + absolutereturn + ", cagr=" + cagr
+				+ ", available=" + available + ", p_date=" + p_date + ", frequency=" + frequency + ", type=" + type
+				+ ", unitbalance=" + unitbalance + "]";
+	}
+
+      }
+
