@@ -34,6 +34,9 @@ public class Contactus implements Serializable {
     @Column(name = "message")
     private String msg;
 
+    @Column(name = "referance")
+    private String yourname;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -96,6 +99,19 @@ public class Contactus implements Serializable {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
+    public String getYourname() {
+        return yourname;
+    }
+
+    public Contactus Yourname(String youname) {
+        this.yourname = yourname;
+        return this;
+    }
+
+    public void setYourname(String yourname) {
+        this.yourname = yourname;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) {

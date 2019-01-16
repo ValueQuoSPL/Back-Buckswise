@@ -169,7 +169,7 @@ public class MailService {
     }
     @Async
     public void sendReferEmail(ContactusDTO contact) {
-    	sendEmailContactus(contact, "contactusEmail", "email.contact.title1");
+    	sendEmailContactus(contact, "referFriendsEmail", "email.refer.title1");
     }
     
     @Async

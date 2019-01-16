@@ -19,6 +19,8 @@ public class ContactusDTO implements Serializable {
 
     private String msg;
 
+    private String yourname; 
+
     public Long getId() {
         return id;
     }
@@ -59,6 +61,14 @@ public class ContactusDTO implements Serializable {
         this.msg = msg;
     }
 
+    public String getYourname() {
+        return yourname;
+    }
+
+    public void setYourname(String yourname) {
+        this.yourname = yourname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -88,6 +98,7 @@ public class ContactusDTO implements Serializable {
             ", email='" + getEmail() + "'" +
             ", phone=" + getPhone() +
             ", msg='" + getMsg() + "'" +
+            ", yourname='" + getYourname() + "'" +
             "}";
     }
 }
