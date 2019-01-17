@@ -47,7 +47,6 @@ public class AmfiUtilityResource {
             while(sheetIterator.hasNext())
             {
                 org.apache.poi.ss.usermodel.Sheet sheet = sheetIterator.next();
-                System.out.println("=>" + sheet.getSheetName());
             }
             org.apache.poi.ss.usermodel.Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rowIterator = sheet.rowIterator();
@@ -72,7 +71,6 @@ public class AmfiUtilityResource {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
             String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(al);
-            System.out.println(jsonInString);
             workbook.close();
        } catch (Exception e) {
            e.printStackTrace();

@@ -44,7 +44,7 @@ public class AppointmentService {
     
     private static com.google.api.services.calendar.Calendar service;
 	private static final String SERVICE_ACCOUNT_EMAIL = "admin-606@buckswise-219810.iam.gserviceaccount.com";
-	private static final String SERVICE_ACCOUNT_PKCS12_FILE = "buckswise-219810-0fd66feedbb7.p12";
+	private static final String SERVICE_ACCOUNT_PKCS12_FILE = "src/main/resources/buckswise-219810-0fd66feedbb7.p12";
 	private static final String userEmailId = "admin@valuequo.com";
 	private static final String APPLICATION_NAME = "buckswise";
 	private static String dateandTime;
@@ -120,7 +120,6 @@ public class AppointmentService {
 	public void createCalendar(String dateTime, String userEmail) {
 		dateandTime = dateTime;
 		userMail = userEmail;
-		
       try {
 			HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 			JsonFactory jsonFactory = new JacksonFactory();
@@ -132,10 +131,10 @@ public class AppointmentService {
 					.setServiceAccountPrivateKeyFromP12File(new java.io.File(SERVICE_ACCOUNT_PKCS12_FILE))
 					.build();
 			service = new com.google.api.services.calendar.Calendar.Builder(httpTransport, jsonFactory, gCred)
-					.setApplicationName(APPLICATION_NAME).build();
+					.setApplicationName(APPLICATION_NAME).build();		
 			addEvent();
 		} catch (Exception e) {
-			log.debug(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	}

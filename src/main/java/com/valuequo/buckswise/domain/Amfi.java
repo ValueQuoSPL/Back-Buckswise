@@ -28,7 +28,7 @@ public class Amfi implements Serializable {
     @Column(name = "schemecode")
     private String SchemeCode;
    
-    @Column(name = "AMC_code")
+    @Column(name = "amc_code")
     private String AMC_code;
 
     @Column(name = "isindivpayoutisingrowth")
