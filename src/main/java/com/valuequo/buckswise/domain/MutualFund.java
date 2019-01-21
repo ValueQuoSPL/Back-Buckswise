@@ -64,8 +64,52 @@ public class MutualFund implements Serializable {
     
     @Column(name = "available")
     private String available;
+    
+    @Column(name = "amcname")
+    private String amcname;
+    
+    @Column(name = "sipdate")
+    private Date sipdate;
+    
+    @Column(name = "sipamount")
+    private String sipamount;
+    
+    @Column(name = "navatpurches")
+    private String navatpurches;
 
-    public Date getP_date() {
+    public Date getSipdate() {
+		return sipdate;
+	}
+
+	public void setSipdate(Date sipdate) {
+		this.sipdate = sipdate;
+	}
+
+	public String getSipamount() {
+		return sipamount;
+	}
+
+	public void setSipamount(String sipamount) {
+		this.sipamount = sipamount;
+	}
+
+	public String getNavatpurches() {
+		return navatpurches;
+	}
+
+	public void setNavatpurches(String navatpurches) {
+		this.navatpurches = navatpurches;
+	}
+
+	public String getAmcname() {
+		return amcname;
+	}
+
+	public void setAmcname(String amcname) {
+		this.amcname = amcname;
+	}
+
+	public Date getP_date() {
 		return p_date;
 	}
 
@@ -254,12 +298,16 @@ public class MutualFund implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MutualFundDomain [id=" + id + ", userid=" + userid + ", mfscheme=" + mfscheme + ", folionumber=" + folionumber
+		return "MutualFundDomain[id=" + id + ", userid=" + userid + ", mfscheme=" + mfscheme + ", folionumber=" + folionumber
 				+ ", holdingdays=" + holdingdays + ", purchesprice=" + purchesprice + ", currentvalue=" + currentvalue
 				+ ", gainloss=" + gainloss + ", absolutereturn=" + absolutereturn + ", cagr=" + cagr + ", p_date="
 				+ p_date + ", type=" + type + ", frequency=" + frequency + ", unitbalance=" + unitbalance
-				+ ", available=" + available + "]";
+				+ ", available=" + available + ", amcname=" + amcname + ", sipdate=" + sipdate + ", sipamount="
+				+ sipamount + ", navatpurches=" + navatpurches + "]";
 	}
 
+	
+
+	
    
 }

@@ -28,8 +28,8 @@ public class Amfi implements Serializable {
     @Column(name = "schemecode")
     private String SchemeCode;
    
-    @Column(name = "AMC_code")
-    private String AMC_code;
+    @Column(name = "amc_code")
+    private String amc_code;
 
     @Column(name = "isindivpayoutisingrowth")
     private String ISINDivPayoutISINGrowth;
@@ -144,19 +144,16 @@ public class Amfi implements Serializable {
         Date = date;
     }
 
-    /**
-     * @return the aMC_code
-     */
-    public String getAMC_code() {
-        return AMC_code;
-    }
+	public String getAmc_code() {
+		return amc_code;
+	}
 
-    /**
-     * @param aMC_code the aMC_code to set
-     */
-    public void setAMC_code(String aMC_code) {
-        AMC_code = aMC_code;
-    }
+	public void setAmc_code(String amc_code) {
+		this.amc_code = amc_code;
+	}
+
+  
+    
 
 
 }

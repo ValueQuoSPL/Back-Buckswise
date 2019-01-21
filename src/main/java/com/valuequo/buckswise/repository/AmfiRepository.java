@@ -1,16 +1,19 @@
 package com.valuequo.buckswise.repository;
 
 import java.util.List;
-
 import com.valuequo.buckswise.domain.Amfi;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AmfiRepository extends JpaRepository<Amfi, Long> {
-
+public interface AmfiRepository extends JpaRepository<Amfi, String> {
+	@Query("select a from Amfi a where a.amc_code = :name")
+	List<Amfi> findByAmc_code(@Param("name") String name );
+	
+	
 	// List<Amfi> findSchemename();
 
 	// @Query("SELECT t.schemename FROM Amfi t")

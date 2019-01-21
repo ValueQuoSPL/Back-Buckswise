@@ -8,6 +8,9 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.valuequo.buckswise.domain.Amc;
+import com.valuequo.buckswise.domain.Amfi;
+import com.valuequo.buckswise.domain.Appointment;
 import com.valuequo.buckswise.service.AmfiService;
 import com.valuequo.buckswise.service.dto.AmfiDTO;
 
@@ -20,6 +23,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -83,5 +87,4 @@ public class AmfiUtilityResource {
     public void amfiData() {
         amfiService.getAmfiCode();
     }
-
 }

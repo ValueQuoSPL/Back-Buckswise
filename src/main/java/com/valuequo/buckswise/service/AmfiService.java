@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.valuequo.buckswise.domain.Amc;
 import com.valuequo.buckswise.domain.Amfi;
+import com.valuequo.buckswise.repository.AmcRepository;
 import com.valuequo.buckswise.repository.AmfiRepository;
 import com.valuequo.buckswise.service.dto.AmfiDTO;
 
@@ -17,6 +19,9 @@ public class AmfiService {
 
     @Autowired
     private AmfiRepository amfiRepository;
+    
+    @Autowired
+    private AmcRepository amcRepository;
 
     @Transactional
 	public void save(ArrayList<AmfiDTO> al) {
@@ -62,5 +67,15 @@ public class AmfiService {
            
         }
     }
-
+    
+    public List<Amfi> getAmcName(String name) {
+    	List <Amfi> nav = amfiRepository.findByAmc_code(name);
+    	return nav;
+		
+    }
+    public List<Amc> getAllAmc() {
+    	List <Amc> nav = amcRepository.findAll();
+    	return nav;
+		
+    }
 }
