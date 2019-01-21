@@ -67,8 +67,8 @@ public class GoogleDriveResource {
 
     private static com.google.api.services.drive.Drive client;
 
-    String clientId = "504894412631-6tn5bces6bp23graqhssqppcqvqrql6d.apps.googleusercontent.com";
-    String clientSecret = "gQg9u9QAXYzJcYDNhHRhhZQi";
+    private static String clientId = "504894412631-6tn5bces6bp23graqhssqppcqvqrql6d.apps.googleusercontent.com";
+    private static String clientSecret = "gQg9u9QAXYzJcYDNhHRhhZQi";
 
     @Autowired
     private GoogledriveService googledrive;
