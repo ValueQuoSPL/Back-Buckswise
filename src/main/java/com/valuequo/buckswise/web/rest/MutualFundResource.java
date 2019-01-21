@@ -1,9 +1,13 @@
 package com.valuequo.buckswise.web.rest;
 import com.codahale.metrics.annotation.Timed;
+import com.valuequo.buckswise.domain.Amc;
+import com.valuequo.buckswise.domain.Amfi;
 import com.valuequo.buckswise.domain.MutualFund;
+import com.valuequo.buckswise.service.AmfiService;
 import com.valuequo.buckswise.service.MutualFundService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
+import com.valuequo.buckswise.service.dto.AmfiDTO;
 import com.valuequo.buckswise.service.dto.MutualFundDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 
@@ -11,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +42,9 @@ public class MutualFundResource {
     public MutualFundResource(MutualFundService mutualfundService) {
         this.mutualfundService = mutualfundService;
     }
+
+    @Autowired
+    private AmfiService amfiService;
 
     /**
      * POST  /mutualfunds : Create a new mutualfund.
@@ -144,6 +152,14 @@ public class MutualFundResource {
     @Timed
     public List getNAV() {
     	return mutualfundService.getNAVdata();
+    }
+    @GetMapping("/getAmcName/{name}")
+    public List<Amfi> AmcData(@PathVariable String name) {
+        return amfiService.getAmcName(name);
+    }
+    @GetMapping("/getAllAmcode")
+    public List<Amc> Amcode() {
+        return amfiService.getAllAmc();
     }
 
 }

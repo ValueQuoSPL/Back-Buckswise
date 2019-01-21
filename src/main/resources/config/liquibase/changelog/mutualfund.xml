@@ -76,7 +76,23 @@
              <column name="available" type="varchar(225)">
                 <constraints nullable="true" />
             </column>
-
+	
+			<column name="amcname" type="varchar(225)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sipdate" type="Date">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sipamount" type="varchar(225)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="navatpurches" type="varchar(225)">
+                <constraints nullable="true" />
+            </column>
+            
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

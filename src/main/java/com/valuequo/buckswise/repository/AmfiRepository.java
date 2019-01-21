@@ -15,6 +15,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AmfiRepository extends JpaRepository<Amfi, Long> {
 
+	@Query("select a from Amfi a where a.amc_code = :name")
+	List<Amfi> findByAmc_code(@Param("name") String name );
+	
 	@Transactional
   	@Modifying
 	@Query("UPDATE Amfi a SET a.AMC_code = :amc_code WHERE a.SchemeName LIKE CONCAT('%',:amc_code,'%')")

@@ -19,6 +19,9 @@ public class AmfiService {
 
     @Autowired
     private AmfiRepository amfiRepository;
+    
+    @Autowired
+    private AmcRepository amcRepository;
 
     @Autowired
     private AmcRepository amcRepository;
@@ -54,5 +57,15 @@ public class AmfiService {
             amfiRepository.update(amc_code);
         }
     }
-
+    
+    public List<Amfi> getAmcName(String name) {
+    	List <Amfi> nav = amfiRepository.findByAmc_code(name);
+    	return nav;
+		
+    }
+    public List<Amc> getAllAmc() {
+    	List <Amc> nav = amcRepository.findAll();
+    	return nav;
+		
+    }
 }
