@@ -23,6 +23,9 @@ public class AmfiService {
     @Autowired
     private AmcRepository amcRepository;
 
+    @Autowired
+    private AmcRepository amcRepository;
+
     @Transactional
 	public void save(ArrayList<AmfiDTO> al) {
         int size = al.size();
@@ -48,23 +51,10 @@ public class AmfiService {
     
     @Transactional
     public void getAmfiCode() {
-        List<Amfi> nav = amfiRepository.findAll();
-        int size = nav.size();
-        int count = 0;
-        List<Amfi> anf = new ArrayList<Amfi>();
-        for (Amfi result: nav) {
-            Amfi amfi = new Amfi();
-            amfi.setSchemeName(result.getSchemeName());
-            anf.add(amfi);
-            for (Amfi var : anf) {
-                if((count + 1) % 1000 == 0 || (count + 1) == size) {
-                    System.out.println(var.getSchemeName());
-                    // amfiRepository.save(amf);
-                }
-                count++;
-            };
-            // String str = result.getSchemeName();
-           
+        List<Amc> amc = amcRepository.findAll();
+        for(Amc result : amc) {
+            String amc_code = result.getAmc_code();
+            amfiRepository.update(amc_code);
         }
     }
     

@@ -57,6 +57,22 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="frequency" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="purches_date" type="Date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="type" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="unitbalance" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
              <column name="available" type="varchar(225)">
                 <constraints nullable="true" />
             </column>

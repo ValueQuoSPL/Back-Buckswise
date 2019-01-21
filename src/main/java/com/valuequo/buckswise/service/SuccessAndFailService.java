@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.valuequo.buckswise.domain.Income;
 import com.valuequo.buckswise.domain.SuccessandFailtransaction;
 import com.valuequo.buckswise.repository.SuccessandFailRepository;
-import com.valuequo.buckswise.security.SecurityUtils;
 
 
 @Service
@@ -54,10 +53,30 @@ public class SuccessAndFailService {
 
 
 	public void saveTrail(Long uid, String status, String productinfo) {
+		// List<SuccessandFailtransaction> saveAndFial = successandFailRepository.findByUserid(uid);
+		// for( SuccessandFailtransaction result : saveAndFial) {
+		// 	if(result.getUserid() == uid) {
+		// 	} else {
+		// 		successandFailtransaction.setUserid(uid);
+		// 		successandFailtransaction.setStatus(status);
+		// 		successandFailtransaction.setProductinfo(productinfo);
+		// 		successandFailRepository.save(successandFailtransaction);
+		// 	}
+		// }
+
 		successandFailtransaction.setUserid(uid);
 		successandFailtransaction.setStatus(status);
 		successandFailtransaction.setProductinfo(productinfo);
 		successandFailRepository.save(successandFailtransaction);
+
+	}
+
+
+	public void update(Long id, Long uid, String status) {
+		SuccessandFailtransaction update = successandFailRepository.findById(id);
+		update.setUserid(uid);
+		update.setStatus(status);
+		successandFailRepository.save(update);
 	}
 
 }
