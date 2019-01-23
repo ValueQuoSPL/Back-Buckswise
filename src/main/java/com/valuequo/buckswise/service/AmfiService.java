@@ -23,9 +23,6 @@ public class AmfiService {
     @Autowired
     private AmcRepository amcRepository;
 
-    @Autowired
-    private AmcRepository amcRepository;
-
     @Transactional
 	public void save(ArrayList<AmfiDTO> al) {
         int size = al.size();
