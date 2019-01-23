@@ -7,11 +7,14 @@ import com.valuequo.buckswise.service.dto.MutualFundDTO;
 import com.valuequo.buckswise.service.mapper.MutualFundMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -89,6 +92,10 @@ public class MutualFundService {
         return mf;
     }
 
+    /**
+     * author - Sandeep Pote
+     * @param p_date
+     */
     private Double dateDiff(Date p_date) {
         Long purchase = p_date.getTime();
         Long currentDate = this.currentDate.getTime();
@@ -97,11 +104,46 @@ public class MutualFundService {
         return days;
     }
  
+    /**
+     * author - Sandeep Pote
+     * @param schemeCode
+     * @param amfi
+     * @param unit
+     */
     private String calCurrentValue(String schemeCode, String amfi, String unit) {
         Double nav = Double.valueOf(amfi);
         Double currentValue = Double.valueOf(unit);
         String netCurrent = Double.toString(Math.round(nav * currentValue));
         return netCurrent;
+    }
+
+    /**
+     * author - Sandeep Pote
+     * Fire Trigger Every Day at 1:00 AM
+     */
+    @Scheduled(cron = "0 0/10 * ? * Mon-Fri")
+    void unitBalance() throws Exception{
+        Date current = new Date();
+        int day = current.getDate();
+        String days = Integer.toString(day);
+        List<Object> mFund = (List<Object>) mutualfundRepository.findBySipday(days);
+        Iterator itr = mFund.iterator();
+        while(itr.hasNext()) {
+            Object[] obj = (Object[]) itr.next();
+                Long id = (Long) obj[0];
+                String schemeCode = String.valueOf(obj[1]);
+                String unitbalance = String.valueOf(obj[2]);
+                String sipamount = String.valueOf(obj[3]);
+                String nav = amfiRepository.findBySchemecode(schemeCode);
+                if(nav.length() > 0) {
+                    Double netValue = Double.valueOf(nav);
+                    Double newBalance = (Double.parseDouble(sipamount) / netValue);
+                    String finalValue = new DecimalFormat("##.##").format(newBalance);
+                    double unit = (Double.parseDouble(unitbalance) + Double.parseDouble(finalValue));
+                    String units = Double.toString(unit);
+                    mutualfundRepository.update(units, id);                
+                }
+            }
     }
 
     @Transactional(readOnly = true)
