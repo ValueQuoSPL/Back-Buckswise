@@ -124,7 +124,9 @@ public class MutualFundService {
     @Scheduled(cron = "0 0/10 * ? * Mon-Fri")
     void unitBalance() throws Exception{
         Date current = new Date();
-        List<Object> mFund = (List<Object>) mutualfundRepository.findBySipdate(current);
+        int day = current.getDate();
+        String days = Integer.toString(day);
+        List<Object> mFund = (List<Object>) mutualfundRepository.findBySipday(days);
         Iterator itr = mFund.iterator();
         while(itr.hasNext()) {
             Object[] obj = (Object[]) itr.next();
