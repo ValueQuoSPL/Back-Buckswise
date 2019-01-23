@@ -81,7 +81,7 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="sipdate" type="Date">
+            <column name="sipday" type="varchar(225)">
                 <constraints nullable="true" />
             </column>
             

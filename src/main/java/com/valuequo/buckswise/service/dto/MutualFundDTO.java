@@ -42,18 +42,20 @@ public class MutualFundDTO implements Serializable {
     
     private String amcname;
     
-    private Date sipdate;
+    private String sipday;
     
     private String sipamount;
     
     private String navatpurches;
 
-    public Date getSipdate() {
-		return sipdate;
+    
+
+	public String getSipday() {
+		return sipday;
 	}
 
-	public void setSipdate(Date sipdate) {
-		this.sipdate = sipdate;
+	public void setSipday(String sipday) {
+		this.sipday = sipday;
 	}
 
 	public String getSipamount() {
@@ -227,7 +229,7 @@ public class MutualFundDTO implements Serializable {
 				+ folionumber + ", holdingdays=" + holdingdays + ", purchesprice=" + purchesprice + ", currentvalue="
 				+ currentvalue + ", gainloss=" + gainloss + ", absolutereturn=" + absolutereturn + ", cagr=" + cagr
 				+ ", available=" + available + ", p_date=" + p_date + ", frequency=" + frequency + ", type=" + type
-				+ ", unitbalance=" + unitbalance + ", amcname=" + amcname + ", sipdate=" + sipdate + ", sipamount="
+				+ ", unitbalance=" + unitbalance + ", amcname=" + amcname + ", sipday=" + sipday + ", sipamount="
 				+ sipamount + ", navatpurches=" + navatpurches + "]";
 	}
 
