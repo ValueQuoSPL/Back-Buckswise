@@ -23,4 +23,7 @@ public interface AmfiRepository extends JpaRepository<Amfi, Long> {
 	@Query("UPDATE Amfi a SET a.amc_code = :amc_code WHERE a.SchemeName LIKE CONCAT('%',:amc_code,'%')")
 	void update(@Param("amc_code") String amc_code);
 
+	@Query("Select a.NetAssetValue from Amfi a where a.SchemeCode =:schemeCode")
+	String findBySchemecode(@Param("schemeCode") String schemeCode);
+
 }

@@ -4,13 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
+import static java.util.concurrent.TimeUnit.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.valuequo.buckswise.domain.Amc;
-import com.valuequo.buckswise.domain.Amfi;
-import com.valuequo.buckswise.domain.Appointment;
+import com.hazelcast.scheduledexecutor.impl.operations.ScheduleTaskOperation;
 import com.valuequo.buckswise.service.AmfiService;
 import com.valuequo.buckswise.service.dto.AmfiDTO;
 
@@ -22,6 +23,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,8 +41,10 @@ public class AmfiUtilityResource {
 
     @Autowired
     private AmfiService amfiService;
+    
 
-    @GetMapping("/json")
+    // @GetMapping("/json")
+    @Scheduled(cron = "0 0 0 * * *",zone = "Indian/Maldives")
     public void textToJson() throws FileNotFoundException {
         try {
 

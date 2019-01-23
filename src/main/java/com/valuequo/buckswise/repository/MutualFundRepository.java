@@ -17,6 +17,6 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface MutualFundRepository extends JpaRepository<MutualFund, Long> {
 	List<MutualFund> findByUserid(Long userid);
-	List<MutualFund> findByid(Long id);
+	MutualFund findByid(Long id);
 	MutualFund findById(Long id);
 }

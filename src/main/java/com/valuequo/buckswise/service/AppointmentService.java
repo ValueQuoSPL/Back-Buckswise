@@ -43,8 +43,8 @@ public class AppointmentService {
     private final AppointmentMapper appointmentMapper;
     
     private static com.google.api.services.calendar.Calendar service;
-	private static final String SERVICE_ACCOUNT_EMAIL = "admin-606@buckswise-219810.iam.gserviceaccount.com";
-	private static final String SERVICE_ACCOUNT_PKCS12_FILE = "src/main/resources/buckswise-219810-0fd66feedbb7.p12";
+	private static final String SERVICE_ACCOUNT_EMAIL = "api-258@buckswise-219810.iam.gserviceaccount.com";
+	private static final String SERVICE_ACCOUNT_PKCS12_FILE = "src/main/resources/buckswise-219810-852c2e71e6a3.p12";
 	private static final String userEmailId = "admin@valuequo.com";
 	private static final String APPLICATION_NAME = "buckswise";
 	private static String dateandTime;
@@ -130,6 +130,9 @@ public class AppointmentService {
 					.setServiceAccountUser(userEmailId)
 					.setServiceAccountPrivateKeyFromP12File(new java.io.File(SERVICE_ACCOUNT_PKCS12_FILE))
 					.build();
+			if (!gCred.refreshToken()) {
+			throw new RuntimeException("Failed OAuth to refresh the token");
+			}
 			service = new com.google.api.services.calendar.Calendar.Builder(httpTransport, jsonFactory, gCred)
 					.setApplicationName(APPLICATION_NAME).build();		
 			addEvent();

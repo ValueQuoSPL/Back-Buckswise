@@ -113,7 +113,7 @@ public class MutualFundResource {
     }
     @GetMapping("/mutualfund/{id}")
     @Timed
-    public List<MutualFund> getMutualfundById(@PathVariable Long id) {
+    public MutualFund getMutualfundById(@PathVariable Long id) {
     	return mutualfundService.getUserDetailById(id);
     }
 
