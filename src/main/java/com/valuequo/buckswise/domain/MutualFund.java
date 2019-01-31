@@ -74,8 +74,8 @@ public class MutualFund implements Serializable {
 	@Column(name = "sipamount")
     private String sipamount;
     
-    @Column(name = "navatpurches")
-    private String navatpurches;
+    @Column(name = "schemecode")
+    private String schemecode;
 
     public String getSipday() {
 		return sipday;
@@ -92,13 +92,14 @@ public class MutualFund implements Serializable {
 	public void setSipamount(String sipamount) {
 		this.sipamount = sipamount;
 	}
+	
 
-	public String getNavatpurches() {
-		return navatpurches;
+	public String getSchemecode() {
+		return schemecode;
 	}
 
-	public void setNavatpurches(String navatpurches) {
-		this.navatpurches = navatpurches;
+	public void setSchemecode(String schemecode) {
+		this.schemecode = schemecode;
 	}
 
 	public String getAmcname() {
@@ -303,7 +304,7 @@ public class MutualFund implements Serializable {
 				+ ", gainloss=" + gainloss + ", absolutereturn=" + absolutereturn + ", cagr=" + cagr + ", p_date="
 				+ p_date + ", type=" + type + ", frequency=" + frequency + ", unitbalance=" + unitbalance
 				+ ", available=" + available + ", amcname=" + amcname + ", sipday=" + sipday + ", sipamount="
-				+ sipamount + ", navatpurches=" + navatpurches + "]";
+				+ sipamount + ", schemecode=" + schemecode + "]";
 	}
 
 	

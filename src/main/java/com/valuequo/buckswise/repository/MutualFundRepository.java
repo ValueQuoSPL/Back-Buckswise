@@ -24,7 +24,7 @@ public interface MutualFundRepository extends JpaRepository<MutualFund, Long> {
 	MutualFund findByid(Long id);
 	MutualFund findById(Long id);
 
-	@Query("select a.id, a.mfscheme, a.unitbalance, a.sipamount from MutualFund a where a.sipday =:date")
+	@Query("select a.id, a.schemecode, a.unitbalance, a.sipamount from MutualFund a where a.sipday =:date")
 	List<Object> findBySipday(@Param("date") String current);
 	
 	/**
