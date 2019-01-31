@@ -106,22 +106,34 @@ public class MutualFundService {
         return mf;
     }
 
+
+ /**
+     * Author sandeep
+     *
+     * @param schemeCode
+     * day basis getting nav.
+     */
     private String list;
     public String getNavValue(String schemeCode) {
     Date currentDate = new Date();
     int day = currentDate.getDate();
     String dayVal = Integer.toString(day);
     String currentDay = "day" + dayVal;
-    System.out.println(currentDay);
         try {
             session = this.hibernateFactory.openSession();
             tx = session.beginTransaction();
             String sqlQuery = "Select a." +currentDay+ " from Amfi a where a.SchemeCode =" +schemeCode;
             Query query = session.createQuery(sqlQuery);
             this.list = ((org.hibernate.query.Query) query).uniqueResult().toString();
+            if(this.list == "null") {
+                int temp = 0;
+                this.list = Integer.toString(day);
+            }
             tx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } finally {
+            session.close();
         }
         return this.list;
     }
@@ -168,7 +180,7 @@ public class MutualFundService {
                 String schemeCode = String.valueOf(obj[1]);
                 String unitbalance = String.valueOf(obj[2]);
                 String sipamount = String.valueOf(obj[3]);
-                String nav = amfiRepository.findBySchemecode(schemeCode);
+                String nav = getNavValue(schemeCode);
                 if(nav.length() > 0) {
                     Double netValue = Double.valueOf(nav);
                     Double newBalance = (Double.parseDouble(sipamount) / netValue);
