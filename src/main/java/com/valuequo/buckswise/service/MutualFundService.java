@@ -80,7 +80,7 @@ public class MutualFundService {
         List<MutualFund> mf =  mutualfundRepository.findByUserid(uid);
         System.out.println("mfund" + mf);
         for(MutualFund result: mf) {
-            String schemeCode = result.getMfscheme();
+            String schemeCode = result.getSchemecode();
             String unit = result.getUnitbalance();
             Date p_date = result.getP_date();
             Double day = dateDiff(p_date);
@@ -148,7 +148,16 @@ public class MutualFundService {
 
     @Transactional(readOnly = true)
     public MutualFund getUserDetailById(Long id) {
-         return mutualfundRepository.findByid(id);
+    	MutualFund mf = mutualfundRepository.findByid(id);
+             String schemeCode = mf.getSchemecode();
+             String unit = mf.getUnitbalance();
+             Date p_date = mf.getP_date();
+             Double day = dateDiff(p_date);
+             String amfi = amfiRepository.findBySchemecode(schemeCode);
+             String netCurrent = calCurrentValue(schemeCode, amfi, unit);
+             mf.setCurrentvalue(netCurrent);
+             mf.setHoldingdays(day.toString());
+         return mf;
     }
 
     /**
