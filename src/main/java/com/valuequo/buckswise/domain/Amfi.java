@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -45,6 +46,10 @@ public class Amfi implements Serializable {
 
     @Column(name = "date")
     private String Date;
+
+    @Column(name = "day2")
+    private String day2;
+
 
     /**
      * @return the id
@@ -152,8 +157,19 @@ public class Amfi implements Serializable {
 		this.amc_code = amc_code;
 	}
 
-  
-    
+    /**
+     * @return the day2
+     */
+    public String getDay2() {
+        return day2;
+    }
+
+    /**
+     * @param day2 the day2 to set
+     */
+    public void setDay2(String day2) {
+        this.day2 = day2;
+    }
 
 
 }

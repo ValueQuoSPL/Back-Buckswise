@@ -1,4 +1,5 @@
 package com.valuequo.buckswise.web.rest;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -18,7 +19,6 @@ import com.codahale.metrics.annotation.Timed;
 import com.valuequo.buckswise.domain.GoalSet;
 import com.valuequo.buckswise.domain.MyProfile;
 import com.valuequo.buckswise.service.MyProfileService;
-import com.valuequo.buckswise.service.dto.FamilyprofileDTO;
 import com.valuequo.buckswise.service.dto.MyProfileDTO;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
@@ -77,7 +77,7 @@ import com.valuequo.buckswise.web.rest.util.HeaderUtil;
 //	    }
 	    @GetMapping("/myprofile/{uid}")
 	    @Timed
-	    public List<MyProfile> getMyProfileById(@PathVariable Long uid)
+	    public List<MyProfileDTO> getMyProfileById(@PathVariable Long uid)
 	    {
 			return myprofileService.getMyProfileById(uid);
 	    }
