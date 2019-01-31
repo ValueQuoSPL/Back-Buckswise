@@ -76,8 +76,19 @@ public class MutualFund implements Serializable {
     
     @Column(name = "schemecode")
     private String schemecode;
+    
+    @Column(name = "navatpurchase")
+    private String navatpurchase;
 
-    public String getSipday() {
+    public String getNavatpurchase() {
+		return navatpurchase;
+	}
+
+	public void setNavatpurchase(String navatpurchase) {
+		this.navatpurchase = navatpurchase;
+	}
+
+	public String getSipday() {
 		return sipday;
 	}
 
@@ -299,16 +310,11 @@ public class MutualFund implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MutualFundDomain[id=" + id + ", userid=" + userid + ", mfscheme=" + mfscheme + ", folionumber=" + folionumber
+		return "MutualFund [id=" + id + ", userid=" + userid + ", mfscheme=" + mfscheme + ", folionumber=" + folionumber
 				+ ", holdingdays=" + holdingdays + ", purchesprice=" + purchesprice + ", currentvalue=" + currentvalue
 				+ ", gainloss=" + gainloss + ", absolutereturn=" + absolutereturn + ", cagr=" + cagr + ", p_date="
 				+ p_date + ", type=" + type + ", frequency=" + frequency + ", unitbalance=" + unitbalance
 				+ ", available=" + available + ", amcname=" + amcname + ", sipday=" + sipday + ", sipamount="
-				+ sipamount + ", schemecode=" + schemecode + "]";
-	}
-
-	
-
-	
-   
+				+ sipamount + ", schemecode=" + schemecode + ", navatpurchase=" + navatpurchase + "]";
+	}   
 }

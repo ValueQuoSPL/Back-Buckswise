@@ -47,6 +47,8 @@ public class MutualFundDTO implements Serializable {
     private String sipamount;
     
     private String schemecode;
+    
+    private String navatpurchase;
 
     
 
@@ -60,6 +62,14 @@ public class MutualFundDTO implements Serializable {
 
 	public String getSipamount() {
 		return sipamount;
+	}
+
+	public String getNavatpurchase() {
+		return navatpurchase;
+	}
+
+	public void setNavatpurchase(String navatpurchase) {
+		this.navatpurchase = navatpurchase;
 	}
 
 	public void setSipamount(String sipamount) {
@@ -231,12 +241,8 @@ public class MutualFundDTO implements Serializable {
 				+ currentvalue + ", gainloss=" + gainloss + ", absolutereturn=" + absolutereturn + ", cagr=" + cagr
 				+ ", available=" + available + ", p_date=" + p_date + ", frequency=" + frequency + ", type=" + type
 				+ ", unitbalance=" + unitbalance + ", amcname=" + amcname + ", sipday=" + sipday + ", sipamount="
-				+ sipamount + ", schemecode=" + schemecode + "]";
+				+ sipamount + ", schemecode=" + schemecode + ", navatpurchase=" + navatpurchase + "]";
 	}
-
-
-
-	
 
       }
 
