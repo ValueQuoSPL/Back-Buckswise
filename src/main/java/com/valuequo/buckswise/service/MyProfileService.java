@@ -92,9 +92,11 @@ import java.util.stream.Collectors;
 //	        return myProfileMapper.toDto(myProfile);
 //	    }
 //
-	    public List<MyProfile> getMyProfileById(Long uid)
+	    public List<MyProfileDTO> getMyProfileById(Long uid)
 	    {
-	    	return myProfileRepository.findByUid(uid);
+	    	return myProfileRepository.findByUid(uid).stream()
+			.map(myProfileMapper::toDto)
+			.collect(Collectors.toCollection(LinkedList::new));
 	    }
 
 //	    /**

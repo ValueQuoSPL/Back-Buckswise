@@ -5,11 +5,16 @@ import com.valuequo.buckswise.repository.AmfiRepository;
 import com.valuequo.buckswise.repository.MutualFundRepository;
 import com.valuequo.buckswise.service.dto.MutualFundDTO;
 import com.valuequo.buckswise.service.mapper.MutualFundMapper;
+
+import org.hibernate.*;
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.valuequo.buckswise.domain.Amfi;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -19,11 +24,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+import javax.transaction.Transaction;
+
 /**
  * Service Implementation for managing Mutualfund.
  */
 @Service
-@Transactional
 public class MutualFundService {
 
     private final Logger log = LoggerFactory.getLogger(MutualFundService.class);
@@ -34,12 +42,19 @@ public class MutualFundService {
 
     private final AmfiRepository amfiRepository;
 
+    private SessionFactory hibernateFactory;
+
     Date currentDate = new Date();
 
-    public MutualFundService(MutualFundRepository mutualfundRepository, MutualFundMapper mutualfundMapper, AmfiRepository amfiRepository) {
+    Session session = null;
+
+    org.hibernate.Transaction tx;
+
+    public MutualFundService(MutualFundRepository mutualfundRepository, MutualFundMapper mutualfundMapper, AmfiRepository amfiRepository, EntityManagerFactory factory) {
         this.mutualfundRepository = mutualfundRepository;
         this.mutualfundMapper = mutualfundMapper;
         this.amfiRepository = amfiRepository;
+        this.hibernateFactory = factory.unwrap(SessionFactory.class);
     }
 
     /**
@@ -78,18 +93,37 @@ public class MutualFundService {
     @Transactional(readOnly = true)
     public List<MutualFund> getUserDetail(Long uid) {
         List<MutualFund> mf =  mutualfundRepository.findByUserid(uid);
-        System.out.println("mfund" + mf);
         for(MutualFund result: mf) {
             String schemeCode = result.getSchemecode();
             String unit = result.getUnitbalance();
             Date p_date = result.getP_date();
             Double day = dateDiff(p_date);
-            String amfi = amfiRepository.findBySchemecode(schemeCode);
+            String amfi =  getNavValue(schemeCode);
             String netCurrent = calCurrentValue(schemeCode, amfi, unit);
             result.setCurrentvalue(netCurrent);
             result.setHoldingdays(day.toString());
         }
         return mf;
+    }
+
+    private String list;
+    public String getNavValue(String schemeCode) {
+    Date currentDate = new Date();
+    int day = currentDate.getDate();
+    String dayVal = Integer.toString(day);
+    String currentDay = "day" + dayVal;
+    System.out.println(currentDay);
+        try {
+            session = this.hibernateFactory.openSession();
+            tx = session.beginTransaction();
+            String sqlQuery = "Select a." +currentDay+ " from Amfi a where a.SchemeCode =" +schemeCode;
+            Query query = session.createQuery(sqlQuery);
+            this.list = ((org.hibernate.query.Query) query).uniqueResult().toString();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this.list;
     }
 
     /**
@@ -153,7 +187,7 @@ public class MutualFundService {
              String unit = mf.getUnitbalance();
              Date p_date = mf.getP_date();
              Double day = dateDiff(p_date);
-             String amfi = amfiRepository.findBySchemecode(schemeCode);
+             String amfi =  getNavValue(schemeCode);
              String netCurrent = calCurrentValue(schemeCode, amfi, unit);
              mf.setCurrentvalue(netCurrent);
              mf.setHoldingdays(day.toString());

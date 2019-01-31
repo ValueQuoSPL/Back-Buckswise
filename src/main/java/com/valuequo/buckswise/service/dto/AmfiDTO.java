@@ -1,5 +1,7 @@
 package com.valuequo.buckswise.service.dto;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,11 +12,27 @@ public class AmfiDTO {
     private String SchemeName;
     private String NetAssetValue;
     private String Date;
+    private String day2;
+
     /**
      * @return the schemeCode
      */
     public String getSchemeCode() {
         return SchemeCode;
+    }
+
+    /**
+     * @return the day2
+     */
+    public String getDay2() {
+        return day2;
+    }
+
+    /**
+     * @param day2 the day2 to set
+     */
+    public void setDay2(String day2) {
+        this.day2 = day2;
     }
 
     /**
