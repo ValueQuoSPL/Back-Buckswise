@@ -125,10 +125,6 @@ public class MutualFundService {
             String sqlQuery = "Select a." +currentDay+ " from Amfi a where a.SchemeCode =" +schemeCode;
             Query query = session.createQuery(sqlQuery);
             this.list = ((org.hibernate.query.Query) query).uniqueResult().toString();
-            if(this.list == "null") {
-                int temp = 0;
-                this.list = Integer.toString(day);
-            }
             tx.commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
