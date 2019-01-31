@@ -10,9 +10,11 @@ import org.hibernate.*;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.valuequo.buckswise.domain.Amfi;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -46,7 +48,7 @@ public class MutualFundService {
 
     Session session = null;
 
-    Transaction tx;
+    org.hibernate.Transaction tx;
 
     public MutualFundService(MutualFundRepository mutualfundRepository, MutualFundMapper mutualfundMapper, AmfiRepository amfiRepository, EntityManagerFactory factory) {
         this.mutualfundRepository = mutualfundRepository;
@@ -96,8 +98,7 @@ public class MutualFundService {
             String unit = result.getUnitbalance();
             Date p_date = result.getP_date();
             Double day = dateDiff(p_date);
-            // String amfi = amfiRepository.findBySchemecode(schemeCode);
-           String amfi =  getNavValue(schemeCode);
+            String amfi =  getNavValue(schemeCode);
             String netCurrent = calCurrentValue(schemeCode, amfi, unit);
             result.setCurrentvalue(netCurrent);
             result.setHoldingdays(day.toString());
@@ -105,24 +106,24 @@ public class MutualFundService {
         return mf;
     }
 
+    private String list;
     public String getNavValue(String schemeCode) {
     Date currentDate = new Date();
     int day = currentDate.getDate();
     String dayVal = Integer.toString(day);
     String currentDay = "day" + dayVal;
+    System.out.println(currentDay);
         try {
             session = this.hibernateFactory.openSession();
-            tx = (Transaction) session.beginTransaction();
-            String sqlQuery = "Select a." +currentDay+ "from Amfi a where a.SchemeCode" +schemeCode;
+            tx = session.beginTransaction();
+            String sqlQuery = "Select a." +currentDay+ " from Amfi a where a.SchemeCode =" +schemeCode;
             Query query = session.createQuery(sqlQuery);
-            String list = query.getResultList().toString();
-            System.out.println(list);
-            query.executeUpdate();
+            this.list = ((org.hibernate.query.Query) query).uniqueResult().toString();
             tx.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return this.list;
     }
 
     /**
@@ -186,7 +187,7 @@ public class MutualFundService {
              String unit = mf.getUnitbalance();
              Date p_date = mf.getP_date();
              Double day = dateDiff(p_date);
-             String amfi = amfiRepository.findBySchemecode(schemeCode);
+             String amfi =  getNavValue(schemeCode);
              String netCurrent = calCurrentValue(schemeCode, amfi, unit);
              mf.setCurrentvalue(netCurrent);
              mf.setHoldingdays(day.toString());
