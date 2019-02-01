@@ -97,7 +97,8 @@ public class AmfiUtilityResource {
      * author - Sandeep Pote
      * Mapping the AMC_Code to NAV table
      */
-    @GetMapping("/getDetails")
+    // @GetMapping("/getDetails")
+    @Scheduled(cron = "0 15 0 * * *",zone = "Indian/Maldives")
     public void amfiData() {
         amfiService.getAmfiCode();
     }
