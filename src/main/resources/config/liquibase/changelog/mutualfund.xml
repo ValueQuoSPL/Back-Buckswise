@@ -28,6 +28,9 @@
             <column name="mfscheme" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="schemecode" type="varchar(45)">
+                <constraints nullable="true" />
+            </column>
 
             <column name="folionumber" type="varchar(255)">
                 <constraints nullable="true" />
