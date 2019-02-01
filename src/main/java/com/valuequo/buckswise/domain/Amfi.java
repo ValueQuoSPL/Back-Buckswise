@@ -41,8 +41,8 @@ public class Amfi implements Serializable {
     @Column(name = "schemename")
     private String SchemeName;
 
-    @Column(name = "netassetvalue")
-    private String NetAssetValue;
+    @Column(name = "day1")
+    private String day1;
 
     @Column(name = "date")
     private String Date;
@@ -208,19 +208,6 @@ public class Amfi implements Serializable {
         SchemeName = schemeName;
     }
 
-    /**
-     * @return the netAssetValue
-     */
-    public String getNetAssetValue() {
-        return NetAssetValue;
-    }
-
-    /**
-     * @param netAssetValue the netAssetValue to set
-     */
-    public void setNetAssetValue(String netAssetValue) {
-        NetAssetValue = netAssetValue;
-    }
 
     /**
      * @return the date
@@ -662,6 +649,20 @@ public class Amfi implements Serializable {
      */
     public void setDay31(String day31) {
         this.day31 = day31;
+    }
+
+    /**
+     * @return the day1
+     */
+    public String getDay1() {
+        return day1;
+    }
+
+    /**
+     * @param day1 the day1 to set
+     */
+    public void setDay1(String day1) {
+        this.day1 = day1;
     }
 
 

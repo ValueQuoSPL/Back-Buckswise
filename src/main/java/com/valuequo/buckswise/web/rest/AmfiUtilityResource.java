@@ -76,7 +76,7 @@ public class AmfiUtilityResource {
                         json1.setISINDivPayoutISINGrowth(formatter.formatCellValue(row.getCell(1)));
                         json1.setISINDivReinvestment(formatter.formatCellValue(row.getCell(2)));
                         json1.setSchemeName(formatter.formatCellValue(row.getCell(3)));
-                        json1.setNetAssetValue(formatter.formatCellValue(row.getCell(4)));
+                        json1.setDay1(formatter.formatCellValue(row.getCell(4)));
                         json1.setDate(formatter.formatCellValue(row.getCell(5)));
                         al.add(json1);
                     }

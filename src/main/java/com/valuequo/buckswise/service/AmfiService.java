@@ -53,7 +53,7 @@ public class AmfiService {
                 amfi.setISINDivPayoutISINGrowth(data.getISINDivPayoutISINGrowth());
                 amfi.setISINDivReinvestment(data.getISINDivReinvestment());
                 amfi.setSchemeName(data.getSchemeName());
-                amfi.setNetAssetValue(data.getNetAssetValue());
+                amfi.setDay1(data.getDay1());
                 amfi.setDate(data.getDate());
                 amf.add(amfi);
                 if ((count + 1) % 1000 == 0 || (count + 1) == size) {
@@ -67,11 +67,11 @@ public class AmfiService {
                 Amfi amfi = new Amfi();
                 amfi.setDate(result.getDate());
                 amfi.setSchemeCode(result.getSchemeCode());
-                amfi.setNetAssetValue(result.getNetAssetValue());
+                amfi.setDay1(result.getDay1());
 
                 String schemeCode = amfi.getSchemeCode();
                 String date = amfi.getDate();
-                String nav = amfi.getNetAssetValue();
+                String nav = amfi.getDay1();
 
                 Date day = new Date(date);
                 int dayValue = day.getDate();

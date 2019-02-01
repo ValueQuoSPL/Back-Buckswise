@@ -37,7 +37,7 @@
             <column name="schemename" type="varchar(500)">
                 <constraints nullable="true" />
             </column>
-            <column name="netassetvalue" type="varchar(500)">
+            <column name="day1" type="varchar(500)">
                 <constraints nullable="true" />
             </column>
             
