@@ -106,7 +106,7 @@ public class MutualFundResource {
      * @param id the id of the mutualfundDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the mutualfundDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/mutual/{uid}")
+    @GetMapping("/mlfnd/{uid}")
     @Timed
     public List<MutualFund> getMutualfund(@PathVariable Long uid) {
     	return mutualfundService.getUserDetail(uid);
