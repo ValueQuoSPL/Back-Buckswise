@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class AmfiUtilityResource {
 
-    public static final String FILE_PATH = "src/main/resources/NAVII.xlsx";
+    public static final String FILE_PATH = "NAVII.xlsx";
     Cell cel;
 
     @Autowired
@@ -44,7 +44,9 @@ public class AmfiUtilityResource {
      * Fire Trigger Every Night at 12:00 AM
      */
     // @Scheduled(cron = "0/20 * * * * ?")
-    @Scheduled(cron = "0 0 0 * * *",zone = "Indian/Maldives")
+
+    @Scheduled(cron = "0 0 0 * * *")
+    @GetMapping("/uploadNav")
     public void textToJson() throws FileNotFoundException {
         try {
 
@@ -97,8 +99,8 @@ public class AmfiUtilityResource {
      * author - Sandeep Pote
      * Mapping the AMC_Code to NAV table
      */
-    // @GetMapping("/getDetails")
-    @Scheduled(cron = "0 15 0 * * *",zone = "Indian/Maldives")
+    @Scheduled(cron = "0 15 0 * * *")
+    @GetMapping("/putAmcCode")
     public void amfiData() {
         amfiService.getAmfiCode();
     }
