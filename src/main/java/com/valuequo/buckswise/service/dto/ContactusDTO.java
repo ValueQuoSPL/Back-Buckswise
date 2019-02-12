@@ -18,8 +18,8 @@ public class ContactusDTO implements Serializable {
     private String phone;
 
     private String msg;
+    private String yourname; // added by ranjan
 
-    private String yourname; 
 
     public Long getId() {
         return id;
@@ -61,13 +61,15 @@ public class ContactusDTO implements Serializable {
         this.msg = msg;
     }
 
-    public String getYourname() {
+    // added by ranjan --start
+     public String getYourname() {
         return yourname;
     }
 
     public void setYourname(String yourname) {
         this.yourname = yourname;
     }
+    // end
 
     @Override
     public boolean equals(Object o) {
@@ -98,7 +100,7 @@ public class ContactusDTO implements Serializable {
             ", email='" + getEmail() + "'" +
             ", phone=" + getPhone() +
             ", msg='" + getMsg() + "'" +
-            ", yourname='" + getYourname() + "'" +
+            ", yourname='" + getYourname() + "'" + // added by ranjan
             "}";
     }
 }
