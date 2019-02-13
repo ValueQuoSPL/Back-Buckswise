@@ -2,14 +2,15 @@ package com.valuequo.buckswise.web.rest;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.valuequo.buckswise.service.AmfiService;
+import com.valuequo.buckswise.service.GoogledriveService;
 import com.valuequo.buckswise.service.dto.AmfiDTO;
 
 import org.apache.poi.sl.usermodel.*;
@@ -23,14 +24,17 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api")
 public class AmfiUtilityResource {
 
-    public static final String FILE_PATH = "NAVII.xlsx";
+    public static final String FILE_PATH = "src/main/resources/NAVII.xlsx";
     Cell cel;
 
     @Autowired
@@ -38,10 +42,12 @@ public class AmfiUtilityResource {
 
     @Autowired
     private AmfiService amfiService;
-    
+
+    @Autowired
+    private GoogledriveService googledrive;
+
     /**
-     * author - Sandeep Pote
-     * Fire Trigger Every Night at 12:00 AM
+     * author - Sandeep Pote Fire Trigger Every Night at 12:00 AM
      */
     // @Scheduled(cron = "0/20 * * * * ?")
 
@@ -51,28 +57,26 @@ public class AmfiUtilityResource {
         try {
 
             ArrayList<AmfiDTO> al = new ArrayList<AmfiDTO>();
-        	Workbook workbook = WorkbookFactory.create(new File(FILE_PATH));
-            
+            Workbook workbook = WorkbookFactory.create(new File(FILE_PATH));
+
             Iterator<org.apache.poi.ss.usermodel.Sheet> sheetIterator = workbook.sheetIterator();
-            while(sheetIterator.hasNext())
-            {
+            while (sheetIterator.hasNext()) {
                 org.apache.poi.ss.usermodel.Sheet sheet = sheetIterator.next();
             }
             org.apache.poi.ss.usermodel.Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rowIterator = sheet.rowIterator();
             DataFormatter formatter = new DataFormatter();
-            
-            while(rowIterator.hasNext()) {
+
+            while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
                 Iterator<Cell> cellIterator = row.cellIterator();
                 // create the object of DTO class
                 AmfiDTO json1 = new AmfiDTO();
                 cel = row.getCell(5);
-                if (cel == null || cel.getCellType() == CellType.BLANK ) {
+                if (cel == null || cel.getCellType() == CellType.BLANK) {
                 } else {
-                    if (row.getRowNum() == 0) {    
-                    }
-                    else {
+                    if (row.getRowNum() == 0) {
+                    } else {
                         // set value to DTO object
                         json1.setSchemeCode(formatter.formatCellValue(row.getCell(0)));
                         json1.setISINDivPayoutISINGrowth(formatter.formatCellValue(row.getCell(1)));
@@ -90,18 +94,22 @@ public class AmfiUtilityResource {
             mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
             String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(al);
             workbook.close();
-       } catch (Exception e) {
-           e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     /**
-     * author - Sandeep Pote
-     * Mapping the AMC_Code to NAV table
+     * author - Sandeep Pote Mapping the AMC_Code to NAV table
      */
     @Scheduled(cron = "0 15 0 * * *")
     @GetMapping("/putAmcCode")
     public void amfiData() {
         amfiService.getAmfiCode();
+    }
+
+    @PostMapping("/saveFile")
+    public void saveFile(@RequestParam("file") MultipartFile file) throws IOException {
+       googledrive.convert(file);
     }
 }

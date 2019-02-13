@@ -29,15 +29,16 @@ public class AmfiService {
     private AmcRepository amcRepository;
 
     private SessionFactory hibernateFactory;
-
+    
     Session session = null;
-
+    
     Transaction tx;
-
+    
+    
     AmfiService(EntityManagerFactory factory) {
         this.hibernateFactory = factory.unwrap(SessionFactory.class);
     }
-
+    
     @Transactional
     @Modifying
     public void save(ArrayList<AmfiDTO> al) {
@@ -62,6 +63,7 @@ public class AmfiService {
                 count++;
             }
         } else {
+            session = this.hibernateFactory.openSession();
             ArrayList<Amfi> amf1 = new ArrayList<Amfi>();
             for (AmfiDTO result : al) {
                 Amfi amfi = new Amfi();
@@ -79,7 +81,20 @@ public class AmfiService {
                 String days = "day" + dayVal;
                 update(schemeCode, nav, days);
             }
+            session.close();
         }
+    }
+
+    private Transaction OpenDBConnection() {
+        session = this.hibernateFactory.openSession();
+        tx = session.beginTransaction();
+        return tx;
+    }
+
+    private Transaction closeDBConnection(Transaction txx) {
+        txx.commit();
+        session.close();
+        return txx;
     }
 
     public void update(String schemeCode, String nav, String days) {
@@ -92,7 +107,7 @@ public class AmfiService {
         boolean isEqual = str1.equals(str2);
         if (isEqual) {
             try {
-                session = this.hibernateFactory.openSession();
+                // session = this.hibernateFactory.openSession();
                 tx = session.beginTransaction();
                 String sqlQuery = "UPDATE Amfi a SET a." + days + "=" + nav + " where a.SchemeCode = " + schemeCode;
                 Query query = session.createQuery(sqlQuery);
@@ -100,8 +115,6 @@ public class AmfiService {
                 tx.commit();
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                session.close();
             }
         }
     }
