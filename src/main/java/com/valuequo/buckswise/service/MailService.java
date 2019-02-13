@@ -190,10 +190,17 @@ public class MailService {
     	}
     }
     
-    
+
     @Async
     public void sendMailForWelcome(String firstName, String email) {
     	this.email = email;
     	sendEmailWelcome(firstName, "welcomeMail", "email.welcome.title1");
     }
+        // familyaccess password reset mail........ added by ranjan
+    @Async
+    public void sendfamilyAccesspasswordResetEmail(User user) {
+        log.debug("Sending password reset email to '{}'", user.getEmail());
+        sendEmailFromTemplate(user, "familyAccesspasswordResetEmail", "email.reset.title");
+    }
+        // end..............
 }

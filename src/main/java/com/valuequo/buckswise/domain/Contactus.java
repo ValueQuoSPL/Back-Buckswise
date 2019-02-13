@@ -34,7 +34,7 @@ public class Contactus implements Serializable {
     @Column(name = "message")
     private String msg;
 
-    @Column(name = "referance")
+     @Column(name = "referance")
     private String yourname;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -140,6 +140,7 @@ public class Contactus implements Serializable {
             ", email='" + getEmail() + "'" +
             ", phone=" + getPhone() +
             ", msg='" + getMsg() + "'" +
+            ",yourname='" + getYourname() + "'" + // added by ranjan
             "}";
     }
 }
