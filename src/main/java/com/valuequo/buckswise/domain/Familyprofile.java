@@ -50,6 +50,15 @@ public class Familyprofile implements Serializable {
 
     @Column(name = "phonenumber")
     private String phonenumber;
+// added by ranjan.....................
+     @Column(name = "familyaccess")
+    private String familyaccess;
+
+     @Column(name = "accesstype")
+    private String accesstype;
+
+
+
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -162,7 +171,7 @@ public class Familyprofile implements Serializable {
        this.earncheck = earncheck;
        return this;
    }
-	
+
 
 	public Familyprofile email(String email) {
         this.email = email;
@@ -185,6 +194,33 @@ public class Familyprofile implements Serializable {
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
+
+    //added by ranjan...........................
+     public String getFamilyaccess() {
+		return familyaccess;
+	}
+
+	public void setFamilyaccess(String familyaccess) {
+		this.familyaccess = familyaccess;
+	}
+	 public Familyprofile familyaccess(String familyaccess) {
+       this.familyaccess = familyaccess;
+       return this;
+   }
+
+    public String getAccesstype() {
+		return accesstype;
+	}
+
+	public void setAccesstype(String accesstype) {
+		this.accesstype= accesstype;
+	}
+	 public Familyprofile accesstype(String accesstype) {
+       this.accesstype = accesstype;
+       return this;
+   }
+
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -220,6 +256,9 @@ public class Familyprofile implements Serializable {
             ", isEarning='" + getEarncheck() + "'" +
             ", email='" + getEmail() + "'" +
             ", phonenumber='" + getPhonenumber() + "'" +
+             ", accesstype='" + getAccesstype() + "'" +
+            ", familyaccess='" + getFamilyaccess() + "'" +
+           
             "}";
     }
 
