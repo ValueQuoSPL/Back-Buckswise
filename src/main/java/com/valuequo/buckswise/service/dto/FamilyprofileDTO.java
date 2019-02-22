@@ -31,6 +31,10 @@ public class FamilyprofileDTO implements Serializable {
 
     private String phonenumber;
 
+    //added by ranjan...............
+    private String accesstype;
+    private String familyaccess;
+
     public Long getId() {
         return id;
     }
@@ -110,6 +114,25 @@ public class FamilyprofileDTO implements Serializable {
         this.phonenumber = phonenumber;
     }
 
+    //added by ranjan..........start.....
+
+    public String getAccesstype() {
+        return accesstype;
+    }
+
+    public void setAccesstype(String accesstype) {
+        this.accesstype = accesstype;
+    }
+
+     public String getFamilyaccess() {
+        return  familyaccess;
+    }
+
+    public void setFamilyaccess(String  familyaccess) {
+        this. familyaccess =  familyaccess;
+    }
+    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -143,6 +166,9 @@ public class FamilyprofileDTO implements Serializable {
             ", isEarning='" + getEarncheck() + "'" +
             ", email='" + getEmail() + "'" +
             ", phonenumber='" + getPhonenumber() + "'" +
+            ", accesstype='" + getAccesstype() + "'" +
+            ", familyaccess='" + getFamilyaccess() + "'" +
+
             "}";
     }
 }

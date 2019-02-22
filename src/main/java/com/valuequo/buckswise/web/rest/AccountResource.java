@@ -82,6 +82,12 @@ public class AccountResource {
     	}
     }
 
+    @PostMapping("/access")
+    @Timed
+    public void Access(@RequestBody ManagedUserVM managedUserVM) {
+        userService.registerAccessUser(managedUserVM, managedUserVM.getPassword());
+    }
+
     /**
      * GET  /activate : activate the registered user.
      *
@@ -176,6 +182,14 @@ public class AccountResource {
     @Timed
     public void requestPasswordReset(@RequestBody String mail) {
        mailService.sendPasswordResetMail(
+           userService.requestPasswordReset(mail)
+               .orElseThrow(EmailNotFoundException::new)
+       );
+    }
+    @PostMapping("/familyAccessPasswordmail")
+    @Timed
+    public void FamilyaccessPasswordReset(@RequestBody String mail) {
+        mailService.sendfamilyAccessEmail(
            userService.requestPasswordReset(mail)
                .orElseThrow(EmailNotFoundException::new)
        );

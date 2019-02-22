@@ -36,7 +36,7 @@ public class MailService {
     private static final String USER = "user";
     
     private static final String CONTACT = "contact";
-    
+
     private static final String USERDTO = "userDTO";
     
     private static final String FIRSTNAME = "firstName";
@@ -97,7 +97,7 @@ public class MailService {
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
-        sendEmail(user.getEmail(), subject, "sandeep.pote@example.com",  content,false, true);
+        sendEmail(user.getEmail(), subject, "contact@valuequo.com",  content,false, true);
 
     }
     @Async
@@ -112,7 +112,7 @@ public class MailService {
             String subject = messageSource.getMessage(titleKey, null,locale);
             String email = contact.getEmail();
             sendEmail(email, subject, this.cc.getMail(), content,false, true);
-    		
+
     	}
     	catch(Exception e) {
     		log.debug(e.getMessage());
@@ -198,9 +198,11 @@ public class MailService {
     }
         // familyaccess password reset mail........ added by ranjan
     @Async
-    public void sendfamilyAccesspasswordResetEmail(User user) {
+    public void sendfamilyAccessEmail(User user) {
+        // System.out.println("from mail service" + userDTO);
+        // System.out.println("send family access works");
         log.debug("Sending password reset email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "familyAccesspasswordResetEmail", "email.reset.title");
+        sendEmailFromTemplate(user, "familyAccesspasswordResetEmail", "email.familyaccessPasswordreset.title");
     }
-        // end..............
+//         end..............
 }
