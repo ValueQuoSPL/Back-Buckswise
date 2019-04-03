@@ -34,7 +34,7 @@ public class RefundIdService implements CommandLineRunner{
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		refundId(refundIDVM);
+		//refundId(refundIDVM);
 		
 	}
 	

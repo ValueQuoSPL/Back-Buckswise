@@ -34,7 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api")
 public class AmfiUtilityResource {
 
-    public static final String FILE_PATH = "src/main/resources/NAVII.xlsx";
+    public static final String FILE_PATH = "NAVAll.xlsx";
     Cell cel;
 
     @Autowired
@@ -51,13 +51,14 @@ public class AmfiUtilityResource {
      */
     // @Scheduled(cron = "0/20 * * * * ?")
 
-    @Scheduled(cron = "0 0 0 * * *")
+    //@Scheduled(cron = "0 0 0 * * *")
     @GetMapping("/uploadNav")
     public void textToJson() throws FileNotFoundException {
         try {
-
+            System.out.println("UploadNav Service Called");
             ArrayList<AmfiDTO> al = new ArrayList<AmfiDTO>();
             Workbook workbook = WorkbookFactory.create(new File(FILE_PATH));
+            System.out.println("NAV File created");
 
             Iterator<org.apache.poi.ss.usermodel.Sheet> sheetIterator = workbook.sheetIterator();
             while (sheetIterator.hasNext()) {
@@ -89,7 +90,9 @@ public class AmfiUtilityResource {
                 }
 
             }
+            System.out.println("Before NAV Data save");
             amfiService.save(al);
+            System.out.println("After NAV Data save");
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
             String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(al);

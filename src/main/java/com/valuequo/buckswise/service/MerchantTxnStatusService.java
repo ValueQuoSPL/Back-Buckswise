@@ -41,7 +41,7 @@ public class MerchantTxnStatusService implements CommandLineRunner{
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		callmerchanttxn(refundPaymentVM);
+		//callmerchanttxn(refundPaymentVM);
 	}
 
 }
