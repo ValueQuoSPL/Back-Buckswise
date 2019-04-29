@@ -22,6 +22,10 @@ public class AppointmentDTO implements Serializable {
     
     private String hangoutlink;
 
+    private String email;
+
+    private String description;
+
     public Long getId() {
         return id;
     }
@@ -68,7 +72,23 @@ public class AppointmentDTO implements Serializable {
 
 	public void setHangoutlink(String hangoutlink) {
 		this.hangoutlink = hangoutlink;
-	}
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 	@Override
     public boolean equals(Object o) {

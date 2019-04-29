@@ -84,9 +84,12 @@ public class AppointmentResource {
     public ResponseEntity<AppointmentDTO> createAppointment(@RequestBody AppointmentDTO appointmentDTO) throws URISyntaxException, GeneralSecurityException, IOException {
         log.debug("REST request to save Appointment : {}", appointmentDTO);
         dateTime = appointmentDTO.getDate();
-        List<User> userDetails = userRepository.findById(appointmentDTO.getUid());
-        for(User email: userDetails) {
-        	userEmail = email.getEmail();
+        userEmail = appointmentDTO.getEmail();
+        if(userEmail == null) {
+            List<User> userDetails = userRepository.findById(appointmentDTO.getUid());
+            for(User email: userDetails) {
+                userEmail = email.getEmail();
+            }
         }
         appointmentService.createCalendar(dateTime, userEmail);  
         AppointmentDTO result = appointmentService.save(appointmentDTO);
@@ -98,6 +101,7 @@ public class AppointmentResource {
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
+
 
     /**
      * PUT  /appointments : Updates an existing appointment.
@@ -153,6 +157,15 @@ public class AppointmentResource {
         return appointmentService.findAll();
         }
 
+     /** 
+      * GET /appointment: get all the appointment greater then today
+     */
+    @GetMapping("/appointment")
+    @Timed
+    public List<Appointment> getAppointment() {
+        return appointmentService.greaterThenToday();
+    }
+        
     /**
      * GET  /appointments/:id : get the "id" appointment.
      *

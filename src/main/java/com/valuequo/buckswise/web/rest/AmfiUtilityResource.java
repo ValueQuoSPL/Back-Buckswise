@@ -34,7 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api")
 public class AmfiUtilityResource {
 
-    public static final String FILE_PATH = "NAVAll.xlsx";
+    public static final String FILE_PATH = "src/main/resources/NAVAll.xlsx";
     Cell cel;
 
     @Autowired

@@ -112,6 +112,10 @@ public class AppointmentService {
 		return appointmentRepository.findByUid(uid);
 	}
 
+	public List<Appointment> greaterThenToday() {
+		return appointmentRepository.greaterThenToday();
+	}
+
 	public void updateBookAppoint(String status, Long id) {
 		List<Appointment> result = appointmentRepository.findById(id);
 		for(Appointment res: result) {

@@ -23,4 +23,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 	
 	List<Appointment> findById(Long id);
 	
+	@Query("select a from Appointment a where a.date >= curdate()")
+	List<Appointment> greaterThenToday();
 }

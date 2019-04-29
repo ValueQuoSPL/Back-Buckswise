@@ -38,6 +38,9 @@ public class Appointment implements Serializable {
     @Column(name = "hangoutlink")
     private String hangoutlink;
 
+    @Column(name = "description")
+    private String description;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -102,6 +105,15 @@ public class Appointment implements Serializable {
 
 	public void setHangoutlink(String hangoutlink) {
 		this.hangoutlink = hangoutlink;
+	}
+	
+    
+    public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
