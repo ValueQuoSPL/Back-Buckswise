@@ -41,6 +41,11 @@
             <column name="hangoutlink" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+			
+			
+            <column name="description" type="varchar(150)">
+                <constraints nullable="true" />
+            </column>
         </createTable>
         
     </changeSet>
