@@ -42,8 +42,11 @@
                 <constraints nullable="true" />
             </column>
 			
-			
             <column name="description" type="varchar(150)">
+                <constraints nullable="true" />
+            </column>
+					
+            <column name="email" type="varchar(225)">
                 <constraints nullable="true" />
             </column>
         </createTable>

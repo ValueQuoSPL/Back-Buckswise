@@ -89,6 +89,7 @@ public class AppointmentResource {
             List<User> userDetails = userRepository.findById(appointmentDTO.getUid());
             for(User email: userDetails) {
                 userEmail = email.getEmail();
+                appointmentDTO.setEmail(userEmail);
             }
         }
         appointmentService.createCalendar(dateTime, userEmail);  

@@ -37,6 +37,9 @@ public class Appointment implements Serializable {
     
     @Column(name = "hangoutlink")
     private String hangoutlink;
+    
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "description")
     private String description;
@@ -105,6 +108,14 @@ public class Appointment implements Serializable {
 
 	public void setHangoutlink(String hangoutlink) {
 		this.hangoutlink = hangoutlink;
+	}
+    
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
     
