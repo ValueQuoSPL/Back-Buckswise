@@ -82,6 +82,15 @@ public class AccountResource {
     	}
     }
 
+    @PostMapping("/email")
+    @Timed
+    @ResponseStatus(HttpStatus.CREATED)    
+    public void registerEmail(@RequestBody String email) {
+        userRepository.findOneByEmailIgnoreCase(email).ifPresent( u -> {
+            throw new EmailAlreadyUsedException();
+        });
+    }
+
     @PostMapping("/access")
     @Timed
     public void Access(@RequestBody ManagedUserVM managedUserVM) {

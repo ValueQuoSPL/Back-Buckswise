@@ -84,6 +84,7 @@ public class AppointmentService {
             .map(appointmentMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }
+		
 
     /**
      * Get one appointment by id.
