@@ -35,4 +35,6 @@ public interface MutualFundRepository extends JpaRepository<MutualFund, Long> {
   	@Modifying
 	@Query("UPDATE MutualFund a SET a.unitbalance =:units where a.id =:id")
 	void update(@Param("units") String units, @Param("id") Long id);
+
+
 }
