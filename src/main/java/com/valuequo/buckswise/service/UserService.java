@@ -92,6 +92,10 @@ public class UserService {
             });
     }
 
+    public String findEmail(String email) {
+        return userRepository.findEmail(email);
+    }
+
     public User registerUser(UserDTO userDTO, String password) {
 
         User newUser = new User();

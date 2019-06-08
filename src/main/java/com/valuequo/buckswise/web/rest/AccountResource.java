@@ -5,6 +5,7 @@ import com.valuequo.buckswise.config.ApplicationProperties;
 import com.valuequo.buckswise.domain.User;
 import com.valuequo.buckswise.repository.UserRepository;
 import com.valuequo.buckswise.security.SecurityUtils;
+import com.valuequo.buckswise.service.FamilyprofileService;
 import com.valuequo.buckswise.service.MailService;
 import com.valuequo.buckswise.service.UserService;
 import com.valuequo.buckswise.service.dto.PasswordChangeDTO;
@@ -40,10 +41,8 @@ public class AccountResource {
     private final UserService userService;
 
     private final MailService mailService;
-    
-  
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService, FamilyprofileService familyprofileService) {
 
         this.userRepository = userRepository;
         this.userService = userService;
@@ -83,12 +82,12 @@ public class AccountResource {
     }
 
     @PostMapping("/email")
-    @Timed
-    @ResponseStatus(HttpStatus.CREATED)    
-    public void registerEmail(@RequestBody String email) {
-        userRepository.findOneByEmailIgnoreCase(email).ifPresent( u -> {
-            throw new EmailAlreadyUsedException();
-        });
+    @Timed    
+    public String registerEmail(@RequestBody String email) {
+        // return  userRepository.findOneByEmailIgnoreCase(email).ifPresent( u -> {
+        //     throw new EmailAlreadyUsedException();
+        // });
+        return this.userService.findEmail(email);
     }
 
     @PostMapping("/access")

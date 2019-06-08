@@ -54,5 +54,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	List<User> findById(Long id);
 
-	User findOneByLogin(Optional<String> userid);
+    User findOneByLogin(Optional<String> userid);
+    
+    @Query("select a.email from User a WHERE a.email LIKE CONCAT('%',:email,'%')")
+    String findEmail(@Param("email") String email);
 }
