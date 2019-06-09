@@ -5,7 +5,6 @@ import com.valuequo.buckswise.config.ApplicationProperties;
 import com.valuequo.buckswise.domain.User;
 import com.valuequo.buckswise.repository.UserRepository;
 import com.valuequo.buckswise.security.SecurityUtils;
-import com.valuequo.buckswise.service.FamilyprofileService;
 import com.valuequo.buckswise.service.MailService;
 import com.valuequo.buckswise.service.UserService;
 import com.valuequo.buckswise.service.dto.PasswordChangeDTO;
@@ -42,7 +41,7 @@ public class AccountResource {
 
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService, FamilyprofileService familyprofileService) {
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
 
         this.userRepository = userRepository;
         this.userService = userService;
