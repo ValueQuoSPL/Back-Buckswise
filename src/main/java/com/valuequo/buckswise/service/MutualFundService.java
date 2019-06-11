@@ -175,10 +175,9 @@ public class MutualFundService {
 
             if(currentDay.equals(monthOfDay)) {
                 for (int z = this.x; z >=1 ; z--) {
-                    if(x.get(z) == null) {
-                        
-                    } else {
+                    if(x.get(z) != null) {
                         this.list = x.get(z);
+						break;
                     }
                 }
             }
