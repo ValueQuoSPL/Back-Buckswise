@@ -92,7 +92,8 @@ public class AccountResource {
     @PostMapping("/access")
     @Timed
     public void Access(@RequestBody ManagedUserVM managedUserVM) {
-        userService.registerAccessUser(managedUserVM, managedUserVM.getPassword());
+        User user = userService.registerAccessUser(managedUserVM, managedUserVM.getPassword());
+		mailService.sendActivationEmail(user);
     }
 
     /**
