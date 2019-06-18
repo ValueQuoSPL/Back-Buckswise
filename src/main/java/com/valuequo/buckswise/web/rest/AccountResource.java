@@ -93,7 +93,7 @@ public class AccountResource {
     @Timed
     public void Access(@RequestBody ManagedUserVM managedUserVM) {
         User user = userService.registerAccessUser(managedUserVM, managedUserVM.getPassword());
-		mailService.sendActivationEmail(user);
+		mailService.sendfamilyAccessEmail(user);
     }
 
     /**
