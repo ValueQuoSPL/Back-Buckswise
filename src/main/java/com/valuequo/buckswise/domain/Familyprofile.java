@@ -57,8 +57,8 @@ public class Familyprofile implements Serializable {
      @Column(name = "accesstype")
     private String accesstype;
 
-
-
+    @Column(name = "childuid")
+    private Long childuid;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -219,6 +219,14 @@ public class Familyprofile implements Serializable {
        this.accesstype = accesstype;
        return this;
    }
+
+   public Long getChilduid() {
+        return childuid;
+    }
+
+    public void setChilduid(Long childuid) {
+        this.childuid = childuid;
+    }
 
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove

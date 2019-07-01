@@ -138,4 +138,12 @@ public class FamilyprofileResource {
         familyprofileService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/getparentUid/{childid}")
+    @Timed
+	public ResponseEntity<FamilyprofileDTO> getParentId(@PathVariable Long childid) {
+      log.debug("REST request to get Familyprofile : {}", childid);
+      FamilyprofileDTO familyprofileDTO = familyprofileService.findParentId(childid);
+      return ResponseUtil.wrapOrNotFound(Optional.ofNullable(familyprofileDTO));
+	}
 }

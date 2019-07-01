@@ -109,4 +109,11 @@ public class FamilyprofileService {
     {
     	return familyprofileRepository.findByUid(uid);
     }
+
+    @Transactional(readOnly = true)
+    public FamilyprofileDTO findParentId(Long childid) {
+        log.debug("Request to get parent uid : {}", childid);
+        Familyprofile familyprofile = familyprofileRepository.findOneByCid(childid);
+        return familyprofileMapper.toDto(familyprofile);
+    }
 }

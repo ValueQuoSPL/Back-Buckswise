@@ -31,6 +31,8 @@ public class FamilyprofileDTO implements Serializable {
 
     private String phonenumber;
 
+    private Long childuid; 
+
     //added by ranjan...............
     private String accesstype;
     private String familyaccess;
@@ -130,6 +132,14 @@ public class FamilyprofileDTO implements Serializable {
 
     public void setFamilyaccess(String  familyaccess) {
         this. familyaccess =  familyaccess;
+    }
+
+    public Long getChilduid() {
+        return childuid;
+    }
+
+    public void setChilduid(Long childuid) {
+        this.childuid = childuid;
     }
     
 

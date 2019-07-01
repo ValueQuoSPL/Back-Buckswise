@@ -151,7 +151,7 @@ public class UserResource {
     }
     
     @GetMapping("/user/{id}")
-    public List<User> getUsers(@PathVariable Long id) {
+    public User getUsers(@PathVariable Long id) {
     	return userService.find(id);
     }
 

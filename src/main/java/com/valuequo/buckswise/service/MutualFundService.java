@@ -218,7 +218,7 @@ public class MutualFundService {
      * author - Sandeep Pote Fire Trigger Every Day at 1:00 AM
      */
     // @Scheduled(cron = "0 0/10 * ? * Mon-Fri")
-	// @Scheduled(cron = "* * * * *") 
+	// @Scheduled(cron = "0 * * * * *") 
     void unitBalance() throws Exception {
         Date current = new Date();
         int day = current.getDate();
@@ -238,7 +238,10 @@ public class MutualFundService {
                 String finalValue = new DecimalFormat("##.##").format(newBalance);
                 double unit = (Double.parseDouble(unitbalance) + Double.parseDouble(finalValue));
                 String units = Double.toString(unit);
-				System.out.println(units);
+                System.out.println(id);
+                System.out.println(units);
+                log.debug("purches units:", units);
+                log.debug("purches id:", id);
                 mutualfundRepository.update(units, id);
             }
         }

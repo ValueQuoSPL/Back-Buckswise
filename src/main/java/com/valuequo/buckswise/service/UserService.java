@@ -311,7 +311,7 @@ public class UserService {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
 
-	public List<User> find(Long id) {
+	public User find(Long id) {
 		return userRepository.findById(id);
 	}
 
