@@ -31,7 +31,7 @@ public class DeleteAccountService {
 
 	public Void updateid(Long id) {
        Long newId = (long) 0;
-       List<User> user = userRepository.findById(id);
+       List<User> user = (List<User>) userRepository.findById(id);
        for (User var : user) {
             Long newId2 = newId;
             var.setId(newId2);

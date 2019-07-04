@@ -86,7 +86,7 @@ public class AppointmentResource {
         dateTime = appointmentDTO.getDate();
         userEmail = appointmentDTO.getEmail();
         if(userEmail == null) {
-            List<User> userDetails = userRepository.findById(appointmentDTO.getUid());
+            List<User> userDetails = (List<User>) userRepository.findById(appointmentDTO.getUid());
             for(User email: userDetails) {
                 userEmail = email.getEmail();
                 appointmentDTO.setEmail(userEmail);
