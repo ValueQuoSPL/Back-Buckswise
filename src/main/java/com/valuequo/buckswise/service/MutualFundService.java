@@ -218,14 +218,17 @@ public class MutualFundService {
      * author - Sandeep Pote Fire Trigger Every Day at 1:00 AM
      */
     // @Scheduled(cron = "0 0/10 * ? * Mon-Fri")
-	// @Scheduled(cron = "0 * * * * *") 
+	@Scheduled(cron = "0 * * * * *") 
     void unitBalance() throws Exception {
+        System.out.println("under cron");
         Date current = new Date();
         int day = current.getDate();
+        log.debug("under unit balance {}", day);
         String days = Integer.toString(day);
         List<Object> mFund = (List<Object>) mutualfundRepository.findBySipday(days);
         Iterator itr = mFund.iterator();
         while (itr.hasNext()) {
+            System.out.println("under while");
             Object[] obj = (Object[]) itr.next();
             Long id = (Long) obj[0];
             String schemeCode = String.valueOf(obj[1]);
@@ -233,6 +236,7 @@ public class MutualFundService {
             String sipamount = String.valueOf(obj[3]);
             String nav = getNavValue(schemeCode);
             if (nav.length() > 0) {
+                System.out.println("under if");
                 Double netValue = Double.valueOf(nav);
                 Double newBalance = (Double.parseDouble(sipamount) / netValue);
                 String finalValue = new DecimalFormat("##.##").format(newBalance);
