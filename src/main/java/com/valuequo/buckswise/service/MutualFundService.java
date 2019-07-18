@@ -220,23 +220,22 @@ public class MutualFundService {
     // @Scheduled(cron = "0 0/10 * ? * Mon-Fri")
 	@Scheduled(cron = "0 * * * * *") 
     void unitBalance() throws Exception {
-        System.out.println("under cron");
         Date current = new Date();
         int day = current.getDate();
-        log.debug("under unit balance {}", day);
+        log.info("day {}", day);
         String days = Integer.toString(day);
         List<Object> mFund = (List<Object>) mutualfundRepository.findBySipday(days);
+        log.info("data is : {}", mFund);
         Iterator itr = mFund.iterator();
         while (itr.hasNext()) {
-            System.out.println("under while");
             Object[] obj = (Object[]) itr.next();
             Long id = (Long) obj[0];
             String schemeCode = String.valueOf(obj[1]);
             String unitbalance = String.valueOf(obj[2]);
             String sipamount = String.valueOf(obj[3]);
             String nav = getNavValue(schemeCode);
+            log.info("nav is {}", nav);
             if (nav.length() > 0) {
-                System.out.println("under if");
                 Double netValue = Double.valueOf(nav);
                 Double newBalance = (Double.parseDouble(sipamount) / netValue);
                 String finalValue = new DecimalFormat("##.##").format(newBalance);
@@ -244,8 +243,8 @@ public class MutualFundService {
                 String units = Double.toString(unit);
                 System.out.println(id);
                 System.out.println(units);
-                log.debug("purches units:", units);
-                log.debug("purches id:", id);
+                log.info("purches units: {}", units);
+                log.info("purches id: {}", id);
                 mutualfundRepository.update(units, id);
             }
         }
