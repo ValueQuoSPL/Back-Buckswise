@@ -233,19 +233,18 @@ public class MutualFundService {
             String schemeCode = String.valueOf(obj[1]);
             String unitbalance = String.valueOf(obj[2]);
             String sipamount = String.valueOf(obj[3]);
+            String purchesPrice = String.valueOf(obj[4]);
             String nav = getNavValue(schemeCode);
             log.info("nav is {}", nav);
             if (nav.length() > 0) {
-                Double netValue = Double.valueOf(nav);
-                Double newBalance = (Double.parseDouble(sipamount) / netValue);
-                String finalValue = new DecimalFormat("##.##").format(newBalance);
-                double unit = (Double.parseDouble(unitbalance) + Double.parseDouble(finalValue));
-                String units = Double.toString(unit);
-                System.out.println(id);
-                System.out.println(units);
-                log.info("purches units: {}", units);
+                String finalPurchesprice = Double.toString(Double.valueOf(purchesPrice) + Double.valueOf(sipamount));
+                Double newUnits = (Double.parseDouble(sipamount) / Double.valueOf(nav));
+                String strUnits = new DecimalFormat("##.##").format(newUnits);
+                System.out.println("untis" + strUnits);
+                String finalUnits = Double.toString((Double.parseDouble(unitbalance) + Double.parseDouble(strUnits)));
+                log.info("purches units: {}", finalUnits);
                 log.info("purches id: {}", id);
-                mutualfundRepository.update(units, id);
+                mutualfundRepository.update(finalUnits, id, finalPurchesprice);
             }
         }
     }

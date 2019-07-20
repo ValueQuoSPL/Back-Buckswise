@@ -24,7 +24,7 @@ public interface MutualFundRepository extends JpaRepository<MutualFund, Long> {
 	MutualFund findByid(Long id);
 	MutualFund findById(Long id);
 
-	@Query("select a.id, a.schemecode, a.unitbalance, a.sipamount from MutualFund a where a.sipday =:date")
+	@Query("select a.id, a.schemecode, a.unitbalance, a.sipamount, a.purchesprice from MutualFund a where a.sipday =:date")
 	List<Object> findBySipday(@Param("date") String current);
 	
 	/**
@@ -33,8 +33,6 @@ public interface MutualFundRepository extends JpaRepository<MutualFund, Long> {
 	*/
 	@Transactional
   	@Modifying
-	@Query("UPDATE MutualFund a SET a.unitbalance =:units where a.id =:id")
-	void update(@Param("units") String units, @Param("id") Long id);
-
-
+	@Query("UPDATE MutualFund a SET a.unitbalance =:units, a.purchesprice =:finalPurchesprice where a.id =:id")
+	void update(@Param("units") String units, @Param("id") Long id, @Param("finalPurchesprice") String finalPurchesprice);
 }
