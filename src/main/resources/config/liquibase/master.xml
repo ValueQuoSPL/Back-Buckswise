@@ -46,6 +46,7 @@
     <include file="config/liquibase/changelog/googledrive.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/amc.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/nav.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190724163241_added_entity_Advisor.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

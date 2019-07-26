@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "uid",
+            "fieldType": "Long",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "recotype",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reco",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "recoby",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "recodate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "userresponse",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190724163241",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "advisor",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

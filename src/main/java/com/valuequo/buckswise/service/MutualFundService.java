@@ -218,7 +218,7 @@ public class MutualFundService {
      * author - Sandeep Pote Fire Trigger Every Day at 1:00 AM
      */
     // @Scheduled(cron = "0 0/10 * ? * Mon-Fri")
-	@Scheduled(cron = "0 * * * * *") 
+	// @Scheduled(cron = "0 * * * * *") 
     void unitBalance() throws Exception {
         Date current = new Date();
         int day = current.getDate();
