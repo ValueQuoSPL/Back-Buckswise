@@ -68,14 +68,16 @@ public class AdvisorResource {
             recotype = jObj.getString("recotype");
             recoby = jObj.getString("recoby");
             recodate = jObj.getString("recodate");
-            JSONArray ja_data = jObj.getJSONArray("reco");
+			reco = jObj.getString("reco");
+            /* JSONArray ja_data = jObj.getJSONArray("reco");
             System.out.println(ja_data.length());
             for (int i =0; i<ja_data.length(); i++) {
                 JSONObject jObj1 = ja_data.getJSONObject(i);
                 reco = jObj1.get("reco").toString();
                 System.out.println("reco" + reco);
-                advisorService.saveRecommendation(uid, aid,recotype, recoby, recodate, reco);
-            }
+                
+            } */
+			advisorService.saveRecommendation(uid, aid,recotype, recoby, recodate, reco);
         // }
         return null;
     }
