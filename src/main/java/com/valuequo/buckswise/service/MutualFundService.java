@@ -74,7 +74,7 @@ public class MutualFundService {
      * @return the persisted entity
      */
     public MutualFundDTO save(MutualFundDTO mutualfundDTO) {
-        log.debug("Request to save Mutualfund : {}", mutualfundDTO);
+        //loglog.debug("Request to save Mutualfund : {}", mutualfundDTO);
         MutualFund mutualfund = mutualfundMapper.toEntity(mutualfundDTO);
         mutualfund.setAvailable(mutualfund.getCurrentvalue());
         mutualfund = mutualfundRepository.save(mutualfund);
@@ -88,7 +88,7 @@ public class MutualFundService {
      */
     @Transactional(readOnly = true)
     public List<MutualFundDTO> findAll() {
-        log.debug("Request to get all Mutualfunds");
+        //log.debug("Request to get all Mutualfunds");
         return mutualfundRepository.findAll().stream().map(mutualfundMapper::toDto)
                 .collect(Collectors.toCollection(LinkedList::new));
     }
@@ -183,7 +183,7 @@ public class MutualFundService {
             }
 
         }
-
+        //log.info("getNavValue gives this NAV", this.list);
         return this.list;
     }
 
@@ -217,15 +217,15 @@ public class MutualFundService {
     /**
      * author - Sandeep Pote Fire Trigger Every Day at 1:00 AM
      */
-    // @Scheduled(cron = "0 0/10 * ? * Mon-Fri")
-	@Scheduled(cron = "0 * * * * *") 
+    @Scheduled(cron = "0 0/10 * ? * Mon-Fri")
+	//@Scheduled(cron = "0 * * * * *") 
     void unitBalance() throws Exception {
         Date current = new Date();
         int day = current.getDate();
-        log.info("day {}", day);
+        //log.info("day {}", day);
         String days = Integer.toString(day);
         List<Object> mFund = (List<Object>) mutualfundRepository.findBySipday(days);
-        log.info("data is : {}", mFund);
+        //log.info("data is : {}", mFund);
         Iterator itr = mFund.iterator();
         while (itr.hasNext()) {
             Object[] obj = (Object[]) itr.next();
@@ -235,15 +235,15 @@ public class MutualFundService {
             String sipamount = String.valueOf(obj[3]);
             String purchesPrice = String.valueOf(obj[4]);
             String nav = getNavValue(schemeCode);
-            log.info("nav is {}", nav);
+            //log.info("nav is {}", nav);
             if (nav.length() > 0) {
                 String finalPurchesprice = Double.toString(Double.valueOf(purchesPrice) + Double.valueOf(sipamount));
                 Double newUnits = (Double.parseDouble(sipamount) / Double.valueOf(nav));
-                String strUnits = new DecimalFormat("##.##").format(newUnits);
+                String strUnits = new DecimalFormat("##.####").format(newUnits);
                 System.out.println("untis" + strUnits);
                 String finalUnits = Double.toString((Double.parseDouble(unitbalance) + Double.parseDouble(strUnits)));
-                log.info("purches units: {}", finalUnits);
-                log.info("purches id: {}", id);
+                //log.info("purches units: {}", finalUnits);
+                //log.info("purches id: {}", id);
                 mutualfundRepository.update(finalUnits, id, finalPurchesprice);
             }
         }
@@ -269,7 +269,7 @@ public class MutualFundService {
      * @param id the id of the entity
      */
     public void delete(Long id) {
-        log.debug("Request to delete Mutualfund : {}", id);
+        //log.debug("Request to delete Mutualfund : {}", id);
         mutualfundRepository.delete(id);
     }
 
