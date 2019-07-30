@@ -60,7 +60,6 @@ public class IncomeResource {
     	    		this.uName = jObj1.get("name").toString();
     	    		this.uValue = jObj1.get("value").toString();
 					this.userid = jObj.getLong("userid");
-					System.out.println(this.userid);
 					if(this.uName == "userid") {
 	    				return null;
 	    			}
