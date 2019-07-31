@@ -83,20 +83,24 @@ public class AdvisorResource {
     }
 
     /**
-     * PUT  /advisors : Updates an existing advisor.
+     * PUT /advisors : Updates an existing advisor.
      *
      * @param advisorDTO the advisorDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated advisorDTO,
-     * or with status 400 (Bad Request) if the advisorDTO is not valid,
-     * or with status 500 (Internal Server Error) if the advisorDTO couldn't be updated
+     * @return the ResponseEntity with status 200 (OK) and with body the updated
+     *         advisorDTO, or with status 400 (Bad Request) if the advisorDTO is not
+     *         valid, or with status 500 (Internal Server Error) if the advisorDTO
+     *         couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @throws JSONException
      */
     @PutMapping("/advisors")
     @Timed
-    public ResponseEntity<AdvisorDTO> updateAdvisor(@RequestBody AdvisorDTO advisorDTO) throws URISyntaxException {
+    public ResponseEntity<AdvisorDTO> updateAdvisor(@RequestBody AdvisorDTO advisorDTO)
+            throws URISyntaxException, JSONException {
         log.debug("REST request to update Advisor : {}", advisorDTO);
         if (advisorDTO.getId() == null) {
             // return createAdvisor(advisorDTO);
+            return createAdvisor((Map<String, Object>) advisorDTO);
         }
         AdvisorDTO result = advisorService.save(advisorDTO);
         return ResponseEntity.ok()
