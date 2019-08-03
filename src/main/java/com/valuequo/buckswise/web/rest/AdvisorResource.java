@@ -5,6 +5,7 @@ import com.valuequo.buckswise.domain.Advisor;
 import com.valuequo.buckswise.service.AdvisorService;
 import com.valuequo.buckswise.web.rest.errors.BadRequestAlertException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import com.valuequo.buckswise.web.rest.util.HeaderUtil;
@@ -17,6 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.valuequo.buckswise.security.SecurityUtils;
+import com.valuequo.buckswise.domain.User;
+import com.valuequo.buckswise.repository.UserRepository;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -37,6 +41,9 @@ public class AdvisorResource {
     private static final String ENTITY_NAME = "advisor";
 
     private final AdvisorService advisorService;
+
+    @Autowired
+	private UserRepository userRepository;
 
     public AdvisorResource(AdvisorService advisorService) {
         this.advisorService = advisorService;
@@ -134,10 +141,13 @@ public class AdvisorResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(advisorDTO));
     }
 
-    @GetMapping("/advisor/{aid}/{uid}/{type}")
+    @GetMapping("/advisor/{uid}/{type}")
     @Timed
-    public List<Advisor> getAdvisorAid(@PathVariable Long aid, @PathVariable Long uid, @PathVariable String type) {
+    public List<Advisor> getAdvisorAid(@PathVariable Long uid, @PathVariable String type) {
         // System.out.println(uid);
+        Optional<String>  userid = SecurityUtils.getCurrentUserLogin();
+        User user = userRepository.findOneByLogin(userid);
+        Long aid = user.getId();
         return advisorService.findByAid(aid, uid, type);
     }
 
