@@ -6,6 +6,7 @@ import com.valuequo.buckswise.domain.Advisor;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 
 
 /**
@@ -15,7 +16,8 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface AdvisorRepository extends JpaRepository<Advisor, Long> {
 
-    List<Advisor> findByAid(Long aid);
+    @Query("select a from Advisor a where a.aid =:aid AND a.uid =:uid AND a.recotype =:type")
+    List<Advisor> findByAid(@Param ("aid") Long aid, @Param ("uid") Long uid, @Param ("type") String type);
 
     // List<Income> findByUserid(Long userid);
 }

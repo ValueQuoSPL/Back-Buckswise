@@ -134,10 +134,11 @@ public class AdvisorResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(advisorDTO));
     }
 
-    @GetMapping("/advisor/{aid}")
+    @GetMapping("/advisor/{aid}/{uid}/{type}")
     @Timed
-    public List<Advisor> getAdvisorAid(@PathVariable Long aid) {
-        return advisorService.findByAid(aid);
+    public List<Advisor> getAdvisorAid(@PathVariable Long aid, @PathVariable Long uid, @PathVariable String type) {
+        // System.out.println(uid);
+        return advisorService.findByAid(aid, uid, type);
     }
 
     /**

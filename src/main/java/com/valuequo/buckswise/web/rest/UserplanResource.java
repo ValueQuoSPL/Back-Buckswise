@@ -103,31 +103,9 @@ public class UserplanResource {
     	return userplanService.getUser(uid);
     }
 
-    /**
-     * GET  /userplans/:id : get the "id" userplan.
-     *
-     * @param id the id of the userplanDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the userplanDTO, or with status 404 (Not Found)
-     */
-    // @GetMapping("/userplans/{id}")
-    // @Timed
-    // public ResponseEntity<UserplanDTO> getUserplan(@PathVariable Long id) {
-    //     log.debug("REST request to get Userplan : {}", id);
-    //     Optional<UserplanDTO> userplanDTO = userplanService.findOne(id);
-    //     return ResponseUtil.wrapOrNotFound(userplanDTO);
-    // }
-
-    /**
-     * DELETE  /userplans/:id : delete the "id" userplan.
-     *
-     * @param id the id of the userplanDTO to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
-    // @DeleteMapping("/userplans/{id}")
-    // @Timed
-    // public ResponseEntity<Void> deleteUserplan(@PathVariable Long id) {
-    //     log.debug("REST request to delete Userplan : {}", id);
-    //     userplanService.delete(id);
-    //     return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    // }
+    @GetMapping("/getuserplan/{uid}")
+    @Timed
+    public Long getUserPlan(@PathVariable Long uid) {
+        return userplanService.getUserPlan(uid);
+    }
 }

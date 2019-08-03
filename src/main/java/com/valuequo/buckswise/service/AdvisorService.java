@@ -82,8 +82,8 @@ public class AdvisorService {
         return advisorMapper.toDto(advisor);
     }
 
-    public List<Advisor> findByAid(Long aid) {
-        return advisorRepository.findByAid(aid);
+    public List<Advisor> findByAid(Long aid, Long uid, String type) {
+        return advisorRepository.findByAid(aid, uid, type);
     }
 
     /**

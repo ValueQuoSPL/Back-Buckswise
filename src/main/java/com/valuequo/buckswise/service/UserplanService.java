@@ -4,6 +4,8 @@ import com.valuequo.buckswise.domain.Userplan;
 import com.valuequo.buckswise.repository.UserplanRepository;
 import com.valuequo.buckswise.service.dto.UserplanDTO;
 import com.valuequo.buckswise.service.mapper.UserplanMapper;
+
+import org.hibernate.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +16,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.persistence.EntityManagerFactory;
 /**
  * Service Implementation for managing Userplan.
  */
@@ -26,10 +30,21 @@ public class UserplanService {
     private final UserplanRepository userplanRepository;
 
     private final UserplanMapper userplanMapper;
+    
+    private SessionFactory hibernateFactory;
+    
+    Session session = null;
+    
+    Transaction tx;
 
-    public UserplanService(UserplanRepository userplanRepository, UserplanMapper userplanMapper) {
+    // UserplanService(EntityManagerFactory factory) {
+    //     this.hibernateFactory = factory.unwrap(SessionFactory.class);
+    // }
+
+    public UserplanService(UserplanRepository userplanRepository, UserplanMapper userplanMapper, EntityManagerFactory factory) {
         this.userplanRepository = userplanRepository;
         this.userplanMapper = userplanMapper;
+        this.hibernateFactory = factory.unwrap(SessionFactory.class);
     }
 
     /**
@@ -58,30 +73,22 @@ public class UserplanService {
             .collect(Collectors.toCollection(LinkedList::new));
     }
 
-	    public List<Userplan> getUser(Long uid)
-	    {
-	    	return userplanRepository.findByUid(uid);
-	    }
-    /**
-     * Get one userplan by id.
-     *
-     * @param id the id of the entity
-     * @return the entity
-     */
-    // @Transactional(readOnly = true)
-    // public Optional<UserplanDTO> findOne(Long id) {
-    //     log.debug("Request to get Userplan : {}", id);
-    //     return userplanRepository.findById(id)
-    //         .map(userplanMapper::toDto);
-    // }
+    public List<Userplan> getUser(Long uid) {
+        return userplanRepository.findByUid(uid);
+    }
 
-    /**
-     * Delete the userplan by id.
-     *
-     * @param id the id of the entity
-     */
-    // public void delete(Long id) {
-    //     log.debug("Request to delete Userplan : {}", id);
-    //     userplanRepository.deleteById(id);
-    // }
+    public Long getUserPlan(Long uid) {
+        session = this.hibernateFactory.openSession();
+        tx = session.beginTransaction();
+        // String sqlQuery = "select datediff(DATE(a.expiry_Date), curdate()) from userplan a where a.uid =" + uid;
+        String sqlQuery = "select a from Userplan a where FUNCTION('DATEDIFF', '2019-08-09', '2019-08-02')";
+        Query query = session.createQuery(sqlQuery);
+        query.executeUpdate();
+        System.out.println(query.getResultList());
+        tx.commit();
+        session.close();
+        return null;
+    }
+    
+
 }

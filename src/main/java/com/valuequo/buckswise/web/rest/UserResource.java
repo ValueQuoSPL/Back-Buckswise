@@ -196,10 +196,10 @@ public class UserResource {
     }
     
     // sending mail to user from admin
-    @PostMapping("/sendmail") 
-    @Timed
-    public String sendMail(@RequestBody UserDTO userDTO) {
-    	 mailService.sendMailByAdmin(userDTO);
-    	 return null;
-    }
+    // @PostMapping("/sendmail") 
+    // @Timed
+    // public String sendMail(@RequestBody UserDTO userDTO) {
+    // 	 mailService.sendMailByAdmin(userDTO);
+    // 	 return null;
+    // }
 }
