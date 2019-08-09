@@ -27,6 +27,10 @@ public class AdvisorDTO implements Serializable {
 
     private String usercomment;
 
+    private String approve;
+
+    private String reject;
+
     public Long getId() {
         return id;
     }
@@ -99,6 +103,8 @@ public class AdvisorDTO implements Serializable {
         this.usercomment = usercomment;
     }
 
+    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -132,5 +138,21 @@ public class AdvisorDTO implements Serializable {
             ", userresponse='" + getUserresponse() + "'" +
             ", usercomment='" + getUsercomment() + "'" +
             "}";
+    }
+
+    public String getApprove() {
+        return approve;
+    }
+
+    public void setApprove(String approve) {
+        this.approve = approve;
+    }
+
+    public String getReject() {
+        return reject;
+    }
+
+    public void setReject(String reject) {
+        this.reject = reject;
     }
 }

@@ -95,4 +95,8 @@ public class AdvisorService {
         log.debug("Request to delete Advisor : {}", id);
         advisorRepository.delete(id);
     }
+
+	public void updateAdvice(Long id, String comments, String approveValue, String rejectValue) {
+        advisorRepository.update(id, comments, approveValue, rejectValue);
+	}
 }
