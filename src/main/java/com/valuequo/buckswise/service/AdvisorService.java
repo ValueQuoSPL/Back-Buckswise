@@ -96,7 +96,7 @@ public class AdvisorService {
         advisorRepository.delete(id);
     }
 
-	public void updateAdvice(Long id, String comments, String approveValue, String rejectValue) {
-        advisorRepository.update(id, comments, approveValue, rejectValue);
-	}
+	// public AdvisorDTO updateAdvice(Long id, String comments, String approveValue, String rejectValue) {
+    //     advisorRepository.update(id, comments, approveValue, rejectValue);
+	// }
 }

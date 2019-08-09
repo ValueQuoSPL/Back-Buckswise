@@ -115,23 +115,23 @@ public class AdvisorResource {
             .body(result);
     }
 
-    @PutMapping("/advice")
-    @Timed
-    public ResponseEntity<AdvisorDTO> updateAdvice(@RequestBody List<AdvisorDTO> data) throws JSONException {
-        Long id;
-        String comments;
-        String approveValue;
-        String rejectValue;
+    // @PutMapping("/advice")
+    // @Timed
+    // public ResponseEntity<AdvisorDTO> updateAdvice(@RequestBody List<AdvisorDTO> data) throws JSONException {
+    //     Long id;
+    //     String comments;
+    //     String approveValue;
+    //     String rejectValue;
         
-        for (AdvisorDTO var: data) {
-            id = var.getId();
-            comments = var.getUsercomment();
-            approveValue = var.getApprove();
-            rejectValue = var.getReject();
-            advisorService.updateAdvice(id, comments, approveValue, rejectValue);
-        }
-        return null;
-    }
+    //     for (AdvisorDTO var: data) {
+    //         id = var.getId();
+    //         comments = var.getUsercomment();
+    //         approveValue = var.getApprove();
+    //         rejectValue = var.getReject();
+    //         advisorService.updateAdvice(id, comments, approveValue, rejectValue);
+    //     }
+    //     return null;
+    // }
 
     /**
      * GET  /advisors : get all the advisors.
