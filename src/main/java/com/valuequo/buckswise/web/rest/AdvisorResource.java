@@ -43,24 +43,26 @@ public class AdvisorResource {
     private final AdvisorService advisorService;
 
     @Autowired
-	private UserRepository userRepository;
+    private UserRepository userRepository;
 
     public AdvisorResource(AdvisorService advisorService) {
         this.advisorService = advisorService;
     }
 
     /**
-     * POST  /advisors : Create a new advisor.
+     * POST /advisors : Create a new advisor.
      *
      * @param advisorDTO the advisorDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new advisorDTO, or with status 400 (Bad Request) if the advisor has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the new
+     *         advisorDTO, or with status 400 (Bad Request) if the advisor has
+     *         already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/advisors")
     @Timed
     public ResponseEntity<AdvisorDTO> createAdvisor(@RequestBody Map<String, Object> data) throws JSONException {
         Long uid;
-		Long aid;
+        Long aid;
         String recotype;
         String recoby;
         String recodate;
@@ -68,23 +70,23 @@ public class AdvisorResource {
 
         log.debug("REST request to save Advisor : {}", data);
         // for(Map.Entry<String, Object> entry: data.entrySet()) {
-            JSONObject jObj = new JSONObject(data);
-            System.out.println(jObj);
-            uid = jObj.getLong("uid");
-			aid = jObj.getLong("aid");
-            recotype = jObj.getString("recotype");
-            recoby = jObj.getString("recoby");
-            recodate = jObj.getString("recodate");
-			reco = jObj.getString("reco");
-            /* JSONArray ja_data = jObj.getJSONArray("reco");
-            System.out.println(ja_data.length());
-            for (int i =0; i<ja_data.length(); i++) {
-                JSONObject jObj1 = ja_data.getJSONObject(i);
-                reco = jObj1.get("reco").toString();
-                System.out.println("reco" + reco);
-                
-            } */
-			advisorService.saveRecommendation(uid, aid,recotype, recoby, recodate, reco);
+        JSONObject jObj = new JSONObject(data);
+        System.out.println(jObj);
+        uid = jObj.getLong("uid");
+        aid = jObj.getLong("aid");
+        recotype = jObj.getString("recotype");
+        recoby = jObj.getString("recoby");
+        recodate = jObj.getString("recodate");
+        reco = jObj.getString("reco");
+        /*
+         * JSONArray ja_data = jObj.getJSONArray("reco");
+         * System.out.println(ja_data.length()); for (int i =0; i<ja_data.length(); i++)
+         * { JSONObject jObj1 = ja_data.getJSONObject(i); reco =
+         * jObj1.get("reco").toString(); System.out.println("reco" + reco);
+         * 
+         * }
+         */
+        advisorService.saveRecommendation(uid, aid, recotype, recoby, recodate, reco);
         // }
         return null;
     }
@@ -111,45 +113,28 @@ public class AdvisorResource {
         }
         AdvisorDTO result = advisorService.save(advisorDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, advisorDTO.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, advisorDTO.getId().toString())).body(result);
     }
 
-    // @PutMapping("/advice")
-    // @Timed
-    // public ResponseEntity<AdvisorDTO> updateAdvice(@RequestBody List<AdvisorDTO> data) throws JSONException {
-    //     Long id;
-    //     String comments;
-    //     String approveValue;
-    //     String rejectValue;
-        
-    //     for (AdvisorDTO var: data) {
-    //         id = var.getId();
-    //         comments = var.getUsercomment();
-    //         approveValue = var.getApprove();
-    //         rejectValue = var.getReject();
-    //         advisorService.updateAdvice(id, comments, approveValue, rejectValue);
-    //     }
-    //     return null;
-    // }
-
     /**
-     * GET  /advisors : get all the advisors.
+     * GET /advisors : get all the advisors.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of advisors in body
+     * @return the ResponseEntity with status 200 (OK) and the list of advisors in
+     *         body
      */
     @GetMapping("/advisors")
     @Timed
     public List<AdvisorDTO> getAllAdvisors() {
         log.debug("REST request to get all Advisors");
         return advisorService.findAll();
-        }
+    }
 
     /**
-     * GET  /advisors/:id : get the "id" advisor.
+     * GET /advisors/:id : get the "id" advisor.
      *
      * @param id the id of the advisorDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the advisorDTO, or with status 404 (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the advisorDTO,
+     *         or with status 404 (Not Found)
      */
     @GetMapping("/advisors/{id}")
     @Timed
@@ -163,14 +148,14 @@ public class AdvisorResource {
     @Timed
     public List<Advisor> getAdvisorAid(@PathVariable Long uid, @PathVariable String type) {
         // System.out.println(uid);
-        Optional<String>  userid = SecurityUtils.getCurrentUserLogin();
+        Optional<String> userid = SecurityUtils.getCurrentUserLogin();
         User user = userRepository.findOneByLogin(userid);
         Long aid = user.getId();
         return advisorService.findByAid(aid, uid, type);
     }
 
     /**
-     * DELETE  /advisors/:id : delete the "id" advisor.
+     * DELETE /advisors/:id : delete the "id" advisor.
      *
      * @param id the id of the advisorDTO to delete
      * @return the ResponseEntity with status 200 (OK)
@@ -182,4 +167,5 @@ public class AdvisorResource {
         advisorService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
 }

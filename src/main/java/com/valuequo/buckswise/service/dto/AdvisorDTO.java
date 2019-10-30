@@ -132,6 +132,8 @@ public class AdvisorDTO implements Serializable {
             "id=" + getId() +
             ", uid=" + getUid() +
             ", recotype='" + getRecotype() + "'" +
+            ", approve='" + getApprove() + "'" +
+            ", reject='" + getReject() + "'" +
             ", reco='" + getReco() + "'" +
             ", recoby='" + getRecoby() + "'" +
             ", recodate='" + getRecodate() + "'" +

@@ -46,6 +46,14 @@ public class Advisor implements Serializable {
     @Column(name = "usercomment")
     private String usercomment;
 
+    @Column(name = "reject")
+    private String reject;
+
+    @Column(name = "approve")
+    private String approve;
+
+    
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -146,6 +154,10 @@ public class Advisor implements Serializable {
         this.userresponse = userresponse;
     }
 
+    public String getUsercomment() {
+        return usercomment;
+    }
+
     public Advisor usercomment(String usercomment) {
         this.usercomment = usercomment;
         return this;
@@ -154,6 +166,7 @@ public class Advisor implements Serializable {
     public void setUsercomment(String usercomment) {
         this.usercomment = usercomment;
     }
+    
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -187,5 +200,21 @@ public class Advisor implements Serializable {
             ", recodate='" + getRecodate() + "'" +
             ", userresponse='" + getUserresponse() + "'" +
             "}";
+    }
+
+    public String getReject() {
+        return reject;
+    }
+
+    public void setReject(String reject) {
+        this.reject = reject;
+    }
+
+    public String getApprove() {
+        return approve;
+    }
+
+    public void setApprove(String approve) {
+        this.approve = approve;
     }
 }
