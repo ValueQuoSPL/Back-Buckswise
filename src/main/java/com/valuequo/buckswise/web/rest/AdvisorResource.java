@@ -153,6 +153,13 @@ public class AdvisorResource {
         Long aid = user.getId();
         return advisorService.findByAid(aid, uid, type);
     }
+	
+	@GetMapping("/showadvise/{uid}/{type}")
+    @Timed
+    public List<Advisor> showAdvise(@PathVariable Long uid, @PathVariable String type) {
+        // System.out.println(uid);
+        return advisorService.findByUid(uid, type);
+    }
 
     /**
      * DELETE /advisors/:id : delete the "id" advisor.

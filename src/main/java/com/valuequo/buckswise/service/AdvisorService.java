@@ -83,8 +83,13 @@ public class AdvisorService {
     }
 
     public List<Advisor> findByAid(Long aid, Long uid, String type) {
-        return advisorRepository.findByAid(aid, uid, type);
+		return advisorRepository.findByAid(aid, uid, type);
     }
+	
+	public List<Advisor> findByUid(Long uid, String type) {
+		return advisorRepository.findByUid(uid, type);
+	}
+		
 
     /**
      * Delete the advisor by id.
